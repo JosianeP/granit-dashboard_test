@@ -1,0 +1,405 @@
+{
+  "_sources": "Données : ISQ 2024-2025, MAMH Décret population 1499-2025, affairesmegantic.com, mrcgranit.qc.ca, Statistique Canada, MAPAQ, PPAQ",
+  "meta": {
+    "quarter": "T1 2025",
+    "updatedBy": "MRC du Granit — Développement économique",
+    "updatedDate": "2025-05-19",
+    "note": "Données démographiques réelles (ISQ, MAMH 2025-2026). Données d'emploi par secteur : estimations basées sur les profils sectoriels disponibles. À valider avec Emploi-Québec et CLD Granit.",
+    "password": "granit2025"
+  },
+  "kpis": [
+    {
+      "label": "Population totale",
+      "value": "21 935",
+      "unit": "habitants (Décret pop. 2026)",
+      "delta": "↑ +265 en 2023-2024",
+      "trend": "up"
+    },
+    {
+      "label": "Travailleurs 25-64 ans",
+      "value": "7 845",
+      "unit": "personnes (ISQ 2024)",
+      "delta": "77,6 % taux d'emploi",
+      "trend": "up"
+    },
+    {
+      "label": "Revenu médian d'emploi",
+      "value": "50 800 $",
+      "unit": "25-64 ans (ISQ 2024)",
+      "delta": "↓ -7 % vs moy. QC",
+      "trend": "down"
+    },
+    {
+      "label": "Permis de bâtir",
+      "value": "54,8 M$",
+      "unit": "valeur totale (ISQ 2024)",
+      "delta": "↑ Actif",
+      "trend": "up"
+    }
+  ],
+  "sectors": [
+    {
+      "id": "s1",
+      "name": "Manufacturier",
+      "jobs": 1950,
+      "trend": "+3,2 %",
+      "dir": "up",
+      "cat": "manufacturier",
+      "icon": "🏭",
+      "desc": "Tafisa Canada (panneaux de particules), Bestar (meubles), Energex (granules de bois), Placage Mégantic, Industries Mfg Mégantic (portes Masonite), Melac Industrie (papier)"
+    },
+    {
+      "id": "s2",
+      "name": "Commerce de détail",
+      "jobs": 980,
+      "trend": "+1,8 %",
+      "dir": "up",
+      "cat": "commerce",
+      "icon": "🛒",
+      "desc": "Commerces Lac-Mégantic centre-ville, grandes surfaces, épiceries, quincailleries, commerces de proximité dans 19 municipalités"
+    },
+    {
+      "id": "s3",
+      "name": "Forêt & bois",
+      "jobs": 820,
+      "trend": "-0,5 %",
+      "dir": "down",
+      "cat": "primaire",
+      "icon": "🌲",
+      "desc": "Scieries, récolte forestière, PADF (Plan d'aménagement et développement des forêts), deuxième territoire forestier de l'Estrie"
+    },
+    {
+      "id": "s4",
+      "name": "Construction",
+      "jobs": 690,
+      "trend": "+4,1 %",
+      "dir": "up",
+      "cat": "manufacturier",
+      "icon": "🏗️",
+      "desc": "Résidentiel, commercial, infrastructure civile. Permis de bâtir : 54,8 M$ en 2024. Pression de la demande de logements."
+    },
+    {
+      "id": "s5",
+      "name": "Acéricole",
+      "jobs": 580,
+      "trend": "+5,7 %",
+      "dir": "up",
+      "cat": "primaire",
+      "icon": "🍁",
+      "desc": "2e région du Québec en superficie d'érablières. 62,3 % des érablières de l'Estrie (19 455 ha exploités). Érablière-école de Saint-Romain (15 000 entailles bio). CFP Le Granit."
+    },
+    {
+      "id": "s6",
+      "name": "Agroalimentaire",
+      "jobs": 420,
+      "trend": "+2,3 %",
+      "dir": "up",
+      "cat": "primaire",
+      "icon": "🌾",
+      "desc": "Production laitière (principale), cultures fourragères (83 % des champs), Fromagerie La Chaudière. Superficie cultivée : 16 637 ha (hors érablières)."
+    },
+    {
+      "id": "s7",
+      "name": "Tourisme & plein air",
+      "jobs": 410,
+      "trend": "+6,4 %",
+      "dir": "up",
+      "cat": "tourisme",
+      "icon": "⛵",
+      "desc": "Lac-Mégantic (Bains de nature — Signature Innovation MRC), parcs régionaux, sentiers, hébergement, restauration, festivals. Projet réseau bains de nature 2025."
+    },
+    {
+      "id": "s8",
+      "name": "Services professionnels",
+      "jobs": 360,
+      "trend": "+3,0 %",
+      "dir": "up",
+      "cat": "commerce",
+      "icon": "💼",
+      "desc": "CSSS du Granit (santé), éducation (CFP Le Granit, écoles), services financiers, SADC, MRC du Granit, services juridiques et professionnels"
+    },
+    {
+      "id": "s9",
+      "name": "Énergie & éolien",
+      "jobs": 120,
+      "trend": "+12,0 %",
+      "dir": "up",
+      "cat": "primaire",
+      "icon": "💨",
+      "desc": "Parc éolien Le Granit (Saint-Robert-Bellarmin) — 12 éoliennes, 24,5 MW. Énergie du Granit : 1,75 M$ en redevances à 16 municipalités en 2026. Transition énergétique en cours."
+    },
+    {
+      "id": "s10",
+      "name": "Transport & logistique",
+      "jobs": 290,
+      "trend": "+1,2 %",
+      "dir": "up",
+      "cat": "manufacturier",
+      "icon": "🚛",
+      "desc": "Camionnage, entreposage, transbordement intermodal Lac-Mégantic, transport ferroviaire (voie de contournement). Corridor vers le Maine/Atlantique."
+    },
+    {
+      "id": "s11",
+      "name": "Textile & vêtements",
+      "jobs": 190,
+      "trend": "-1,8 %",
+      "dir": "down",
+      "cat": "manufacturier",
+      "icon": "🧵",
+      "desc": "Confection, tissu technique, sous-traitance textile. Secteur en consolidation, pression des importations."
+    },
+    {
+      "id": "s12",
+      "name": "Granit & minéraux",
+      "jobs": 85,
+      "trend": "+2,0 %",
+      "dir": "up",
+      "cat": "primaire",
+      "icon": "🪨",
+      "desc": "Extraction et transformation du granit. Le granit de la région a été intégré au Mémorial national du 11-Septembre à New York. Secteur patrimonial distinctif."
+    }
+  ],
+  "municipalities": [
+    {
+      "id": "m01",
+      "name": "Lac-Mégantic",
+      "type": "Ville",
+      "pop": 5970,
+      "surface": 21.7,
+      "density": 275.1,
+      "cat": "urbain",
+      "code": "30030",
+      "role": "Chef-lieu · Ville-centre régionale",
+      "note": "Centre économique, administratif et commercial de la MRC. Parc industriel actif (15+ manufactures, 22 services). Reconstruction post-2013. Voie ferrée de contournement."
+    },
+    {
+      "id": "m02",
+      "name": "Frontenac",
+      "type": "Municipalité",
+      "pop": 1857,
+      "surface": 224.8,
+      "density": 8.3,
+      "cat": "rural",
+      "code": "30025",
+      "role": "Communauté rurale · 2e pop. MRC",
+      "note": "Deuxième municipalité en population. Agriculture, forêt, résidentiel. Forte identité communautaire."
+    },
+    {
+      "id": "m03",
+      "name": "Lambton",
+      "type": "Municipalité",
+      "pop": 1722,
+      "surface": 108.2,
+      "density": 15.9,
+      "cat": "rural",
+      "code": "30095",
+      "role": "Village dynamique · Services locaux",
+      "note": "Services de proximité, agriculture, acéricole. L'une des densités les plus élevées hors Lac-Mégantic."
+    },
+    {
+      "id": "m04",
+      "name": "Nantes",
+      "type": "Municipalité",
+      "pop": 1415,
+      "surface": 119.3,
+      "density": 11.9,
+      "cat": "rural",
+      "code": "30045",
+      "role": "Rural · Agriculture et forêt",
+      "note": "Agriculture, forêt. Croissance modérée. Proximité de Lac-Mégantic."
+    },
+    {
+      "id": "m05",
+      "name": "Notre-Dame-des-Bois",
+      "type": "Municipalité",
+      "pop": 1207,
+      "surface": 191.2,
+      "density": 6.3,
+      "cat": "rural",
+      "code": "30010",
+      "role": "Tourisme · Mont Mégantic",
+      "note": "Parc national du Mont-Mégantic, ASTROLab, Réserve internationale de ciel étoilé. Tourisme astral d'envergure internationale."
+    },
+    {
+      "id": "m06",
+      "name": "Stratford",
+      "type": "Canton",
+      "pop": 1063,
+      "surface": 121.0,
+      "density": 8.8,
+      "cat": "rural",
+      "code": "30110",
+      "role": "Canton rural · Agriculture",
+      "note": "Canton à tradition anglophone. Agriculture, communauté active."
+    },
+    {
+      "id": "m07",
+      "name": "Lac-Drolet",
+      "type": "Municipalité",
+      "pop": 1076,
+      "surface": 124.3,
+      "density": 8.7,
+      "cat": "rural",
+      "code": "30080",
+      "role": "Rural · Modèle de dév. local",
+      "note": "Cité en exemple pour son développement économique local. Lac-Drolet = modèle mentionné par la mairesse de Lac-Mégantic pour développement industriel local."
+    },
+    {
+      "id": "m08",
+      "name": "Saint-Ludger",
+      "type": "Municipalité",
+      "pop": 1099,
+      "surface": 127.4,
+      "density": 8.6,
+      "cat": "rural",
+      "code": "30072",
+      "role": "Rural · Agriculture mixte",
+      "note": "Agriculture, acéricole, services de proximité."
+    },
+    {
+      "id": "m09",
+      "name": "Marston",
+      "type": "Canton",
+      "pop": 802,
+      "surface": 71.0,
+      "density": 11.3,
+      "cat": "rural",
+      "code": "30035",
+      "role": "Canton · Rural",
+      "note": "Canton agricole, forte densité relative."
+    },
+    {
+      "id": "m10",
+      "name": "Sainte-Cécile-de-Whitton",
+      "type": "Municipalité",
+      "pop": 910,
+      "surface": 146.7,
+      "density": 6.2,
+      "cat": "rural",
+      "code": "30050",
+      "role": "Rural · Forêt & acéricole",
+      "note": "Forêt, acéricole, milieu naturel."
+    },
+    {
+      "id": "m11",
+      "name": "Saint-Romain",
+      "type": "Municipalité",
+      "pop": 722,
+      "surface": 112.1,
+      "density": 6.4,
+      "cat": "rural",
+      "code": "30100",
+      "role": "Acériculture durable · Formation",
+      "note": "Siège de l'Érablière-école (15 000 entailles bio). Formation acéricole du CFP Le Granit. Comité de développement Saint-Romain — modèle acériculture durable."
+    },
+    {
+      "id": "m12",
+      "name": "Audet",
+      "type": "Municipalité",
+      "pop": 707,
+      "surface": 133.3,
+      "density": 5.3,
+      "cat": "rural",
+      "code": "30055",
+      "role": "Rural · Forêt & villégiature",
+      "note": "Villégiature, forêt, agriculture."
+    },
+    {
+      "id": "m13",
+      "name": "Saint-Sébastien",
+      "type": "Municipalité",
+      "pop": 707,
+      "surface": 90.9,
+      "density": 7.8,
+      "cat": "rural",
+      "code": "30085",
+      "role": "Rural · Agriculture",
+      "note": "Agriculture, densité relative plus élevée."
+    },
+    {
+      "id": "m14",
+      "name": "Saint-Augustin-de-Woburn",
+      "type": "Paroisse",
+      "pop": 677,
+      "surface": 281.6,
+      "density": 2.4,
+      "cat": "rural_eloigne",
+      "code": "30005",
+      "role": "Territoire forestier · Frontalier Maine",
+      "note": "Frontière avec le Maine. Vaste territoire forestier. Parmi les plus faibles densités de la MRC."
+    },
+    {
+      "id": "m15",
+      "name": "Stornoway",
+      "type": "Municipalité",
+      "pop": 545,
+      "surface": 179.9,
+      "density": 3.0,
+      "cat": "rural",
+      "code": "30105",
+      "role": "Rural · Forêt",
+      "note": "Forêt, villégiature."
+    },
+    {
+      "id": "m16",
+      "name": "Saint-Robert-Bellarmin",
+      "type": "Municipalité",
+      "pop": 522,
+      "surface": 236.6,
+      "density": 2.2,
+      "cat": "rural_eloigne",
+      "code": "30070",
+      "role": "Éolien · Forêt",
+      "note": "Siège du Parc éolien Le Granit (12 éoliennes, 24,5 MW). Énergie du Granit : 1,75 M$ redevances 2026 à 16 municipalités partenaires."
+    },
+    {
+      "id": "m17",
+      "name": "Piopolis",
+      "type": "Municipalité",
+      "pop": 417,
+      "surface": 103.0,
+      "density": 4.0,
+      "cat": "rural",
+      "code": "30020",
+      "role": "Villégiature · Lac Mégantic",
+      "note": "Lac Mégantic (rive), villégiature, tourisme, Marché du Ruisseau d'Or (acériculture bio)."
+    },
+    {
+      "id": "m18",
+      "name": "Milan",
+      "type": "Municipalité",
+      "pop": 326,
+      "surface": 129.7,
+      "density": 2.5,
+      "cat": "rural_eloigne",
+      "code": "30040",
+      "role": "Rural éloigné · Forêt",
+      "note": "Faible densité, territoire forestier, villégiature."
+    },
+    {
+      "id": "m19",
+      "name": "Val-Racine",
+      "type": "Municipalité",
+      "pop": 191,
+      "surface": 117.6,
+      "density": 1.6,
+      "cat": "rural_eloigne",
+      "code": "30015",
+      "role": "Ruralité profonde",
+      "note": "Plus petite municipalité de la MRC. Territoire naturel, forêt."
+    }
+  ],
+  "trends": {
+    "years": ["2019", "2020", "2021", "2022", "2023", "2024"],
+    "totalJobs": [6100, 5600, 5900, 6300, 6600, 6905],
+    "newBiz": [41, 24, 48, 44, 42, 38],
+    "permitsMk": [38.2, 29.1, 42.7, 51.3, 49.8, 54.8],
+    "bySector": {
+      "Manufacturier": [1820, 1680, 1750, 1850, 1900, 1950],
+      "Acéricole": [390, 400, 430, 490, 540, 580],
+      "Tourisme": [310, 195, 280, 340, 385, 410],
+      "Construction": [590, 530, 570, 630, 660, 690],
+      "Forêt & bois": [860, 820, 835, 840, 830, 820]
+    }
+  }
+}

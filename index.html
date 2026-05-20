@@ -229,6 +229,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-seri
 .gh-warn{background:var(--amber2);border-radius:9px;padding:11px 14px;margin-top:10px;font-size:12px;color:#78350f;line-height:1.55;}
 
 /* TOAST */
+
+/* INFERENCE */
+.inf-score{display:flex;align-items:center;gap:6px;margin-top:10px;}
+.inf-bar{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden;}
+.inf-fill{height:6px;border-radius:3px;}
+.inf-pct{font-size:11px;font-weight:700;min-width:30px;text-align:right;}
+.methodo-card{background:linear-gradient(135deg,#0d2618 0%,#1a4d2e 100%);border-radius:var(--r);padding:20px;margin-bottom:18px;color:#fff;}
+.methodo-card h3{font-size:14px;font-weight:700;margin-bottom:8px;color:#fff;}
+.methodo-card p{font-size:12px;line-height:1.65;color:rgba(255,255,255,.75);}
+.methodo-card .steps{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
+.methodo-card .step{background:rgba(255,255,255,.1);border-radius:8px;padding:10px 12px;}
+.methodo-card .step strong{display:block;font-size:11px;font-weight:700;color:#4aaa72;margin-bottom:3px;}
+.methodo-card .step span{font-size:11px;color:rgba(255,255,255,.7);line-height:1.4;}
+.cl-card.methodologie{background:transparent;border:none;padding:0;grid-column:1/-1;}
+.reprise-badge{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:8px;padding:6px 10px;font-size:11px;font-weight:600;margin-bottom:8px;display:inline-block;}
+/* MUNI GROUP VIEW */
+.muni-group-header{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;padding:8px 0 5px;margin-top:10px;border-bottom:1px solid var(--border);margin-bottom:8px;}
+
 .toast{position:fixed;bottom:24px;right:24px;background:var(--g700);color:#fff;padding:11px 18px;border-radius:10px;font-size:13px;font-weight:500;z-index:999;box-shadow:0 6px 24px rgba(0,0,0,.2);animation:ti .2s ease;}
 @keyframes ti{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
 
@@ -333,8 +351,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-seri
           <option value="expansion">📈 Expansion</option>
           <option value="a_completer">📝 À compléter</option>
         </select>
+        <select class="co-select" id="coView" onchange="filterCompanies()">
+          <option value="table">📋 Vue tableau</option>
+          <option value="muni">🗺️ Par municipalité</option>
+          <option value="sector">🏭 Par secteur</option>
+        </select>
       </div>
-      <div style="overflow-x:auto;">
+      <div id="coGroupView" style="display:none;margin-bottom:18px;"></div>
+      <div id="coTableWrap" style="overflow-x:auto;">
         <table class="co-table">
           <thead><tr>
             <th>Entreprise</th>
@@ -357,6 +381,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-seri
         <button class="ft" onclick="fCollab('possible',this)">💡 Possibles</button>
         <button class="ft" onclick="fCollab('innovante',this)">🚀 Innovantes</button>
       </div>
+      <div id="methodoBlock"></div>
       <div class="cl-grid" id="collabGrid"></div>
     </div>
 
@@ -456,7 +481,13 @@ let D = {}, unlocked = false, charts = {};
 async function init() {
   let ok = false;
   try {
-    const r = await fetch('./data.json?v=' + Date.now());
+    // Essayer ./data.json puis le chemin absolu courant
+  let r;
+  try { r = await fetch('./data.json?v=' + Date.now()); } catch(e) {}
+  if (!r || !r.ok) {
+    const base = window.location.href.replace(/\/[^/]*$/, '/');
+    try { r = await fetch(base + 'data.json?v=' + Date.now()); } catch(e) {}
+  }
     if (r.ok) { D = await r.json(); ok = true; }
   } catch(e) {}
   if (!ok) {
@@ -577,6 +608,7 @@ function filterCompanies() {
   const mu = document.getElementById('coMuni').value;
   const se = document.getElementById('coSect').value;
   const st = document.getElementById('coStatus').value;
+  const view = document.getElementById('coView').value;
   const list = D.companies.filter(c =>
     (!q || c.name.toLowerCase().includes(q) || c.desc.toLowerCase().includes(q) || c.muni.toLowerCase().includes(q)) &&
     (!mu || c.muni === mu) && (!se || c.sector === se) && (!st || c.status === st)
@@ -584,19 +616,40 @@ function filterCompanies() {
   const totalJobs = list.filter(c=>c.status!=='a_completer').reduce((a,b)=>a+b.jobs,0);
   document.getElementById('coTotal').innerHTML = `
     <span>📊 <strong>${list.length}</strong> entreprise${list.length>1?'s':''} affichée${list.length>1?'s':''}</span>
-    <span>·</span>
-    <span>Total emplois : <strong>${totalJobs.toLocaleString('fr-CA')}</strong> (entreprises répertoriées)</span>
-    <span style="margin-left:auto;font-size:11px;color:var(--g600);">Liste partielle — à compléter</span>`;
-  const stMap = {actif:'st-actif',nouveau:'st-nouveau',expansion:'st-expansion',a_completer:'st-a_completer'};
-  const stLbl = {actif:'✅ Actif',nouveau:'🆕 Nouveau',expansion:'📈 Expansion',a_completer:'📝 À compléter'};
-  document.getElementById('coBody').innerHTML = list.map(c => `
-    <tr>
-      <td><div style="font-weight:600;font-size:13px;">${c.name}</div><div class="co-desc">${c.desc}</div></td>
-      <td><div class="co-muni">📍 ${c.muni}</div></td>
-      <td><div style="font-size:12px;">${c.sector}</div></td>
-      <td style="text-align:right;"><div class="co-jobs">${c.status==='a_completer'?'—':c.jobs.toLocaleString('fr-CA')}</div></td>
-      <td><span class="co-badge ${stMap[c.status]||'st-actif'}">${stLbl[c.status]||c.status}</span></td>
-    </tr>`).join('') || '<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:24px;">Aucun résultat</td></tr>';
+    <span>·</span><span>Total emplois répertoriés : <strong>${totalJobs.toLocaleString('fr-CA')}</strong></span>
+    <span style="margin-left:auto;font-size:11px;color:var(--g600);">Liste partielle — à compléter par l'équipe MRC</span>`;
+  const stMap = {actif:'st-actif',nouveau:'st-nouveau',reprise:'st-nouveau',expansion:'st-expansion',a_completer:'st-a_completer'};
+  const stLbl = {actif:'✅ Actif',nouveau:'🆕 Nouveau',reprise:'🔄 Reprise',expansion:'📈 Expansion',a_completer:'📝 À compléter'};
+  const gv = document.getElementById('coGroupView');
+  const tw = document.getElementById('coTableWrap');
+  if (view === 'muni' || view === 'sector') {
+    tw.style.display='none'; gv.style.display='block';
+    const key = view==='muni' ? 'muni' : 'sector';
+    const groups = {};
+    list.forEach(c => { if(!groups[c[key]])groups[c[key]]=[]; groups[c[key]].push(c); });
+    gv.innerHTML = Object.keys(groups).sort().map(g => {
+      const items = groups[g];
+      const gJobs = items.filter(c=>c.status!=='a_completer').reduce((a,b)=>a+b.jobs,0);
+      return `<div class="muni-group-header">${view==='muni'?'📍':'🏭'} ${g} — <strong>${items.length} entreprise${items.length>1?'s':''}</strong>${gJobs>0?' · '+gJobs.toLocaleString('fr-CA')+' emplois':''}</div>
+      <div class="sg" style="margin-bottom:14px;">${items.map(c=>`<div class="sc" style="min-height:auto">
+        <div class="sc-nm">${c.name}</div>
+        <div class="sc-j" style="font-size:17px">${c.status==='a_completer'?'—':c.jobs.toLocaleString('fr-CA')}</div>
+        <div class="sc-u">emplois</div>
+        <span class="co-badge ${stMap[c.status]||'st-actif'}" style="margin-top:5px;display:inline-block">${stLbl[c.status]||c.status}</span>
+        <div class="sc-ds">${c.desc.substring(0,100)}${c.desc.length>100?'…':''}</div>
+      </div>`).join('')}</div>`;
+    }).join('');
+  } else {
+    tw.style.display=''; gv.style.display='none';
+    document.getElementById('coBody').innerHTML = list.map(c => `
+      <tr>
+        <td><div style="font-weight:600;font-size:13px;">${c.name}</div><div class="co-desc">${c.desc}</div></td>
+        <td><div class="co-muni">📍 ${c.muni}</div></td>
+        <td><div style="font-size:12px;">${c.sector}</div></td>
+        <td style="text-align:right;"><div class="co-jobs">${c.status==='a_completer'?'—':c.jobs.toLocaleString('fr-CA')}</div></td>
+        <td><span class="co-badge ${stMap[c.status]||'st-actif'}">${stLbl[c.status]||c.status}</span></td>
+      </tr>`).join('') || '<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:24px;">Aucun résultat</td></tr>';
+  }
 }
 
 // ── COLLABORATIONS ────────────────────────────────────────────────
@@ -612,24 +665,53 @@ function renderCollabStats() {
 }
 
 function renderCollabGrid(filter) {
-  const list = filter==='all' ? D.collaborations : D.collaborations.filter(c=>c.type===filter);
+  // Bloc méthodologie
+  const meth = D.collaborations.find(c=>c.type==='methodologie');
+  if (meth && (filter==='all' || filter==='methodologie')) {
+    document.getElementById('methodoBlock').innerHTML = `
+      <div class="methodo-card">
+        <h3>🔬 ${meth.name}</h3>
+        <p>${meth.desc}</p>
+        <div class="steps">
+          <div class="step"><strong>① Flux intersectoriels (I-O)</strong><span>Intrants produits localement mais achetés à l'extérieur → maillons manquants identifiés</span></div>
+          <div class="step"><strong>② Clustering géographique</strong><span>Co-localisation dans les 5 parcs industriels, distances et densité de liens connus</span></div>
+          <div class="step"><strong>③ Profils de compétences</strong><span>Main-d'œuvre partageable entre secteurs selon les types de postes documentés</span></div>
+          <div class="step"><strong>④ Chaîne d'approvisionnement</strong><span>Détection des flux de matières premières qui quittent le territoire sans transformation locale</span></div>
+        </div>
+      </div>`;
+  } else {
+    document.getElementById('methodoBlock').innerHTML = '';
+  }
+  const visible = D.collaborations.filter(c=>c.type!=='methodologie');
+  const list = filter==='all' ? visible : visible.filter(c=>c.type===filter);
   const tMap = {confirmee:'✅ Confirmée',possible:'💡 Possible',innovante:'🚀 Innovante'};
-  document.getElementById('collabGrid').innerHTML = list.map(c => `
-    <div class="cl-card ${c.type}">
+  const scoreColor = s => s>=85?'#1a4d2e':s>=70?'#d97706':'#7c3aed';
+  document.getElementById('collabGrid').innerHTML = list.map(c => {
+    const score = c.inference_score||null;
+    const scoreHtml = score ? `<div class="inf-score">
+      <span style="font-size:10px;color:var(--muted);font-weight:600;">Indice de collaboration</span>
+      <div class="inf-bar"><div class="inf-fill" style="width:${score}%;background:${scoreColor(score)};"></div></div>
+      <span class="inf-pct" style="color:${scoreColor(score)}">${score}%</span>
+    </div>` : '';
+    const repriseBadge = c.name.includes('Bestar') ? '<div class="reprise-badge">🔄 Reprise confirmée — 13 mai 2026</div>' : '';
+    return `<div class="cl-card ${c.type}">
       <div class="cl-head">
         <div class="cl-emoji">${c.emoji}</div>
         <div>
-          <span class="cl-type t-${c.type}">${tMap[c.type]}</span>
+          <span class="cl-type t-${c.type}">${tMap[c.type]||c.type}</span>
           <div class="cl-nm">${c.name}</div>
         </div>
       </div>
+      ${repriseBadge}
       <div class="cl-desc">${c.desc}</div>
-      <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px;">Entreprises impliquées</div>
-      <div class="cl-companies">${c.companies.map(co=>`<span class="cl-co">${co}</span>`).join('')}</div>
-      <div class="cl-munis">📍 ${c.municipalities.join(' · ')}</div>
+      ${c.companies.length ? `<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px;">Entreprises impliquées</div>
+      <div class="cl-companies">${c.companies.map(co=>'<span class="cl-co">'+co+'</span>').join('')}</div>` : ''}
+      ${c.municipalities.length ? `<div class="cl-munis">📍 ${c.municipalities.join(' · ')}</div>` : ''}
       <div class="cl-impact"><strong>Impact / potentiel</strong>${c.impact}</div>
+      ${scoreHtml}
       <div class="cl-status">Statut : <span>${c.status}</span></div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 
 function fCollab(f, btn) {

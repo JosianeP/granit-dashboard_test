@@ -2,275 +2,282 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>MRC du Granit — Tableau de bord économique</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
+*{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --g800:#1a3d28;--g700:#1a4d2e;--g600:#2d7a4f;--g500:#4aaa72;--g100:#e8f5ed;
+  --g800:#1a3d28;--g700:#1a4d2e;--g600:#2d7a4f;--g500:#4aaa72;--g100:#e8f5ed;--g50:#f0faf4;
   --amber:#d97706;--amber2:#fef3c7;--amber3:#92400e;
   --red:#dc2626;--red2:#fef2f2;--blue:#1d4ed8;--blue2:#eff6ff;--blue3:#dbeafe;
   --purple:#7c3aed;--purple2:#f5f3ff;
   --text:#1c1c1e;--muted:#6b7280;--border:#e5e7eb;--bg:#f5f5f7;--white:#fff;
-  --sw:228px;--r:12px;
+  --sw:228px;--r:12px
 }
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;font-size:14px;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;font-size:14px}
 
 /* SIDEBAR */
-.sidebar{width:var(--sw);background:var(--g800);min-height:100vh;display:flex;flex-direction:column;position:fixed;left:0;top:0;bottom:0;z-index:100;overflow-y:auto;}
-.sb-logo{padding:18px 16px 13px;border-bottom:1px solid rgba(255,255,255,.1);}
-.sb-logo .org{color:rgba(255,255,255,.4);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px;}
-.sb-logo .title{color:#fff;font-size:14px;font-weight:700;line-height:1.3;}
-.sb-logo .sub{color:rgba(255,255,255,.38);font-size:11px;margin-top:2px;}
-.sbn{padding:7px 9px;flex:1;}
-.ngl{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.22);padding:11px 8px 3px;}
-.ni{display:flex;align-items:center;gap:8px;padding:8px 11px;border-radius:8px;color:rgba(255,255,255,.58);font-size:13px;cursor:pointer;margin-bottom:1px;transition:background .12s,color .12s;border:none;background:none;width:100%;text-align:left;}
-.ni:hover{background:rgba(255,255,255,.08);color:rgba(255,255,255,.88);}
-.ni.active{background:rgba(255,255,255,.14);color:#fff;}
-.ni-ico{font-size:15px;flex-shrink:0;width:18px;text-align:center;}
-.sb-foot{padding:11px 14px;border-top:1px solid rgba(255,255,255,.1);}
-.sb-foot .lbl{font-size:10px;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:.5px;margin-bottom:1px;}
-.sb-foot .q{font-size:13px;font-weight:700;color:rgba(255,255,255,.82);margin-bottom:3px;}
-.sb-foot .d{font-size:11px;color:rgba(255,255,255,.45);}
+.sidebar{width:var(--sw);background:var(--g800);min-height:100vh;display:flex;flex-direction:column;position:fixed;left:0;top:0;bottom:0;z-index:100;overflow-y:auto}
+.sb-logo{padding:18px 16px 13px;border-bottom:1px solid rgba(255,255,255,.1)}
+.sb-logo .org{color:rgba(255,255,255,.4);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px}
+.sb-logo .title{color:#fff;font-size:14px;font-weight:700;line-height:1.3}
+.sb-logo .sub{color:rgba(255,255,255,.38);font-size:11px;margin-top:2px}
+.sbn{padding:7px 9px;flex:1}
+.ngl{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.22);padding:11px 8px 3px}
+.ni{display:flex;align-items:center;gap:8px;padding:8px 11px;border-radius:8px;color:rgba(255,255,255,.58);font-size:13px;cursor:pointer;margin-bottom:1px;transition:background .12s,color .12s;border:none;background:none;width:100%;text-align:left}
+.ni:hover{background:rgba(255,255,255,.08);color:rgba(255,255,255,.88)}
+.ni.active{background:rgba(255,255,255,.14);color:#fff}
+.ni-ico{font-size:15px;flex-shrink:0;width:18px;text-align:center}
+.sb-foot{padding:11px 14px;border-top:1px solid rgba(255,255,255,.1)}
+.sb-foot .lbl{font-size:10px;color:rgba(255,255,255,.28);text-transform:uppercase;letter-spacing:.5px;margin-bottom:1px}
+.sb-foot .q{font-size:13px;font-weight:700;color:rgba(255,255,255,.82);margin-bottom:3px}
+.sb-foot .d{font-size:11px;color:rgba(255,255,255,.45)}
 
 /* MAIN */
-.main{margin-left:var(--sw);flex:1;display:flex;flex-direction:column;}
-.topbar{background:var(--white);border-bottom:1px solid var(--border);padding:0 26px;height:54px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;}
-.tl{display:flex;align-items:center;gap:10px;}
-.ptitle{font-size:15px;font-weight:700;}
-.qb{background:var(--g100);color:var(--g700);font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;}
-.tr{display:flex;align-items:center;gap:7px;}
-.btn{padding:6px 13px;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:var(--white);color:var(--text);transition:background .12s;white-space:nowrap;}
-.btn:hover{background:var(--bg);}
-.btn-g{background:var(--g700);color:#fff;border-color:var(--g700);}
-.btn-g:hover{background:var(--g600);}
-.btn-a{background:var(--amber);color:#fff;border-color:var(--amber);}
-.btn-a:hover{opacity:.9;}
+.main{margin-left:var(--sw);flex:1;display:flex;flex-direction:column}
+.topbar{background:var(--white);border-bottom:1px solid var(--border);padding:0 26px;height:54px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.tl{display:flex;align-items:center;gap:10px}
+.ptitle{font-size:15px;font-weight:700}
+.qb{background:var(--g100);color:var(--g700);font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px}
+.tr{display:flex;align-items:center;gap:7px}
+.btn{padding:6px 13px;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:var(--white);color:var(--text);transition:background .12s;white-space:nowrap}
+.btn:hover{background:var(--bg)}
+.btn-g{background:var(--g700);color:#fff;border-color:var(--g700)}
+.btn-g:hover{background:var(--g600)}
+.btn-a{background:var(--amber);color:#fff;border-color:var(--amber)}
+.btn-a:hover{opacity:.9}
 
 /* LOADING */
-#ls{position:fixed;inset:0;background:var(--g800);display:flex;align-items:center;justify-content:center;z-index:999;flex-direction:column;gap:14px;}
-#ls .lo{color:#fff;font-size:18px;font-weight:700;}
-#ls .su{color:rgba(255,255,255,.45);font-size:12px;}
-.sp{width:28px;height:28px;border:3px solid rgba(255,255,255,.15);border-top-color:#fff;border-radius:50%;animation:sp .8s linear infinite;}
+#ls{position:fixed;inset:0;background:var(--g800);display:flex;align-items:center;justify-content:center;z-index:999;flex-direction:column;gap:14px}
+#ls .lo{color:#fff;font-size:18px;font-weight:700}
+#ls .su{color:rgba(255,255,255,.45);font-size:12px}
+.sp{width:28px;height:28px;border:3px solid rgba(255,255,255,.15);border-top-color:#fff;border-radius:50%;animation:sp .8s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
 
 /* CONTENT */
-.content{padding:20px 26px;}
-.view{display:none;}
-.view.active{display:block;}
+.content{padding:20px 26px}
+.view{display:none}
+.view.active{display:block}
 
 /* KPI */
-.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px;}
-.kpi{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:15px 17px;position:relative;overflow:hidden;}
-.kpi::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--g600);border-radius:var(--r) var(--r) 0 0;}
-.kpi-l{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;}
-.kpi-v{font-size:26px;font-weight:700;line-height:1;}
-.kpi-u{font-size:11px;color:var(--muted);margin-top:4px;}
-.kpi-d{display:inline-flex;align-items:center;font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px;margin-top:7px;}
-.d-up{background:var(--g100);color:var(--g700);}
-.d-down{background:var(--red2);color:var(--red);}
-.d-flat{background:var(--amber2);color:var(--amber3);}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+.kpi{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:15px 17px;position:relative;overflow:hidden}
+.kpi::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--g600);border-radius:var(--r) var(--r) 0 0}
+.kpi-l{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px}
+.kpi-v{font-size:26px;font-weight:700;line-height:1}
+.kpi-u{font-size:11px;color:var(--muted);margin-top:4px}
+.kpi-d{display:inline-flex;align-items:center;font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px;margin-top:7px}
+.d-up{background:var(--g100);color:var(--g700)}
+.d-down{background:var(--red2);color:var(--red)}
+.d-flat{background:var(--amber2);color:var(--amber3)}
 
 /* CARDS */
-.card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:18px;}
-.ct{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:13px;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:18px}
+.ct{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:13px}
 
 /* CHARTS */
-.charts-main{display:grid;grid-template-columns:1fr 270px;gap:13px;margin-bottom:18px;}
-.trends-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:18px;}
-
-/* NOTE */
-.nb{background:var(--amber2);border:1px solid #fcd34d;border-radius:var(--r);padding:11px 15px;margin-bottom:16px;display:flex;gap:9px;}
-.nb-t{font-size:10px;font-weight:700;color:var(--amber3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:2px;}
-.nb-x{font-size:12px;color:#78350f;line-height:1.5;}
+.charts-main{display:grid;grid-template-columns:1fr 270px;gap:13px;margin-bottom:18px}
+.trends-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:18px}
 
 /* SECTORS */
-.sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(172px,1fr));gap:10px;margin-bottom:18px;}
-.sc{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:14px;transition:border-color .15s;}
-.sc:hover{border-color:var(--g500);}
-.sc-ic{width:34px;height:34px;background:var(--g100);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:8px;}
-.sc-nm{font-size:13px;font-weight:700;margin-bottom:3px;}
-.sc-j{font-size:21px;font-weight:700;color:var(--g700);line-height:1;}
-.sc-u{font-size:11px;color:var(--muted);margin-top:1px;}
-.sc-tr{font-size:11px;font-weight:600;margin-top:4px;}
-.sc-tr.up{color:var(--g600);}
-.sc-tr.down{color:var(--red);}
-.sc-ds{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.4;}
-.sc-bar{height:3px;background:var(--border);border-radius:3px;margin-top:8px;overflow:hidden;}
-.sc-bf{height:3px;border-radius:3px;background:var(--g600);}
+.sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:10px;margin-bottom:18px}
+.sc{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);padding:15px;cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .1s;position:relative}
+.sc:hover{border-color:var(--g500);box-shadow:0 3px 16px rgba(26,77,46,.12);transform:translateY(-1px)}
+.sc:active{transform:translateY(0)}
+.sc-ic{width:34px;height:34px;background:var(--g100);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:8px}
+.sc-nm{font-size:13px;font-weight:700;margin-bottom:3px}
+.sc-j{font-size:21px;font-weight:700;color:var(--g700);line-height:1}
+.sc-u{font-size:11px;color:var(--muted);margin-top:1px}
+.sc-tr{font-size:11px;font-weight:600;margin-top:4px}
+.sc-tr.up{color:var(--g600)}
+.sc-tr.down{color:var(--red)}
+.sc-ds{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.4}
+.sc-bar{height:3px;background:var(--border);border-radius:3px;margin-top:8px;overflow:hidden}
+.sc-bf{height:3px;border-radius:3px;background:var(--g600)}
+.sc-hint{position:absolute;bottom:9px;right:11px;font-size:10px;color:var(--g500);font-weight:600;opacity:0;transition:opacity .15s}
+.sc:hover .sc-hint{opacity:1}
+
+/* SECTOR PANEL (slide-out) */
+.panel-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:300;display:none;opacity:0;transition:opacity .25s}
+.panel-backdrop.open{display:block;opacity:1}
+.sector-panel{position:fixed;right:-520px;top:0;bottom:0;width:480px;max-width:92vw;background:var(--white);z-index:301;display:flex;flex-direction:column;box-shadow:-6px 0 40px rgba(0,0,0,.18);transition:right .28s cubic-bezier(.4,0,.2,1)}
+.sector-panel.open{right:0}
+.sp-head{padding:18px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;flex-shrink:0}
+.sp-icon{width:44px;height:44px;background:var(--g100);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.sp-head-text{flex:1}
+.sp-head-text h2{font-size:16px;font-weight:700}
+.sp-head-text .sp-meta{font-size:12px;color:var(--muted);margin-top:3px}
+.sp-close{background:none;border:1px solid var(--border);border-radius:7px;padding:6px 10px;cursor:pointer;font-size:12px;color:var(--muted)}
+.sp-close:hover{background:var(--bg)}
+.sp-body{flex:1;overflow-y:auto;padding:16px}
+.sp-empty{text-align:center;color:var(--muted);padding:40px 20px;font-size:13px}
+.co-item{background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:13px 14px;margin-bottom:8px;transition:border-color .12s}
+.co-item:hover{border-color:var(--g500)}
+.co-item-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:5px}
+.co-item-name{font-size:13px;font-weight:700;line-height:1.3}
+.co-jobs-badge{background:var(--g100);color:var(--g700);font-size:12px;font-weight:700;padding:2px 9px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.co-muni{font-size:11px;color:var(--muted);margin-bottom:4px}
+.co-desc{font-size:11px;color:var(--muted);line-height:1.4}
+.co-status-tag{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px;margin-top:5px}
+.st-actif{background:var(--g100);color:var(--g700)}
+.st-reprise{background:var(--blue3);color:var(--blue)}
+.st-nouveau{background:var(--blue3);color:var(--blue)}
+.st-expansion{background:var(--amber2);color:var(--amber3)}
+.st-a_completer{background:#f3f4f6;color:#9ca3af}
+.sp-total{background:var(--g50,#f0faf4);border-radius:8px;padding:10px 13px;margin-bottom:12px;font-size:13px;color:var(--g700);font-weight:600;display:flex;justify-content:space-between}
 
 /* FILTER TABS */
-.ftabs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:13px;}
-.ft{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:500;border:1px solid var(--border);background:var(--white);color:var(--muted);cursor:pointer;transition:all .12s;}
-.ft:hover{border-color:var(--g500);color:var(--g700);}
-.ft.active{background:var(--g700);color:#fff;border-color:var(--g700);}
+.ftabs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:13px}
+.ft{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:500;border:1px solid var(--border);background:var(--white);color:var(--muted);cursor:pointer;transition:all .12s}
+.ft:hover{border-color:var(--g500);color:var(--g700)}
+.ft.active{background:var(--g700);color:#fff;border-color:var(--g700)}
 
 /* STATS STRIP */
-.ss-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:9px;margin-bottom:18px;}
-.ss{background:var(--white);border:1px solid var(--border);border-radius:9px;padding:11px 13px;text-align:center;}
-.ss-v{font-size:18px;font-weight:700;color:var(--g700);}
-.ss-l{font-size:10px;color:var(--muted);margin-top:2px;}
+.ss-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:9px;margin-bottom:18px}
+.ss{background:var(--white);border:1px solid var(--border);border-radius:9px;padding:11px 13px;text-align:center}
+.ss-v{font-size:18px;font-weight:700;color:var(--g700)}
+.ss-l{font-size:10px;color:var(--muted);margin-top:2px}
 
 /* MUNICIPALITIES */
-.mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:11px;margin-bottom:18px;}
-.mu{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:14px;position:relative;overflow:hidden;}
-.mu::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--g600);}
-.mu.urbain::before{background:var(--g700);}
-.mu.rural_eloigne::before{background:#9ca3af;}
-.mu-ty{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:4px;}
-.mu-nm{font-size:14px;font-weight:700;margin-bottom:3px;}
-.mu-po{font-size:20px;font-weight:700;color:var(--g700);line-height:1;}
-.mu-st{display:flex;gap:10px;margin-top:7px;padding-top:7px;border-top:1px solid var(--border);}
-.mu-sv{font-size:12px;font-weight:600;}
-.mu-sl{font-size:10px;color:var(--muted);}
-.mu-ro{font-size:11px;color:var(--g700);font-weight:600;margin-top:5px;}
-.mu-no{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.4;}
-.mbadge{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px;margin-bottom:4px;}
-.b-u{background:var(--g100);color:var(--g700);}
-.b-r{background:#f3f4f6;color:var(--muted);}
-.b-re{background:#f9fafb;color:#9ca3af;}
+.mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:11px;margin-bottom:18px}
+.mu{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:14px;position:relative;overflow:hidden}
+.mu::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--g600);border-radius:var(--r) 0 0 var(--r)}
+.mu.urbain::before{background:var(--g700)}
+.mu.rural_eloigne::before{background:#9ca3af}
+.mu-ty{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:4px}
+.mu-nm{font-size:14px;font-weight:700;margin-bottom:3px}
+.mu-po{font-size:20px;font-weight:700;color:var(--g700);line-height:1}
+.mu-st{display:flex;gap:10px;margin-top:7px;padding-top:7px;border-top:1px solid var(--border)}
+.mu-sv{font-size:12px;font-weight:600}
+.mu-sl{font-size:10px;color:var(--muted)}
+.mu-ro{font-size:11px;color:var(--g700);font-weight:600;margin-top:5px}
+.mu-no{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.4}
+.mbadge{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px;margin-bottom:4px}
+.b-u{background:var(--g100);color:var(--g700)}
+.b-r{background:#f3f4f6;color:var(--muted)}
+.b-re{background:#f9fafb;color:#9ca3af}
 
-/* COMPANIES */
-.co-toolbar{display:flex;gap:9px;margin-bottom:13px;align-items:center;flex-wrap:wrap;}
-.co-search{flex:1;min-width:200px;padding:7px 11px;border:1px solid var(--border);border-radius:8px;font-size:13px;outline:none;}
-.co-search:focus{border-color:var(--g600);}
-.co-select{padding:7px 10px;border:1px solid var(--border);border-radius:8px;font-size:12px;outline:none;background:var(--white);cursor:pointer;}
-.co-table{width:100%;border-collapse:collapse;background:var(--white);border-radius:var(--r);overflow:hidden;border:1px solid var(--border);}
-.co-table th{background:var(--bg);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);padding:9px 13px;text-align:left;border-bottom:1px solid var(--border);}
-.co-table td{padding:10px 13px;font-size:13px;border-bottom:1px solid var(--border);vertical-align:top;}
-.co-table tr:last-child td{border-bottom:none;}
-.co-table tr:hover td{background:#fafafa;}
-.co-jobs{font-size:14px;font-weight:700;color:var(--g700);}
-.co-badge{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px;}
-.st-actif{background:var(--g100);color:var(--g700);}
-.st-nouveau{background:var(--blue3);color:var(--blue);}
-.st-expansion{background:var(--amber2);color:var(--amber3);}
-.st-a_completer{background:#f3f4f6;color:#9ca3af;}
-.co-muni{font-size:11px;color:var(--muted);margin-top:2px;}
-.co-desc{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.4;}
-.co-total{background:var(--g100);border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:13px;color:var(--g700);font-weight:600;display:flex;align-items:center;gap:12px;}
+/* COMPANIES TABLE */
+.co-toolbar{display:flex;gap:8px;margin-bottom:12px;align-items:center;flex-wrap:wrap}
+.co-search{flex:1;min-width:190px;padding:7px 11px;border:1px solid var(--border);border-radius:8px;font-size:13px;outline:none}
+.co-search:focus{border-color:var(--g600)}
+.co-select{padding:7px 10px;border:1px solid var(--border);border-radius:8px;font-size:12px;outline:none;background:var(--white);cursor:pointer}
+.co-table{width:100%;border-collapse:collapse;background:var(--white);border-radius:var(--r);overflow:hidden;border:1px solid var(--border)}
+.co-table th{background:var(--bg);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);padding:9px 13px;text-align:left;border-bottom:1px solid var(--border)}
+.co-table td{padding:10px 13px;font-size:13px;border-bottom:1px solid var(--border);vertical-align:top}
+.co-table tr:last-child td{border-bottom:none}
+.co-table tr:hover td{background:#fafafa}
+.co-jobs{font-size:14px;font-weight:700;color:var(--g700)}
+.co-muni-tag{font-size:11px;color:var(--muted);margin-top:2px}
+.co-desc-tag{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.4}
+.co-total{background:var(--g100);border-radius:8px;padding:9px 13px;margin-bottom:11px;font-size:13px;color:var(--g700);font-weight:600;display:flex;align-items:center;gap:10px}
 
 /* COLLABORATIONS */
-.cl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:13px;margin-bottom:18px;}
-.cl-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:18px;position:relative;}
-.cl-card.confirmee{border-left:4px solid var(--g600);}
-.cl-card.possible{border-left:4px solid var(--amber);}
-.cl-card.innovante{border-left:4px solid var(--purple);}
-.cl-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;}
-.cl-emoji{font-size:24px;flex-shrink:0;}
-.cl-type{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;margin-bottom:4px;text-transform:uppercase;letter-spacing:.4px;}
-.t-confirmee{background:var(--g100);color:var(--g700);}
-.t-possible{background:var(--amber2);color:var(--amber3);}
-.t-innovante{background:var(--purple2);color:var(--purple);}
-.cl-nm{font-size:14px;font-weight:700;line-height:1.3;}
-.cl-desc{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:10px;}
-.cl-companies{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px;}
-.cl-co{background:var(--bg);border:1px solid var(--border);font-size:11px;padding:2px 8px;border-radius:20px;color:var(--text);}
-.cl-munis{font-size:11px;color:var(--muted);margin-bottom:6px;}
-.cl-impact{background:var(--g50,#f0faf4);border-radius:7px;padding:8px 11px;font-size:12px;color:var(--g700);line-height:1.4;}
-.cl-impact strong{font-size:11px;text-transform:uppercase;letter-spacing:.3px;display:block;margin-bottom:2px;}
-.cl-status{font-size:11px;color:var(--muted);margin-top:8px;padding-top:8px;border-top:1px solid var(--border);}
-.cl-status span{color:var(--text);font-weight:600;}
+.cl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:13px;margin-bottom:18px}
+.cl-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:18px}
+.cl-card.confirmee{border-left:4px solid var(--g600)}
+.cl-card.possible{border-left:4px solid var(--amber)}
+.cl-card.innovante{border-left:4px solid var(--purple)}
+.cl-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.cl-emoji{font-size:24px;flex-shrink:0}
+.cl-type{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;margin-bottom:4px;text-transform:uppercase;letter-spacing:.4px}
+.t-confirmee{background:var(--g100);color:var(--g700)}
+.t-possible{background:var(--amber2);color:var(--amber3)}
+.t-innovante{background:var(--purple2);color:var(--purple)}
+.cl-nm{font-size:14px;font-weight:700;line-height:1.3}
+.cl-desc{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:10px}
+.cl-companies{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+.cl-co{background:var(--bg);border:1px solid var(--border);font-size:11px;padding:2px 8px;border-radius:20px}
+.cl-munis{font-size:11px;color:var(--muted);margin-bottom:6px}
+.cl-impact{background:var(--g50,#f0faf4);border-radius:7px;padding:8px 11px;font-size:12px;color:var(--g700);line-height:1.4}
+.cl-impact strong{font-size:11px;text-transform:uppercase;letter-spacing:.3px;display:block;margin-bottom:2px}
+.cl-status{font-size:11px;color:var(--muted);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.cl-status span{color:var(--text);font-weight:600}
+.inf-score{display:flex;align-items:center;gap:6px;margin-top:8px}
+.inf-bar{flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden}
+.inf-fill{height:5px;border-radius:3px}
+.inf-pct{font-size:11px;font-weight:700;min-width:30px;text-align:right}
+.methodo-card{background:linear-gradient(135deg,#0d2618 0%,#1a4d2e 100%);border-radius:var(--r);padding:20px;margin-bottom:18px;color:#fff}
+.methodo-card h3{font-size:14px;font-weight:700;margin-bottom:8px}
+.methodo-card p{font-size:12px;line-height:1.65;color:rgba(255,255,255,.75)}
+.methodo-steps{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}
+.methodo-step{background:rgba(255,255,255,.1);border-radius:8px;padding:10px 12px}
+.methodo-step strong{display:block;font-size:11px;font-weight:700;color:#4aaa72;margin-bottom:3px}
+.methodo-step span{font-size:11px;color:rgba(255,255,255,.7);line-height:1.4}
 
 /* SH */
-.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;}
-.sh-t{font-size:14px;font-weight:700;}
-.sh-s{font-size:11px;color:var(--muted);margin-top:1px;}
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px}
+.sh-t{font-size:14px;font-weight:700}
+.sh-s{font-size:11px;color:var(--muted);margin-top:1px}
 
 /* DONUT LEGEND */
-.dl{margin-top:10px;}
-.dl-i{display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:11px;}
-.dl-i:last-child{border-bottom:none;}
-.dl-d{width:9px;height:9px;border-radius:2px;margin-right:6px;flex-shrink:0;}
-.dl-p{font-weight:700;}
+.dl{margin-top:10px}
+.dl-i{display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:11px}
+.dl-i:last-child{border-bottom:none}
+.dl-d{width:9px;height:9px;border-radius:2px;margin-right:6px;flex-shrink:0}
+.dl-p{font-weight:700}
 
 /* MODALS */
-.ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:none;align-items:center;justify-content:center;}
-.ov.open{display:flex;}
-.modal{background:var(--white);border-radius:16px;width:700px;max-height:88vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.25);}
-.mh{padding:17px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
-.mh h2{font-size:16px;font-weight:700;}
-.mb{padding:20px 22px;overflow-y:auto;flex:1;}
-.mf{padding:12px 22px;border-top:1px solid var(--border);display:flex;gap:7px;justify-content:flex-end;flex-shrink:0;}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:none;align-items:center;justify-content:center}
+.ov.open{display:flex}
+.modal{background:var(--white);border-radius:16px;width:700px;max-height:88vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.25)}
+.mh{padding:17px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.mh h2{font-size:16px;font-weight:700}
+.mb{padding:20px 22px;overflow-y:auto;flex:1}
+.mf{padding:12px 22px;border-top:1px solid var(--border);display:flex;gap:7px;justify-content:flex-end;flex-shrink:0}
 
 /* FORM */
-.fs{margin-bottom:20px;}
-.fs-t{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:9px;padding-bottom:6px;border-bottom:1px solid var(--border);}
-.fg{display:flex;flex-direction:column;gap:3px;}
-.fg label{font-size:11px;font-weight:600;color:var(--muted);}
-.fg input,.fg select,.fg textarea{padding:7px 9px;border:1px solid var(--border);border-radius:7px;font-size:13px;color:var(--text);background:var(--white);outline:none;transition:border-color .12s;font-family:inherit;}
-.fg input:focus,.fg textarea:focus{border-color:var(--g600);}
-.fg textarea{resize:vertical;min-height:55px;line-height:1.5;}
-.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
-.sr{display:grid;grid-template-columns:150px 80px 85px 90px;gap:6px;align-items:center;padding:8px 10px;background:var(--bg);border:1px solid var(--border);border-radius:8px;margin-bottom:5px;}
-.sr .sn{font-size:12px;font-weight:700;}
-.sr input,.sr select{width:100%;padding:5px 7px;border:1px solid var(--border);border-radius:6px;font-size:12px;outline:none;background:var(--white);}
-.sr input:focus{border-color:var(--g600);}
+.fs{margin-bottom:20px}
+.fs-t{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:9px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.fg{display:flex;flex-direction:column;gap:3px}
+.fg label{font-size:11px;font-weight:600;color:var(--muted)}
+.fg input,.fg select,.fg textarea{padding:7px 9px;border:1px solid var(--border);border-radius:7px;font-size:13px;color:var(--text);background:var(--white);outline:none;transition:border-color .12s;font-family:inherit}
+.fg input:focus,.fg textarea:focus{border-color:var(--g600)}
+.fg textarea{resize:vertical;min-height:55px;line-height:1.5}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.sr{display:grid;grid-template-columns:150px 80px 85px 90px;gap:6px;align-items:center;padding:8px 10px;background:var(--bg);border:1px solid var(--border);border-radius:8px;margin-bottom:5px}
+.sr .sn{font-size:12px;font-weight:700}
+.sr input,.sr select{width:100%;padding:5px 7px;border:1px solid var(--border);border-radius:6px;font-size:12px;outline:none;background:var(--white)}
+.sr input:focus{border-color:var(--g600)}
 
 /* PW */
-.pw{display:flex;flex-direction:column;align-items:center;padding:40px 24px;text-align:center;}
-.pw h3{font-size:19px;font-weight:700;margin-bottom:6px;}
-.pw p{font-size:12px;color:var(--muted);margin-bottom:20px;max-width:260px;line-height:1.5;}
-.pw input{width:240px;padding:9px 13px;border:1.5px solid var(--border);border-radius:9px;font-size:14px;text-align:center;outline:none;margin-bottom:8px;}
-.pw input:focus{border-color:var(--g600);}
-.pw-err{color:var(--red);font-size:12px;min-height:15px;}
+.pw{display:flex;flex-direction:column;align-items:center;padding:40px 24px;text-align:center}
+.pw h3{font-size:19px;font-weight:700;margin-bottom:6px}
+.pw p{font-size:12px;color:var(--muted);margin-bottom:20px;max-width:260px;line-height:1.5}
+.pw input{width:240px;padding:9px 13px;border:1.5px solid var(--border);border-radius:9px;font-size:14px;text-align:center;outline:none;margin-bottom:8px}
+.pw input:focus{border-color:var(--g600)}
+.pw-err{color:var(--red);font-size:12px;min-height:15px}
 
-/* GITHUB HELP */
-.gh-step{display:flex;gap:12px;margin-bottom:13px;padding:13px;background:var(--bg);border-radius:9px;border:1px solid var(--border);}
-.gh-n{width:26px;height:26px;background:var(--g700);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px;}
-.gh-t strong{display:block;font-size:13px;margin-bottom:3px;}
-.gh-t p{font-size:12px;color:var(--muted);line-height:1.55;}
-.gh-t code{background:#e5e7eb;padding:1px 5px;border-radius:4px;font-family:monospace;font-size:11px;}
-.gh-tip{background:var(--g100);border-radius:9px;padding:13px 15px;margin-top:5px;}
-.gh-tip .tit{font-size:11px;font-weight:700;color:var(--g700);margin-bottom:6px;}
-.gh-tip p{font-size:12px;color:var(--g700);line-height:1.7;}
-.gh-tip code{background:rgba(26,77,46,.15);padding:1px 5px;border-radius:4px;font-family:monospace;font-size:11px;}
-.gh-warn{background:var(--amber2);border-radius:9px;padding:11px 14px;margin-top:10px;font-size:12px;color:#78350f;line-height:1.55;}
+/* GH HELP */
+.gh-step{display:flex;gap:12px;margin-bottom:12px;padding:12px;background:var(--bg);border-radius:8px;border:1px solid var(--border)}
+.gh-n{width:25px;height:25px;background:var(--g700);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px}
+.gh-t strong{display:block;font-size:13px;margin-bottom:2px}
+.gh-t p{font-size:12px;color:var(--muted);line-height:1.5}
+.gh-t code{background:#e5e7eb;padding:1px 5px;border-radius:4px;font-family:monospace;font-size:11px}
+.gh-tip{background:var(--g100);border-radius:8px;padding:12px 14px;margin-top:4px}
+.gh-tip .tit{font-size:11px;font-weight:700;color:var(--g700);margin-bottom:5px}
+.gh-tip p{font-size:12px;color:var(--g700);line-height:1.7}
+.gh-tip code{background:rgba(26,77,46,.15);padding:1px 5px;border-radius:4px;font-family:monospace;font-size:11px}
+.gh-warn{background:var(--amber2);border-radius:8px;padding:11px 14px;margin-top:10px;font-size:12px;color:#78350f;line-height:1.55}
 
 /* TOAST */
-
-/* INFERENCE */
-.inf-score{display:flex;align-items:center;gap:6px;margin-top:10px;}
-.inf-bar{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden;}
-.inf-fill{height:6px;border-radius:3px;}
-.inf-pct{font-size:11px;font-weight:700;min-width:30px;text-align:right;}
-.methodo-card{background:linear-gradient(135deg,#0d2618 0%,#1a4d2e 100%);border-radius:var(--r);padding:20px;margin-bottom:18px;color:#fff;}
-.methodo-card h3{font-size:14px;font-weight:700;margin-bottom:8px;color:#fff;}
-.methodo-card p{font-size:12px;line-height:1.65;color:rgba(255,255,255,.75);}
-.methodo-card .steps{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
-.methodo-card .step{background:rgba(255,255,255,.1);border-radius:8px;padding:10px 12px;}
-.methodo-card .step strong{display:block;font-size:11px;font-weight:700;color:#4aaa72;margin-bottom:3px;}
-.methodo-card .step span{font-size:11px;color:rgba(255,255,255,.7);line-height:1.4;}
-.cl-card.methodologie{background:transparent;border:none;padding:0;grid-column:1/-1;}
-.reprise-badge{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:8px;padding:6px 10px;font-size:11px;font-weight:600;margin-bottom:8px;display:inline-block;}
-/* MUNI GROUP VIEW */
-.muni-group-header{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;padding:8px 0 5px;margin-top:10px;border-bottom:1px solid var(--border);margin-bottom:8px;}
-
-.toast{position:fixed;bottom:24px;right:24px;background:var(--g700);color:#fff;padding:11px 18px;border-radius:10px;font-size:13px;font-weight:500;z-index:999;box-shadow:0 6px 24px rgba(0,0,0,.2);animation:ti .2s ease;}
+.toast{position:fixed;bottom:24px;right:24px;background:var(--g700);color:#fff;padding:11px 18px;border-radius:10px;font-size:13px;font-weight:500;z-index:999;box-shadow:0 6px 24px rgba(0,0,0,.2);animation:ti .2s ease}
 @keyframes ti{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
 
-@media(max-width:880px){
-  .kpi-grid{grid-template-columns:repeat(2,1fr);}
-  .charts-main,.trends-grid{grid-template-columns:1fr;}
-}
-@media print{
-  .sidebar,.tr,.ftabs,.nb,.co-toolbar{display:none!important;}
-  .main{margin-left:0!important;}
-  .topbar{position:static;}
-}
+@media(max-width:880px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.charts-main,.trends-grid{grid-template-columns:1fr}}
+@media print{.sidebar,.tr,.ftabs{display:none!important}.main{margin-left:0!important}.topbar{position:static}}
 </style>
 </head>
 <body>
 
 <div id="ls"><div class="lo">MRC du Granit</div><div class="sp"></div><div class="su">Chargement des données…</div></div>
 
-<!-- SIDEBAR -->
 <nav class="sidebar">
   <div class="sb-logo">
     <div class="org">MRC du Granit</div>
     <div class="title">Tableau de bord économique</div>
-    <div class="sub">Outil interne · v2.0</div>
+    <div class="sub">Outil interne · v3.0</div>
   </div>
   <div class="sbn">
     <div class="ngl">Vues</div>
@@ -297,36 +304,34 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-seri
   </div>
 </nav>
 
-<!-- MAIN -->
 <main class="main">
   <div class="topbar">
     <div class="tl"><span class="ptitle" id="pTitle">Aperçu général</span><span class="qb" id="qBadge">—</span></div>
     <div class="tr">
-      <button class="btn" onclick="openGH()">🚀 Aide mise à jour</button>
+      <button class="btn" onclick="openGH()">🚀 Aide</button>
       <button class="btn btn-a" onclick="openAdmin()">✏️ Mettre à jour</button>
     </div>
   </div>
-
   <div class="content">
 
     <!-- APERÇU -->
     <div class="view active" id="view-overview">
-      <div id="noteBanner"></div>
       <div class="ss-row" id="statsStrip"></div>
       <div class="kpi-grid" id="kpiGrid"></div>
       <div class="charts-main">
         <div class="card"><div class="ct">Emplois estimés par secteur</div>
-          <div style="position:relative;height:300px;"><canvas id="barChart"></canvas></div></div>
+          <div style="position:relative;height:310px;"><canvas id="barChart"></canvas></div></div>
         <div class="card"><div class="ct">Répartition des emplois</div>
           <div style="position:relative;height:190px;"><canvas id="donutChart"></canvas></div>
           <div class="dl" id="donutLegend"></div></div>
       </div>
-      <div class="sh"><div><div class="sh-t">Secteurs — vue rapide</div></div></div>
+      <div class="sh"><div><div class="sh-t">Secteurs — cliquer pour voir les entreprises</div><div class="sh-s">Chaque secteur affiche les entreprises associées</div></div></div>
       <div class="sg" id="overviewSectors"></div>
     </div>
 
     <!-- SECTEURS -->
     <div class="view" id="view-sectors">
+      <div class="sh"><div><div class="sh-t">Secteurs industriels</div><div class="sh-s">Cliquer sur un secteur pour voir toutes les entreprises associées</div></div></div>
       <div class="ftabs" id="sTabs">
         <button class="ft active" onclick="fSect('all',this)">Tous</button>
         <button class="ft" onclick="fSect('primaire',this)">🌿 Ressources primaires</button>
@@ -341,31 +346,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-seri
     <div class="view" id="view-companies">
       <div class="co-total" id="coTotal"></div>
       <div class="co-toolbar">
-        <input class="co-search" id="coSearch" placeholder="🔍 Rechercher une entreprise…" oninput="filterCompanies()">
-        <select class="co-select" id="coMuni" onchange="filterCompanies()"><option value="">Toutes les municipalités</option></select>
-        <select class="co-select" id="coSect" onchange="filterCompanies()"><option value="">Tous les secteurs</option></select>
-        <select class="co-select" id="coStatus" onchange="filterCompanies()">
+        <input class="co-search" id="coSearch" placeholder="🔍 Rechercher une entreprise…" oninput="filterCo()">
+        <select class="co-select" id="coMuni" onchange="filterCo()"><option value="">Toutes les municipalités</option></select>
+        <select class="co-select" id="coSect" onchange="filterCo()"><option value="">Tous les secteurs</option></select>
+        <select class="co-select" id="coStatus" onchange="filterCo()">
           <option value="">Tous les statuts</option>
           <option value="actif">✅ Actif</option>
+          <option value="reprise">🔄 Reprise</option>
           <option value="nouveau">🆕 Nouveau</option>
           <option value="expansion">📈 Expansion</option>
           <option value="a_completer">📝 À compléter</option>
         </select>
-        <select class="co-select" id="coView" onchange="filterCompanies()">
-          <option value="table">📋 Vue tableau</option>
-          <option value="muni">🗺️ Par municipalité</option>
-          <option value="sector">🏭 Par secteur</option>
-        </select>
       </div>
-      <div id="coGroupView" style="display:none;margin-bottom:18px;"></div>
-      <div id="coTableWrap" style="overflow-x:auto;">
+      <div style="overflow-x:auto">
         <table class="co-table">
           <thead><tr>
-            <th>Entreprise</th>
-            <th>Municipalité</th>
-            <th>Secteur</th>
-            <th style="text-align:right;">Emplois</th>
-            <th>Statut</th>
+            <th>Entreprise</th><th>Municipalité</th><th>Secteur</th>
+            <th style="text-align:right">Emplois</th><th>Statut</th>
           </tr></thead>
           <tbody id="coBody"></tbody>
         </table>
@@ -375,13 +372,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-seri
     <!-- COLLABORATIONS -->
     <div class="view" id="view-collab">
       <div class="ss-row" id="collabStats"></div>
+      <div id="methodoBlock"></div>
       <div class="ftabs" id="clTabs">
         <button class="ft active" onclick="fCollab('all',this)">Toutes</button>
         <button class="ft" onclick="fCollab('confirmee',this)">✅ Confirmées</button>
         <button class="ft" onclick="fCollab('possible',this)">💡 Possibles</button>
         <button class="ft" onclick="fCollab('innovante',this)">🚀 Innovantes</button>
       </div>
-      <div id="methodoBlock"></div>
       <div class="cl-grid" id="collabGrid"></div>
     </div>
 
@@ -401,36 +398,49 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-seri
     <div class="view" id="view-trends">
       <div class="trends-grid">
         <div class="card"><div class="ct">Emplois totaux estimés</div>
-          <div style="position:relative;height:210px;"><canvas id="lineChart"></canvas></div></div>
+          <div style="position:relative;height:210px"><canvas id="lineChart"></canvas></div></div>
         <div class="card"><div class="ct">Valeur permis de bâtir (M$)</div>
-          <div style="position:relative;height:210px;"><canvas id="permitChart"></canvas></div></div>
+          <div style="position:relative;height:210px"><canvas id="permitChart"></canvas></div></div>
       </div>
-      <div class="card" style="margin-bottom:18px;"><div class="ct">Évolution emplois par secteur — top 5</div>
-        <div style="position:relative;height:260px;"><canvas id="multiChart"></canvas></div></div>
+      <div class="card" style="margin-bottom:18px"><div class="ct">Évolution emplois par secteur</div>
+        <div style="position:relative;height:260px"><canvas id="multiChart"></canvas></div></div>
       <div class="trends-grid">
         <div class="card"><div class="ct">Nouvelles entreprises par année</div>
-          <div style="position:relative;height:185px;"><canvas id="newBizChart"></canvas></div></div>
-        <div class="card" style="padding:18px;">
-          <div class="ct">Sources des données</div>
-          <div style="font-size:12px;line-height:1.9;color:var(--muted);">
-            <strong style="color:var(--text);">✅ Données réelles confirmées</strong><br>
-            • Population par municipalité — MAMH, Décret 1499-2025<br>
-            • Population MRC : 21 935 hab. (2026)<br>
+          <div style="position:relative;height:185px"><canvas id="newBizChart"></canvas></div></div>
+        <div class="card"><div class="ct">Sources des données</div>
+          <div style="font-size:12px;line-height:1.9;color:var(--muted)">
+            <strong style="color:var(--text)">✅ Données réelles confirmées</strong><br>
+            • Population — MAMH, Décret 1499-2025<br>
             • Travailleurs 25-64 ans : 7 845 — ISQ 2024<br>
             • Revenu médian : 50 800$ — ISQ 2024<br>
             • Permis de bâtir : 54,8 M$ — ISQ 2024<br>
-            • Érablières : 19 455 ha, 2e au QC — PPAQ/MAPAQ<br>
-            • Éolien : 24,5 MW, 1,75 M$ redevances 2026 — EDG<br>
-            <br><strong style="color:var(--text);">⚠️ Estimations à valider</strong><br>
+            • Érablières : 19 455 ha, 2e au QC — PPAQ<br>
+            • Éolien : 24,5 MW, 1,75 M$ — EDG 2026<br>
+            • Bestar : reprise confirmée — Radio-Canada, mai 2026<br>
+            • St-Sébastien granit : 300+ emp — histoire-du-quebec.ca<br>
+            <br><strong style="color:var(--text)">⚠️ Estimations à valider</strong><br>
             • Emplois par secteur → Emploi-Québec / CLD Granit<br>
             • Liste entreprises → à compléter par l'équipe MRC
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </main>
+
+<!-- SECTOR PANEL -->
+<div class="panel-backdrop" id="panelBd" onclick="closeSectorPanel()"></div>
+<div class="sector-panel" id="sectorPanel">
+  <div class="sp-head">
+    <div class="sp-icon" id="spIcon">🏭</div>
+    <div class="sp-head-text">
+      <h2 id="spTitle">Secteur</h2>
+      <div class="sp-meta" id="spMeta"></div>
+    </div>
+    <button class="sp-close" onclick="closeSectorPanel()">✕ Fermer</button>
+  </div>
+  <div class="sp-body" id="spBody"></div>
+</div>
 
 <!-- ADMIN MODAL -->
 <div class="ov" id="adminOv" onclick="bgC(event,'adminOv')">
@@ -443,352 +453,320 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-seri
 
 <!-- GITHUB HELP MODAL -->
 <div class="ov" id="ghOv" onclick="bgC(event,'ghOv')">
-  <div class="modal" style="width:600px;">
+  <div class="modal" style="width:580px">
     <div class="mh"><h2>🚀 Comment mettre à jour la plateforme</h2><button class="btn" onclick="closeGH()">✕</button></div>
     <div class="mb">
-      <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6;">Ce guide s'adresse à toute personne de la MRC qui doit mettre à jour les données du tableau de bord. Aucune connaissance technique requise.</p>
-
-      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;">📋 Mise à jour via le tableau de bord (recommandé)</div>
-
-      <div class="gh-step"><div class="gh-n">1</div><div class="gh-t"><strong>Ouvrir le tableau de bord et cliquer « Mettre à jour »</strong><p>Cliquez sur <code>✏️ Mettre à jour</code> dans la barre en haut ou dans le menu gauche. Entrez le mot de passe administrateur.</p></div></div>
-      <div class="gh-step"><div class="gh-n">2</div><div class="gh-t"><strong>Modifier les données dans les formulaires</strong><p>Changez le trimestre, les KPIs, les emplois par secteur, les notes. Pour les entreprises et collaborations, utilisez l'onglet correspondant. Cliquez <code>✅ Enregistrer</code>.</p></div></div>
-      <div class="gh-step"><div class="gh-n">3</div><div class="gh-t"><strong>Exporter le fichier data.json</strong><p>Cliquez <code>💾 Exporter data.json</code> dans le menu gauche. Un fichier <code>data.json</code> se télécharge automatiquement sur votre ordinateur.</p></div></div>
-      <div class="gh-step"><div class="gh-n">4</div><div class="gh-t"><strong>Mettre à jour le fichier sur GitHub</strong><p>Allez sur <code>github.com</code> → votre dépôt → cliquez sur <code>data.json</code> → cliquez l'icône crayon ✏️ → <strong>Effacez tout le contenu</strong> → collez le contenu du nouveau fichier → cliquez <code>Commit changes</code>.</p></div></div>
-      <div class="gh-step"><div class="gh-n">5</div><div class="gh-t"><strong>Vérifier en ligne (2 minutes d'attente)</strong><p>Attendez ~2 minutes puis rechargez la page du tableau de bord. Tout le monde verra les nouvelles données automatiquement.</p></div></div>
-
-      <div class="gh-tip">
-        <div class="tit">💡 Astuce : copier-coller rapide dans GitHub</div>
-        <p>Dans votre fichier <code>data.json</code> téléchargé → ouvrez-le avec Notepad (clic droit → Ouvrir avec → Bloc-notes) → <code>Ctrl+A</code> pour tout sélectionner → <code>Ctrl+C</code> pour copier → collez dans GitHub.</p>
-      </div>
-
-      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:18px 0 10px;">➕ Ajouter une nouvelle entreprise</div>
-      <div class="gh-step"><div class="gh-n">A</div><div class="gh-t"><strong>Via le panel admin → onglet Entreprises</strong><p>Dans <code>✏️ Mettre à jour</code>, faites défiler jusqu'à la section <code>🏢 Entreprises</code>. Modifiez une fiche « À compléter » ou ajoutez une ligne. Exportez ensuite le <code>data.json</code> et commitez sur GitHub.</p></div></div>
-
-      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:18px 0 10px;">🔑 Accès et mots de passe</div>
-      <div class="gh-step"><div class="gh-n">B</div><div class="gh-t"><strong>Mot de passe du tableau de bord</strong><p>Modifiable dans <code>✏️ Mettre à jour</code> → section <code>🔐 Changer le mot de passe</code>. Mot de passe par défaut : <code>granit2025</code>.</p></div></div>
-      <div class="gh-step"><div class="gh-n">C</div><div class="gh-t"><strong>Accès GitHub — plusieurs personnes</strong><p>Sur GitHub, allez dans <code>Settings → Collaborators</code> → invitez les membres de l'équipe par leur courriel. Ils pourront éditer <code>data.json</code> directement en ligne.</p></div></div>
-
-      <div class="gh-warn">⚠️ <strong>Important :</strong> Ne modifiez jamais <code>index.html</code> — c'est le code de l'application. Seul <code>data.json</code> doit être mis à jour pour les données.</div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6">Ce guide s'adresse à toute personne de la MRC. Aucune connaissance technique requise.</p>
+      <div class="gh-step"><div class="gh-n">1</div><div class="gh-t"><strong>Cliquer « ✏️ Mettre à jour »</strong><p>Dans la barre en haut ou le menu gauche. Entrer le mot de passe.</p></div></div>
+      <div class="gh-step"><div class="gh-n">2</div><div class="gh-t"><strong>Modifier les données</strong><p>Trimestre, KPIs, emplois par secteur, emplois des entreprises. Cliquer <code>✅ Enregistrer</code>.</p></div></div>
+      <div class="gh-step"><div class="gh-n">3</div><div class="gh-t"><strong>Exporter data.json</strong><p>Cliquer <code>💾 Exporter data.json</code>. Le fichier se télécharge sur votre ordinateur.</p></div></div>
+      <div class="gh-step"><div class="gh-n">4</div><div class="gh-t"><strong>Remplacer le fichier sur le serveur</strong><p>Option A (GitHub) : ouvrir <code>data.json</code> → ✏️ → effacer tout → coller → <code>Commit changes</code>.<br>Option B (hébergement) : uploader le nouveau <code>data.json</code> dans le même dossier que <code>index.html</code>.</p></div></div>
+      <div class="gh-step"><div class="gh-n">5</div><div class="gh-t"><strong>Vérifier (attendre ~2 min)</strong><p>Recharger la page. Tout le monde voit les nouvelles données automatiquement.</p></div></div>
+      <div class="gh-tip"><div class="tit">💡 Copier-coller rapide</div><p>Ouvrez le fichier téléchargé avec Notepad → <code>Ctrl+A</code> → <code>Ctrl+C</code> → collez dans GitHub.</p></div>
+      <div class="gh-warn">⚠️ Ne modifiez jamais <code>index.html</code>. Seul <code>data.json</code> doit être mis à jour pour les données.</div>
     </div>
     <div class="mf"><button class="btn btn-g" onclick="closeGH()">Compris ✓</button></div>
   </div>
 </div>
 
 <script>
-let D = {}, unlocked = false, charts = {};
+var D={}, unlocked=false, charts={};
 
-// ── INIT ──────────────────────────────────────────────────────────
-async function init() {
-  let ok = false;
-  try {
-    // Essayer ./data.json puis le chemin absolu courant
-  let r;
-  try { r = await fetch('./data.json?v=' + Date.now()); } catch(e) {}
-  if (!r || !r.ok) {
-    const base = window.location.href.replace(/\/[^/]*$/, '/');
-    try { r = await fetch(base + 'data.json?v=' + Date.now()); } catch(e) {}
-  }
-    if (r.ok) { D = await r.json(); ok = true; }
-  } catch(e) {}
-  if (!ok) {
-    try { const s = localStorage.getItem('mrcg5'); if (s) { D = JSON.parse(s); ok = true; } } catch(e) {}
-  }
-  if (!ok || !D.sectors) {
-    document.getElementById('ls').innerHTML = '<div class="lo" style="color:#fff">⚠️ data.json introuvable</div><div class="su" style="max-width:300px;text-align:center;line-height:1.6;">Placez data.json dans le même dossier que index.html, ou hébergez sur GitHub Pages.</div>';
+// ── INIT ──────────────────────────────────────────────────────
+async function init(){
+  var ok=false;
+  try{
+    var r=await fetch('./data.json?v='+Date.now());
+    if(!r.ok){var base=window.location.href.replace(/\/[^\/]*$/,'/');r=await fetch(base+'data.json?v='+Date.now());}
+    if(r.ok){D=await r.json();ok=true;}
+  }catch(e){}
+  if(!ok){try{var s=localStorage.getItem('mrcg6');if(s){D=JSON.parse(s);ok=true;}}catch(e){}}
+  if(!ok||!D.sectors){
+    document.getElementById('ls').innerHTML='<div class="lo" style="color:#fff">⚠️ data.json introuvable</div><div class="su" style="max-width:300px;text-align:center;line-height:1.6">Placez data.json dans le même dossier que index.html.</div>';
     return;
   }
-  document.getElementById('ls').style.display = 'none';
+  document.getElementById('ls').style.display='none';
   renderAll();
 }
 
-function saveLs() { try { localStorage.setItem('mrcg5', JSON.stringify(D)); } catch(e) {} }
+function saveLs(){try{localStorage.setItem('mrcg6',JSON.stringify(D));}catch(e){}}
+function exportJSON(){var b=new Blob([JSON.stringify(D,null,2)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='data.json';a.click();toast('💾 data.json exporté');}
+function importJSON(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=ev=>{try{D=JSON.parse(ev.target.result);saveLs();renderAll();toast('✅ Importé — '+D.meta.quarter);}catch(err){alert('❌ JSON invalide');}};r.readAsText(f);e.target.value='';}
 
-function exportJSON() {
-  const b = new Blob([JSON.stringify(D, null, 2)], {type:'application/json'});
-  const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'data.json'; a.click();
-  toast('💾 data.json exporté — commitez-le sur GitHub pour partager');
-}
-
-function importJSON(e) {
-  const f = e.target.files[0]; if (!f) return;
-  const r = new FileReader();
-  r.onload = ev => { try { D = JSON.parse(ev.target.result); saveLs(); renderAll(); toast('✅ Importé — ' + D.meta.quarter); } catch(err) { alert('❌ JSON invalide'); } };
-  r.readAsText(f); e.target.value = '';
-}
-
-// ── NAVIGATION ────────────────────────────────────────────────────
-const VIEWS = {overview:'Aperçu général', sectors:'Secteurs industriels', companies:'Entreprises du territoire', collab:'Zones de collaboration', muni:'Municipalités', trends:'Tendances'};
-
-function V(id, btn) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+// ── NAVIGATION ────────────────────────────────────────────────
+var VIEWS={overview:'Aperçu général',sectors:'Secteurs industriels',companies:'Entreprises du territoire',collab:'Zones de collaboration',muni:'Municipalités',trends:'Tendances'};
+function V(id,btn){
+  document.querySelectorAll('.view').forEach(function(v){v.classList.remove('active');});
   document.getElementById('view-'+id).classList.add('active');
-  document.querySelectorAll('.ni').forEach(n => n.classList.remove('active'));
-  if (btn) btn.classList.add('active');
-  document.getElementById('pTitle').textContent = VIEWS[id] || '';
-  if (id === 'trends') setTimeout(renderTrends, 50);
-  if (id === 'muni') renderMuniStats();
-  if (id === 'collab') renderCollabStats();
-  if (id === 'companies') initCoFilters();
+  document.querySelectorAll('.ni').forEach(function(n){n.classList.remove('active');});
+  if(btn)btn.classList.add('active');
+  document.getElementById('pTitle').textContent=VIEWS[id]||'';
+  if(id==='trends')setTimeout(renderTrends,80);
+  if(id==='muni')renderMuniStats();
+  if(id==='collab')renderCollabStats();
+  if(id==='companies')initCoFilters();
+  closeSectorPanel();
 }
 
-// ── RENDER ALL ────────────────────────────────────────────────────
-function renderAll() {
-  renderMeta(); renderNote(); renderStatsStrip(); renderKPIs();
-  renderSectorCards('overviewSectors', 'all');
-  renderSectorCards('sectorGrid', 'all');
+// ── RENDER ALL ────────────────────────────────────────────────
+function renderAll(){
+  document.getElementById('sbQ').textContent=D.meta.quarter;
+  document.getElementById('sbBy').textContent=D.meta.updatedBy;
+  document.getElementById('qBadge').textContent=D.meta.quarter;
+  renderStatsStrip();
+  renderKPIs();
+  renderSectorCards('overviewSectors','all');
+  renderSectorCards('sectorGrid','all');
   renderMuniGrid('all');
   renderCompanies();
   renderCollabGrid('all');
-  renderBarChart(); renderDonutChart(); renderTrends();
+  setTimeout(function(){renderBarChart();renderDonutChart();},100);
 }
 
-function renderMeta() {
-  document.getElementById('sbQ').textContent = D.meta.quarter;
-  document.getElementById('sbBy').textContent = D.meta.updatedBy;
-  document.getElementById('qBadge').textContent = D.meta.quarter;
+function renderStatsStrip(){
+  var tot=D.municipalities.reduce(function(a,b){return a+b.pop;},0);
+  var realCo=D.companies.filter(function(c){return c.status!=='a_completer';});
+  document.getElementById('statsStrip').innerHTML=
+    '<div class="ss"><div class="ss-v">'+tot.toLocaleString('fr-CA')+'</div><div class="ss-l">Population (2026)</div></div>'+
+    '<div class="ss"><div class="ss-v">19</div><div class="ss-l">Municipalités</div></div>'+
+    '<div class="ss"><div class="ss-v">7 845</div><div class="ss-l">Travailleurs 25-64</div></div>'+
+    '<div class="ss"><div class="ss-v">77,6 %</div><div class="ss-l">Taux d\'emploi</div></div>'+
+    '<div class="ss"><div class="ss-v">'+realCo.length+'</div><div class="ss-l">Entreprises répertoriées</div></div>'+
+    '<div class="ss"><div class="ss-v">3 009</div><div class="ss-l">Emplois répertoriés</div></div>'+
+    '<div class="ss"><div class="ss-v">2e QC</div><div class="ss-l">Érablières Estrie</div></div>';
 }
 
-function renderNote() {
-  const el = document.getElementById('noteBanner');
-  el.innerHTML = D.meta.note ? `<div class="nb"><div>📌</div><div><div class="nb-t">Note — ${D.meta.quarter}</div><div class="nb-x">${D.meta.note}</div></div></div>` : '';
+function renderKPIs(){
+  document.getElementById('kpiGrid').innerHTML=D.kpis.map(function(k){
+    return '<div class="kpi"><div class="kpi-l">'+k.label+'</div><div class="kpi-v">'+k.value+'</div><div class="kpi-u">'+k.unit+'</div><div class="kpi-d '+(k.trend==='up'?'d-up':k.trend==='down'?'d-down':'d-flat')+'">'+k.delta+'</div></div>';
+  }).join('');
 }
 
-function renderStatsStrip() {
-  const tot = D.municipalities.reduce((a,b)=>a+b.pop,0);
-  const surf = D.municipalities.reduce((a,b)=>a+b.surface,0);
-  const coJobs = D.companies.filter(c=>c.status!=='a_completer').reduce((a,b)=>a+b.jobs,0);
-  document.getElementById('statsStrip').innerHTML = `
-    <div class="ss"><div class="ss-v">${tot.toLocaleString('fr-CA')}</div><div class="ss-l">Population (2026)</div></div>
-    <div class="ss"><div class="ss-v">19</div><div class="ss-l">Municipalités</div></div>
-    <div class="ss"><div class="ss-v">7 845</div><div class="ss-l">Travailleurs 25-64</div></div>
-    <div class="ss"><div class="ss-v">77,6 %</div><div class="ss-l">Taux d'emploi</div></div>
-    <div class="ss"><div class="ss-v">${D.companies.filter(c=>c.status!=='a_completer').length}</div><div class="ss-l">Entreprises répertoriées</div></div>
-    <div class="ss"><div class="ss-v">${D.collaborations.length}</div><div class="ss-l">Zones de collaboration</div></div>
-    <div class="ss"><div class="ss-v">2e au QC</div><div class="ss-l">Érablières Estrie</div></div>`;
+// ── SECTORS (clickable) ────────────────────────────────────────
+function renderSectorCards(id,filter){
+  var max=Math.max.apply(null,D.sectors.map(function(s){return s.jobs;}));
+  var list=filter==='all'?D.sectors:D.sectors.filter(function(s){return s.cat===filter;});
+  document.getElementById(id).innerHTML=list.map(function(s){
+    var pct=Math.round(s.jobs/max*100);
+    var coCount=D.companies.filter(function(c){return c.sector===s.name&&c.status!=='a_completer';}).length;
+    return '<div class="sc" onclick="openSectorPanel(\''+s.id+'\')">'+
+      '<div class="sc-ic">'+s.icon+'</div>'+
+      '<div class="sc-nm">'+s.name+'</div>'+
+      '<div class="sc-j">'+s.jobs.toLocaleString('fr-CA')+'</div>'+
+      '<div class="sc-u">emplois estimés</div>'+
+      '<div class="sc-tr '+(s.dir==='up'?'up':'down')+'">'+(s.dir==='up'?'↑':'↓')+' '+s.trend+'</div>'+
+      '<div class="sc-ds">'+s.desc.substring(0,90)+(s.desc.length>90?'…':'')+'</div>'+
+      '<div class="sc-bar"><div class="sc-bf" style="width:'+pct+'%"></div></div>'+
+      (coCount>0?'<div class="sc-hint">'+coCount+' entreprise'+(coCount>1?'s':'')+' →</div>':'')+
+      '</div>';
+  }).join('');
 }
 
-function renderKPIs() {
-  document.getElementById('kpiGrid').innerHTML = D.kpis.map(k => `
-    <div class="kpi"><div class="kpi-l">${k.label}</div><div class="kpi-v">${k.value}</div>
-    <div class="kpi-u">${k.unit}</div>
-    <div class="kpi-d ${k.trend==='up'?'d-up':k.trend==='down'?'d-down':'d-flat'}">${k.delta}</div></div>`).join('');
-}
+function fSect(f,btn){document.querySelectorAll('#sTabs .ft').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');renderSectorCards('sectorGrid',f);}
 
-function renderSectorCards(id, filter) {
-  const max = Math.max(...D.sectors.map(s=>s.jobs));
-  const list = filter==='all' ? D.sectors : D.sectors.filter(s=>s.cat===filter);
-  document.getElementById(id).innerHTML = list.map(s => `
-    <div class="sc"><div class="sc-ic">${s.icon}</div>
-    <div class="sc-nm">${s.name}</div>
-    <div class="sc-j">${s.jobs.toLocaleString('fr-CA')}</div>
-    <div class="sc-u">emplois estimés</div>
-    <div class="sc-tr ${s.dir}">${s.dir==='up'?'↑':'↓'} ${s.trend}</div>
-    <div class="sc-ds">${s.desc}</div>
-    <div class="sc-bar"><div class="sc-bf" style="width:${Math.round(s.jobs/max*100)}%"></div></div></div>`).join('');
-}
-
-function fSect(f, btn) {
-  document.querySelectorAll('#sTabs .ft').forEach(b=>b.classList.remove('active')); btn.classList.add('active');
-  renderSectorCards('sectorGrid', f);
-}
-
-// ── COMPANIES ─────────────────────────────────────────────────────
-function initCoFilters() {
-  const munis = [...new Set(D.companies.map(c=>c.muni))].sort();
-  const sects = [...new Set(D.companies.map(c=>c.sector))].sort();
-  const ms = document.getElementById('coMuni');
-  const ss = document.getElementById('coSect');
-  if (ms.options.length <= 1) munis.forEach(m => { const o = document.createElement('option'); o.value = m; o.textContent = m; ms.appendChild(o); });
-  if (ss.options.length <= 1) sects.forEach(s => { const o = document.createElement('option'); o.value = s; o.textContent = s; ss.appendChild(o); });
-  filterCompanies();
-}
-
-function filterCompanies() {
-  const q = document.getElementById('coSearch').value.toLowerCase();
-  const mu = document.getElementById('coMuni').value;
-  const se = document.getElementById('coSect').value;
-  const st = document.getElementById('coStatus').value;
-  const view = document.getElementById('coView').value;
-  const list = D.companies.filter(c =>
-    (!q || c.name.toLowerCase().includes(q) || c.desc.toLowerCase().includes(q) || c.muni.toLowerCase().includes(q)) &&
-    (!mu || c.muni === mu) && (!se || c.sector === se) && (!st || c.status === st)
-  );
-  const totalJobs = list.filter(c=>c.status!=='a_completer').reduce((a,b)=>a+b.jobs,0);
-  document.getElementById('coTotal').innerHTML = `
-    <span>📊 <strong>${list.length}</strong> entreprise${list.length>1?'s':''} affichée${list.length>1?'s':''}</span>
-    <span>·</span><span>Total emplois répertoriés : <strong>${totalJobs.toLocaleString('fr-CA')}</strong></span>
-    <span style="margin-left:auto;font-size:11px;color:var(--g600);">Liste partielle — à compléter par l'équipe MRC</span>`;
-  const stMap = {actif:'st-actif',nouveau:'st-nouveau',reprise:'st-nouveau',expansion:'st-expansion',a_completer:'st-a_completer'};
-  const stLbl = {actif:'✅ Actif',nouveau:'🆕 Nouveau',reprise:'🔄 Reprise',expansion:'📈 Expansion',a_completer:'📝 À compléter'};
-  const gv = document.getElementById('coGroupView');
-  const tw = document.getElementById('coTableWrap');
-  if (view === 'muni' || view === 'sector') {
-    tw.style.display='none'; gv.style.display='block';
-    const key = view==='muni' ? 'muni' : 'sector';
-    const groups = {};
-    list.forEach(c => { if(!groups[c[key]])groups[c[key]]=[]; groups[c[key]].push(c); });
-    gv.innerHTML = Object.keys(groups).sort().map(g => {
-      const items = groups[g];
-      const gJobs = items.filter(c=>c.status!=='a_completer').reduce((a,b)=>a+b.jobs,0);
-      return `<div class="muni-group-header">${view==='muni'?'📍':'🏭'} ${g} — <strong>${items.length} entreprise${items.length>1?'s':''}</strong>${gJobs>0?' · '+gJobs.toLocaleString('fr-CA')+' emplois':''}</div>
-      <div class="sg" style="margin-bottom:14px;">${items.map(c=>`<div class="sc" style="min-height:auto">
-        <div class="sc-nm">${c.name}</div>
-        <div class="sc-j" style="font-size:17px">${c.status==='a_completer'?'—':c.jobs.toLocaleString('fr-CA')}</div>
-        <div class="sc-u">emplois</div>
-        <span class="co-badge ${stMap[c.status]||'st-actif'}" style="margin-top:5px;display:inline-block">${stLbl[c.status]||c.status}</span>
-        <div class="sc-ds">${c.desc.substring(0,100)}${c.desc.length>100?'…':''}</div>
-      </div>`).join('')}</div>`;
+// ── SECTOR PANEL ──────────────────────────────────────────────
+function openSectorPanel(sectorId){
+  var sector=D.sectors.find(function(s){return s.id===sectorId;});
+  if(!sector)return;
+  var companies=D.companies.filter(function(c){return c.sector===sector.name&&c.status!=='a_completer';});
+  var totalJobs=companies.reduce(function(a,b){return a+b.jobs;},0);
+  document.getElementById('spIcon').textContent=sector.icon;
+  document.getElementById('spTitle').textContent=sector.name;
+  document.getElementById('spMeta').textContent=sector.jobs.toLocaleString('fr-CA')+' emplois estimés · '+companies.length+' entreprise'+(companies.length!==1?'s':'')+' répertoriée'+(companies.length!==1?'s':'');
+  var stMap={actif:'st-actif',reprise:'st-reprise',nouveau:'st-nouveau',expansion:'st-expansion',a_completer:'st-a_completer'};
+  var stLbl={actif:'✅ Actif',reprise:'🔄 Reprise',nouveau:'🆕 Nouveau',expansion:'📈 Expansion',a_completer:'📝 À compléter'};
+  var html='';
+  if(totalJobs>0)html+='<div class="sp-total"><span>'+companies.length+' entreprise'+(companies.length>1?'s':'')+' répertoriée'+(companies.length>1?'s':'')+' dans ce secteur</span><span>'+totalJobs.toLocaleString('fr-CA')+' emplois</span></div>';
+  if(companies.length===0){
+    html='<div class="sp-empty">Aucune entreprise répertoriée pour ce secteur.<br>Ajoutez-en via le panel admin ou dans data.json.</div>';
+  } else {
+    html+=companies.map(function(c){
+      return '<div class="co-item">'+
+        '<div class="co-item-head">'+
+          '<div class="co-item-name">'+c.name+'</div>'+
+          (c.status!=='a_completer'?'<span class="co-jobs-badge">'+c.jobs.toLocaleString('fr-CA')+'</span>':'')+
+        '</div>'+
+        '<div class="co-muni">📍 '+c.muni+'</div>'+
+        '<div class="co-desc">'+c.desc+'</div>'+
+        '<span class="co-status-tag '+(stMap[c.status]||'st-actif')+'">'+stLbl[c.status]+'</span>'+
+        '</div>';
     }).join('');
-  } else {
-    tw.style.display=''; gv.style.display='none';
-    document.getElementById('coBody').innerHTML = list.map(c => `
-      <tr>
-        <td><div style="font-weight:600;font-size:13px;">${c.name}</div><div class="co-desc">${c.desc}</div></td>
-        <td><div class="co-muni">📍 ${c.muni}</div></td>
-        <td><div style="font-size:12px;">${c.sector}</div></td>
-        <td style="text-align:right;"><div class="co-jobs">${c.status==='a_completer'?'—':c.jobs.toLocaleString('fr-CA')}</div></td>
-        <td><span class="co-badge ${stMap[c.status]||'st-actif'}">${stLbl[c.status]||c.status}</span></td>
-      </tr>`).join('') || '<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:24px;">Aucun résultat</td></tr>';
   }
+  document.getElementById('spBody').innerHTML=html;
+  document.getElementById('sectorPanel').classList.add('open');
+  document.getElementById('panelBd').classList.add('open');
+}
+function closeSectorPanel(){document.getElementById('sectorPanel').classList.remove('open');document.getElementById('panelBd').classList.remove('open');}
+
+// ── COMPANIES ─────────────────────────────────────────────────
+function initCoFilters(){
+  var munis=[...new Set(D.companies.map(function(c){return c.muni;}))].sort();
+  var sects=[...new Set(D.companies.map(function(c){return c.sector;}))].sort();
+  var ms=document.getElementById('coMuni'),ss=document.getElementById('coSect');
+  if(ms.options.length<=1)munis.forEach(function(m){var o=document.createElement('option');o.value=m;o.textContent=m;ms.appendChild(o);});
+  if(ss.options.length<=1)sects.forEach(function(s){var o=document.createElement('option');o.value=s;o.textContent=s;ss.appendChild(o);});
+  filterCo();
 }
 
-// ── COLLABORATIONS ────────────────────────────────────────────────
-function renderCollabStats() {
-  const conf = D.collaborations.filter(c=>c.type==='confirmee').length;
-  const poss = D.collaborations.filter(c=>c.type==='possible').length;
-  const inno = D.collaborations.filter(c=>c.type==='innovante').length;
-  document.getElementById('collabStats').innerHTML = `
-    <div class="ss"><div class="ss-v">${D.collaborations.length}</div><div class="ss-l">Zones totales</div></div>
-    <div class="ss"><div class="ss-v" style="color:var(--g700)">${conf}</div><div class="ss-l">✅ Confirmées</div></div>
-    <div class="ss"><div class="ss-v" style="color:var(--amber)">${poss}</div><div class="ss-l">💡 Possibles</div></div>
-    <div class="ss"><div class="ss-v" style="color:var(--purple)">${inno}</div><div class="ss-l">🚀 Innovantes</div></div>`;
+function filterCo(){
+  var q=document.getElementById('coSearch').value.toLowerCase();
+  var mu=document.getElementById('coMuni').value;
+  var se=document.getElementById('coSect').value;
+  var st=document.getElementById('coStatus').value;
+  var list=D.companies.filter(function(c){
+    return(!q||c.name.toLowerCase().includes(q)||c.desc.toLowerCase().includes(q)||c.muni.toLowerCase().includes(q))&&
+           (!mu||c.muni===mu)&&(!se||c.sector===se)&&(!st||c.status===st);
+  });
+  var totalJobs=list.filter(function(c){return c.status!=='a_completer';}).reduce(function(a,b){return a+b.jobs;},0);
+  document.getElementById('coTotal').innerHTML=
+    '<span>📊 <strong>'+list.length+'</strong> entreprise'+(list.length>1?'s':'')+' affichée'+(list.length>1?'s':'')+'</span>'+
+    '<span>·</span><span>Total emplois : <strong>'+totalJobs.toLocaleString('fr-CA')+'</strong></span>'+
+    '<span style="margin-left:auto;font-size:11px;color:var(--g600)">Liste partielle — à compléter</span>';
+  var stMap={actif:'st-actif',reprise:'st-reprise',nouveau:'st-nouveau',expansion:'st-expansion',a_completer:'st-a_completer'};
+  var stLbl={actif:'✅ Actif',reprise:'🔄 Reprise',nouveau:'🆕 Nouveau',expansion:'📈 Expansion',a_completer:'📝 À compléter'};
+  document.getElementById('coBody').innerHTML=list.map(function(c){
+    return '<tr><td><div style="font-weight:600;font-size:13px">'+c.name+'</div><div class="co-desc-tag">'+c.desc+'</div></td>'+
+      '<td><div class="co-muni-tag">📍 '+c.muni+'</div></td>'+
+      '<td><div style="font-size:12px">'+c.sector+'</div></td>'+
+      '<td style="text-align:right"><div class="co-jobs">'+(c.status==='a_completer'?'—':c.jobs.toLocaleString('fr-CA'))+'</div></td>'+
+      '<td><span class="co-status-tag '+(stMap[c.status]||'st-actif')+'">'+(stLbl[c.status]||c.status)+'</span></td></tr>';
+  }).join('')||'<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:24px">Aucun résultat</td></tr>';
 }
 
-function renderCollabGrid(filter) {
-  // Bloc méthodologie
-  const meth = D.collaborations.find(c=>c.type==='methodologie');
-  if (meth && (filter==='all' || filter==='methodologie')) {
-    document.getElementById('methodoBlock').innerHTML = `
-      <div class="methodo-card">
-        <h3>🔬 ${meth.name}</h3>
-        <p>${meth.desc}</p>
-        <div class="steps">
-          <div class="step"><strong>① Flux intersectoriels (I-O)</strong><span>Intrants produits localement mais achetés à l'extérieur → maillons manquants identifiés</span></div>
-          <div class="step"><strong>② Clustering géographique</strong><span>Co-localisation dans les 5 parcs industriels, distances et densité de liens connus</span></div>
-          <div class="step"><strong>③ Profils de compétences</strong><span>Main-d'œuvre partageable entre secteurs selon les types de postes documentés</span></div>
-          <div class="step"><strong>④ Chaîne d'approvisionnement</strong><span>Détection des flux de matières premières qui quittent le territoire sans transformation locale</span></div>
-        </div>
-      </div>`;
-  } else {
-    document.getElementById('methodoBlock').innerHTML = '';
-  }
-  const visible = D.collaborations.filter(c=>c.type!=='methodologie');
-  const list = filter==='all' ? visible : visible.filter(c=>c.type===filter);
-  const tMap = {confirmee:'✅ Confirmée',possible:'💡 Possible',innovante:'🚀 Innovante'};
-  const scoreColor = s => s>=85?'#1a4d2e':s>=70?'#d97706':'#7c3aed';
-  document.getElementById('collabGrid').innerHTML = list.map(c => {
-    const score = c.inference_score||null;
-    const scoreHtml = score ? `<div class="inf-score">
-      <span style="font-size:10px;color:var(--muted);font-weight:600;">Indice de collaboration</span>
-      <div class="inf-bar"><div class="inf-fill" style="width:${score}%;background:${scoreColor(score)};"></div></div>
-      <span class="inf-pct" style="color:${scoreColor(score)}">${score}%</span>
-    </div>` : '';
-    const repriseBadge = c.name.includes('Bestar') ? '<div class="reprise-badge">🔄 Reprise confirmée — 13 mai 2026</div>' : '';
-    return `<div class="cl-card ${c.type}">
-      <div class="cl-head">
-        <div class="cl-emoji">${c.emoji}</div>
-        <div>
-          <span class="cl-type t-${c.type}">${tMap[c.type]||c.type}</span>
-          <div class="cl-nm">${c.name}</div>
-        </div>
-      </div>
-      ${repriseBadge}
-      <div class="cl-desc">${c.desc}</div>
-      ${c.companies.length ? `<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px;">Entreprises impliquées</div>
-      <div class="cl-companies">${c.companies.map(co=>'<span class="cl-co">'+co+'</span>').join('')}</div>` : ''}
-      ${c.municipalities.length ? `<div class="cl-munis">📍 ${c.municipalities.join(' · ')}</div>` : ''}
-      <div class="cl-impact"><strong>Impact / potentiel</strong>${c.impact}</div>
-      ${scoreHtml}
-      <div class="cl-status">Statut : <span>${c.status}</span></div>
-    </div>`;
+function renderCompanies(){initCoFilters();}
+
+// ── COLLABORATIONS ────────────────────────────────────────────
+function renderCollabStats(){
+  var conf=D.collaborations.filter(function(c){return c.type==='confirmee';}).length;
+  var poss=D.collaborations.filter(function(c){return c.type==='possible';}).length;
+  var inno=D.collaborations.filter(function(c){return c.type==='innovante';}).length;
+  document.getElementById('collabStats').innerHTML=
+    '<div class="ss"><div class="ss-v">'+D.collaborations.filter(function(c){return c.type!=='methodologie';}).length+'</div><div class="ss-l">Zones totales</div></div>'+
+    '<div class="ss"><div class="ss-v" style="color:var(--g700)">'+conf+'</div><div class="ss-l">✅ Confirmées</div></div>'+
+    '<div class="ss"><div class="ss-v" style="color:var(--amber)">'+poss+'</div><div class="ss-l">💡 Possibles</div></div>'+
+    '<div class="ss"><div class="ss-v" style="color:var(--purple)">'+inno+'</div><div class="ss-l">🚀 Innovantes</div></div>';
+}
+
+function renderCollabGrid(filter){
+  var meth=D.collaborations.find(function(c){return c.type==='methodologie';});
+  if(meth&&(filter==='all')){
+    document.getElementById('methodoBlock').innerHTML=
+      '<div class="methodo-card"><h3>🔬 '+meth.name+'</h3><p>'+meth.desc+'</p>'+
+      '<div class="methodo-steps">'+
+        '<div class="methodo-step"><strong>① Flux intersectoriels (I-O)</strong><span>Intrants produits localement mais achetés hors territoire — maillons manquants identifiés</span></div>'+
+        '<div class="methodo-step"><strong>② Clustering géographique</strong><span>Co-localisation dans les 5 parcs industriels, distances et densité de liens documentés</span></div>'+
+        '<div class="methodo-step"><strong>③ Profils de compétences</strong><span>Main-d\'œuvre partageable entre secteurs selon les types de postes recensés</span></div>'+
+        '<div class="methodo-step"><strong>④ Chaîne d\'approvisionnement</strong><span>Flux de matières premières qui quittent le territoire sans transformation locale</span></div>'+
+      '</div></div>';
+  } else { document.getElementById('methodoBlock').innerHTML=''; }
+  var visible=D.collaborations.filter(function(c){return c.type!=='methodologie';});
+  var list=filter==='all'?visible:visible.filter(function(c){return c.type===filter;});
+  var tMap={confirmee:'✅ Confirmée',possible:'💡 Possible',innovante:'🚀 Innovante'};
+  function scoreColor(s){return s>=85?'#1a4d2e':s>=70?'#d97706':'#7c3aed';}
+  document.getElementById('collabGrid').innerHTML=list.map(function(c){
+    var sc=c.inference_score||null;
+    var scoreHtml=sc?'<div class="inf-score"><span style="font-size:10px;color:var(--muted);font-weight:600">Indice de collaboration</span><div class="inf-bar"><div class="inf-fill" style="width:'+sc+'%;background:'+scoreColor(sc)+'"></div></div><span class="inf-pct" style="color:'+scoreColor(sc)+'">'+sc+'%</span></div>':'';
+    return '<div class="cl-card '+c.type+'">'+
+      '<div class="cl-head"><div class="cl-emoji">'+c.emoji+'</div><div>'+
+        '<span class="cl-type t-'+c.type+'">'+tMap[c.type]+'</span>'+
+        '<div class="cl-nm">'+c.name+'</div>'+
+      '</div></div>'+
+      '<div class="cl-desc">'+c.desc+'</div>'+
+      (c.companies.length?'<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px">Entreprises impliquées</div><div class="cl-companies">'+c.companies.map(function(co){return '<span class="cl-co">'+co+'</span>';}).join('')+'</div>':'')+
+      (c.municipalities.length?'<div class="cl-munis">📍 '+c.municipalities.slice(0,5).join(' · ')+(c.municipalities.length>5?' + '+(c.municipalities.length-5)+' autres':'')+'</div>':'')+
+      '<div class="cl-impact"><strong>Impact / potentiel</strong>'+c.impact+'</div>'+
+      scoreHtml+
+      '<div class="cl-status">Statut : <span>'+c.status+'</span></div>'+
+    '</div>';
   }).join('');
 }
 
-function fCollab(f, btn) {
-  document.querySelectorAll('#clTabs .ft').forEach(b=>b.classList.remove('active')); btn.classList.add('active');
-  renderCollabGrid(f);
+function fCollab(f,btn){document.querySelectorAll('#clTabs .ft').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');renderCollabGrid(f);}
+
+// ── MUNICIPALITIES ────────────────────────────────────────────
+function renderMuniStats(){
+  var tot=D.municipalities.reduce(function(a,b){return a+b.pop;},0);
+  document.getElementById('muniStats').innerHTML=
+    '<div class="ss"><div class="ss-v">'+tot.toLocaleString('fr-CA')+'</div><div class="ss-l">Pop. totale (2026)</div></div>'+
+    '<div class="ss"><div class="ss-v">'+D.municipalities.filter(function(m){return m.cat==='urbain';}).length+'</div><div class="ss-l">Urbain</div></div>'+
+    '<div class="ss"><div class="ss-v">'+D.municipalities.filter(function(m){return m.cat==='rural';}).length+'</div><div class="ss-l">Rural</div></div>'+
+    '<div class="ss"><div class="ss-v">'+D.municipalities.filter(function(m){return m.cat==='rural_eloigne';}).length+'</div><div class="ss-l">Rural éloigné</div></div>'+
+    '<div class="ss"><div class="ss-v">'+Math.round(D.municipalities.reduce(function(a,b){return a+b.surface;},0)).toLocaleString('fr-CA')+'</div><div class="ss-l">km² total</div></div>';
 }
 
-// ── MUNICIPALITIES ────────────────────────────────────────────────
-function renderMuniStats() {
-  const tot = D.municipalities.reduce((a,b)=>a+b.pop,0);
-  document.getElementById('muniStats').innerHTML = `
-    <div class="ss"><div class="ss-v">${tot.toLocaleString('fr-CA')}</div><div class="ss-l">Pop. totale (2026)</div></div>
-    <div class="ss"><div class="ss-v">${D.municipalities.filter(m=>m.cat==='urbain').length}</div><div class="ss-l">Urbain</div></div>
-    <div class="ss"><div class="ss-v">${D.municipalities.filter(m=>m.cat==='rural').length}</div><div class="ss-l">Rural</div></div>
-    <div class="ss"><div class="ss-v">${D.municipalities.filter(m=>m.cat==='rural_eloigne').length}</div><div class="ss-l">Rural éloigné</div></div>
-    <div class="ss"><div class="ss-v">${Math.round(D.municipalities.reduce((a,b)=>a+b.surface,0)).toLocaleString('fr-CA')}</div><div class="ss-l">km² total</div></div>`;
-}
-
-function renderMuniGrid(filter) {
-  const list = filter==='all' ? D.municipalities : D.municipalities.filter(m=>m.cat===filter);
-  const bm = {urbain:'b-u',rural:'b-r',rural_eloigne:'b-re'};
-  const lm = {urbain:'Urbain',rural:'Rural',rural_eloigne:'Rural éloigné'};
-  document.getElementById('muniGrid').innerHTML = list.map(m => {
-    const coCount = D.companies.filter(c=>c.muni===m.name&&c.status!=='a_completer').length;
-    return `<div class="mu ${m.cat}">
-      <span class="mbadge ${bm[m.cat]}">${lm[m.cat]}</span>
-      <div class="mu-ty">${m.type} · Code ${m.code}</div>
-      <div class="mu-nm">${m.name}</div>
-      <div class="mu-po">${m.pop.toLocaleString('fr-CA')} hab.</div>
-      <div class="mu-st">
-        <div class="mu-stat"><div class="mu-sv">${m.surface} km²</div><div class="mu-sl">Superficie</div></div>
-        <div class="mu-stat"><div class="mu-sv">${m.density}</div><div class="mu-sl">hab./km²</div></div>
-        <div class="mu-stat"><div class="mu-sv" style="color:var(--g700)">${coCount}</div><div class="mu-sl">entreprises</div></div>
-      </div>
-      <div class="mu-ro">📍 ${m.role}</div>
-      <div class="mu-no">${m.note}</div>
-    </div>`;
+function renderMuniGrid(filter){
+  var list=filter==='all'?D.municipalities:D.municipalities.filter(function(m){return m.cat===filter;});
+  var bm={urbain:'b-u',rural:'b-r',rural_eloigne:'b-re'};
+  var lm={urbain:'Urbain',rural:'Rural',rural_eloigne:'Rural éloigné'};
+  document.getElementById('muniGrid').innerHTML=list.map(function(m){
+    var coCount=D.companies.filter(function(c){return c.muni===m.name&&c.status!=='a_completer';}).length;
+    return '<div class="mu '+m.cat+'">'+
+      '<span class="mbadge '+(bm[m.cat]||'b-r')+'">'+lm[m.cat]+'</span>'+
+      '<div class="mu-ty">'+m.type+' · Code '+m.code+'</div>'+
+      '<div class="mu-nm">'+m.name+'</div>'+
+      '<div class="mu-po">'+m.pop.toLocaleString('fr-CA')+' hab.</div>'+
+      '<div class="mu-st">'+
+        '<div class="mu-stat"><div class="mu-sv">'+m.surface+' km²</div><div class="mu-sl">Superficie</div></div>'+
+        '<div class="mu-stat"><div class="mu-sv">'+m.density+'</div><div class="mu-sl">hab./km²</div></div>'+
+        '<div class="mu-stat"><div class="mu-sv" style="color:var(--g700)">'+coCount+'</div><div class="mu-sl">entreprises</div></div>'+
+      '</div>'+
+      '<div class="mu-ro">📍 '+m.role+'</div>'+
+      '<div class="mu-no">'+m.note+'</div>'+
+    '</div>';
   }).join('');
 }
 
-function fMuni(f, btn) {
-  document.querySelectorAll('#mTabs .ft').forEach(b=>b.classList.remove('active')); btn.classList.add('active');
-  renderMuniGrid(f);
-}
+function fMuni(f,btn){document.querySelectorAll('#mTabs .ft').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');renderMuniGrid(f);}
 
-// ── CHARTS ────────────────────────────────────────────────────────
-const C=['#1a4d2e','#2d7a4f','#285f40','#1d6b4f','#d97706','#b45309','#1d7a8a','#374151','#4b5563','#7c3aed','#be185d','#b45309'];
-const TC=['#1a4d2e','#d97706','#1d7a8a','#7c3aed','#b45309'];
+// ── CHARTS ────────────────────────────────────────────────────
+var C=['#1a4d2e','#2d7a4f','#285f40','#1d6b4f','#d97706','#b45309','#1d7a8a','#374151','#4b5563','#7c3aed','#be185d','#b45309','#0e7490'];
+var TC=['#1a4d2e','#d97706','#1d7a8a','#7c3aed','#b45309'];
 
-function kc(k){if(charts[k]){charts[k].destroy();delete charts[k];}}
+function kc(k){if(charts[k]){try{charts[k].destroy();}catch(e){}delete charts[k];}}
 
 function renderBarChart(){
-  kc('bar'); const ctx=document.getElementById('barChart'); if(!ctx)return;
-  charts.bar=new Chart(ctx,{type:'bar',data:{labels:D.sectors.map(s=>s.name),datasets:[{data:D.sectors.map(s=>s.jobs),backgroundColor:C,borderRadius:5,borderSkipped:false}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw.toLocaleString('fr-CA')+' emplois'}}},scales:{x:{grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:v=>v.toLocaleString('fr-CA'),font:{size:11}}},y:{grid:{display:false},ticks:{font:{size:11}}}}}});
+  kc('bar');
+  var ctx=document.getElementById('barChart');
+  if(!ctx||!D.sectors)return;
+  charts.bar=new Chart(ctx,{
+    type:'bar',
+    data:{labels:D.sectors.map(function(s){return s.name;}),datasets:[{data:D.sectors.map(function(s){return s.jobs;}),backgroundColor:C,borderRadius:5,borderSkipped:false}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+c.raw.toLocaleString('fr-CA')+' emplois';}}}},
+      scales:{x:{grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:function(v){return v.toLocaleString('fr-CA');},font:{size:11}}},y:{grid:{display:false},ticks:{font:{size:10},maxTicksLimit:15}}}}
+  });
 }
 
 function renderDonutChart(){
-  kc('donut'); const ctx=document.getElementById('donutChart'); if(!ctx)return;
-  const total=D.sectors.reduce((a,b)=>a+b.jobs,0);
-  charts.donut=new Chart(ctx,{type:'doughnut',data:{labels:D.sectors.map(s=>s.name),datasets:[{data:D.sectors.map(s=>s.jobs),backgroundColor:C,borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+Math.round(c.raw/total*100)+'%'}}}}});
-  document.getElementById('donutLegend').innerHTML=D.sectors.slice(0,6).map((s,i)=>`<div class="dl-i"><div style="display:flex;align-items:center;"><div class="dl-d" style="background:${C[i]}"></div>${s.name}</div><div class="dl-p">${Math.round(s.jobs/total*100)}%</div></div>`).join('')+`<div class="dl-i" style="color:var(--muted);font-style:italic;"><div>+${D.sectors.length-6} autres</div><div>—</div></div>`;
+  kc('donut');
+  var ctx=document.getElementById('donutChart');
+  if(!ctx||!D.sectors)return;
+  var total=D.sectors.reduce(function(a,b){return a+b.jobs;},0);
+  charts.donut=new Chart(ctx,{
+    type:'doughnut',
+    data:{labels:D.sectors.map(function(s){return s.name;}),datasets:[{data:D.sectors.map(function(s){return s.jobs;}),backgroundColor:C,borderWidth:2,borderColor:'#fff'}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+Math.round(c.raw/total*100)+'%';}}}}}
+  });
+  document.getElementById('donutLegend').innerHTML=D.sectors.slice(0,6).map(function(s,i){
+    var pct=Math.round(s.jobs/total*100);
+    return '<div class="dl-i"><div style="display:flex;align-items:center"><div class="dl-d" style="background:'+C[i]+'"></div>'+s.name+'</div><div class="dl-p">'+pct+'%</div></div>';
+  }).join('')+'<div class="dl-i" style="color:var(--muted);font-style:italic"><div>+'+Math.max(0,D.sectors.length-6)+' autres</div><div>—</div></div>';
 }
 
 function renderTrends(){
   kc('line');kc('permit');kc('newbiz');kc('multi');
-  const t=D.trends;
-  const lc=document.getElementById('lineChart');
-  if(lc)charts.line=new Chart(lc,{type:'line',data:{labels:t.years,datasets:[{data:t.totalJobs,borderColor:'#1a4d2e',backgroundColor:'rgba(26,77,46,.08)',fill:true,tension:.4,pointRadius:4,pointBackgroundColor:'#1a4d2e'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:v=>v.toLocaleString('fr-CA'),font:{size:11}}}}}});
-  const pc=document.getElementById('permitChart');
-  if(pc&&t.permitsMk)charts.permit=new Chart(pc,{type:'bar',data:{labels:t.years,datasets:[{data:t.permitsMk,backgroundColor:t.permitsMk.map((_,i,a)=>i===a.length-1?'#1a4d2e':'#4aaa72'),borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw.toFixed(1)+' M$'}}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:v=>v+' M$',font:{size:11}}}}}});
-  const nc=document.getElementById('newBizChart');
-  if(nc)charts.newbiz=new Chart(nc,{type:'bar',data:{labels:t.years,datasets:[{data:t.newBiz,backgroundColor:t.newBiz.map((_,i,a)=>i===a.length-1?'#1a4d2e':'#4aaa72'),borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:11}}}}}});
-  const mc=document.getElementById('multiChart');
-  if(mc){const entries=Object.entries(t.bySector);charts.multi=new Chart(mc,{type:'line',data:{labels:t.years,datasets:entries.map(([n,d],i)=>({label:n,data:d,borderColor:TC[i],backgroundColor:'transparent',tension:.4,pointRadius:3,borderDash:i>2?[5,3]:[],pointBackgroundColor:TC[i]}))},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{font:{size:11},boxWidth:11,boxHeight:8,padding:12}}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:11}}}}}});}
+  var t=D.trends;
+  var lc=document.getElementById('lineChart');
+  if(lc)charts.line=new Chart(lc,{type:'line',data:{labels:t.years,datasets:[{data:t.totalJobs,borderColor:'#1a4d2e',backgroundColor:'rgba(26,77,46,.08)',fill:true,tension:.4,pointRadius:4,pointBackgroundColor:'#1a4d2e'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:function(v){return v.toLocaleString('fr-CA');},font:{size:11}}}}}});
+  var pc=document.getElementById('permitChart');
+  if(pc&&t.permitsMk)charts.permit=new Chart(pc,{type:'bar',data:{labels:t.years,datasets:[{data:t.permitsMk,backgroundColor:t.permitsMk.map(function(_,i,a){return i===a.length-1?'#1a4d2e':'#4aaa72';}),borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+c.raw.toFixed(1)+' M$';}}}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:function(v){return v+' M$';},font:{size:11}}}}}});
+  var nc=document.getElementById('newBizChart');
+  if(nc)charts.newbiz=new Chart(nc,{type:'bar',data:{labels:t.years,datasets:[{data:t.newBiz,backgroundColor:t.newBiz.map(function(_,i,a){return i===a.length-1?'#1a4d2e':'#4aaa72';}),borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:11}}}}}});
+  var mc=document.getElementById('multiChart');
+  if(mc){var entries=Object.entries(t.bySector);charts.multi=new Chart(mc,{type:'line',data:{labels:t.years,datasets:entries.map(function(e,i){return{label:e[0],data:e[1],borderColor:TC[i],backgroundColor:'transparent',tension:.4,pointRadius:3,borderDash:i>2?[5,3]:[],pointBackgroundColor:TC[i]};})},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{font:{size:11},boxWidth:11,boxHeight:8,padding:12}}},spaces:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:11}}}}}});}
 }
 
-// ── ADMIN ─────────────────────────────────────────────────────────
+// ── ADMIN ─────────────────────────────────────────────────────
 function openAdmin(){document.getElementById('adminOv').classList.add('open');unlocked?showForm():showPW();}
 function closeAdmin(){document.getElementById('adminOv').classList.remove('open');}
 function openGH(){document.getElementById('ghOv').classList.add('open');}
@@ -797,117 +775,94 @@ function bgC(e,id){if(e.target===document.getElementById(id)){if(id==='adminOv')
 
 function showPW(){
   document.getElementById('mTitle').textContent='🔒 Accès sécurisé';
-  document.getElementById('mBody').innerHTML=`<div class="pw"><div style="font-size:42px;margin-bottom:11px">🔒</div><h3>Zone protégée</h3><p>Entrez le mot de passe pour modifier les données du tableau de bord.</p><input type="password" id="pwIn" placeholder="Mot de passe…" onkeydown="if(event.key==='Enter')checkPW()"><div id="pwErr" class="pw-err"></div><button class="btn btn-g" style="margin-top:11px;width:240px" onclick="checkPW()">Connexion →</button></div>`;
+  document.getElementById('mBody').innerHTML='<div class="pw"><div style="font-size:42px;margin-bottom:11px">🔒</div><h3>Zone protégée</h3><p>Entrez le mot de passe pour modifier les données.</p><input type="password" id="pwIn" placeholder="Mot de passe…" onkeydown="if(event.key===\'Enter\')checkPW()"><div id="pwErr" class="pw-err"></div><button class="btn btn-g" style="margin-top:11px;width:240px" onclick="checkPW()">Connexion →</button></div>';
   document.getElementById('mFoot').innerHTML='';
-  setTimeout(()=>document.getElementById('pwIn').focus(),80);
+  setTimeout(function(){var el=document.getElementById('pwIn');if(el)el.focus();},80);
 }
-
-function checkPW(){
-  const v=document.getElementById('pwIn').value;
-  if(v===D.meta.password){unlocked=true;showForm();}
-  else{document.getElementById('pwErr').textContent='❌ Mot de passe incorrect.';document.getElementById('pwIn').value='';document.getElementById('pwIn').focus();}
-}
+function checkPW(){var v=document.getElementById('pwIn').value;if(v===D.meta.password){unlocked=true;showForm();}else{document.getElementById('pwErr').textContent='❌ Mot de passe incorrect.';document.getElementById('pwIn').value='';document.getElementById('pwIn').focus();}}
 
 function showForm(){
   document.getElementById('mTitle').textContent='✏️ Mise à jour — '+D.meta.quarter;
-  document.getElementById('mBody').innerHTML=`
-    <div class="fs"><div class="fs-t">📅 Informations générales</div>
-      <div class="fgrid">
-        <div class="fg"><label>Trimestre</label><input id="f_q" value="${D.meta.quarter}"></div>
-        <div class="fg"><label>Mis à jour par</label><input id="f_by" value="${D.meta.updatedBy}"></div>
-      </div>
-      <div class="fg" style="margin-top:8px"><label>Note du trimestre</label><textarea id="f_note" rows="3">${D.meta.note}</textarea></div>
-    </div>
+  document.getElementById('mBody').innerHTML=
+    '<div class="fs"><div class="fs-t">📅 Informations générales</div>'+
+    '<div class="fgrid">'+
+      '<div class="fg"><label>Trimestre</label><input id="f_q" value="'+D.meta.quarter+'"></div>'+
+      '<div class="fg"><label>Mis à jour par</label><input id="f_by" value="'+D.meta.updatedBy+'"></div>'+
+    '</div>'+
+    '<div class="fg" style="margin-top:8px"><label>Note du trimestre (laissez vide pour aucun message)</label><textarea id="f_note" rows="2">'+(D.meta.note||'')+'</textarea></div></div>'+
 
-    <div class="fs"><div class="fs-t">📊 Indicateurs clés (KPI)</div>
-      <div style="display:grid;grid-template-columns:2fr 1fr 1.3fr 70px;gap:5px;padding:0 4px;margin-bottom:5px">
-        <div style="font-size:10px;color:var(--muted);font-weight:700">INDICATEUR</div><div style="font-size:10px;color:var(--muted);font-weight:700">VALEUR</div>
-        <div style="font-size:10px;color:var(--muted);font-weight:700">NOTE/DELTA</div><div style="font-size:10px;color:var(--muted);font-weight:700">SENS</div>
-      </div>
-      ${D.kpis.map((k,i)=>`<div style="display:grid;grid-template-columns:2fr 1fr 1.3fr 70px;gap:5px;padding:8px 10px;background:var(--bg);border:1px solid var(--border);border-radius:8px;margin-bottom:5px;align-items:center">
-        <div style="font-size:12px;font-weight:700">${k.label}</div>
-        <div class="fg"><input id="f_kv${i}" value="${k.value}"></div>
-        <div class="fg"><input id="f_kd${i}" value="${k.delta}"></div>
-        <div class="fg"><select id="f_kt${i}"><option value="up" ${k.trend==='up'?'selected':''}>↑ Hausse</option><option value="down" ${k.trend==='down'?'selected':''}>↓ Baisse</option><option value="flat" ${k.trend==='flat'?'selected':''}>→ Stable</option></select></div>
-      </div>`).join('')}
-    </div>
+    '<div class="fs"><div class="fs-t">📊 Indicateurs clés (KPI)</div>'+
+    D.kpis.map(function(k,i){return '<div style="display:grid;grid-template-columns:2fr 1fr 1.3fr 70px;gap:5px;padding:8px 10px;background:var(--bg);border:1px solid var(--border);border-radius:8px;margin-bottom:5px;align-items:center">'+
+      '<div style="font-size:12px;font-weight:700">'+k.label+'</div>'+
+      '<div class="fg"><input id="f_kv'+i+'" value="'+k.value+'"></div>'+
+      '<div class="fg"><input id="f_kd'+i+'" value="'+k.delta+'"></div>'+
+      '<div class="fg"><select id="f_kt'+i+'">'+
+        '<option value="up" '+(k.trend==='up'?'selected':'')+'>↑ Hausse</option>'+
+        '<option value="down" '+(k.trend==='down'?'selected':'')+'>↓ Baisse</option>'+
+        '<option value="flat" '+(k.trend==='flat'?'selected':'')+'>→ Stable</option>'+
+      '</select></div></div>';}).join('')+'</div>'+
 
-    <div class="fs"><div class="fs-t">🏭 Emplois par secteur</div>
-      <div style="display:grid;grid-template-columns:150px 80px 85px 90px;gap:5px;padding:0 4px;margin-bottom:5px">
-        <div style="font-size:10px;color:var(--muted);font-weight:700">SECTEUR</div><div style="font-size:10px;color:var(--muted);font-weight:700">EMPLOIS</div>
-        <div style="font-size:10px;color:var(--muted);font-weight:700">TENDANCE</div><div style="font-size:10px;color:var(--muted);font-weight:700">DIRECTION</div>
-      </div>
-      ${D.sectors.map((s,i)=>`<div class="sr">
-        <div class="sn">${s.icon} ${s.name}</div>
-        <input id="f_sj${i}" type="number" value="${s.jobs}" min="0" step="10">
-        <input id="f_st${i}" value="${s.trend}">
-        <select id="f_sd${i}"><option value="up" ${s.dir==='up'?'selected':''}>↑ Hausse</option><option value="down" ${s.dir==='down'?'selected':''}>↓ Baisse</option></select>
-      </div>`).join('')}
-    </div>
+    '<div class="fs"><div class="fs-t">🏭 Emplois par secteur</div>'+
+    D.sectors.map(function(s,i){return '<div class="sr">'+
+      '<div class="sn">'+s.icon+' '+s.name+'</div>'+
+      '<input id="f_sj'+i+'" type="number" value="'+s.jobs+'" min="0" step="10">'+
+      '<input id="f_st'+i+'" value="'+s.trend+'">'+
+      '<select id="f_sd'+i+'"><option value="up" '+(s.dir==='up'?'selected':'')+'>↑ Hausse</option><option value="down" '+(s.dir==='down'?'selected':'')+'>↓ Baisse</option></select>'+
+    '</div>';}).join('')+'</div>'+
 
-    <div class="fs"><div class="fs-t">🏢 Entreprises (modifier nombre d'emplois)</div>
-      <div style="display:grid;grid-template-columns:1fr 80px 100px;gap:5px;padding:0 4px;margin-bottom:5px">
-        <div style="font-size:10px;color:var(--muted);font-weight:700">ENTREPRISE / MUNICIPALITÉ</div>
-        <div style="font-size:10px;color:var(--muted);font-weight:700">EMPLOIS</div>
-        <div style="font-size:10px;color:var(--muted);font-weight:700">STATUT</div>
-      </div>
-      ${D.companies.map((c,i)=>`<div style="display:grid;grid-template-columns:1fr 80px 100px;gap:5px;padding:8px 10px;background:var(--bg);border:1px solid var(--border);border-radius:8px;margin-bottom:4px;align-items:center">
-        <div><div style="font-size:12px;font-weight:700">${c.name}</div><div style="font-size:11px;color:var(--muted)">📍 ${c.muni}</div></div>
-        <div class="fg"><input id="f_cj${i}" type="number" value="${c.jobs}" min="0"></div>
-        <div class="fg"><select id="f_cs${i}">
-          <option value="actif" ${c.status==='actif'?'selected':''}>✅ Actif</option>
-          <option value="nouveau" ${c.status==='nouveau'?'selected':''}>🆕 Nouveau</option>
-          <option value="expansion" ${c.status==='expansion'?'selected':''}>📈 Expansion</option>
-          <option value="a_completer" ${c.status==='a_completer'?'selected':''}>📝 À compléter</option>
-        </select></div>
-      </div>`).join('')}
-      <div style="font-size:11px;color:var(--muted);margin-top:8px;padding:8px 10px;background:var(--blue2,#eff6ff);border-radius:7px;">💡 Pour ajouter une entreprise, exportez data.json, modifiez le tableau "companies" dans un éditeur texte, puis importez le fichier.</div>
-    </div>
+    '<div class="fs"><div class="fs-t">🏢 Emplois des entreprises</div>'+
+    D.companies.map(function(c,i){return '<div style="display:grid;grid-template-columns:1fr 75px 95px;gap:5px;padding:7px 10px;background:var(--bg);border:1px solid var(--border);border-radius:8px;margin-bottom:4px;align-items:center">'+
+      '<div><div style="font-size:12px;font-weight:700">'+c.name+'</div><div style="font-size:11px;color:var(--muted)">📍 '+c.muni+'</div></div>'+
+      '<div class="fg"><input id="f_cj'+i+'" type="number" value="'+c.jobs+'" min="0"></div>'+
+      '<div class="fg"><select id="f_cs'+i+'">'+
+        '<option value="actif" '+(c.status==='actif'?'selected':'')+'>✅ Actif</option>'+
+        '<option value="reprise" '+(c.status==='reprise'?'selected':'')+'>🔄 Reprise</option>'+
+        '<option value="nouveau" '+(c.status==='nouveau'?'selected':'')+'>🆕 Nouveau</option>'+
+        '<option value="expansion" '+(c.status==='expansion'?'selected':'')+'>📈 Expansion</option>'+
+        '<option value="a_completer" '+(c.status==='a_completer'?'selected':'')+'>📝 À compléter</option>'+
+      '</select></div></div>';}).join('')+'</div>'+
 
-    <div class="fs"><div class="fs-t">📈 Historique annuel</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
-        <div class="fg"><label>Années (virgule)</label><input id="f_years" value="${D.trends.years.join(',')}"></div>
-        <div class="fg"><label>Emplois totaux</label><input id="f_jobs" value="${D.trends.totalJobs.join(',')}"></div>
-        <div class="fg"><label>Nouvelles entreprises</label><input id="f_nbiz" value="${D.trends.newBiz.join(',')}"></div>
-        <div class="fg" style="grid-column:1/-1"><label>Permis de bâtir (M$)</label><input id="f_permits" value="${(D.trends.permitsMk||[]).join(',')}"></div>
-      </div>
-    </div>
+    '<div class="fs"><div class="fs-t">📈 Historique annuel</div>'+
+    '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">'+
+      '<div class="fg"><label>Années</label><input id="f_years" value="'+D.trends.years.join(',')+'"></div>'+
+      '<div class="fg"><label>Emplois totaux</label><input id="f_jobs" value="'+D.trends.totalJobs.join(',')+'"></div>'+
+      '<div class="fg"><label>Nouvelles entreprises</label><input id="f_nbiz" value="'+D.trends.newBiz.join(',')+'"></div>'+
+      '<div class="fg" style="grid-column:1/-1"><label>Permis de bâtir (M$)</label><input id="f_permits" value="'+(D.trends.permitsMk||[]).join(',')+'"></div>'+
+    '</div></div>'+
 
-    <div class="fs"><div class="fs-t">🔐 Changer le mot de passe (optionnel)</div>
-      <div class="fgrid">
-        <div class="fg"><label>Mot de passe actuel</label><input type="password" id="f_pwold" placeholder="Actuel"></div>
-        <div class="fg"><label>Nouveau mot de passe</label><input type="password" id="f_pwnew" placeholder="Nouveau (min. 4 car.)"></div>
-      </div>
-    </div>`;
+    '<div class="fs"><div class="fs-t">🔐 Changer le mot de passe</div>'+
+    '<div class="fgrid">'+
+      '<div class="fg"><label>Actuel</label><input type="password" id="f_pwold" placeholder="Mot de passe actuel"></div>'+
+      '<div class="fg"><label>Nouveau</label><input type="password" id="f_pwnew" placeholder="Nouveau (min. 4 car.)"></div>'+
+    '</div></div>';
 
-  document.getElementById('mFoot').innerHTML=`
-    <button class="btn" onclick="unlocked=false;closeAdmin()">🔒 Verrouiller</button>
-    <button class="btn" onclick="closeAdmin()">Annuler</button>
-    <button class="btn btn-g" onclick="saveForm()">✅ Enregistrer</button>`;
+  document.getElementById('mFoot').innerHTML=
+    '<button class="btn" onclick="unlocked=false;closeAdmin()">🔒 Verrouiller</button>'+
+    '<button class="btn" onclick="closeAdmin()">Annuler</button>'+
+    '<button class="btn btn-g" onclick="saveForm()">✅ Enregistrer</button>';
 }
 
 function saveForm(){
-  const po=document.getElementById('f_pwold').value;
-  const pn=document.getElementById('f_pwnew').value;
-  if(po||pn){if(po!==D.meta.password){alert('❌ Mot de passe actuel incorrect.');return;}if(pn.length<4){alert('❌ Trop court.');return;}D.meta.password=pn;}
+  var po=document.getElementById('f_pwold').value,pn=document.getElementById('f_pwnew').value;
+  if(po||pn){if(po!==D.meta.password){alert('❌ MDP actuel incorrect.');return;}if(pn.length<4){alert('❌ Trop court.');return;}D.meta.password=pn;}
   D.meta.quarter=document.getElementById('f_q').value.trim()||D.meta.quarter;
   D.meta.updatedBy=document.getElementById('f_by').value.trim();
   D.meta.note=document.getElementById('f_note').value.trim();
   D.meta.updatedDate=new Date().toLocaleDateString('fr-CA');
-  D.kpis.forEach((k,i)=>{k.value=document.getElementById('f_kv'+i).value.trim();k.delta=document.getElementById('f_kd'+i).value.trim();k.trend=document.getElementById('f_kt'+i).value;});
-  D.sectors.forEach((s,i)=>{s.jobs=parseInt(document.getElementById('f_sj'+i).value)||0;s.trend=document.getElementById('f_st'+i).value.trim();s.dir=document.getElementById('f_sd'+i).value;});
-  D.companies.forEach((c,i)=>{c.jobs=parseInt(document.getElementById('f_cj'+i).value)||0;c.status=document.getElementById('f_cs'+i).value;});
+  D.kpis.forEach(function(k,i){k.value=document.getElementById('f_kv'+i).value.trim();k.delta=document.getElementById('f_kd'+i).value.trim();k.trend=document.getElementById('f_kt'+i).value;});
+  D.sectors.forEach(function(s,i){s.jobs=parseInt(document.getElementById('f_sj'+i).value)||0;s.trend=document.getElementById('f_st'+i).value.trim();s.dir=document.getElementById('f_sd'+i).value;});
+  D.companies.forEach(function(c,i){c.jobs=parseInt(document.getElementById('f_cj'+i).value)||0;c.status=document.getElementById('f_cs'+i).value;});
   try{
-    D.trends.years=document.getElementById('f_years').value.split(',').map(v=>v.trim()).filter(Boolean);
-    D.trends.totalJobs=document.getElementById('f_jobs').value.split(',').map(v=>parseInt(v)||0);
-    D.trends.newBiz=document.getElementById('f_nbiz').value.split(',').map(v=>parseInt(v)||0);
-    D.trends.permitsMk=document.getElementById('f_permits').value.split(',').map(v=>parseFloat(v)||0);
+    D.trends.years=document.getElementById('f_years').value.split(',').map(function(v){return v.trim();}).filter(Boolean);
+    D.trends.totalJobs=document.getElementById('f_jobs').value.split(',').map(function(v){return parseInt(v)||0;});
+    D.trends.newBiz=document.getElementById('f_nbiz').value.split(',').map(function(v){return parseInt(v)||0;});
+    D.trends.permitsMk=document.getElementById('f_permits').value.split(',').map(function(v){return parseFloat(v)||0;});
   }catch(e){}
   saveLs();renderAll();closeAdmin();
-  toast('✅ Enregistré — '+D.meta.quarter+' · Exportez data.json et commitez sur GitHub');
+  toast('✅ Enregistré — '+D.meta.quarter+' · Exportez data.json et commitez sur le serveur');
 }
 
-function toast(msg){const t=document.createElement('div');t.className='toast';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),4200);}
+function toast(msg){var t=document.createElement('div');t.className='toast';t.textContent=msg;document.body.appendChild(t);setTimeout(function(){t.remove();},4200);}
 
 init();
 </script>

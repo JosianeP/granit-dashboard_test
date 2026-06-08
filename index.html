@@ -1071,12 +1071,18 @@ function renderTrends(){
   kc('line');kc('newbiz');kc('multi');
   var t=D.trends;
   var lc=document.getElementById('lineChart');
-  if(lc){var lctx=lc.getContext('2d');charts.line=new Chart(lctx,{type:'line',data:{labels:t.years,datasets:[{data:t.totalJobs,borderColor:'#1a4d2e',backgroundColor:'rgba(26,77,46,.08)',fill:true,tension:.4,pointRadius:4,pointBackgroundColor:'#1a4d2e'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:function(v){return v.toLocaleString('fr-CA');},font:{size:11}}}}}}};
+  if(lc){
+    charts.line=new Chart(lc.getContext('2d'),{type:'line',data:{labels:t.years,datasets:[{data:t.totalJobs,borderColor:'#1a4d2e',backgroundColor:'rgba(26,77,46,.08)',fill:true,tension:.4,pointRadius:4,pointBackgroundColor:'#1a4d2e'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:function(v){return v.toLocaleString('fr-CA');},font:{size:11}}}}}});
+  }
   var nc=document.getElementById('newBizChart');
-  if(nc){var nctx=nc.getContext('2d');charts.newbiz=new Chart(nctx,{type:'bar',data:{labels:t.years,datasets:[{data:t.newBiz,backgroundColor:t.newBiz.map(function(_,i,a){return i===a.length-1?'#1a4d2e':'#4aaa72';}),borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:11}}}}}});
+  if(nc){
+    charts.newbiz=new Chart(nc.getContext('2d'),{type:'bar',data:{labels:t.years,datasets:[{data:t.newBiz,backgroundColor:t.newBiz.map(function(_,i,a){return i===a.length-1?'#1a4d2e':'#4aaa72';}),borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:11}}}}}});
+  }
   var mc=document.getElementById('multiChart');
-  if(mc&&t.bySector){var mctx=mc.getContext('2d');var entries=Object.entries(t.bySector);
-    charts.multi=new Chart(mctx,{type:'line',data:{labels:t.years,datasets:entries.map(function(e,i){return{label:e[0],data:e[1],borderColor:TC[i],backgroundColor:'transparent',tension:.4,pointRadius:3,borderDash:i>2?[5,3]:[],pointBackgroundColor:TC[i]};})},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{font:{size:11},boxWidth:10,padding:10}}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:11}}}}}});}
+  if(mc&&t.bySector){
+    var entries=Object.entries(t.bySector);
+    charts.multi=new Chart(mc.getContext('2d'),{type:'line',data:{labels:t.years,datasets:entries.map(function(e,i){return{label:e[0],data:e[1],borderColor:TC[i],backgroundColor:'transparent',tension:.4,pointRadius:3,borderDash:i>2?[5,3]:[],pointBackgroundColor:TC[i]};})},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{font:{size:11},boxWidth:10,padding:10}}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:11}}}}}});
+  }
 }
 
 // ─── MUNICIPALITIES ───
@@ -1138,20 +1144,17 @@ function renderAmOverviewCharts(){
   var am=D.amenagement;if(!am)return;
   kc('amPermitLine');kc('amLandDonut');kc('amConvChart');
   var cel=document.getElementById('amPermitLine');
-  if(cel){var ctx=cel.getContext('2d');charts.amPermitLine=new Chart(ctx,{type:'line',
-    data:{labels:am.permits.years,datasets:[{data:am.permits.totalMk,borderColor:'#d97706',backgroundColor:'rgba(217,119,6,.1)',fill:true,tension:.4,pointRadius:4,pointBackgroundColor:'#d97706'}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+c.raw.toFixed(1)+' M$';}}}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{ticks:{callback:function(v){return v+' M$';},font:{size:11}}}}}});
+  if(cel){
+    charts.amPermitLine=new Chart(cel.getContext('2d'),{type:'line',data:{labels:am.permits.years,datasets:[{data:am.permits.totalMk,borderColor:'#d97706',backgroundColor:'rgba(217,119,6,.1)',fill:true,tension:.4,pointRadius:4,pointBackgroundColor:'#d97706'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+c.raw.toFixed(1)+' M$';}}}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{ticks:{callback:function(v){return v+' M$';},font:{size:11}}}}}});
+  }
   var cel2=document.getElementById('amLandDonut');
-  if(cel2&&am.landUse){var ctx2=cel2.getContext('2d');charts.amLandDonut=new Chart(ctx2,{type:'doughnut',
-    data:{labels:am.landUse.affectation.map(function(a){return a.label;}),datasets:[{data:am.landUse.affectation.map(function(a){return a.ha;}),backgroundColor:am.landUse.affectation.map(function(a){return a.color;}),borderWidth:2,borderColor:'#fff'}]},
-    options:{responsive:true,maintainAspectRatio:false,cutout:'50%',plugins:{legend:{display:true,position:'right',labels:{font:{size:10},boxWidth:10,padding:7}}}}});
+  if(cel2&&am.landUse){
+    charts.amLandDonut=new Chart(cel2.getContext('2d'),{type:'doughnut',data:{labels:am.landUse.affectation.map(function(a){return a.label;}),datasets:[{data:am.landUse.affectation.map(function(a){return a.ha;}),backgroundColor:am.landUse.affectation.map(function(a){return a.color;}),borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,cutout:'50%',plugins:{legend:{display:true,position:'right',labels:{font:{size:10},boxWidth:10,padding:7}}}}});
+  }
   var cv=am.conversion;var cel3=document.getElementById('amConvChart');
-  if(cel3&&cv){var ctx3=cel3.getContext('2d');charts.amConvChart=new Chart(ctx3,{type:'line',
-    data:{labels:cv.years,datasets:[
-      {label:'Chalet → Résidence',data:cv.chaletToResidence,borderColor:'#d97706',backgroundColor:'rgba(217,119,6,.08)',fill:true,tension:.4,pointRadius:3},
-      {label:'Résidence → Chalet',data:cv.residenceToChalet,borderColor:'#6b7280',backgroundColor:'rgba(107,114,128,.06)',fill:true,tension:.4,pointRadius:3}
-    ]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{font:{size:10},boxWidth:10}}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{stepSize:5,font:{size:11}}}}}});
+  if(cel3&&cv){
+    charts.amConvChart=new Chart(cel3.getContext('2d'),{type:'line',data:{labels:cv.years,datasets:[{label:'Chalet → Résidence',data:cv.chaletToResidence,borderColor:'#d97706',backgroundColor:'rgba(217,119,6,.08)',fill:true,tension:.4,pointRadius:3},{label:'Résidence → Chalet',data:cv.residenceToChalet,borderColor:'#6b7280',backgroundColor:'rgba(107,114,128,.06)',fill:true,tension:.4,pointRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{font:{size:10},boxWidth:10}}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{stepSize:5,font:{size:11}}}}}});
+  }
 }
 
 function renderPermitStats(){
@@ -1167,18 +1170,14 @@ function renderPermitCharts(){
   if(!D.amenagement)return;
   var am=D.amenagement;kc('permitTotal');kc('permitType');
   var ptel=document.getElementById('permitTotalChart');
-  if(ptel){var ctx=ptel.getContext('2d');charts.permitTotal=new Chart(ctx,{type:'bar',
-    data:{labels:am.permits.years,datasets:[{data:am.permits.totalMk,backgroundColor:am.permits.totalMk.map(function(_,i,a){return i===a.length-1?'#b45309':'#fcd34d';}),borderRadius:5}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+c.raw.toFixed(1)+' M$';}}}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{ticks:{callback:function(v){return v+' M$';},font:{size:11}}}}}});
+  if(ptel){
+    charts.permitTotal=new Chart(ptel.getContext('2d'),{type:'bar',data:{labels:am.permits.years,datasets:[{data:am.permits.totalMk,backgroundColor:am.permits.totalMk.map(function(_,i,a){return i===a.length-1?'#b45309':'#fcd34d';}),borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+c.raw.toFixed(1)+' M$';}}}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{ticks:{callback:function(v){return v+' M$';},font:{size:11}}}}}});
+  }
   var ptel2=document.getElementById('permitTypeDonut');
-  if(ptel2&&am.permits.byType){var ctx2=ptel2.getContext('2d');
+  if(ptel2&&am.permits.byType){
     var cols=['#b45309','#d97706','#fbbf24','#6b7280','#4aaa72'];
-    charts.permitType=new Chart(ctx2,{type:'doughnut',
-      data:{labels:am.permits.byType.map(function(t){return t.type;}),datasets:[{data:am.permits.byType.map(function(t){return t.mk;}),backgroundColor:cols,borderWidth:2,borderColor:'#fff'}]},
-      options:{responsive:true,maintainAspectRatio:false,cutout:'58%',plugins:{legend:{display:false}}}});
-    document.getElementById('permitTypeLegend').innerHTML=am.permits.byType.map(function(t,i){
-      return '<div class="dl-i"><div style="display:flex;align-items:center"><div class="dl-d" style="background:'+cols[i]+'"></div>'+t.type+(t.est?'<span class="est-badge">Est.</span>':'')+'</div><div class="dl-p">'+t.mk.toFixed(1)+' M$</div></div>';
-    }).join('');
+    charts.permitType=new Chart(ptel2.getContext('2d'),{type:'doughnut',data:{labels:am.permits.byType.map(function(t){return t.type;}),datasets:[{data:am.permits.byType.map(function(t){return t.mk;}),backgroundColor:cols,borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,cutout:'58%',plugins:{legend:{display:false}}}});
+    document.getElementById('permitTypeLegend').innerHTML=am.permits.byType.map(function(t,i){return '<div class="dl-i"><div style="display:flex;align-items:center"><div class="dl-d" style="background:'+cols[i]+'"></div>'+t.type+(t.est?'<span class="est-badge">Est.</span>':'')+'</div><div class="dl-p">'+t.mk.toFixed(1)+' M$</div></div>';}).join('');
   }
 }
 
@@ -1249,17 +1248,14 @@ function renderConvCharts(){
   if(!D.amenagement)return;
   var cv=D.amenagement.conversion;kc('convFlow');kc('convNet');
   var cfel=document.getElementById('convFlowChart');
-  if(cfel){var ctx=cfel.getContext('2d');charts.convFlow=new Chart(ctx,{type:'bar',
-    data:{labels:cv.years,datasets:[
-      {label:'Chalet → Résidence',data:cv.chaletToResidence,backgroundColor:'#d97706',borderRadius:4},
-      {label:'Résidence → Chalet',data:cv.residenceToChalet,backgroundColor:'#9ca3af',borderRadius:4}
-    ]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{font:{size:10},boxWidth:10}}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{stepSize:5,font:{size:11}}}}}});
+  if(cfel){
+    charts.convFlow=new Chart(cfel.getContext('2d'),{type:'bar',data:{labels:cv.years,datasets:[{label:'Chalet → Résidence',data:cv.chaletToResidence,backgroundColor:'#d97706',borderRadius:4},{label:'Résidence → Chalet',data:cv.residenceToChalet,backgroundColor:'#9ca3af',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{font:{size:10},boxWidth:10}}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{stepSize:5,font:{size:11}}}}}});
+  }
   var net=cv.chaletToResidence.map(function(v,i){return v-cv.residenceToChalet[i];});
   var cnel=document.getElementById('convNetChart');
-  if(cnel){var ctx2=cnel.getContext('2d');charts.convNet=new Chart(ctx2,{type:'line',
-    data:{labels:cv.years,datasets:[{label:'Nette',data:net,borderColor:'#b45309',backgroundColor:'rgba(180,83,9,.1)',fill:true,tension:.4,pointRadius:4,pointBackgroundColor:'#b45309'}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{stepSize:5,font:{size:11}}}}}});
+  if(cnel){
+    charts.convNet=new Chart(cnel.getContext('2d'),{type:'line',data:{labels:cv.years,datasets:[{label:'Nette',data:net,borderColor:'#b45309',backgroundColor:'rgba(180,83,9,.1)',fill:true,tension:.4,pointRadius:4,pointBackgroundColor:'#b45309'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{stepSize:5,font:{size:11}}}}}});
+  }
 }
 
 // ═══════════════ SANTÉ ═══════════════

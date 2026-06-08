@@ -1,449 +1,681 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>MRC du Granit — Tableau de bord économique</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>MRC du Granit — Tableau de bord territorial v4.0</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --g800:#1a3d28;--g700:#1a4d2e;--g600:#2d7a4f;--g500:#4aaa72;--g100:#e8f5ed;--g50:#f0faf4;
-  --amber:#d97706;--amber2:#fef3c7;--amber3:#92400e;
-  --red:#dc2626;--red2:#fef2f2;--blue:#1d4ed8;--blue2:#eff6ff;--blue3:#dbeafe;
-  --purple:#7c3aed;--purple2:#f5f3ff;
-  --text:#1c1c1e;--muted:#6b7280;--border:#e5e7eb;--bg:#f5f5f7;--white:#fff;
-  --sw:228px;--r:12px
+  --g900:#0f2518;--g800:#1a3d28;--g700:#1a4d2e;--g600:#2d7a4f;--g500:#4aaa72;--g400:#6dbf90;--g100:#e8f5ed;--g50:#f0faf4;
+  --am800:#78350f;--am700:#92400e;--am600:#b45309;--am500:#d97706;--am100:#fef3c7;--am50:#fffbeb;
+  --sa800:#164e63;--sa700:#0e7490;--sa600:#0891b2;--sa500:#22d3ee;--sa100:#cffafe;--sa50:#ecfeff;
+  --red:#dc2626;--red2:#fef2f2;--purple:#7c3aed;--purple2:#f5f3ff;
+  --text:#1c1c1e;--text2:#374151;--muted:#6b7280;--muted2:#9ca3af;--border:#e5e7eb;--bg:#f4f5f7;--white:#fff;
+  --sw:232px;--r:12px;--r2:8px;
+  --pillar-color:var(--g700);--pillar-light:var(--g50);
+  font-family:'DM Sans',system-ui,sans-serif;
 }
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;font-size:14px}
-
-/* SIDEBAR */
-.sidebar{width:var(--sw);background:var(--g800);min-height:100vh;display:flex;flex-direction:column;position:fixed;left:0;top:0;bottom:0;z-index:100;overflow-y:auto}
-.sb-logo{padding:18px 16px 13px;border-bottom:1px solid rgba(255,255,255,.1)}
-.sb-logo .org{color:rgba(255,255,255,.4);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px}
-.sb-logo .title{color:#fff;font-size:14px;font-weight:700;line-height:1.3}
-.sb-logo .sub{color:rgba(255,255,255,.38);font-size:11px;margin-top:2px}
-.sbn{padding:7px 9px;flex:1}
-.ngl{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.22);padding:11px 8px 3px}
-.ni{display:flex;align-items:center;gap:8px;padding:8px 11px;border-radius:8px;color:rgba(255,255,255,.58);font-size:13px;cursor:pointer;margin-bottom:1px;transition:background .12s,color .12s;border:none;background:none;width:100%;text-align:left}
-.ni:hover{background:rgba(255,255,255,.08);color:rgba(255,255,255,.88)}
-.ni.active{background:rgba(255,255,255,.14);color:#fff}
-.ni-ico{font-size:15px;flex-shrink:0;width:18px;text-align:center}
-.sb-foot{padding:11px 14px;border-top:1px solid rgba(255,255,255,.1)}
-.sb-foot .lbl{font-size:10px;color:rgba(255,255,255,.28);text-transform:uppercase;letter-spacing:.5px;margin-bottom:1px}
-.sb-foot .q{font-size:13px;font-weight:700;color:rgba(255,255,255,.82);margin-bottom:3px}
-.sb-foot .d{font-size:11px;color:rgba(255,255,255,.45)}
-
-/* MAIN */
-.main{margin-left:var(--sw);flex:1;display:flex;flex-direction:column}
-.topbar{background:var(--white);border-bottom:1px solid var(--border);padding:0 26px;height:54px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
-.tl{display:flex;align-items:center;gap:10px}
-.ptitle{font-size:15px;font-weight:700}
-.qb{background:var(--g100);color:var(--g700);font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px}
-.tr{display:flex;align-items:center;gap:7px}
-.btn{padding:6px 13px;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:var(--white);color:var(--text);transition:background .12s;white-space:nowrap}
-.btn:hover{background:var(--bg)}
-.btn-g{background:var(--g700);color:#fff;border-color:var(--g700)}
-.btn-g:hover{background:var(--g600)}
-.btn-a{background:var(--amber);color:#fff;border-color:var(--amber)}
-.btn-a:hover{opacity:.9}
+body{background:var(--bg);color:var(--text);display:flex;flex-direction:column;min-height:100vh;font-size:14px}
+h2,h3,.display{font-family:'Fraunces',serif}
 
 /* LOADING */
 #ls{position:fixed;inset:0;background:var(--g800);display:flex;align-items:center;justify-content:center;z-index:999;flex-direction:column;gap:14px}
-#ls .lo{color:#fff;font-size:18px;font-weight:700}
-#ls .su{color:rgba(255,255,255,.45);font-size:12px}
-.sp{width:28px;height:28px;border:3px solid rgba(255,255,255,.15);border-top-color:#fff;border-radius:50%;animation:sp .8s linear infinite}
-@keyframes sp{to{transform:rotate(360deg)}}
+#ls .lo{color:#fff;font-size:22px;font-weight:700;font-family:'Fraunces',serif;letter-spacing:-.3px}
+#ls .su{color:rgba(255,255,255,.4);font-size:12px}
+.sp{width:28px;height:28px;border:3px solid rgba(255,255,255,.15);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
 
-/* CONTENT */
+/* PILLAR TOPBAR */
+.pillar-bar{background:var(--white);border-bottom:2px solid var(--border);display:flex;align-items:stretch;height:58px;position:sticky;top:0;z-index:90;box-shadow:0 1px 8px rgba(0,0,0,.06)}
+.pb-brand{display:flex;align-items:center;gap:10px;padding:0 18px;border-right:1px solid var(--border);min-width:var(--sw);flex-shrink:0}
+.pb-brand .org{font-size:9px;font-weight:700;color:var(--muted2);text-transform:uppercase;letter-spacing:1.2px}
+.pb-brand .name{font-family:'Fraunces',serif;font-size:13px;font-weight:600;color:var(--text);line-height:1.2}
+.pb-brand .ver{font-size:10px;color:var(--muted2);margin-top:1px}
+.pillar-tabs{display:flex;flex:1}
+.pt{display:flex;align-items:center;gap:9px;padding:0 22px;border:none;background:none;cursor:pointer;font-size:12px;font-weight:500;color:var(--muted);border-bottom:3px solid transparent;transition:all .18s;font-family:'DM Sans',sans-serif;position:relative;margin-bottom:-2px}
+.pt:hover{color:var(--text);background:var(--bg)}
+.pt.active-eco{color:var(--g700);border-bottom-color:var(--g700);font-weight:700;background:var(--g50)}
+.pt.active-am{color:var(--am600);border-bottom-color:var(--am600);font-weight:700;background:var(--am50)}
+.pt.active-sa{color:var(--sa700);border-bottom-color:var(--sa700);font-weight:700;background:var(--sa50)}
+.pt-icon{font-size:18px}
+.pt-title{font-size:12px;font-weight:700;line-height:1}
+.pt-sub{font-size:10px;opacity:.6;margin-top:2px;white-space:nowrap}
+.pb-right{display:flex;align-items:center;gap:7px;padding:0 14px;border-left:1px solid var(--border)}
+.btn{padding:6px 13px;border-radius:var(--r2);font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:var(--white);color:var(--text);transition:all .12s;white-space:nowrap;font-family:'DM Sans',sans-serif}
+.btn:hover{background:var(--bg)}
+.btn-p{background:var(--pillar-color);color:#fff;border-color:var(--pillar-color)}
+.btn-p:hover{opacity:.88}
+
+/* LAYOUT */
+.app{display:flex;flex:1}
+.sidebar{width:var(--sw);background:var(--g800);flex-shrink:0;display:flex;flex-direction:column;min-height:calc(100vh - 58px);position:sticky;top:58px;height:calc(100vh - 58px);overflow-y:auto}
+.sb-pillar-badge{padding:12px 14px 5px;font-size:10px;color:rgba(255,255,255,.35)}
+.sb-pillar-badge span{display:inline-block;padding:3px 9px;border-radius:20px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);font-weight:700;font-size:10px}
+.sbn{padding:5px 9px;flex:1}
+.ngl{font-size:9px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.22);padding:9px 8px 3px}
+.ni{display:flex;align-items:center;gap:8px;padding:8px 11px;border-radius:8px;color:rgba(255,255,255,.52);font-size:12px;cursor:pointer;margin-bottom:1px;transition:background .12s,color .12s;border:none;background:none;width:100%;text-align:left;font-family:'DM Sans',sans-serif}
+.ni:hover{background:rgba(255,255,255,.08);color:rgba(255,255,255,.88)}
+.ni.active{background:rgba(255,255,255,.15);color:#fff;font-weight:600}
+.ni-ico{font-size:14px;flex-shrink:0;width:18px;text-align:center}
+.sb-foot{padding:10px 13px;border-top:1px solid rgba(255,255,255,.1);margin-top:auto}
+.sb-foot-q{font-size:12px;font-weight:700;color:rgba(255,255,255,.8)}
+.sb-foot-l{font-size:9px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+.sb-foot-d{font-size:11px;color:rgba(255,255,255,.4);margin-top:2px}
+.main{flex:1;overflow-x:hidden}
 .content{padding:20px 26px}
-.view{display:none}
+.view{display:none;animation:fadeIn .18s ease}
 .view.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
 
-/* KPI */
+/* SECTION HEADERS */
+.section-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;padding-bottom:13px;border-bottom:1px solid var(--border)}
+.sh-left h2{font-family:'Fraunces',serif;font-size:20px;font-weight:600;color:var(--text);line-height:1.2}
+.sh-left p{font-size:12px;color:var(--muted);margin-top:3px}
+.pillar-badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px;flex-shrink:0}
+.pb-eco{background:var(--g100);color:var(--g700)}.pb-am{background:var(--am100);color:var(--am700)}.pb-sa{background:var(--sa100);color:var(--sa700)}
+
+/* KPIs */
 .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
 .kpi{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:15px 17px;position:relative;overflow:hidden}
-.kpi::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--g600);border-radius:var(--r) var(--r) 0 0}
+.kpi::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--pillar-color)}
 .kpi-l{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px}
-.kpi-v{font-size:26px;font-weight:700;line-height:1}
+.kpi-v{font-size:24px;font-weight:700;line-height:1;color:var(--text)}
 .kpi-u{font-size:11px;color:var(--muted);margin-top:4px}
-.kpi-d{display:inline-flex;align-items:center;font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px;margin-top:7px}
-.d-up{background:var(--g100);color:var(--g700)}
-.d-down{background:var(--red2);color:var(--red)}
-.d-flat{background:var(--amber2);color:var(--amber3)}
+.kpi-d{display:inline-flex;align-items:center;font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;margin-top:7px}
+.d-up{background:var(--g100);color:var(--g700)}.d-down{background:var(--red2);color:var(--red)}.d-flat{background:var(--am100);color:var(--am700)}
+
+/* STATS STRIP */
+.ss-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:9px;margin-bottom:18px}
+.ss{background:var(--white);border:1px solid var(--border);border-radius:9px;padding:11px 13px;text-align:center}
+.ss-v{font-size:17px;font-weight:700;color:var(--pillar-color)}
+.ss-l{font-size:10px;color:var(--muted);margin-top:2px;line-height:1.3}
 
 /* CARDS */
 .card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:18px}
 .ct{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:13px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:18px}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px;margin-bottom:18px}
+.main-aside{display:grid;grid-template-columns:1fr 280px;gap:13px;margin-bottom:18px}
+.mb18{margin-bottom:18px}
 
-/* CHARTS */
-.charts-main{display:grid;grid-template-columns:1fr 270px;gap:13px;margin-bottom:18px}
-.trends-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:18px}
-
-/* SECTORS */
+/* SECTOR CARDS */
 .sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:10px;margin-bottom:18px}
-.sc{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);padding:15px;cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .1s;position:relative}
-.sc:hover{border-color:var(--g500);box-shadow:0 3px 16px rgba(26,77,46,.12);transform:translateY(-1px)}
-.sc:active{transform:translateY(0)}
+.sc{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);padding:15px;cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .1s;position:relative;overflow:hidden}
+.sc:hover{border-color:var(--g500);box-shadow:0 4px 18px rgba(26,77,46,.13);transform:translateY(-1px)}
 .sc-ic{width:34px;height:34px;background:var(--g100);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:8px}
-.sc-nm{font-size:13px;font-weight:700;margin-bottom:3px}
-.sc-j{font-size:21px;font-weight:700;color:var(--g700);line-height:1}
-.sc-u{font-size:11px;color:var(--muted);margin-top:1px}
-.sc-tr{font-size:11px;font-weight:600;margin-top:4px}
-.sc-tr.up{color:var(--g600)}
-.sc-tr.down{color:var(--red)}
-.sc-ds{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.4}
+.sc-nm{font-size:12px;font-weight:700;margin-bottom:3px}
+.sc-j{font-size:22px;font-weight:700;color:var(--g700);line-height:1}
+.sc-u{font-size:10px;color:var(--muted);margin-top:1px}
+.sc-tr{font-size:11px;font-weight:600;margin-top:4px}.sc-tr.up{color:var(--g600)}.sc-tr.down{color:var(--red)}
+.sc-ds{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .sc-bar{height:3px;background:var(--border);border-radius:3px;margin-top:8px;overflow:hidden}
 .sc-bf{height:3px;border-radius:3px;background:var(--g600)}
-.sc-hint{position:absolute;bottom:9px;right:11px;font-size:10px;color:var(--g500);font-weight:600;opacity:0;transition:opacity .15s}
+.sc-hint{position:absolute;bottom:8px;right:10px;font-size:10px;color:var(--g500);font-weight:600;opacity:0;transition:opacity .15s}
 .sc:hover .sc-hint{opacity:1}
 
-/* SECTOR PANEL (slide-out) */
-.panel-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:300;display:none;opacity:0;transition:opacity .25s}
+/* SECTOR PANEL */
+.panel-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:300;display:none;opacity:0;transition:opacity .2s}
 .panel-backdrop.open{display:block;opacity:1}
-.sector-panel{position:fixed;right:-520px;top:0;bottom:0;width:480px;max-width:92vw;background:var(--white);z-index:301;display:flex;flex-direction:column;box-shadow:-6px 0 40px rgba(0,0,0,.18);transition:right .28s cubic-bezier(.4,0,.2,1)}
+.sector-panel{position:fixed;right:-520px;top:0;bottom:0;width:480px;max-width:92vw;background:var(--white);z-index:301;display:flex;flex-direction:column;box-shadow:-6px 0 40px rgba(0,0,0,.15);transition:right .25s cubic-bezier(.4,0,.2,1)}
 .sector-panel.open{right:0}
 .sp-head{padding:18px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;flex-shrink:0}
 .sp-icon{width:44px;height:44px;background:var(--g100);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
-.sp-head-text{flex:1}
-.sp-head-text h2{font-size:16px;font-weight:700}
-.sp-head-text .sp-meta{font-size:12px;color:var(--muted);margin-top:3px}
+.sp-head-text h2{font-size:15px;font-weight:700}.sp-head-text .sp-meta{font-size:12px;color:var(--muted);margin-top:3px}
 .sp-close{background:none;border:1px solid var(--border);border-radius:7px;padding:6px 10px;cursor:pointer;font-size:12px;color:var(--muted)}
-.sp-close:hover{background:var(--bg)}
 .sp-body{flex:1;overflow-y:auto;padding:16px}
-.sp-empty{text-align:center;color:var(--muted);padding:40px 20px;font-size:13px}
-.co-item{background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:13px 14px;margin-bottom:8px;transition:border-color .12s}
-.co-item:hover{border-color:var(--g500)}
-.co-item-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:5px}
-.co-item-name{font-size:13px;font-weight:700;line-height:1.3}
+.co-item{background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:12px 14px;margin-bottom:8px}
+.co-item-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:4px}
+.co-item-name{font-size:13px;font-weight:700}
 .co-jobs-badge{background:var(--g100);color:var(--g700);font-size:12px;font-weight:700;padding:2px 9px;border-radius:20px;white-space:nowrap;flex-shrink:0}
-.co-muni{font-size:11px;color:var(--muted);margin-bottom:4px}
-.co-desc{font-size:11px;color:var(--muted);line-height:1.4}
+.co-muni{font-size:11px;color:var(--muted);margin-bottom:3px}
+.co-desc-p{font-size:11px;color:var(--muted);line-height:1.4}
 .co-status-tag{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px;margin-top:5px}
-.st-actif{background:var(--g100);color:var(--g700)}
-.st-reprise{background:var(--blue3);color:var(--blue)}
-.st-nouveau{background:var(--blue3);color:var(--blue)}
-.st-expansion{background:var(--amber2);color:var(--amber3)}
-.st-a_completer{background:#f3f4f6;color:#9ca3af}
-.sp-total{background:var(--g50,#f0faf4);border-radius:8px;padding:10px 13px;margin-bottom:12px;font-size:13px;color:var(--g700);font-weight:600;display:flex;justify-content:space-between}
+.st-actif{background:var(--g100);color:var(--g700)}.st-reprise{background:#dbeafe;color:#1d4ed8}.st-nouveau{background:#dbeafe;color:#1d4ed8}.st-expansion{background:var(--am100);color:var(--am700)}.st-a_completer{background:#f3f4f6;color:#9ca3af}
+.sp-total{background:var(--g50);border-radius:8px;padding:9px 13px;margin-bottom:12px;font-size:12px;color:var(--g700);font-weight:600;display:flex;justify-content:space-between}
 
 /* FILTER TABS */
 .ftabs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:13px}
-.ft{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:500;border:1px solid var(--border);background:var(--white);color:var(--muted);cursor:pointer;transition:all .12s}
-.ft:hover{border-color:var(--g500);color:var(--g700)}
-.ft.active{background:var(--g700);color:#fff;border-color:var(--g700)}
+.ft{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:500;border:1px solid var(--border);background:var(--white);color:var(--muted);cursor:pointer;transition:all .12s;font-family:'DM Sans',sans-serif}
+.ft:hover{border-color:var(--pillar-color);color:var(--pillar-color)}
+.ft.active{background:var(--pillar-color);color:#fff;border-color:var(--pillar-color)}
 
-/* STATS STRIP */
-.ss-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:9px;margin-bottom:18px}
-.ss{background:var(--white);border:1px solid var(--border);border-radius:9px;padding:11px 13px;text-align:center}
-.ss-v{font-size:18px;font-weight:700;color:var(--g700)}
-.ss-l{font-size:10px;color:var(--muted);margin-top:2px}
-
-/* MUNICIPALITIES */
-.mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:11px;margin-bottom:18px}
-.mu{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:14px;position:relative;overflow:hidden}
-.mu::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--g600);border-radius:var(--r) 0 0 var(--r)}
-.mu.urbain::before{background:var(--g700)}
-.mu.rural_eloigne::before{background:#9ca3af}
-.mu-ty{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:4px}
-.mu-nm{font-size:14px;font-weight:700;margin-bottom:3px}
-.mu-po{font-size:20px;font-weight:700;color:var(--g700);line-height:1}
-.mu-st{display:flex;gap:10px;margin-top:7px;padding-top:7px;border-top:1px solid var(--border)}
-.mu-sv{font-size:12px;font-weight:600}
-.mu-sl{font-size:10px;color:var(--muted)}
-.mu-ro{font-size:11px;color:var(--g700);font-weight:600;margin-top:5px}
-.mu-no{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.4}
-.mbadge{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px;margin-bottom:4px}
-.b-u{background:var(--g100);color:var(--g700)}
-.b-r{background:#f3f4f6;color:var(--muted)}
-.b-re{background:#f9fafb;color:#9ca3af}
-
-/* COMPANIES TABLE */
+/* COMPANY TABLE */
 .co-toolbar{display:flex;gap:8px;margin-bottom:12px;align-items:center;flex-wrap:wrap}
-.co-search{flex:1;min-width:190px;padding:7px 11px;border:1px solid var(--border);border-radius:8px;font-size:13px;outline:none}
+.co-search{flex:1;min-width:190px;padding:7px 11px;border:1px solid var(--border);border-radius:8px;font-size:13px;outline:none;font-family:'DM Sans',sans-serif}
 .co-search:focus{border-color:var(--g600)}
-.co-select{padding:7px 10px;border:1px solid var(--border);border-radius:8px;font-size:12px;outline:none;background:var(--white);cursor:pointer}
+.co-select{padding:7px 10px;border:1px solid var(--border);border-radius:8px;font-size:12px;outline:none;background:var(--white);cursor:pointer;font-family:'DM Sans',sans-serif}
 .co-table{width:100%;border-collapse:collapse;background:var(--white);border-radius:var(--r);overflow:hidden;border:1px solid var(--border)}
 .co-table th{background:var(--bg);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);padding:9px 13px;text-align:left;border-bottom:1px solid var(--border)}
 .co-table td{padding:10px 13px;font-size:13px;border-bottom:1px solid var(--border);vertical-align:top}
 .co-table tr:last-child td{border-bottom:none}
 .co-table tr:hover td{background:#fafafa}
-.co-jobs{font-size:14px;font-weight:700;color:var(--g700)}
-.co-muni-tag{font-size:11px;color:var(--muted);margin-top:2px}
-.co-desc-tag{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.4}
-.co-total{background:var(--g100);border-radius:8px;padding:9px 13px;margin-bottom:11px;font-size:13px;color:var(--g700);font-weight:600;display:flex;align-items:center;gap:10px}
+.co-jobs-cell{font-size:14px;font-weight:700;color:var(--g700)}
+.co-total-bar{background:var(--g100);border-radius:8px;padding:9px 13px;margin-bottom:11px;font-size:12px;color:var(--g700);font-weight:600;display:flex;align-items:center;gap:10px}
+
+/* ML ENGINE */
+.ml-engine-badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#0d2618,#1a4d2e);color:#4aaa72;font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:14px}
+.ml-intro{background:linear-gradient(135deg,#0d2618 0%,#1a4d2e 100%);border-radius:var(--r);padding:18px 20px;margin-bottom:18px;color:#fff}
+.ml-intro h3{font-family:'Fraunces',serif;font-size:15px;font-weight:600;margin-bottom:6px}
+.ml-intro p{font-size:12px;line-height:1.65;color:rgba(255,255,255,.72)}
+.ml-grid-row{display:grid;grid-template-columns:1.2fr 1fr;gap:13px;margin-bottom:18px}
+.heatmap-wrap{overflow-x:auto}
+.heatmap-table{border-collapse:collapse;font-size:10px}
+.heatmap-table th{padding:4px 6px;font-weight:700;text-align:center;white-space:nowrap;color:var(--muted);background:var(--bg);border:1px solid var(--border);font-size:9px}
+.hm-cell{width:42px;height:34px;text-align:center;font-size:10px;font-weight:700;border:1px solid rgba(255,255,255,.3);cursor:default;transition:transform .1s;vertical-align:middle}
+.hm-cell:hover{transform:scale(1.2);z-index:1;position:relative;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.ml-suggestions{margin-bottom:18px}
+.ml-pair{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;gap:12px;transition:border-color .12s}
+.ml-pair:hover{border-color:var(--g500)}
+.ml-score-ring{width:44px;height:44px;flex-shrink:0;position:relative}
+.ml-pair-info{flex:1}
+.ml-pair-names{font-size:12px;font-weight:700;margin-bottom:3px}
+.ml-pair-sectors{font-size:11px;color:var(--muted)}
+.ml-pair-rationale{font-size:11px;color:var(--text2);margin-top:3px;line-height:1.4}
+.ml-strength{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;flex-shrink:0}
+.ml-str-fort{background:var(--g100);color:var(--g700)}.ml-str-moyen{background:var(--am100);color:var(--am700)}.ml-str-possible{background:#f3f4f6;color:var(--muted)}
 
 /* COLLABORATIONS */
-.cl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:13px;margin-bottom:18px}
-.cl-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:18px}
-.cl-card.confirmee{border-left:4px solid var(--g600)}
-.cl-card.possible{border-left:4px solid var(--amber)}
-.cl-card.innovante{border-left:4px solid var(--purple)}
-.cl-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
-.cl-emoji{font-size:24px;flex-shrink:0}
-.cl-type{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;margin-bottom:4px;text-transform:uppercase;letter-spacing:.4px}
-.t-confirmee{background:var(--g100);color:var(--g700)}
-.t-possible{background:var(--amber2);color:var(--amber3)}
-.t-innovante{background:var(--purple2);color:var(--purple)}
-.cl-nm{font-size:14px;font-weight:700;line-height:1.3}
-.cl-desc{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:10px}
-.cl-companies{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+.cl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:13px;margin-bottom:18px}
+.cl-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:17px}
+.cl-card.confirmee{border-left:4px solid var(--g600)}.cl-card.possible{border-left:4px solid var(--am500)}.cl-card.innovante{border-left:4px solid var(--purple)}
+.cl-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:9px}
+.cl-emoji{font-size:22px;flex-shrink:0}
+.cl-type-badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;margin-bottom:4px;text-transform:uppercase;letter-spacing:.4px}
+.t-confirmee{background:var(--g100);color:var(--g700)}.t-possible{background:var(--am100);color:var(--am700)}.t-innovante{background:var(--purple2);color:var(--purple)}
+.cl-nm{font-size:13px;font-weight:700;line-height:1.3}
+.cl-desc{font-size:11px;color:var(--muted);line-height:1.5;margin-bottom:9px}
+.cl-companies{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:7px}
 .cl-co{background:var(--bg);border:1px solid var(--border);font-size:11px;padding:2px 8px;border-radius:20px}
-.cl-munis{font-size:11px;color:var(--muted);margin-bottom:6px}
-.cl-impact{background:var(--g50,#f0faf4);border-radius:7px;padding:8px 11px;font-size:12px;color:var(--g700);line-height:1.4}
-.cl-impact strong{font-size:11px;text-transform:uppercase;letter-spacing:.3px;display:block;margin-bottom:2px}
-.cl-status{font-size:11px;color:var(--muted);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
-.cl-status span{color:var(--text);font-weight:600}
-.inf-score{display:flex;align-items:center;gap:6px;margin-top:8px}
-.inf-bar{flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden}
-.inf-fill{height:5px;border-radius:3px}
-.inf-pct{font-size:11px;font-weight:700;min-width:30px;text-align:right}
-.methodo-card{background:linear-gradient(135deg,#0d2618 0%,#1a4d2e 100%);border-radius:var(--r);padding:20px;margin-bottom:18px;color:#fff}
-.methodo-card h3{font-size:14px;font-weight:700;margin-bottom:8px}
-.methodo-card p{font-size:12px;line-height:1.65;color:rgba(255,255,255,.75)}
-.methodo-steps{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}
-.methodo-step{background:rgba(255,255,255,.1);border-radius:8px;padding:10px 12px}
-.methodo-step strong{display:block;font-size:11px;font-weight:700;color:#4aaa72;margin-bottom:3px}
-.methodo-step span{font-size:11px;color:rgba(255,255,255,.7);line-height:1.4}
+.cl-impact{background:var(--g50);border-radius:7px;padding:8px 11px;font-size:11px;color:var(--g700);line-height:1.4}
+.cl-impact strong{font-size:10px;text-transform:uppercase;letter-spacing:.3px;display:block;margin-bottom:2px}
+.inf-score{display:flex;align-items:center;gap:6px;margin-top:7px}
+.inf-bar{flex:1;height:4px;background:var(--border);border-radius:3px;overflow:hidden}
+.inf-fill{height:4px;border-radius:3px}
 
-/* SH */
-.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px}
-.sh-t{font-size:14px;font-weight:700}
-.sh-s{font-size:11px;color:var(--muted);margin-top:1px}
-
-/* DONUT LEGEND */
+/* MUNICIPALITIES */
+.mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:11px;margin-bottom:18px}
+.mu{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:14px;position:relative;overflow:hidden}
+.mu::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--g600)}
+.mu.rural_eloigne::before{background:#9ca3af}.mu.urbain::before{background:var(--g700)}
+.mu-ty{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:3px}
+.mu-nm{font-size:13px;font-weight:700;margin-bottom:3px}
+.mu-po{font-size:20px;font-weight:700;color:var(--g700);line-height:1}
+.mu-st{display:flex;gap:10px;margin-top:7px;padding-top:7px;border-top:1px solid var(--border)}
+.mu-sv{font-size:12px;font-weight:600}.mu-sl{font-size:10px;color:var(--muted)}
+.mu-ro{font-size:11px;color:var(--g700);font-weight:600;margin-top:5px}
+.mu-no{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.4}
+.mbadge{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px;margin-bottom:4px}
+.b-u{background:var(--g100);color:var(--g700)}.b-r{background:#f3f4f6;color:var(--muted)}.b-re{background:#f9fafb;color:#9ca3af}
 .dl{margin-top:10px}
 .dl-i{display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:11px}
 .dl-i:last-child{border-bottom:none}
 .dl-d{width:9px;height:9px;border-radius:2px;margin-right:6px;flex-shrink:0}
 .dl-p{font-weight:700}
 
-/* MODALS */
+/* AMÉNAGEMENT */
+.land-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border)}
+.land-row:last-child{border-bottom:none}
+.land-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0}
+.land-label{font-size:12px;font-weight:600;flex:1}
+.land-ha{font-size:12px;font-weight:700;color:var(--text2)}
+.land-pct{font-size:11px;color:var(--muted);width:32px;text-align:right}
+.land-bar{flex:0 0 70px;height:5px;background:var(--border);border-radius:3px;overflow:hidden}
+.land-fill{height:5px;border-radius:3px}
+.real-badge{font-size:9px;font-weight:700;padding:1px 6px;border-radius:20px;background:var(--g100);color:var(--g700);margin-left:4px;vertical-align:middle}
+.est-badge{font-size:9px;font-weight:700;padding:1px 6px;border-radius:20px;background:var(--am100);color:var(--am700);margin-left:4px;vertical-align:middle}
+.conv-muni-row{display:grid;grid-template-columns:1fr 80px 120px;gap:8px;padding:9px 11px;background:var(--bg);border:1px solid var(--border);border-radius:8px;margin-bottom:6px;align-items:center;font-size:12px}
+.conv-muni-name{font-weight:700}
+.vill-badge{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px}
+.vill-high{background:var(--am100);color:var(--am700)}.vill-med{background:#f3f4f6;color:var(--muted)}.vill-low{background:var(--g100);color:var(--g700)}
+.lever-note{background:linear-gradient(135deg,var(--am50),var(--am100));border-left:4px solid var(--am500);border-radius:var(--r2);padding:13px 16px;font-size:12px;color:var(--am800);line-height:1.6;margin-top:14px}
+
+/* SANTÉ */
+.sdoh-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-bottom:18px}
+.det-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);padding:15px;position:relative;overflow:hidden;transition:box-shadow .15s,border-color .15s}
+.det-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08);border-color:var(--sa600)}
+.det-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--det-color,var(--sa600))}
+.det-icon{font-size:22px;margin-bottom:8px}
+.det-name{font-size:12px;font-weight:700;margin-bottom:6px;line-height:1.3}
+.det-score-bar{height:6px;background:var(--border);border-radius:3px;margin-bottom:8px;overflow:hidden}
+.det-score-fill{height:6px;border-radius:3px}
+.det-score-val{font-size:20px;font-weight:700;line-height:1}
+.det-level{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;display:inline-block;margin-top:4px}
+.lv-fort{background:#dcfce7;color:#166534}.lv-fav{background:var(--g100);color:var(--g700)}.lv-watch{background:var(--am100);color:var(--am700)}.lv-prio{background:var(--red2);color:var(--red)}.lv-vigi{background:#fef9c3;color:#713f12}
+.det-source{display:inline-flex;align-items:center;gap:3px;font-size:10px;padding:2px 7px;border-radius:20px;margin-top:7px;font-weight:600}
+.src-eco{background:var(--g100);color:var(--g700)}.src-am{background:var(--am100);color:var(--am700)}.src-gov{background:var(--sa100);color:var(--sa700)}.src-mix{background:#f3f4f6;color:var(--muted)}
+.det-indicator{font-size:11px;color:var(--muted);margin-top:7px;line-height:1.4;padding-top:8px;border-top:1px solid var(--border)}
+.det-link{font-size:11px;color:var(--sa700);background:var(--sa50);border-radius:6px;padding:7px 9px;margin-top:7px;line-height:1.4}
+.sdoh-intro{background:linear-gradient(135deg,#0c3d4d 0%,#0e7490 100%);border-radius:var(--r);padding:20px 22px;margin-bottom:18px;color:#fff}
+.sdoh-intro h3{font-family:'Fraunces',serif;font-size:15px;font-weight:600;margin-bottom:6px}
+.sdoh-intro p{font-size:12px;line-height:1.7;color:rgba(255,255,255,.75)}
+.sdp-badge{display:inline-block;background:rgba(255,255,255,.15);color:rgba(255,255,255,.9);font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;margin-bottom:10px;letter-spacing:.4px;text-transform:uppercase}
+.gov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;margin-bottom:18px}
+.lev-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:15px}
+.lev-head{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.lev-emoji{font-size:22px;flex-shrink:0}
+.lev-nm{font-size:13px;font-weight:700;line-height:1.3}
+.lev-scope{font-size:10px;color:var(--sa700);font-weight:600;margin-top:2px}
+.lev-desc{font-size:11px;color:var(--muted);line-height:1.5;margin-bottom:9px}
+.lev-dets{display:flex;flex-wrap:wrap;gap:4px}
+.lev-det-pill{font-size:10px;padding:2px 7px;border-radius:20px;background:var(--sa100);color:var(--sa700);font-weight:600}
+.link-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;margin-bottom:18px}
+.link-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:15px;position:relative}
+.link-from{font-size:11px;font-weight:700;padding:6px 10px;border-radius:6px;margin-bottom:10px;display:block;line-height:1.4}
+.from-eco{background:var(--g100);color:var(--g700)}.from-am{background:var(--am100);color:var(--am700)}.from-gov{background:var(--sa100);color:var(--sa700)}.from-mix{background:#f3f4f6;color:var(--text2)}
+.link-arrow{text-align:center;font-size:18px;color:var(--muted);margin:6px 0}
+.link-to{font-size:12px;font-weight:700;color:var(--sa700);margin-bottom:6px}
+.link-desc{font-size:11px;color:var(--muted);line-height:1.4}
+.link-strength{position:absolute;top:12px;right:12px;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px}
+.str-fort{background:var(--g100);color:var(--g700)}.str-moyen{background:var(--am100);color:var(--am700)}
+.vuln-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:10px;margin-bottom:18px}
+.vuln-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);padding:13px;position:relative;overflow:hidden}
+.vuln-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px}
+.vuln-high::before{background:var(--red)}.vuln-med::before{background:var(--am500)}.vuln-low::before{background:var(--g600)}
+.vuln-name{font-size:13px;font-weight:700;margin-bottom:4px}
+.vuln-score-bar{height:5px;background:var(--border);border-radius:3px;margin-bottom:6px;overflow:hidden}
+.vuln-score-fill{height:5px;border-radius:3px}
+.vuln-tags{display:flex;flex-wrap:wrap;gap:3px}
+.vuln-tag{font-size:10px;padding:1px 6px;border-radius:20px;background:var(--bg);border:1px solid var(--border);color:var(--muted)}
+
+/* ADMIN */
 .ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:none;align-items:center;justify-content:center}
 .ov.open{display:flex}
-.modal{background:var(--white);border-radius:16px;width:700px;max-height:88vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.25)}
+.modal{background:var(--white);border-radius:16px;width:720px;max-height:88vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.25)}
 .mh{padding:17px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.mh h2{font-size:16px;font-weight:700}
-.mb{padding:20px 22px;overflow-y:auto;flex:1}
+.mh h2{font-size:15px;font-weight:700}.mb{padding:20px 22px;overflow-y:auto;flex:1}
 .mf{padding:12px 22px;border-top:1px solid var(--border);display:flex;gap:7px;justify-content:flex-end;flex-shrink:0}
-
-/* FORM */
 .fs{margin-bottom:20px}
 .fs-t{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:9px;padding-bottom:6px;border-bottom:1px solid var(--border)}
 .fg{display:flex;flex-direction:column;gap:3px}
 .fg label{font-size:11px;font-weight:600;color:var(--muted)}
-.fg input,.fg select,.fg textarea{padding:7px 9px;border:1px solid var(--border);border-radius:7px;font-size:13px;color:var(--text);background:var(--white);outline:none;transition:border-color .12s;font-family:inherit}
-.fg input:focus,.fg textarea:focus{border-color:var(--g600)}
-.fg textarea{resize:vertical;min-height:55px;line-height:1.5}
+.fg input,.fg select,.fg textarea{padding:7px 9px;border:1px solid var(--border);border-radius:7px;font-size:13px;color:var(--text);background:var(--white);outline:none;transition:border-color .12s;font-family:'DM Sans',sans-serif}
+.fg input:focus{border-color:var(--g600)}
 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.sr{display:grid;grid-template-columns:150px 80px 85px 90px;gap:6px;align-items:center;padding:8px 10px;background:var(--bg);border:1px solid var(--border);border-radius:8px;margin-bottom:5px}
-.sr .sn{font-size:12px;font-weight:700}
-.sr input,.sr select{width:100%;padding:5px 7px;border:1px solid var(--border);border-radius:6px;font-size:12px;outline:none;background:var(--white)}
-.sr input:focus{border-color:var(--g600)}
-
-/* PW */
 .pw{display:flex;flex-direction:column;align-items:center;padding:40px 24px;text-align:center}
-.pw h3{font-size:19px;font-weight:700;margin-bottom:6px}
+.pw h3{font-family:'Fraunces',serif;font-size:19px;font-weight:700;margin-bottom:6px}
 .pw p{font-size:12px;color:var(--muted);margin-bottom:20px;max-width:260px;line-height:1.5}
-.pw input{width:240px;padding:9px 13px;border:1.5px solid var(--border);border-radius:9px;font-size:14px;text-align:center;outline:none;margin-bottom:8px}
-.pw input:focus{border-color:var(--g600)}
-.pw-err{color:var(--red);font-size:12px;min-height:15px}
-
-/* GH HELP */
-.gh-step{display:flex;gap:12px;margin-bottom:12px;padding:12px;background:var(--bg);border-radius:8px;border:1px solid var(--border)}
-.gh-n{width:25px;height:25px;background:var(--g700);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px}
-.gh-t strong{display:block;font-size:13px;margin-bottom:2px}
-.gh-t p{font-size:12px;color:var(--muted);line-height:1.5}
-.gh-t code{background:#e5e7eb;padding:1px 5px;border-radius:4px;font-family:monospace;font-size:11px}
-.gh-tip{background:var(--g100);border-radius:8px;padding:12px 14px;margin-top:4px}
-.gh-tip .tit{font-size:11px;font-weight:700;color:var(--g700);margin-bottom:5px}
-.gh-tip p{font-size:12px;color:var(--g700);line-height:1.7}
-.gh-tip code{background:rgba(26,77,46,.15);padding:1px 5px;border-radius:4px;font-family:monospace;font-size:11px}
-.gh-warn{background:var(--amber2);border-radius:8px;padding:11px 14px;margin-top:10px;font-size:12px;color:#78350f;line-height:1.55}
+.pw input{width:240px;padding:9px 13px;border:1.5px solid var(--border);border-radius:9px;font-size:14px;text-align:center;outline:none;margin-bottom:8px;font-family:'DM Sans',sans-serif}
+.pw input:focus{border-color:var(--g600)}.pw-err{color:var(--red);font-size:12px;min-height:15px}
+.sr{display:grid;grid-template-columns:150px 80px 85px 70px;gap:6px;align-items:center;padding:7px 10px;background:var(--bg);border:1px solid var(--border);border-radius:8px;margin-bottom:5px}
+.sr .sn{font-size:11px;font-weight:700}
+.sr input,.sr select{width:100%;padding:5px 7px;border:1px solid var(--border);border-radius:6px;font-size:12px;outline:none;background:var(--white);font-family:'DM Sans',sans-serif}
+.sr input:focus{border-color:var(--g600)}
 
 /* TOAST */
 .toast{position:fixed;bottom:24px;right:24px;background:var(--g700);color:#fff;padding:11px 18px;border-radius:10px;font-size:13px;font-weight:500;z-index:999;box-shadow:0 6px 24px rgba(0,0,0,.2);animation:ti .2s ease}
 @keyframes ti{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.source-box{font-size:12px;line-height:1.9;color:var(--muted)}
+.source-box strong{color:var(--text)}
 
-@media(max-width:880px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.charts-main,.trends-grid{grid-template-columns:1fr}}
-@media print{.sidebar,.tr,.ftabs{display:none!important}.main{margin-left:0!important}.topbar{position:static}}
+@media(max-width:960px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.two-col,.main-aside{grid-template-columns:1fr}}
+@media(max-width:700px){.sidebar{display:none}.pt-sub{display:none!important}}
+@media print{.sidebar,.pb-right,.ftabs{display:none!important}.app{display:block!important}.pillar-bar{position:static}}
+
 </style>
 </head>
 <body>
+<div id="ls"><div class="lo">MRC du Granit</div><div class="sp"></div><div class="su">Chargement du tableau de bord territorial…</div></div>
 
-<div id="ls"><div class="lo">MRC du Granit</div><div class="sp"></div><div class="su">Chargement des données…</div></div>
-
-<nav class="sidebar">
-  <div class="sb-logo">
-    <div class="org">MRC du Granit</div>
-    <div class="title">Tableau de bord économique</div>
-    <div class="sub">Outil interne · v3.0</div>
+<header class="pillar-bar">
+  <div class="pb-brand">
+    <div>
+      <div class="org">MRC du Granit · Estrie</div>
+      <div class="name">Tableau de bord territorial</div>
+      <div class="ver" id="verLabel">v4.0 · T2 2026</div>
+    </div>
   </div>
-  <div class="sbn">
-    <div class="ngl">Vues</div>
-    <button class="ni active" onclick="V('overview',this)"><span class="ni-ico">📊</span>Aperçu général</button>
-    <button class="ni" onclick="V('sectors',this)"><span class="ni-ico">🏭</span>Secteurs</button>
-    <button class="ni" onclick="V('companies',this)"><span class="ni-ico">🏢</span>Entreprises</button>
-    <button class="ni" onclick="V('collab',this)"><span class="ni-ico">🤝</span>Collaborations</button>
-    <button class="ni" onclick="V('muni',this)"><span class="ni-ico">🗺️</span>Municipalités</button>
-    <button class="ni" onclick="V('trends',this)"><span class="ni-ico">📈</span>Tendances</button>
-    <div class="ngl">Données</div>
-    <button class="ni" onclick="openAdmin()"><span class="ni-ico">✏️</span>Mettre à jour</button>
-    <button class="ni" onclick="exportJSON()"><span class="ni-ico">💾</span>Exporter data.json</button>
-    <button class="ni" onclick="document.getElementById('ii').click()"><span class="ni-ico">📂</span>Importer data.json</button>
+  <nav class="pillar-tabs">
+    <button class="pt active-eco" id="pt-eco" onclick="switchPillar('eco',this)">
+      <span class="pt-icon">💼</span>
+      <span><div class="pt-title">Développement économique</div><div class="pt-sub">Secteurs · Entreprises · Maillages IA</div></span>
+    </button>
+    <button class="pt" id="pt-am" onclick="switchPillar('am',this)">
+      <span class="pt-icon">🗺️</span>
+      <span><div class="pt-title">Aménagement du territoire</div><div class="pt-sub">Permis · Affectation · Villégiature</div></span>
+    </button>
+    <button class="pt" id="pt-sa" onclick="switchPillar('sa',this)">
+      <span class="pt-icon">🏥</span>
+      <span><div class="pt-title">Développement de la santé</div><div class="pt-sub">Déterminants · Gouvernance · Liens SdTP</div></span>
+    </button>
+  </nav>
+  <div class="pb-right">
+    <button class="btn" onclick="exportJSON()">💾 Exporter</button>
+    <button class="btn" onclick="document.getElementById('ii').click()">📂 Importer</button>
     <input type="file" id="ii" accept=".json" style="display:none" onchange="importJSON(event)">
-    <div class="ngl">Aide</div>
-    <button class="ni" onclick="openGH()"><span class="ni-ico">🚀</span>Comment mettre à jour</button>
-    <button class="ni" onclick="window.print()"><span class="ni-ico">🖨️</span>Imprimer / PDF</button>
+    <button class="btn btn-p" id="adminBtn" onclick="openAdmin()">✏️ Modifier</button>
   </div>
-  <div class="sb-foot">
-    <div class="lbl">Trimestre</div>
-    <div class="q" id="sbQ">—</div>
-    <div class="lbl">Mis à jour par</div>
-    <div class="d" id="sbBy">—</div>
-  </div>
-</nav>
+</header>
 
-<main class="main">
-  <div class="topbar">
-    <div class="tl"><span class="ptitle" id="pTitle">Aperçu général</span><span class="qb" id="qBadge">—</span></div>
-    <div class="tr">
-      <button class="btn" onclick="openGH()">🚀 Aide</button>
-      <button class="btn btn-a" onclick="openAdmin()">✏️ Mettre à jour</button>
+<div class="app">
+  <nav class="sidebar" id="sidebar">
+    <div class="sb-pillar-badge" id="sbBadge"><span>💼 Développement économique</span></div>
+    <div class="sbn" id="sbnEco">
+      <div class="ngl">Vues</div>
+      <button class="ni active" onclick="V('eco-overview',this)"><span class="ni-ico">📊</span>Aperçu général</button>
+      <button class="ni" onclick="V('eco-sectors',this)"><span class="ni-ico">🏭</span>Secteurs industriels</button>
+      <button class="ni" onclick="V('eco-companies',this)"><span class="ni-ico">🏢</span>Entreprises</button>
+      <button class="ni" onclick="V('eco-ml',this)"><span class="ni-ico">🤖</span>Maillages &amp; IA</button>
+      <button class="ni" onclick="V('eco-muni',this)"><span class="ni-ico">🗺️</span>Municipalités</button>
+      <button class="ni" onclick="V('eco-trends',this)"><span class="ni-ico">📈</span>Tendances</button>
     </div>
-  </div>
-  <div class="content">
-
-    <!-- APERÇU -->
-    <div class="view active" id="view-overview">
-      <div class="ss-row" id="statsStrip"></div>
-      <div class="kpi-grid" id="kpiGrid"></div>
-      <div class="charts-main">
-        <div class="card"><div class="ct">Emplois estimés par secteur</div>
-          <div style="position:relative;height:310px;"><canvas id="barChart"></canvas></div></div>
-        <div class="card"><div class="ct">Répartition des emplois</div>
-          <div style="position:relative;height:190px;"><canvas id="donutChart"></canvas></div>
-          <div class="dl" id="donutLegend"></div></div>
-      </div>
-      <div class="sh"><div><div class="sh-t">Secteurs — cliquer pour voir les entreprises</div><div class="sh-s">Chaque secteur affiche les entreprises associées</div></div></div>
-      <div class="sg" id="overviewSectors"></div>
+    <div class="sbn" id="sbnAm" style="display:none">
+      <div class="ngl">Vues</div>
+      <button class="ni" onclick="V('am-overview',this)"><span class="ni-ico">📊</span>Vue d'ensemble</button>
+      <button class="ni" onclick="V('am-permits',this)"><span class="ni-ico">🏗️</span>Permis de bâtir</button>
+      <button class="ni" onclick="V('am-land',this)"><span class="ni-ico">🌍</span>Affectation du territoire</button>
+      <button class="ni" onclick="V('am-conv',this)"><span class="ni-ico">🏠</span>Résidence ↔ Villégiature</button>
     </div>
-
-    <!-- SECTEURS -->
-    <div class="view" id="view-sectors">
-      <div class="sh"><div><div class="sh-t">Secteurs industriels</div><div class="sh-s">Cliquer sur un secteur pour voir toutes les entreprises associées</div></div></div>
-      <div class="ftabs" id="sTabs">
-        <button class="ft active" onclick="fSect('all',this)">Tous</button>
-        <button class="ft" onclick="fSect('primaire',this)">🌿 Ressources primaires</button>
-        <button class="ft" onclick="fSect('manufacturier',this)">⚙️ Manufacturier</button>
-        <button class="ft" onclick="fSect('commerce',this)">🛒 Commerce & services</button>
-        <button class="ft" onclick="fSect('tourisme',this)">🏕️ Tourisme</button>
-      </div>
-      <div class="sg" id="sectorGrid"></div>
+    <div class="sbn" id="sbnSa" style="display:none">
+      <div class="ngl">Vues</div>
+      <button class="ni" onclick="V('sa-portrait',this)"><span class="ni-ico">🩺</span>Portrait des déterminants</button>
+      <button class="ni" onclick="V('sa-governance',this)"><span class="ni-ico">🏛️</span>Gouvernance territoriale</button>
+      <button class="ni" onclick="V('sa-links',this)"><span class="ni-ico">🔗</span>Liens développement ↔ santé</button>
+      <button class="ni" onclick="V('sa-vuln',this)"><span class="ni-ico">📍</span>Vulnérabilité territoriale</button>
     </div>
-
-    <!-- ENTREPRISES -->
-    <div class="view" id="view-companies">
-      <div class="co-total" id="coTotal"></div>
-      <div class="co-toolbar">
-        <input class="co-search" id="coSearch" placeholder="🔍 Rechercher une entreprise…" oninput="filterCo()">
-        <select class="co-select" id="coMuni" onchange="filterCo()"><option value="">Toutes les municipalités</option></select>
-        <select class="co-select" id="coSect" onchange="filterCo()"><option value="">Tous les secteurs</option></select>
-        <select class="co-select" id="coStatus" onchange="filterCo()">
-          <option value="">Tous les statuts</option>
-          <option value="actif">✅ Actif</option>
-          <option value="reprise">🔄 Reprise</option>
-          <option value="nouveau">🆕 Nouveau</option>
-          <option value="expansion">📈 Expansion</option>
-          <option value="a_completer">📝 À compléter</option>
-        </select>
-      </div>
-      <div style="overflow-x:auto">
-        <table class="co-table">
-          <thead><tr>
-            <th>Entreprise</th><th>Municipalité</th><th>Secteur</th>
-            <th style="text-align:right">Emplois</th><th>Statut</th>
-          </tr></thead>
-          <tbody id="coBody"></tbody>
-        </table>
-      </div>
+    <div class="sb-foot">
+      <div class="sb-foot-l">Trimestre</div>
+      <div class="sb-foot-q" id="sbQ">—</div>
+      <div class="sb-foot-l" style="margin-top:6px">Mis à jour par</div>
+      <div class="sb-foot-d" id="sbBy">—</div>
     </div>
+  </nav>
 
-    <!-- COLLABORATIONS -->
-    <div class="view" id="view-collab">
-      <div class="ss-row" id="collabStats"></div>
-      <div id="methodoBlock"></div>
-      <div class="ftabs" id="clTabs">
-        <button class="ft active" onclick="fCollab('all',this)">Toutes</button>
-        <button class="ft" onclick="fCollab('confirmee',this)">✅ Confirmées</button>
-        <button class="ft" onclick="fCollab('possible',this)">💡 Possibles</button>
-        <button class="ft" onclick="fCollab('innovante',this)">🚀 Innovantes</button>
-      </div>
-      <div class="cl-grid" id="collabGrid"></div>
-    </div>
+  <main class="main">
+    <div class="content">
 
-    <!-- MUNICIPALITÉS -->
-    <div class="view" id="view-muni">
-      <div class="ss-row" id="muniStats"></div>
-      <div class="ftabs" id="mTabs">
-        <button class="ft active" onclick="fMuni('all',this)">Toutes (19)</button>
-        <button class="ft" onclick="fMuni('urbain',this)">🏙️ Urbain</button>
-        <button class="ft" onclick="fMuni('rural',this)">🌾 Rural</button>
-        <button class="ft" onclick="fMuni('rural_eloigne',this)">🌲 Rural éloigné</button>
+      <!-- ══════════════ ÉCONOMIE ══════════════ -->
+      <div class="view active" id="view-eco-overview">
+        <div class="section-header">
+          <div class="sh-left"><h2>Aperçu général</h2><p>Portrait économique du territoire — MRC du Granit, T2 2026</p></div>
+          <span class="pillar-badge pb-eco">💼 Économie</span>
+        </div>
+        <div class="ss-row" id="statsStrip"></div>
+        <div class="kpi-grid" id="kpiGrid"></div>
+        <div class="main-aside">
+          <div class="card"><div class="ct">Emplois estimés par secteur</div><div style="position:relative;height:320px"><canvas id="barChart"></canvas></div></div>
+          <div class="card"><div class="ct">Répartition des emplois</div><div style="position:relative;height:195px"><canvas id="donutChart"></canvas></div><div class="dl" id="donutLegend"></div></div>
+        </div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:11px">Secteurs — cliquez pour voir les entreprises associées</div>
+        <div class="sg" id="overviewSectors"></div>
       </div>
-      <div class="mg" id="muniGrid"></div>
-    </div>
 
-    <!-- TENDANCES -->
-    <div class="view" id="view-trends">
-      <div class="trends-grid">
-        <div class="card"><div class="ct">Emplois totaux estimés</div>
-          <div style="position:relative;height:210px"><canvas id="lineChart"></canvas></div></div>
-        <div class="card"><div class="ct">Valeur permis de bâtir (M$)</div>
-          <div style="position:relative;height:210px"><canvas id="permitChart"></canvas></div></div>
+      <div class="view" id="view-eco-sectors">
+        <div class="section-header">
+          <div class="sh-left"><h2>Secteurs industriels</h2><p>13 secteurs · Cliquez pour voir les entreprises</p></div>
+          <span class="pillar-badge pb-eco">💼 Économie</span>
+        </div>
+        <div class="ftabs" id="sTabs">
+          <button class="ft active" onclick="fSect('all',this)">Tous</button>
+          <button class="ft" onclick="fSect('primaire',this)">🌿 Ressources primaires</button>
+          <button class="ft" onclick="fSect('manufacturier',this)">⚙️ Manufacturier</button>
+          <button class="ft" onclick="fSect('commerce',this)">🛒 Commerce &amp; services</button>
+          <button class="ft" onclick="fSect('tourisme',this)">🏕️ Tourisme</button>
+        </div>
+        <div class="sg" id="sectorGrid"></div>
       </div>
-      <div class="card" style="margin-bottom:18px"><div class="ct">Évolution emplois par secteur</div>
-        <div style="position:relative;height:260px"><canvas id="multiChart"></canvas></div></div>
-      <div class="trends-grid">
-        <div class="card"><div class="ct">Nouvelles entreprises par année</div>
-          <div style="position:relative;height:185px"><canvas id="newBizChart"></canvas></div></div>
-        <div class="card"><div class="ct">Sources des données</div>
-          <div style="font-size:12px;line-height:1.9;color:var(--muted)">
-            <strong style="color:var(--text)">✅ Données réelles confirmées</strong><br>
-            • Population — MAMH, Décret 1499-2025<br>
-            • Travailleurs 25-64 ans : 7 845 — ISQ 2024<br>
-            • Revenu médian : 50 800$ — ISQ 2024<br>
-            • Permis de bâtir : 54,8 M$ — ISQ 2024<br>
-            • Érablières : 19 455 ha, 2e au QC — PPAQ<br>
-            • Éolien : 24,5 MW, 1,75 M$ — EDG 2026<br>
-            • Bestar : reprise confirmée — Radio-Canada, mai 2026<br>
-            • St-Sébastien granit : 300+ emp — histoire-du-quebec.ca<br>
-            <br><strong style="color:var(--text)">⚠️ Estimations à valider</strong><br>
-            • Emplois par secteur → Emploi-Québec / CLD Granit<br>
-            • Liste entreprises → à compléter par l'équipe MRC
+
+      <div class="view" id="view-eco-companies">
+        <div class="section-header">
+          <div class="sh-left"><h2>Entreprises du territoire</h2><p>Répertoire partiel — à enrichir par l'équipe MRC</p></div>
+          <span class="pillar-badge pb-eco">💼 Économie</span>
+        </div>
+        <div class="co-total-bar" id="coTotal"></div>
+        <div class="co-toolbar">
+          <input class="co-search" id="coSearch" placeholder="🔍 Rechercher par nom, muni, description…" oninput="filterCo()">
+          <select class="co-select" id="coMuni" onchange="filterCo()"><option value="">Toutes les municipalités</option></select>
+          <select class="co-select" id="coSect" onchange="filterCo()"><option value="">Tous les secteurs</option></select>
+          <select class="co-select" id="coStatus" onchange="filterCo()">
+            <option value="">Tous les statuts</option>
+            <option value="actif">✅ Actif</option><option value="reprise">🔄 Reprise</option>
+            <option value="nouveau">🆕 Nouveau</option><option value="expansion">📈 Expansion</option>
+            <option value="a_completer">📝 À compléter</option>
+          </select>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="co-table"><thead><tr>
+            <th>Entreprise</th><th>Municipalité</th><th>Secteur</th><th style="text-align:right">Emplois</th><th>Statut</th>
+          </tr></thead><tbody id="coBody"></tbody></table>
+        </div>
+      </div>
+
+      <div class="view" id="view-eco-ml">
+        <div class="section-header">
+          <div class="sh-left"><h2>Maillages interindustriels</h2><p>Moteur d'inférence actif — recalculé à chaque mise à jour des données</p></div>
+          <span class="pillar-badge pb-eco">🤖 IA / Inférence</span>
+        </div>
+        <div class="ml-intro">
+          <div class="ml-engine-badge">⚡ Moteur d'inférence actif</div>
+          <h3>Comment ça fonctionne</h3>
+          <p>Chaque paire d'entreprises reçoit un score d'affinité (0–100) combinant 3 signaux pondérés : <strong>(1) complémentarité de chaîne de valeur</strong> — matrice intersectorielle supply-chain ; <strong>(2) co-localisation</strong> — même municipalité ou même parc industriel (+18 pts) ; <strong>(3) chevauchement du bassin de main-d'œuvre</strong> — même catégorie d'activité. Ajoutez une entreprise dans « Modifier » et le moteur recalcule instantanément.</p>
+        </div>
+        <div class="ml-grid-row">
+          <div class="card"><div class="ct">Matrice d'affinité intersectorielle</div><div class="heatmap-wrap" id="heatmapWrap"></div></div>
+          <div class="card"><div class="ct">Distribution des scores de maillage</div><div style="position:relative;height:230px"><canvas id="mlScoreChart"></canvas></div></div>
+        </div>
+        <div class="section-header" style="margin-top:4px">
+          <div class="sh-left"><h2 style="font-size:16px">Maillages suggérés automatiquement</h2><p id="mlCount">—</p></div>
+          <div class="ftabs" style="margin-bottom:0" id="mlStrTabs">
+            <button class="ft active" onclick="fML('all',this)">Tous</button>
+            <button class="ft" onclick="fML('fort',this)">🟢 Fort</button>
+            <button class="ft" onclick="fML('moyen',this)">🟡 Moyen</button>
+            <button class="ft" onclick="fML('possible',this)">⚪ Possible</button>
+          </div>
+        </div>
+        <div id="mlSuggestions" class="ml-suggestions"></div>
+        <div class="section-header" style="margin-top:8px">
+          <div class="sh-left"><h2 style="font-size:16px">Collaborations documentées</h2><p>Confirmées, possibles et innovantes</p></div>
+          <div class="ftabs" style="margin-bottom:0" id="clTabs">
+            <button class="ft active" onclick="fCollab('all',this)">Toutes</button>
+            <button class="ft" onclick="fCollab('confirmee',this)">✅ Confirmées</button>
+            <button class="ft" onclick="fCollab('possible',this)">💡 Possibles</button>
+            <button class="ft" onclick="fCollab('innovante',this)">🚀 Innovantes</button>
+          </div>
+        </div>
+        <div class="cl-grid" id="collabGrid"></div>
+      </div>
+
+      <div class="view" id="view-eco-muni">
+        <div class="section-header">
+          <div class="sh-left"><h2>Municipalités</h2><p>19 municipalités · 2 736 km² · 21 935 habitants</p></div>
+          <span class="pillar-badge pb-eco">💼 Économie</span>
+        </div>
+        <div class="ss-row" id="muniStats"></div>
+        <div class="ftabs" id="mTabs">
+          <button class="ft active" onclick="fMuni('all',this)">Toutes (19)</button>
+          <button class="ft" onclick="fMuni('urbain',this)">🏙️ Urbain</button>
+          <button class="ft" onclick="fMuni('rural',this)">🌾 Rural</button>
+          <button class="ft" onclick="fMuni('rural_eloigne',this)">🌲 Rural éloigné</button>
+        </div>
+        <div class="mg" id="muniGrid"></div>
+      </div>
+
+      <div class="view" id="view-eco-trends">
+        <div class="section-header">
+          <div class="sh-left"><h2>Tendances économiques</h2><p>Évolution 2019–2024</p></div>
+          <span class="pillar-badge pb-eco">💼 Économie</span>
+        </div>
+        <div class="two-col">
+          <div class="card"><div class="ct">Emplois totaux estimés</div><div style="position:relative;height:215px"><canvas id="lineChart"></canvas></div></div>
+          <div class="card"><div class="ct">Nouvelles entreprises par année</div><div style="position:relative;height:215px"><canvas id="newBizChart"></canvas></div></div>
+        </div>
+        <div class="card mb18"><div class="ct">Évolution emplois par secteur clé</div><div style="position:relative;height:255px"><canvas id="multiChart"></canvas></div></div>
+        <div class="card"><div class="ct">Sources &amp; fiabilité des données</div>
+          <div class="source-box">
+            <strong>✅ Données réelles confirmées</strong><br>
+            Population 21 935 — MAMH Décret 1499-2025 · Travailleurs 7 845, taux emploi 77,6 % — ISQ 2024<br>
+            Revenu médian 50 800 $ (-7 % vs QC) — ISQ 2024 · Permis 54,8 M$ — ISQ 2024<br>
+            Érablières 19 455 ha · Zone agricole 145 078 ha · Couvert forestier 249 696 ha — PDZA MRC<br>
+            Éolien EDG : 24,5 MW, 1,75 M$/an · Bestar reprise confirmée mai 2026 — Radio-Canada<br>
+            Manufacturier : 37 % des emplois — SDEG<br><br>
+            <strong>⚠️ Estimations à valider avec Emploi-Québec / SDEG</strong><br>
+            Emplois par secteur · Liste entreprises partielle (à compléter par l'équipe MRC)
           </div>
         </div>
       </div>
+
+      <!-- ══════════════ AMÉNAGEMENT ══════════════ -->
+      <div class="view" id="view-am-overview">
+        <div class="section-header">
+          <div class="sh-left"><h2>Aménagement — Vue d'ensemble</h2><p>Portrait synthétique de l'occupation du territoire</p></div>
+          <span class="pillar-badge pb-am">🗺️ Aménagement</span>
+        </div>
+        <div class="kpi-grid" id="amOverviewKpis"></div>
+        <div class="two-col">
+          <div class="card"><div class="ct">Valeur des permis de bâtir — évolution (M$)</div><div style="position:relative;height:220px"><canvas id="amPermitLine"></canvas></div></div>
+          <div class="card"><div class="ct">Affectation schématique du territoire <span class="est-badge">Estimation</span></div><div style="position:relative;height:220px"><canvas id="amLandDonut"></canvas></div></div>
+        </div>
+        <div class="two-col">
+          <div class="card"><div class="ct">Conversion nette villégiature ↔ résidence principale <span class="est-badge">Estimé</span></div><div style="position:relative;height:200px"><canvas id="amConvChart"></canvas></div></div>
+          <div class="card"><div class="ct">Données réelles confirmées — Territoire <span class="real-badge">Réel</span></div><div id="amConfirmedData"></div></div>
+        </div>
+      </div>
+
+      <div class="view" id="view-am-permits">
+        <div class="section-header">
+          <div class="sh-left"><h2>Permis de bâtir</h2><p>Valeur totale réelle (ISQ 2024) · Répartition par type estimée</p></div>
+          <span class="pillar-badge pb-am">🗺️ Aménagement</span>
+        </div>
+        <div class="ss-row" id="permitStats"></div>
+        <div class="two-col">
+          <div class="card"><div class="ct">Évolution de la valeur totale des permis (M$) <span class="real-badge">Réel ISQ</span></div><div style="position:relative;height:240px"><canvas id="permitTotalChart"></canvas></div></div>
+          <div class="card"><div class="ct">Répartition estimée par type (2024) <span class="est-badge">Estimation</span></div><div style="position:relative;height:195px"><canvas id="permitTypeDonut"></canvas></div><div id="permitTypeLegend" style="margin-top:10px"></div></div>
+        </div>
+        <div class="card mb18">
+          <div class="ct">Note méthodologique</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.7">La valeur totale des permis (54,8 M$ en 2024) est une <strong style="color:var(--text)">donnée réelle ISQ confirmée</strong>. La répartition par type est une <strong style="color:var(--am700)">estimation directionnelle</strong> à remplacer par les données réelles des services d'urbanisme. La tendance à la hausse (+88 % de 2020 à 2024) reflète la pression de développement post-COVID et l'attractivité du territoire. La reprise Bestar (2026) et le secteur industriel nord de Lac-Mégantic soutiendront les permis industriels dans les prochaines années.</div>
+        </div>
+      </div>
+
+      <div class="view" id="view-am-land">
+        <div class="section-header">
+          <div class="sh-left"><h2>Affectation du territoire</h2><p>2 736 km² · 27,5 % de la superficie de l'Estrie</p></div>
+          <span class="pillar-badge pb-am">🗺️ Aménagement</span>
+        </div>
+        <div class="ss-row" id="landStats"></div>
+        <div class="main-aside">
+          <div class="card">
+            <div class="ct">Affectation schématique du sol <span class="est-badge">Estimation — à valider avec le SAD</span></div>
+            <div id="landUseList"></div>
+          </div>
+          <div class="card">
+            <div class="ct">Données réelles confirmées <span class="real-badge">ISQ / PDZA MRC</span></div>
+            <div id="landConfirmed"></div>
+            <div style="margin-top:12px;font-size:11px;color:var(--muted);line-height:1.6;background:var(--bg);padding:10px 12px;border-radius:8px">⚠️ Note : le couvert forestier (249 696 ha) et la zone agricole (145 078 ha) se chevauchent. La forêt s'étend à la fois dans et hors de la zone agricole protégée par la LPTAA.</div>
+          </div>
+        </div>
+        <div class="card mb18">
+          <div class="ct">Superficie des municipalités (km²)</div>
+          <div style="position:relative;height:250px"><canvas id="muniSurfChart"></canvas></div>
+        </div>
+      </div>
+
+      <div class="view" id="view-am-conv">
+        <div class="section-header">
+          <div class="sh-left"><h2>Résidence ↔ Villégiature</h2><p>Dynamique de conversion des usages — estimations directionnelles</p></div>
+          <span class="pillar-badge pb-am">🗺️ Aménagement</span>
+        </div>
+        <div class="ss-row" id="convStats"></div>
+        <div class="two-col">
+          <div class="card"><div class="ct">Flux estimés — Chalet → Résidence principale vs Résidence → Chalet</div><div style="position:relative;height:230px"><canvas id="convFlowChart"></canvas></div></div>
+          <div class="card"><div class="ct">Conversion nette (chalet → résidence principale, estimé)</div><div style="position:relative;height:230px"><canvas id="convNetChart"></canvas></div></div>
+        </div>
+        <div class="card mb18">
+          <div class="ct">Profil villégiature par municipalité</div>
+          <div id="convMuniList"></div>
+          <div class="lever-note" id="convLever"></div>
+        </div>
+        <div class="card">
+          <div class="ct">Enjeux intersectoriels</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.85">
+            <strong style="color:var(--text)">→ Économie :</strong> la conversion chalet → résidence augmente la demande de services et de commerces de proximité, et modifie la base fiscale municipale.<br>
+            <strong style="color:var(--text)">→ Santé :</strong> l'afflux de nouveaux résidents permanents en zone de villégiature éloignée amplifie les enjeux d'accès aux services de proximité (déterminant D8 — priorité). Les villégiateurs vieillissants qui s'installent à l'année peuvent aussi modifier le profil de besoins en soins.<br>
+            <strong style="color:var(--text)">→ Levier :</strong> le zonage (Loi 67, 2023) permet aux municipalités de contingenter l'hébergement touristique et de protéger le parc de logements abordables.
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════ SANTÉ ══════════════ -->
+      <div class="view" id="view-sa-portrait">
+        <div class="section-header">
+          <div class="sh-left"><h2>Portrait des déterminants sociaux de la santé</h2><p>8 déterminants — indicateurs proxy dérivés des données territoriales · À valider avec CIUSSS et INSPQ</p></div>
+          <span class="pillar-badge pb-sa">🏥 Santé</span>
+        </div>
+        <div class="sdoh-intro" id="sdohIntro"></div>
+        <div class="two-col" style="align-items:start">
+          <div class="card"><div class="ct">Radar des déterminants (score territorial 0–100)</div><div style="position:relative;height:295px"><canvas id="sdohRadar"></canvas></div></div>
+          <div class="card"><div class="ct">Indice composite territorial</div><div id="sdohComposite"></div></div>
+        </div>
+        <div class="sdoh-grid" id="sdohGrid"></div>
+      </div>
+
+      <div class="view" id="view-sa-governance">
+        <div class="section-header">
+          <div class="sh-left"><h2>Gouvernance territoriale en santé</h2><p>Leviers intersectoriels — Santé dans toutes les politiques (SdTP)</p></div>
+          <span class="pillar-badge pb-sa">🏥 Santé</span>
+        </div>
+        <div style="background:linear-gradient(135deg,#0c3d4d,#0e7490);border-radius:var(--r);padding:20px 24px;margin-bottom:18px;color:#fff">
+          <div style="font-size:9px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:8px">Cadre conceptuel</div>
+          <h2 style="font-family:'Fraunces',serif;font-size:17px;margin-bottom:8px;color:#fff">La Santé dans toutes les politiques (SdTP)</h2>
+          <p style="font-size:12px;line-height:1.75;color:rgba(255,255,255,.78)">À l'échelle d'une MRC, les décisions économiques et d'aménagement <em>sont</em> des décisions de santé. La gouvernance territoriale en santé consiste à rendre ces liens explicites et à mobiliser des leviers intersectoriels existants. La MRC du Granit dispose d'une densité remarquable d'instruments de gouvernance qui agissent sur les déterminants — bien au-delà du système de soins. Ce pilier ne mesure pas les services cliniques : il lit la santé de la population à travers ses déterminants sociaux, économiques et environnementaux.</p>
+        </div>
+        <div class="gov-grid" id="govGrid"></div>
+      </div>
+
+      <div class="view" id="view-sa-links">
+        <div class="section-header">
+          <div class="sh-left"><h2>Liens développement ↔ santé</h2><p>Cartographie explicite des décisions économiques et territoriales comme déterminants de santé</p></div>
+          <span class="pillar-badge pb-sa">🏥 Santé</span>
+        </div>
+        <div style="background:var(--sa50);border:1px solid var(--sa100);border-left:4px solid var(--sa700);border-radius:var(--r2);padding:13px 16px;margin-bottom:18px;font-size:12px;color:var(--sa800);line-height:1.7">
+          Ces liens matérialisent la logique SdTP : chaque carte montre comment une décision du pilier Économie ou Aménagement agit directement sur un déterminant social de la santé. Ils constituent la base analytique d'une démarche de gouvernance intersectorielle à l'échelle de la MRC.
+        </div>
+        <div class="link-grid" id="linkGrid"></div>
+      </div>
+
+      <div class="view" id="view-sa-vuln">
+        <div class="section-header">
+          <div class="sh-left"><h2>Vulnérabilité territoriale</h2><p>Indice composite par municipalité — proxy analytique à partir des données de géographie</p></div>
+          <span class="pillar-badge pb-sa">🏥 Santé</span>
+        </div>
+        <div class="ss-row" id="vulnStats"></div>
+        <div class="two-col">
+          <div class="card"><div class="ct">Indice de vulnérabilité territoriale par municipalité</div><div style="position:relative;height:300px"><canvas id="vulnChart"></canvas></div></div>
+          <div class="card"><div class="ct">Méthodologie de l'indice</div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.85">
+              <strong style="color:var(--text)">Composantes (proxies dérivés des données disponibles)</strong><br>
+              • Ruralité : <code style="background:#f3f4f6;padding:1px 5px;border-radius:3px;font-size:11px">rural_éloigné = +40 pts</code><br>
+              • Densité : <code style="background:#f3f4f6;padding:1px 5px;border-radius:3px;font-size:11px">inversement proportionnel</code><br>
+              • Distance proxy : <code style="background:#f3f4f6;padding:1px 5px;border-radius:3px;font-size:11px">superficie / pop × facteur</code><br><br>
+              <strong style="color:var(--text)">Interprétation</strong><br>
+              Score élevé = municipalité nécessitant une attention prioritaire dans une logique de gouvernance territoriale de la santé. Ce n'est pas un indice de défavorisation — c'est un proxy d'éloignement et d'accès aux services.<br><br>
+              <strong style="color:var(--text)">Limites</strong><br>
+              À valider avec les données de santé réelles (CIUSSS de l'Estrie-CHUS, INSPQ). Ne remplace pas une analyse de besoin basée sur des indicateurs épidémiologiques.
+            </div>
+          </div>
+        </div>
+        <div style="font-size:14px;font-weight:700;margin:14px 0 11px">Profil détaillé par municipalité</div>
+        <div class="vuln-grid" id="vulnGrid"></div>
+      </div>
+
     </div>
-  </div>
-</main>
+  </main>
+</div>
 
 <!-- SECTOR PANEL -->
 <div class="panel-backdrop" id="panelBd" onclick="closeSectorPanel()"></div>
 <div class="sector-panel" id="sectorPanel">
   <div class="sp-head">
     <div class="sp-icon" id="spIcon">🏭</div>
-    <div class="sp-head-text">
-      <h2 id="spTitle">Secteur</h2>
-      <div class="sp-meta" id="spMeta"></div>
-    </div>
+    <div class="sp-head-text"><h2 id="spTitle">Secteur</h2><div class="sp-meta" id="spMeta"></div></div>
     <button class="sp-close" onclick="closeSectorPanel()">✕ Fermer</button>
   </div>
   <div class="sp-body" id="spBody"></div>
 </div>
 
 <!-- ADMIN MODAL -->
-<div class="ov" id="adminOv" onclick="bgC(event,'adminOv')">
+<div class="ov" id="adminOv" onclick="bgClick(event,'adminOv')">
   <div class="modal">
     <div class="mh"><h2 id="mTitle">✏️ Mise à jour</h2><button class="btn" onclick="closeAdmin()">✕</button></div>
     <div class="mb" id="mBody"></div>
@@ -451,28 +683,67 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   </div>
 </div>
 
-<!-- GITHUB HELP MODAL -->
-<div class="ov" id="ghOv" onclick="bgC(event,'ghOv')">
-  <div class="modal" style="width:580px">
-    <div class="mh"><h2>🚀 Comment mettre à jour la plateforme</h2><button class="btn" onclick="closeGH()">✕</button></div>
-    <div class="mb">
-      <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6">Ce guide s'adresse à toute personne de la MRC. Aucune connaissance technique requise.</p>
-      <div class="gh-step"><div class="gh-n">1</div><div class="gh-t"><strong>Cliquer « ✏️ Mettre à jour »</strong><p>Dans la barre en haut ou le menu gauche. Entrer le mot de passe.</p></div></div>
-      <div class="gh-step"><div class="gh-n">2</div><div class="gh-t"><strong>Modifier les données</strong><p>Trimestre, KPIs, emplois par secteur, emplois des entreprises. Cliquer <code>✅ Enregistrer</code>.</p></div></div>
-      <div class="gh-step"><div class="gh-n">3</div><div class="gh-t"><strong>Exporter data.json</strong><p>Cliquer <code>💾 Exporter data.json</code>. Le fichier se télécharge sur votre ordinateur.</p></div></div>
-      <div class="gh-step"><div class="gh-n">4</div><div class="gh-t"><strong>Remplacer le fichier sur le serveur</strong><p>Option A (GitHub) : ouvrir <code>data.json</code> → ✏️ → effacer tout → coller → <code>Commit changes</code>.<br>Option B (hébergement) : uploader le nouveau <code>data.json</code> dans le même dossier que <code>index.html</code>.</p></div></div>
-      <div class="gh-step"><div class="gh-n">5</div><div class="gh-t"><strong>Vérifier (attendre ~2 min)</strong><p>Recharger la page. Tout le monde voit les nouvelles données automatiquement.</p></div></div>
-      <div class="gh-tip"><div class="tit">💡 Copier-coller rapide</div><p>Ouvrez le fichier téléchargé avec Notepad → <code>Ctrl+A</code> → <code>Ctrl+C</code> → collez dans GitHub.</p></div>
-      <div class="gh-warn">⚠️ Ne modifiez jamais <code>index.html</code>. Seul <code>data.json</code> doit être mis à jour pour les données.</div>
-    </div>
-    <div class="mf"><button class="btn btn-g" onclick="closeGH()">Compris ✓</button></div>
-  </div>
-</div>
-
 <script>
-var D={}, unlocked=false, charts={};
+const DEFAULT_DATA = {"_sources": "ISQ 2024-2026, MAMH Décret 1499-2025, MRC du Granit (PDZA, schéma d'aménagement, rapport annuel 2025, Plan climat, MADA), SDE du Granit, affairesmegantic.com, echodefrontenac.com, radio-canada.ca, PPAQ, MAPAQ, CCNDS/INSPQ (cadre des déterminants sociaux de la santé), MAMH Stratégie québécoise en habitation. Les indicateurs de santé sont des proxys analytiques dérivés des données territoriales — à valider avec le CIUSSS de l'Estrie-CHUS et l'INSPQ.", "meta": {"quarter": "T2 2026", "updatedBy": "MRC du Granit — Conseil scientifique & Développement économique", "updatedDate": "2026-06-08", "note": "", "password": "granit2025"}, "kpis": [{"label": "Population totale", "value": "21 935", "unit": "habitants — MAMH Décret 2026", "delta": "↑ +265 en 2023-2024", "trend": "up"}, {"label": "Travailleurs 25-64 ans", "value": "7 845", "unit": "personnes — ISQ 2024", "delta": "77,6 % taux d'emploi", "trend": "up"}, {"label": "Revenu médian d'emploi", "value": "50 800 $", "unit": "25-64 ans — ISQ 2024", "delta": "↓ -7 % vs moy. QC", "trend": "down"}, {"label": "Permis de bâtir", "value": "54,8 M$", "unit": "valeur totale — ISQ 2024", "delta": "↑ +10 % vs 2023", "trend": "up"}], "sectors": [{"id": "s1", "name": "Bois, panneaux & meubles", "jobs": 1680, "trend": "+1,5 %", "dir": "up", "cat": "manufacturier", "icon": "🪵", "desc": "Grappe industrielle unique au Canada. 50+ entreprises, ~1 500 emplois manufacturiers. Tafisa (panneaux), IMM/Premdor (portes), Bestar (reprise 2026), Groupe SFR/Panolite, Placage Mégantic, Melac Industrie."}, {"id": "s2", "name": "Forêt & scierie", "jobs": 820, "trend": "-0,5 %", "dir": "down", "cat": "primaire", "icon": "🌲", "desc": "Groupe SFR (sciage/tournage), Fontaine Lumber (Woburn, 50+ ans), ScierieTech (Woburn), Groupement forestier Estrie-Frontenac, ProForêt Consultants. PADF MRC. 2e territoire forestier Estrie. 249 696 ha de couvert forestier."}, {"id": "s3", "name": "Granit & minéraux", "jobs": 320, "trend": "+2,0 %", "dir": "up", "cat": "primaire", "icon": "🪨", "desc": "Saint-Sébastien : pôle mondial du granit. A. Lacroix Granit (monuments Washington DC, Lincoln Memorial, MLK). ABRESSA Canada (filiale espagnole, finition). Summum Granit, Granit Plus, Granits MDP (Lac-Drolet), Monsieur Granit."}, {"id": "s4", "name": "Énergie & granules", "jobs": 165, "trend": "+5,0 %", "dir": "up", "cat": "primaire", "icon": "⚡", "desc": "Energex : plus grande usine de granules en Amérique du Nord (120 000 t/an). Énergie du Granit (EDG) : parc éolien Le Granit, 24,5 MW, 1,75 M$ redevances 2026 à 16 municipalités. Microréseau électrique Lac-Mégantic."}, {"id": "s5", "name": "Acéricole", "jobs": 580, "trend": "+5,7 %", "dir": "up", "cat": "primaire", "icon": "🍁", "desc": "2e au QC en érablières (19 455 ha, 62,3 % de l'Estrie). Érablière-école Saint-Romain (15 000 entailles bio), CFP Le Granit. L'Érable à son meilleur (Lac-Mégantic), Marché Ruisseau d'Or (Piopolis)."}, {"id": "s6", "name": "Agroalimentaire", "jobs": 420, "trend": "+2,3 %", "dir": "up", "cat": "primaire", "icon": "🌾", "desc": "Fromagerie La Chaudière (Lac-Mégantic), La Meunerie Milanaise (Milan, leader farine bio canadienne), Coop agricole Lac-Mégantic-Lambton (engrais). Production laitière dominante, 145 078 ha de zone agricole."}, {"id": "s7", "name": "Produits métalliques", "jobs": 160, "trend": "+1,0 %", "dir": "up", "cat": "manufacturier", "icon": "⚙️", "desc": "ULC (pièces mécano-soudées, usinage, 15 000 pi², équipements forestiers/agricoles). Royer (chaussures de sécurité, marché nord-américain). Secteur outillage industriel."}, {"id": "s8", "name": "Textile & vêtements", "jobs": 190, "trend": "-1,8 %", "dir": "down", "cat": "manufacturier", "icon": "🧵", "desc": "Manufacturiers de vêtements et textile technique dans le parc industriel de Lac-Mégantic. Secteur en consolidation face à la concurrence asiatique."}, {"id": "s9", "name": "Transport & logistique", "jobs": 330, "trend": "+2,0 %", "dir": "up", "cat": "manufacturier", "icon": "🚛", "desc": "Transport Robert (camionnage régional, Défi Carrière). Transbordement intermodal Lac-Mégantic. Voie de contournement ferroviaire inaugurée 2023. Corridor Maine-Atlantique."}, {"id": "s10", "name": "Tourisme & plein air", "jobs": 410, "trend": "+6,4 %", "dir": "up", "cat": "tourisme", "icon": "⛵", "desc": "Parc national Mont-Mégantic / ASTROLab (Notre-Dame-des-Bois) — 1re Réserve ciel étoilé Amériques. Bains de Nature MRC. Marché Ruisseau d'Or (Piopolis). Villégiature Lac Mégantic."}, {"id": "s11", "name": "Services publics & éducation", "jobs": 1020, "trend": "+2,5 %", "dir": "up", "cat": "commerce", "icon": "🏥", "desc": "CSSS du Granit (~420 emp), Commission scolaire (~220), Ville Lac-Mégantic (~140), MRC du Granit (~95), CFP Le Granit (~85), Caisse Desjardins (~60). Services à l'ensemble des 19 municipalités."}, {"id": "s12", "name": "Commerce de détail & services", "jobs": 980, "trend": "+1,8 %", "dir": "up", "cat": "commerce", "icon": "🛒", "desc": "Commerces Lac-Mégantic, grandes surfaces, épiceries, commerces de proximité dans les 19 municipalités. SADC Granit, Coup de Pouce, CJE du Granit. ~980 emplois estimés."}, {"id": "s13", "name": "Construction", "jobs": 690, "trend": "+4,1 %", "dir": "up", "cat": "manufacturier", "icon": "🏗️", "desc": "Résidentiel, commercial, infrastructure civile. Permis de bâtir : 54,8 M$ (ISQ 2024). Nouveau secteur industriel nord Lac-Mégantic (2025). Pression logement active sur tout le territoire."}], "companies": [{"id": "c01", "name": "Tafisa Canada", "muni": "Lac-Mégantic", "sector": "Bois, panneaux & meubles", "jobs": 300, "status": "actif", "desc": "Filiale de Sonae Industria (Portugal). PLUS GRANDE usine de panneaux de particules en Amérique du Nord. Certifiée ISO 9001 et ISO 14001. Fournisseur principal de Bestar. Fibres 100 % recyclées."}, {"id": "c02", "name": "Bestar Inc.", "muni": "Lac-Mégantic", "sector": "Bois, panneaux & meubles", "jobs": 157, "status": "reprise", "desc": "✅ Reprise confirmée 13 mai 2026 (Cour supérieure). Nouveaux propriétaires : Mario Aubé (ex-PDG), MB Capital (Sherbrooke), Cozey. 157 emp. syndiqués rappelés. Conv. coll. prolongée jusqu'en juillet 2031. Fondée en 1948."}, {"id": "c03", "name": "IMM — Industries Manufacturières Mégantic (Masonite)", "muni": "Lac-Mégantic", "sector": "Bois, panneaux & meubles", "jobs": 150, "status": "actif", "desc": "Fondée en 1913. Membre Masonite International. Panneaux contreplaqué et portes architecturales. 150 emp, 85 % exportés USA. Recycle l'eau du Lac-Mégantic, replante 4 arbres pour 1 coupé."}, {"id": "c04", "name": "Premdor (division Masonite)", "muni": "Lac-Mégantic", "sector": "Bois, panneaux & meubles", "jobs": 100, "status": "actif", "desc": "Division Masonite (France/Canada). Portes préhangées résidentielles et commerciales. Complémentaire à IMM dans la filière bois de Lac-Mégantic."}, {"id": "c05", "name": "Groupe SFR / Panolite", "muni": "Lac-Mégantic", "sector": "Bois, panneaux & meubles", "jobs": 120, "status": "actif", "desc": "Groupe intégré : sciage, tournage du bois et Panolite (PREMIER manufacturier canadien de panneaux légers industriels). Participant Défi Carrière Mégantic. Produits exportés en Amérique du Nord."}, {"id": "c06", "name": "Placage Mégantic", "muni": "Lac-Mégantic", "sector": "Bois, panneaux & meubles", "jobs": 80, "status": "actif", "desc": "Fabrication de placages de bois franc (merisier, bouleau, érable). Accès à l'eau du Lac-Mégantic pour le procédé de déroulage. Fournisseur de l'industrie du meuble et de la construction."}, {"id": "c07", "name": "Melac Industrie Inc.", "muni": "Lac-Mégantic", "sector": "Bois, panneaux & meubles", "jobs": 60, "status": "nouveau", "desc": "Inaugurée 2025 dans anciens locaux Masonite. Produits papier pour service alimentaire. Investissement 5 M$. Rachat de Industries Sanfaçon de Lévis. ~10 emp. directs + 50 indirects. Partenaires : MRC, Ville, IQ."}, {"id": "c08", "name": "Energex (Granules Combustibles Energex inc.)", "muni": "Lac-Mégantic", "sector": "Énergie & granules", "jobs": 100, "status": "actif", "desc": "PLUS GRANDE usine de granules de bois en Amérique du Nord (120 000 tonnes/an). Valorise les résidus forestiers des scieries régionales. Acteur central du microréseau énergétique de Lac-Mégantic."}, {"id": "c09", "name": "ULC (Usinage Lac-Mégantic)", "muni": "Lac-Mégantic", "sector": "Produits métalliques", "jobs": 45, "status": "actif", "desc": "Pièces mécano-soudées pour industriels. Usine 15 000 pi², presses 280 et 150 t, oxycoupeur/plasma, soudage MIG/TIG. Machinerie forestière et agricole. Dépositaire produits Hakmet. ~200 remorques/an."}, {"id": "c10", "name": "Royer (chaussures de sécurité)", "muni": "Lac-Mégantic", "sector": "Produits métalliques", "jobs": 70, "status": "actif", "desc": "Fabricant de chaussures de sécurité. Marché nord-américain. Participant Défi Carrière Mégantic. Parc industriel de Lac-Mégantic."}, {"id": "c11", "name": "Transport Robert", "muni": "Lac-Mégantic", "sector": "Transport & logistique", "jobs": 80, "status": "actif", "desc": "Transport routier régional. Participant Défi Carrière Mégantic. Dessert les manufacturiers du parc industriel. Corridor vers marchés US via Maine. Secteur camionnage et distribution."}, {"id": "c12", "name": "L'Érable à son meilleur", "muni": "Lac-Mégantic", "sector": "Acéricole", "jobs": 18, "status": "actif", "desc": "Production de boissons alcoolisées à l'érable. Exporte en Chine. Valorisation innovante du sirop d'érable québécois. Secteur en croissance."}, {"id": "c13", "name": "Fromagerie La Chaudière", "muni": "Lac-Mégantic", "sector": "Agroalimentaire", "jobs": 55, "status": "actif", "desc": "Fromagerie artisanale (~200 emplois selon SDEG). Transformation du lait des producteurs de la MRC, dont du lait bio. Participant Défi Carrière Mégantic. Fleuron régional depuis 40+ ans."}, {"id": "c14", "name": "CSSS du Granit", "muni": "Lac-Mégantic", "sector": "Services publics & éducation", "jobs": 420, "status": "actif", "desc": "Centre de santé et services sociaux (CIUSSS de l'Estrie-CHUS). Plus grand employeur public de la MRC. Hôpital, soins à domicile, CLSC, soins longue durée. Premier maillon des services de proximité."}, {"id": "c15", "name": "Commission scolaire des Hauts-Cantons", "muni": "Lac-Mégantic", "sector": "Services publics & éducation", "jobs": 220, "status": "actif", "desc": "Écoles primaires et secondaires de la MRC. Personnel enseignant, professionnel et de soutien. Couvre les 19 municipalités. CFP Le Granit intégré."}, {"id": "c16", "name": "CFP Le Granit", "muni": "Lac-Mégantic", "sector": "Services publics & éducation", "jobs": 85, "status": "actif", "desc": "Centre formation professionnelle. Acériculture, soudure, mécanique, etc. Entente Cégep de Sherbrooke. Formation alternance travail-études. Partenaire Érablière-école Saint-Romain."}, {"id": "c17", "name": "Ville de Lac-Mégantic", "muni": "Lac-Mégantic", "sector": "Services publics & éducation", "jobs": 140, "status": "actif", "desc": "Administration municipale. Parc industriel (21 industries + 22 services). Voie contournement 2023. Projet microréseau électrique. 1re ville francophone certifiée Cittaslow en Amérique du Nord."}, {"id": "c18", "name": "MRC du Granit", "muni": "Lac-Mégantic", "sector": "Services publics & éducation", "jobs": 95, "status": "actif", "desc": "Administration régionale. Développement économique, aménagement, forêt, environnement, culture, Plan climat, MADA. Accès Entreprise Québec. 5 parcs industriels gérés sur le territoire."}, {"id": "c19", "name": "Caisse Desjardins Région de Mégantic", "muni": "Lac-Mégantic", "sector": "Services publics & éducation", "jobs": 60, "status": "actif", "desc": "Services financiers coopératifs. Financement PME, accompagnement entrepreneurial. Participant Défi Carrière Mégantic. Actionnaire historique de Bestar."}, {"id": "c20", "name": "SADC Granit", "muni": "Lac-Mégantic", "sector": "Commerce de détail & services", "jobs": 18, "status": "actif", "desc": "Société d'aide développement des collectivités. FLI, FLS, mentorat, virage numérique, innovation. Partenaire Place de l'industrie inc. et Défi Carrière Mégantic."}, {"id": "c21", "name": "Coup de Pouce", "muni": "Lac-Mégantic", "sector": "Commerce de détail & services", "jobs": 22, "status": "actif", "desc": "Entreprise d'économie sociale. Aide à domicile, insertion socioprofessionnelle. Acteur du maintien à domicile des aînés. Présente à Place de l'industrie inc."}, {"id": "c22", "name": "Intro-travail / CJE du Granit", "muni": "Lac-Mégantic", "sector": "Commerce de détail & services", "jobs": 18, "status": "actif", "desc": "Aide à la recherche d'emploi, Carrefour Jeunesse Emploi. Intégration des immigrants. Partenaire Défi Carrière Mégantic. Service babillard d'emploi régional."}, {"id": "c23", "name": "ProForêt Consultants inc.", "muni": "Lac-Mégantic", "sector": "Forêt & scierie", "jobs": 12, "status": "actif", "desc": "Firme ingénieurs forestiers. Aménagement forestier, acériculture, PADF. Dessert les propriétaires forestiers de la MRC du Granit et de l'Estrie."}, {"id": "c24", "name": "A. Lacroix et Fils Granit", "muni": "Saint-Sébastien", "sector": "Granit & minéraux", "jobs": 150, "status": "actif", "desc": "Leader mondial de la pierre naturelle depuis 50+ ans. Usine 150 000 pi². Monuments : World War II Memorial (Washington DC), Lincoln Memorial, Martin Luther King Memorial. 450, rue Principale."}, {"id": "c25", "name": "ABRESSA Canada Inc.", "muni": "Saint-Sébastien", "sector": "Granit & minéraux", "jobs": 50, "status": "actif", "desc": "Filiale canadienne d'ABRESSA (Espagne, leader mondial polissage de pierres). Spécialisée dans les produits de finition du granit. Implantée à Saint-Sébastien en raison du pôle granit régional."}, {"id": "c26", "name": "Summum Granit Inc.", "muni": "Saint-Sébastien", "sector": "Granit & minéraux", "jobs": 55, "status": "expansion", "desc": "Comptoirs et surfaces haut de gamme (granit, marbre, quartz, porcelaine, surface ultra-compacte). Prêt IQ 1,5M$ en 2017. Laser guidage, scie jet d'eau 5 axes. Ventes visées 30M$."}, {"id": "c27", "name": "Granit Plus", "muni": "Saint-Sébastien", "sector": "Granit & minéraux", "jobs": 35, "status": "actif", "desc": "Fabrication de comptoirs et surfaces en granit naturel. Marché résidentiel et commercial. Pôle granit Saint-Sébastien."}, {"id": "c28", "name": "Coopérative agricole Lac-Mégantic-Lambton", "muni": "Saint-Sébastien", "sector": "Agroalimentaire", "jobs": 20, "status": "actif", "desc": "Coopérative agricole régionale. Usine de préparation d'engrais minéraux à Saint-Sébastien. Sert les agriculteurs et acériculteurs de la MRC du Granit et des territoires adjacents."}, {"id": "c29", "name": "Les Granits M.D.P. inc.", "muni": "Lac-Drolet", "sector": "Granit & minéraux", "jobs": 25, "status": "actif", "desc": "Transformation et fabrication de produits en granit. 151-B, rue Industrielle, Lac-Drolet. Parc industriel Lac-Drolet (Carrefour industriel)."}, {"id": "c30", "name": "Monsieur Granit", "muni": "Lac-Drolet", "sector": "Granit & minéraux", "jobs": 15, "status": "actif", "desc": "Comptoirs et surfaces en granit naturel. 114, rue du Moulin, Lac-Drolet. Clientèle résidentielle et commerciale régionale."}, {"id": "c31", "name": "Artisans du granit inc.", "muni": "Lac-Drolet", "sector": "Granit & minéraux", "jobs": 12, "status": "actif", "desc": "Fabrication de comptoirs en granit. Parc industriel Lac-Drolet. Clientèle régionale et provinciale."}, {"id": "c32", "name": "Carrefour industriel Lac-Drolet", "muni": "Lac-Drolet", "sector": "Services publics & éducation", "jobs": 5, "status": "actif", "desc": "Comité de développement local gérant le parc industriel de Lac-Drolet. Superficie totale 750 000 m², 600 000 m² disponibles. 25 000 V 3 phases. Congé de taxes foncières. Cité comme modèle."}, {"id": "c33", "name": "Fontaine Lumber", "muni": "Saint-Augustin-de-Woburn", "sector": "Forêt & scierie", "jobs": 55, "status": "actif", "desc": "Scierie et bois d'œuvre depuis plus de 50 ans. Vallée frontalière Maine. Valorisation des forêts de la zone frontalière. fontaine-lumber.com"}, {"id": "c34", "name": "ScierieTech inc.", "muni": "Saint-Augustin-de-Woburn", "sector": "Forêt & scierie", "jobs": 40, "status": "actif", "desc": "Usine de sciage spécialisée dans la transformation et commercialisation du pin blanc de l'Est. Estrie, corridor Maine-Atlantique."}, {"id": "c35", "name": "La Meunerie Milanaise (La Milanaise)", "muni": "Milan", "sector": "Agroalimentaire", "jobs": 40, "status": "actif", "desc": "Fondée 1982. Chef de file farine biologique au Canada. Céréales biologiques, produits à valeur ajoutée. Client Première Moisson. Export QC/ON/Maritime/Nouvelle-Angleterre/France/Italie. ~10 000 t céréales/an."}, {"id": "c36", "name": "Parc national Mont-Mégantic / ASTROLab", "muni": "Notre-Dame-des-Bois", "sector": "Tourisme & plein air", "jobs": 45, "status": "actif", "desc": "Parc national (SÉPAQ) + observatoire astronomique. 1re Réserve internationale de ciel étoilé en Amérique du Nord. Tourisme astral de renommée mondiale. Emplois saisonniers et permanents."}, {"id": "c37", "name": "Énergie du Granit (EDG)", "muni": "Saint-Robert-Bellarmin", "sector": "Énergie & granules", "jobs": 8, "status": "actif", "desc": "Organisme communautaire propriétaire du Parc éolien Le Granit. 12 éoliennes, 24,5 MW. Redevances 1,75 M$ à 16 municipalités partenaires en 2026 (11e exercice financier)."}, {"id": "c38", "name": "Érablière-école de Saint-Romain", "muni": "Saint-Romain", "sector": "Acéricole", "jobs": 15, "status": "actif", "desc": "15 000 entailles certifiées biologiques. Comité développement Saint-Romain. Formation pratique CFP Le Granit (alternance travail-études). Modèle provincial acériculture durable reconnu par MAPAQ."}, {"id": "c39", "name": "Marché du Ruisseau d'Or / Bistro", "muni": "Piopolis", "sector": "Acéricole", "jobs": 6, "status": "actif", "desc": "Productrice Mélissa Nadeau. Acériculture biologique certifiée, marché public, bistro gastronomique. Rive du Lac Mégantic. Modèle de diversification économique rurale."}, {"id": "c40", "name": "SPIL (Sté pour la promotion industrielle de Lambton)", "muni": "Lambton", "sector": "Services publics & éducation", "jobs": 4, "status": "actif", "desc": "Gestion du parc industriel de Lambton. 10 000 m² desservis aqueduc/égout/électricité/internet, route 108. Accompagnement des entrepreneurs."}, {"id": "c41", "name": "Parc industriel de Saint-Ludger", "muni": "Saint-Ludger", "sector": "Services publics & éducation", "jobs": 4, "status": "actif", "desc": "Parc industriel ~112 000 m². Aqueduc, égout, électricité, internet haute-vitesse. Rabais fiscaux + programmes financement. À 52 km de la frontière US."}, {"id": "c42", "name": "Portes & fenêtres Vallée inc.", "muni": "Frontenac", "sector": "Bois, panneaux & meubles", "jobs": 30, "status": "actif", "desc": "Manufacturier de portes et fenêtres établi à Frontenac (recrutement actif, L'Écho de Frontenac 2024). 2e municipalité en population (1 857 hab.). Base agricole et forestière. Emplois estimés — à valider."}, {"id": "c43", "name": "Municipalité de Nantes (services & voirie)", "muni": "Nantes", "sector": "Services publics & éducation", "jobs": 15, "status": "actif", "desc": "Administration et voirie municipales (employeur local confirmé). 1 415 hab. Base agricole et forestière. Partenaire Bains de Nature MRC. Liste d'entreprises à enrichir."}, {"id": "c44", "name": "Profil agro-forestier de Stornoway", "muni": "Stornoway", "sector": "Forêt & scierie", "jobs": 8, "status": "actif", "desc": "545 hab. Espace industriel en développement selon la MRC. Économie d'assise agricole et forestière. Partenaire éolien EDG. Fiches entreprises à documenter par l'équipe MRC."}, {"id": "c45", "name": "Profil agricole de Marston", "muni": "Marston", "sector": "Agroalimentaire", "jobs": 6, "status": "actif", "desc": "802 hab. Canton agricole. Partenaire du parc éolien EDG (redevances). Production agricole et acéricole. Fiches entreprises à documenter."}, {"id": "c46", "name": "Profil acéricole de Sainte-Cécile-de-Whitton", "muni": "Sainte-Cécile-de-Whitton", "sector": "Acéricole", "jobs": 10, "status": "actif", "desc": "910 hab. Forêt et acériculture dominantes. Partenaire éolien EDG. Production de sirop d'érable. Fiches entreprises à documenter."}, {"id": "c47", "name": "Profil forestier & villégiature d'Audet", "muni": "Audet", "sector": "Forêt & scierie", "jobs": 8, "status": "actif", "desc": "707 hab. Forêt et villégiature. Partenaire éolien EDG. Économie d'assise forestière et récréotouristique. Fiches entreprises à documenter."}, {"id": "c48", "name": "Profil agricole de Stratford", "muni": "Stratford", "sector": "Agroalimentaire", "jobs": 8, "status": "actif", "desc": "1 063 hab. Canton agricole à tradition anglophone. Projet de vitalisation FRR-V4 (MAMH, avec Val-Racine et Piopolis). Fiches entreprises à documenter."}], "collaborations": [{"id": "col0", "name": "Méthodologie — Moteur d'inférence des maillages", "type": "methodologie", "emoji": "🔬", "companies": [], "municipalities": [], "desc": "Les maillages interindustriels sont calculés en direct par un moteur d'inférence qui recompute les liens dès qu'une entreprise est ajoutée ou modifiée. Le score d'affinité (0-100) combine quatre signaux pondérés : (1) complémentarité de chaîne de valeur — qui fournit qui dans une matrice intersectorielle ; (2) co-localisation géographique — même municipalité ou même parc industriel ; (3) chevauchement du bassin de main-d'œuvre — profils de compétences partagés par catégorie ; (4) volume d'emplois impliqués. Les paires au-dessus du seuil sont proposées automatiquement avec leur justification.", "impact": "Cadre analytique recalculé en continu sur les données du tableau de bord.", "status": "Modèle vivant — recalculé à chaque mise à jour des données"}, {"id": "col1", "name": "Grappe industrielle bois-forêt — Filière complète", "type": "confirmee", "emoji": "🌲", "inference_score": 98, "companies": ["Tafisa Canada", "Bestar Inc.", "IMM / Premdor (Masonite)", "Groupe SFR / Panolite", "Energex", "Placage Mégantic", "Fontaine Lumber", "Groupement forestier Estrie-Frontenac"], "municipalities": ["Lac-Mégantic", "Saint-Augustin-de-Woburn"], "desc": "Filière bois complète et unique au Canada : récolte → scierie → panneaux → placages → portes → meubles → granules (valorisation résidus). Fournisseurs, résidus valorisés et bassin de main-d'œuvre partagés.", "impact": "~1 300 emplois directs. Principal moteur économique. Reprise Bestar 2026 = résilience démontrée.", "status": "✅ Actif — Place de l'industrie inc. (2024). Créneau d'excellence Estrie."}, {"id": "col2", "name": "Pôle granit Saint-Sébastien — Cluster mondial", "type": "confirmee", "emoji": "🪨", "inference_score": 95, "companies": ["A. Lacroix et Fils Granit", "ABRESSA Canada Inc.", "Summum Granit Inc.", "Granit Plus"], "municipalities": ["Saint-Sébastien", "Lac-Drolet"], "desc": "Cluster mondial unique : extraction + finition (ABRESSA, leader espagnol implanté localement) + transformation haut de gamme + référence mondiale (Lacroix, monuments de Washington). 300+ emplois dans 707 hab.", "impact": "300+ emplois locaux. Rayonnement international.", "status": "✅ Actif — Secteur d'excellence affairesmegantic.com"}, {"id": "col3", "name": "Énergie du Granit — Gouvernance énergétique communautaire", "type": "confirmee", "emoji": "💨", "inference_score": 96, "companies": ["Énergie du Granit (EDG)", "Energex", "Ville de Lac-Mégantic"], "municipalities": ["Saint-Robert-Bellarmin", "Audet", "Milan", "Nantes", "Notre-Dame-des-Bois", "Piopolis", "Saint-Augustin-de-Woburn", "Saint-Ludger", "Saint-Romain", "Saint-Sébastien", "Sainte-Cécile-de-Whitton", "Stornoway", "Stratford", "Val-Racine", "Lac-Drolet", "Marston"], "desc": "Parc éolien Le Granit (12 éoliennes, 24,5 MW) + Energex (granules) + microréseau de Lac-Mégantic. Modèle rare de gouvernance énergétique municipale au Québec.", "impact": "1,75 M$/an de redevances (16 municipalités) — ressource communautaire réinvestie localement.", "status": "✅ Actif — 11e exercice financier EDG (2026)"}, {"id": "col4", "name": "Place de l'industrie inc. — Concertation industrielle", "type": "confirmee", "emoji": "🤝", "inference_score": 95, "companies": ["Tafisa Canada", "Fromagerie La Chaudière", "Energex", "Placage Mégantic", "Bestar Inc.", "Melac Industrie", "Coup de Pouce", "SADC Granit", "Ville de Lac-Mégantic", "MRC du Granit"], "municipalities": ["Lac-Mégantic"], "desc": "Table de concertation industrielle relancée juillet 2024. Sous-comités : économie traditionnelle + transition énergétique. Objectif 2025 : nouveau secteur industriel nord de la voie de contournement.", "impact": "Gouvernance industrielle locale renforcée. Nouveau terrain industriel en développement.", "status": "✅ Actif — Relancé juillet 2024"}, {"id": "col5", "name": "Filière acéricole durable — Formation et production bio", "type": "confirmee", "emoji": "🍁", "inference_score": 93, "companies": ["Érablière-école de Saint-Romain", "CFP Le Granit", "Marché du Ruisseau d'Or", "L'Érable à son meilleur"], "municipalities": ["Saint-Romain", "Piopolis", "Lac-Mégantic"], "desc": "Modèle provincial : érablière-école bio (15 000 entailles) + alternance travail-études (CFP Le Granit) + mise en marché agrotouristique + transformation innovante (boissons à l'érable, marché chinois).", "impact": "Relève acéricole assurée. Certification biologique. Modèle exportable.", "status": "✅ Actif — Comité Saint-Romain + CFP Le Granit"}, {"id": "col6", "name": "Corridor logistique Maine-Atlantique", "type": "possible", "emoji": "🚛", "inference_score": 74, "companies": ["Tafisa Canada", "IMM / Premdor", "Bestar Inc.", "Melac Industrie", "Transport Robert", "Fontaine Lumber"], "municipalities": ["Lac-Mégantic", "Saint-Augustin-de-Woburn"], "desc": "Inférence flux exports : Lac-Mégantic = un des seuls points de transit ferroviaire/routier vers le Maine en Estrie. Voie de contournement 2023 débloque un potentiel logistique. Programme conjoint d'export = -15 à -20 % de fret.", "impact": "Économies estimées 2-3 M$/an pour les exportateurs.", "status": "💡 Potentiel — Voie de contournement inaugurée 2023"}, {"id": "col7", "name": "Hub économie circulaire du bois — 3e transformation", "type": "innovante", "emoji": "♻️", "inference_score": 71, "companies": ["CFP Le Granit", "Energex", "Tafisa Canada", "Groupe SFR", "ProForêt Consultants"], "municipalities": ["Lac-Mégantic", "Saint-Romain"], "desc": "Inférence maillons manquants : résidus de 2e transformation valorisés en granules. Un hub de 3e transformation (composites bois-polymère, bois modifié, matériaux acoustiques) capterait 3-4× plus de valeur par m³.", "impact": "Estimé +80 à +150 emplois qualifiés, +30 % valeur ajoutée par m³.", "status": "🚀 Concept innovant — À développer avec MEIE, CRIQ et industriels"}, {"id": "col8", "name": "Circuit agrotouristique Bio-Granit", "type": "possible", "emoji": "🧀", "inference_score": 78, "companies": ["Fromagerie La Chaudière", "Marché du Ruisseau d'Or", "Parc national Mont-Mégantic / ASTROLab", "La Meunerie Milanaise", "L'Érable à son meilleur"], "municipalities": ["Lac-Mégantic", "Piopolis", "Notre-Dame-des-Bois", "Milan"], "desc": "Inférence clustering touristique : visiteurs du Parc Mont-Mégantic + villégiateurs partagent un profil compatible avec l'offre gastronomique bio (fromagerie, farine bio, érable, bistro). Circuit formalisé = +0,8 à +1,5 nuitée.", "impact": "Estimé +50 à +120 emplois indirects.", "status": "💡 Potentiel — À initier via MRC Tourisme + Tourisme Estrie"}], "municipalities": [{"id": "m01", "name": "Lac-Mégantic", "type": "Ville", "pop": 5970, "surface": 21.7, "density": 275.1, "cat": "urbain", "code": "30030", "role": "Chef-lieu · Ville-centre", "note": "Centre économique. Parc industriel (21 industries + 22 services). Voie contournement 2023. 1re ville francophone certifiée Cittaslow en Amériques."}, {"id": "m02", "name": "Frontenac", "type": "Municipalité", "pop": 1857, "surface": 224.8, "density": 8.3, "cat": "rural", "code": "30025", "role": "2e pop. MRC · Rural actif", "note": "Portes & fenêtres Vallée. Agriculture, forêt. Forte identité communautaire."}, {"id": "m03", "name": "Lambton", "type": "Municipalité", "pop": 1722, "surface": 108.2, "density": 15.9, "cat": "rural", "code": "30095", "role": "Parc industriel SPIL", "note": "Parc industriel Lambton (SPIL). Services de proximité, agriculture."}, {"id": "m04", "name": "Nantes", "type": "Municipalité", "pop": 1415, "surface": 119.3, "density": 11.9, "cat": "rural", "code": "30045", "role": "Rural · Bains de Nature", "note": "Agriculture, forêt. Partenaire Bains de Nature MRC."}, {"id": "m05", "name": "Notre-Dame-des-Bois", "type": "Municipalité", "pop": 1207, "surface": 191.2, "density": 6.3, "cat": "rural", "code": "30010", "role": "Tourisme astral mondial", "note": "Parc national Mont-Mégantic + ASTROLab. 1re Réserve ciel étoilé Amériques."}, {"id": "m06", "name": "Stratford", "type": "Canton", "pop": 1063, "surface": 121.0, "density": 8.8, "cat": "rural", "code": "30110", "role": "Canton agricole · Vitalisation", "note": "Canton à tradition anglophone. Agriculture. Projet de vitalisation FRR-V4."}, {"id": "m07", "name": "Lac-Drolet", "type": "Municipalité", "pop": 1076, "surface": 124.3, "density": 8.7, "cat": "rural", "code": "30080", "role": "Parc ind. · Modèle local", "note": "Carrefour industriel Lac-Drolet (750 000 m²). Pôle granit secondaire. Cité en modèle."}, {"id": "m08", "name": "Saint-Ludger", "type": "Municipalité", "pop": 1099, "surface": 127.4, "density": 8.6, "cat": "rural", "code": "30072", "role": "Parc industriel actif", "note": "Parc industriel ~112 000 m². Agriculture, acéricole."}, {"id": "m09", "name": "Marston", "type": "Canton", "pop": 802, "surface": 71.0, "density": 11.3, "cat": "rural", "code": "30035", "role": "Canton agricole", "note": "Canton agricole. Partenaire éolien EDG."}, {"id": "m10", "name": "Sainte-Cécile-de-Whitton", "type": "Municipalité", "pop": 910, "surface": 146.7, "density": 6.2, "cat": "rural", "code": "30050", "role": "Forêt & acéricole", "note": "Forêt, acéricole. Partenaire éolien EDG."}, {"id": "m11", "name": "Saint-Romain", "type": "Municipalité", "pop": 722, "surface": 112.1, "density": 6.4, "cat": "rural", "code": "30100", "role": "Acériculture durable", "note": "Érablière-école bio (15 000 entailles). Parc industriel Saint-Romain. Modèle provincial."}, {"id": "m12", "name": "Audet", "type": "Municipalité", "pop": 707, "surface": 133.3, "density": 5.3, "cat": "rural", "code": "30055", "role": "Forêt & villégiature", "note": "Forêt, villégiature. Partenaire éolien EDG."}, {"id": "m13", "name": "Saint-Sébastien", "type": "Municipalité", "pop": 707, "surface": 90.9, "density": 7.8, "cat": "rural", "code": "30085", "role": "Pôle granit mondial", "note": "A. Lacroix Granit (monuments Washington DC), ABRESSA, Summum Granit : 300+ emplois dans 707 hab."}, {"id": "m14", "name": "Saint-Augustin-de-Woburn", "type": "Paroisse", "pop": 677, "surface": 281.6, "density": 2.4, "cat": "rural_eloigne", "code": "30005", "role": "Forestier · Frontalier Maine", "note": "Fontaine Lumber, ScierieTech. Corridor Maine-Atlantique."}, {"id": "m15", "name": "Stornoway", "type": "Municipalité", "pop": 545, "surface": 179.9, "density": 3.0, "cat": "rural", "code": "30105", "role": "Espace industriel en dév.", "note": "Espace industriel en développement selon MRC. Partenaire éolien EDG."}, {"id": "m16", "name": "Saint-Robert-Bellarmin", "type": "Municipalité", "pop": 522, "surface": 236.6, "density": 2.2, "cat": "rural_eloigne", "code": "30070", "role": "Éolien · Siège parc EDG", "note": "Parc éolien Le Granit (12 éoliennes, 24,5 MW). 1,75 M$ redevances 2026."}, {"id": "m17", "name": "Piopolis", "type": "Municipalité", "pop": 417, "surface": 103.0, "density": 4.0, "cat": "rural", "code": "30020", "role": "Agrotourisme bio · Lac", "note": "Marché du Ruisseau d'Or (acériculture bio + bistro). Rive du Lac Mégantic. Villégiature."}, {"id": "m18", "name": "Milan", "type": "Municipalité", "pop": 326, "surface": 129.7, "density": 2.5, "cat": "rural_eloigne", "code": "30040", "role": "Meunerie bio · Forêt", "note": "La Meunerie Milanaise (chef de file farine bio canadienne, 1982). Forêt, villégiature."}, {"id": "m19", "name": "Val-Racine", "type": "Municipalité", "pop": 191, "surface": 117.6, "density": 1.6, "cat": "rural_eloigne", "code": "30015", "role": "Ruralité profonde", "note": "Plus petite municipalité de la MRC. Territoire naturel. Vitalisation FRR-V4. Partenaire Bains de Nature."}], "trends": {"years": ["2019", "2020", "2021", "2022", "2023", "2024"], "totalJobs": [6100, 5600, 5900, 6300, 6600, 6905], "newBiz": [41, 24, 48, 44, 42, 38], "permitsMk": [38.2, 29.1, 42.7, 51.3, 49.8, 54.8], "bySector": {"Bois/panneaux": [1820, 1680, 1750, 1850, 1900, 1950], "Acéricole": [390, 400, 430, 490, 540, 580], "Tourisme": [310, 195, 280, 340, 385, 410], "Construction": [590, 530, 570, 630, 660, 690], "Forêt & scierie": [860, 820, 835, 840, 830, 820]}}, "amenagement": {"intro": "Portrait de l'occupation et de la transformation du territoire de la MRC du Granit : permis de bâtir, affectation des sols et dynamique villégiature ↔ résidence principale. Ces données alimentent directement le déterminant « logement et conditions matérielles » du pilier santé.", "permits": {"years": ["2019", "2020", "2021", "2022", "2023", "2024"], "totalMk": [38.2, 29.1, 42.7, 51.3, 49.8, 54.8], "source": "Valeur totale réelle — ISQ 2024. Répartition par type = estimation à valider auprès des services d'urbanisme.", "byType": [{"type": "Résidentiel neuf", "mk": 27.4, "pct": 50, "est": true}, {"type": "Rénovation / agrandissement", "mk": 10.4, "pct": 19, "est": true}, {"type": "Commercial & institutionnel", "mk": 8.2, "pct": 15, "est": true}, {"type": "Industriel", "mk": 5.5, "pct": 10, "est": true}, {"type": "Agricole", "mk": 3.3, "pct": 6, "est": true}]}, "landUse": {"totalKm2": 2736, "totalHa": 273600, "estriePct": 27.5, "confirmed": [{"label": "Zone agricole (LPTAA)", "ha": 145078, "note": "Donnée réelle — PDZA MRC du Granit", "real": true}, {"label": "Couvert forestier", "ha": 249696, "note": "Donnée réelle — dont 16 % en érablière. Recoupe la zone agricole et la zone blanche.", "real": true}], "affectation": [{"label": "Forestière / sylvicole", "ha": 150000, "pct": 54.8, "color": "#1a4d2e"}, {"label": "Agricole active", "ha": 62000, "pct": 22.7, "color": "#4aaa72"}, {"label": "Hydrographie & milieux humides", "ha": 28000, "pct": 10.2, "color": "#1d7a8a"}, {"label": "Villégiature & récréotouristique", "ha": 18000, "pct": 6.6, "color": "#d97706"}, {"label": "Urbaine & péri-urbaine", "ha": 9600, "pct": 3.5, "color": "#7c3aed"}, {"label": "Industrielle & extractive", "ha": 6000, "pct": 2.2, "color": "#6b7280"}], "affectationSource": "Répartition schématique estimée pour fins de visualisation — à valider avec le schéma d'aménagement et de développement (SAD) de la MRC."}, "conversion": {"intro": "Le territoire compte d'importants noyaux de villégiature autour du lac Mégantic et des plans d'eau. La conversion de chalets en résidences principales (et l'inverse) modifie la demande en services, la pression sur le parc de logements abordables et le profil démographique. Données à documenter — estimations directionnelles fondées sur la tendance québécoise post-2020 et le pouvoir municipal de zonage (Loi 67).", "years": ["2020", "2021", "2022", "2023", "2024", "2025"], "chaletToResidence": [18, 34, 41, 38, 29, 24], "residenceToChalet": [6, 5, 7, 9, 11, 14], "source": "Estimations directionnelles à remplacer par les changements d'usage réels (rôle d'évaluation, permis). Tendance : conversion nette positive vers la résidence principale depuis 2020, en décélération.", "byMuni": [{"name": "Piopolis", "villegiature": "Élevée", "net": "+ résidence principale", "note": "Rive du lac Mégantic, agrotourisme"}, {"name": "Audet", "villegiature": "Élevée", "net": "+ résidence principale", "note": "Villégiature forestière"}, {"name": "Marston", "villegiature": "Moyenne", "net": "Stable", "note": "Abords du lac"}, {"name": "Notre-Dame-des-Bois", "villegiature": "Moyenne", "net": "+ résidence principale", "note": "Attrait Parc Mont-Mégantic"}, {"name": "Milan", "villegiature": "Moyenne", "net": "Stable", "note": "Villégiature forestière"}, {"name": "Lac-Mégantic", "villegiature": "Moyenne", "net": "+ résidence principale", "note": "Pression sur logement abordable"}], "lever": "Levier municipal : le zonage (Loi 67, 2023) permet de contingenter l'hébergement touristique et de protéger le parc de logements de longue durée."}}, "sante": {"intro": "Ce pilier ne mesure pas le système de soins : il lit la santé des populations à travers ses déterminants sociaux, alimentés par les données des piliers Développement économique et Aménagement. L'approche est celle de la « santé dans toutes les politiques » (SdTP) : à l'échelle d'une MRC, les décisions économiques et territoriales SONT des décisions de santé. La gouvernance territoriale en santé consiste à rendre ces liens explicites et à mobiliser les leviers intersectoriels existants.", "compositeNote": "Indice territorial composite = moyenne pondérée des 8 déterminants. Indicateurs proxy dérivés des données du tableau de bord — à valider avec le CIUSSS de l'Estrie-CHUS et l'INSPQ.", "determinants": [{"id": "d1", "name": "Revenu & statut socioéconomique", "icon": "💵", "score": 62, "source": "Développement économique", "level": "Vigilance", "indicator": "Revenu médian d'emploi 50 800 $ (ISQ 2024), soit -7 % vs moyenne québécoise.", "link": "Tiré directement des KPI économiques. Un revenu sous la moyenne fragilise l'accès au logement, à l'alimentation de qualité et aux services.", "real": true}, {"id": "d2", "name": "Emploi & conditions de travail", "icon": "🏭", "score": 74, "source": "Développement économique", "level": "Favorable", "indicator": "Taux d'emploi 77,6 %, 7 845 travailleurs (ISQ 2024). Secteur manufacturier = 37 % des emplois (SDEG) vs 19 % au QC.", "link": "La vitalité de la grappe bois-forêt et du pôle granit soutient l'emploi, mais la concentration manufacturière crée une vulnérabilité aux chocs sectoriels.", "real": true}, {"id": "d3", "name": "Logement & conditions matérielles", "icon": "🏠", "score": 54, "source": "Aménagement du territoire", "level": "À surveiller", "indicator": "Permis de bâtir 54,8 M$ (+10 %), mais conversion villégiature → résidence principale et pression sur le logement abordable.", "link": "Tiré du pilier Aménagement (permis + conversion chalet). La rareté de logements abordables affecte l'attraction de main-d'œuvre, dont les infirmières et le personnel de soins.", "real": false}, {"id": "d4", "name": "Éducation & compétences", "icon": "🎓", "score": 66, "source": "Développement économique", "level": "Favorable", "indicator": "CFP Le Granit (alternance travail-études), entente Cégep de Sherbrooke, érablière-école. Enjeu : accès à la formation supérieure en région.", "link": "La formation locale (CFP, alternance) nourrit l'emploi et la rétention des jeunes — un déterminant amont du revenu et de la santé.", "real": true}, {"id": "d5", "name": "Environnement physique & milieux de vie", "icon": "🌲", "score": 86, "source": "Aménagement du territoire", "level": "Atout fort", "indicator": "249 696 ha de couvert forestier, 1re Réserve internationale de ciel étoilé des Amériques, Cittaslow, qualité de l'air. 145 078 ha agricoles.", "link": "Tiré du pilier Aménagement (affectation du territoire). Accès à la nature, air pur et espaces verts = atout majeur pour la santé physique et mentale.", "real": true}, {"id": "d6", "name": "Cohésion sociale & capital communautaire", "icon": "🤝", "score": 81, "source": "Gouvernance territoriale", "level": "Atout fort", "indicator": "Densité coopérative (Desjardins, coop agricole, EDG communautaire), économie sociale (Coup de Pouce), réseau de sentinelles aînés, CDC du Granit, démarche MADA.", "link": "La gouvernance énergétique communautaire (EDG, 1,75 M$ redevances) et les instances de concertation renforcent le soutien social — protecteur reconnu de la santé.", "real": true}, {"id": "d7", "name": "Sécurité & systèmes alimentaires", "icon": "🌾", "score": 72, "source": "Économie + Aménagement", "level": "Favorable", "indicator": "145 078 ha de zone agricole, Fromagerie La Chaudière, Meunerie Milanaise (farine bio), marchés de proximité, PDZA et service L'ARTERRE.", "link": "Croisement Économie (agroalimentaire) × Aménagement (zone agricole). Systèmes alimentaires locaux robustes = sécurité alimentaire, sauf enjeux d'accès en milieu rural éloigné.", "real": true}, {"id": "d8", "name": "Accès & proximité des services", "icon": "📍", "score": 49, "source": "Aménagement + Gouvernance", "level": "Priorité", "indicator": "Services de première ligne concentrés à Lac-Mégantic (CLSC, GMF du Granit, clinique d'urgence du soir). Distances importantes et dépendance à l'automobile pour les municipalités rurales éloignées.", "link": "Croisement Aménagement (ruralité, distances) × Gouvernance. La dispersion territoriale et la pénurie de personnel soignant limitent la proximité des services — enjeu central de gouvernance.", "real": false}], "leviers": [{"name": "Démarche MADA & Politique de la famille et des aînés", "emoji": "👵", "scope": "MRC + municipalités", "desc": "Municipalité amie des aînés : adapte l'aménagement, le transport et les services au vieillissement. Levier direct sur les déterminants accès et cohésion sociale.", "determinants": ["d8", "d6"]}, {"name": "Redevances éoliennes EDG (1,75 M$/an)", "emoji": "💨", "scope": "16 municipalités", "desc": "Ressource communautaire réinvestie localement (projets, services de proximité). Lien direct entre développement énergétique et capacité d'agir sur les déterminants.", "determinants": ["d6", "d8", "d1"]}, {"name": "Plan climat MRC & adaptation", "emoji": "🌍", "scope": "MRC", "desc": "Réduction des GES et adaptation. La santé environnementale (chaleur, qualité de l'air, milieux humides) est un co-bénéfice direct de l'action climatique territoriale.", "determinants": ["d5"]}, {"name": "PDZA & L'ARTERRE (maillage agricole)", "emoji": "🌾", "scope": "MRC", "desc": "Plan de développement de la zone agricole + jumelage relève/propriétaires. Soutient les systèmes alimentaires locaux et l'occupation du territoire.", "determinants": ["d7", "d2"]}, {"name": "Économie sociale & maintien à domicile", "emoji": "🏠", "scope": "Territoire", "desc": "Coup de Pouce et l'aide à domicile soutiennent l'autonomie des aînés et l'accès aux services en milieu rural.", "determinants": ["d8", "d6"]}, {"name": "Zonage & logement (Loi 67)", "emoji": "📐", "scope": "Municipalités", "desc": "Encadrement de l'hébergement touristique pour protéger le parc de logements de longue durée — agit sur le déterminant logement et l'attraction de main-d'œuvre soignante.", "determinants": ["d3", "d8"]}, {"name": "Concertation : CDC du Granit & Place de l'industrie", "emoji": "🤝", "scope": "Territoire", "desc": "Tables intersectorielles réunissant municipal, communautaire et industriel — l'infrastructure de gouvernance qui rend la SdTP opérationnelle.", "determinants": ["d6", "d2"]}, {"name": "Développement économique (SDEG, Accès Entreprise Québec)", "emoji": "💼", "scope": "MRC", "desc": "La vitalité économique (emplois, revenus, rétention) est un déterminant amont : agir sur l'économie, c'est agir sur la santé des populations.", "determinants": ["d1", "d2", "d4"]}], "links": [{"from": "Grappe bois-forêt (~1 300 emplois)", "pillar": "Économie", "to": "Revenu & emploi", "det": "d2", "strength": "Fort", "desc": "Le principal moteur d'emplois stabilise les revenus des ménages — premier déterminant de la santé."}, {"from": "Redevances éoliennes EDG (1,75 M$)", "pillar": "Économie / Énergie", "to": "Capital communautaire & services", "det": "d6", "strength": "Fort", "desc": "Une ressource financière communautaire qui finance la capacité d'agir sur les autres déterminants."}, {"from": "Permis de bâtir & conversion chalet", "pillar": "Aménagement", "to": "Logement", "det": "d3", "strength": "Fort", "desc": "La dynamique du logement conditionne l'attraction de main-d'œuvre, dont le personnel de soins, et la stabilité résidentielle."}, {"from": "Zone agricole 145 078 ha & PDZA", "pillar": "Aménagement / Économie", "to": "Sécurité alimentaire", "det": "d7", "strength": "Moyen", "desc": "Le maintien de la zone agricole soutient les systèmes alimentaires locaux et l'accès à des aliments de qualité."}, {"from": "Couvert forestier & ciel étoilé", "pillar": "Aménagement", "to": "Environnement physique", "det": "d5", "strength": "Fort", "desc": "Les milieux naturels protégés sont un atout de santé physique et mentale rare et différenciateur."}, {"from": "CFP Le Granit & alternance", "pillar": "Économie / Éducation", "to": "Compétences & rétention", "det": "d4", "strength": "Moyen", "desc": "La formation locale retient les jeunes et alimente l'emploi qualifié, déterminant amont du revenu."}, {"from": "Ruralité & distances (19 municipalités)", "pillar": "Aménagement", "to": "Accès aux services", "det": "d8", "strength": "Fort", "desc": "La dispersion territoriale est le principal frein de proximité — cible prioritaire de la gouvernance intersectorielle."}, {"from": "Économie sociale & maintien à domicile", "pillar": "Économie / Gouvernance", "to": "Cohésion & autonomie", "det": "d6", "strength": "Moyen", "desc": "Les organismes d'économie sociale soutiennent l'autonomie des aînés et tissent le filet social."}]}};
+var D={}, unlocked=false, charts={}, activePillar='eco', allMLPairs=[], mlFilter='all';
 
-// ── INIT ──────────────────────────────────────────────────────
+// ─── ML: VALUE CHAIN ADJACENCY ───
+var VC={
+  s2:{s1:95,s4:85},s1:{s4:70,s9:75},s3:{s13:80,s9:65},
+  s5:{s6:75,s10:70},s6:{s10:72,s12:60},s7:{s2:70,s6:65},
+  s4:{s1:60,s13:55},s11:{s2:65,s1:65},s13:{s3:75},
+  s9:{s1:70,s3:65},s10:{s5:68},s12:{s11:50}
+};
+
+function computeAffinity(sA,sB){
+  if(!sA||!sB||sA.id===sB.id)return 0;
+  var vc=0;
+  if(VC[sA.id]&&VC[sA.id][sB.id])vc=VC[sA.id][sB.id];
+  if(VC[sB.id]&&VC[sB.id][sA.id])vc=Math.max(vc,VC[sB.id][sA.id]);
+  var labor=(sA.cat===sB.cat)?35:15;
+  return Math.min(99,Math.round(vc*0.58+labor*0.42));
+}
+function computeCompanyAffinity(cA,cB){
+  var sA=D.sectors.find(function(s){return s.name===cA.sector;});
+  var sB=D.sectors.find(function(s){return s.name===cB.sector;});
+  if(!sA||!sB||cA.id===cB.id||sA.id===sB.id)return 0;
+  var base=computeAffinity(sA,sB);
+  if(base<20)return 0;
+  return Math.min(98,base+(cA.muni===cB.muni?18:0));
+}
+function getMLRationale(sA,sB,geo){
+  var parts=[];
+  if((VC[sA.id]&&VC[sA.id][sB.id])||(VC[sB.id]&&VC[sB.id][sA.id]))
+    parts.push('Lien de chaîne de valeur (supply-chain)');
+  if(sA.cat===sB.cat)parts.push('Bassin de main-d\'oeuvre partagé ('+sA.cat+')');
+  if(geo)parts.push('Co-localisation géographique');
+  return parts.join(' · ')||'Complémentarité sectorielle';
+}
+function getMLSuggestions(){
+  var real=D.companies.filter(function(c){return c.status!=='a_completer'&&c.jobs>0;});
+  var pairs=[];
+  for(var i=0;i<real.length;i++){
+    for(var j=i+1;j<real.length;j++){
+      var sc=computeCompanyAffinity(real[i],real[j]);
+      if(sc>=52){
+        var sA=D.sectors.find(function(s){return s.name===real[i].sector;})||{id:'',cat:'',name:real[i].sector};
+        var sB=D.sectors.find(function(s){return s.name===real[j].sector;})||{id:'',cat:'',name:real[j].sector};
+        pairs.push({cA:real[i],cB:real[j],score:sc,
+          type:sc>=80?'fort':sc>=65?'moyen':'possible',
+          rationale:getMLRationale(sA,sB,real[i].muni===real[j].muni)});
+      }
+    }
+  }
+  pairs.sort(function(a,b){return b.score-a.score;});
+  return pairs.slice(0,24);
+}
+function getSectorMatrix(){
+  return D.sectors.map(function(sA){
+    return D.sectors.map(function(sB){return computeAffinity(sA,sB);});
+  });
+}
+
+// ─── INIT ───
 async function init(){
   var ok=false;
   try{
@@ -480,69 +751,111 @@ async function init(){
     if(!r.ok){var base=window.location.href.replace(/\/[^\/]*$/,'/');r=await fetch(base+'data.json?v='+Date.now());}
     if(r.ok){D=await r.json();ok=true;}
   }catch(e){}
-  if(!ok){try{var s=localStorage.getItem('mrcg6');if(s){D=JSON.parse(s);ok=true;}}catch(e){}}
+  if(!ok){try{var s=localStorage.getItem('mrcg7');if(s){D=JSON.parse(s);ok=true;}}catch(e){}}
+  if(!ok&&typeof DEFAULT_DATA!=='undefined'){D=DEFAULT_DATA;ok=true;}
   if(!ok||!D.sectors){
-    document.getElementById('ls').innerHTML='<div class="lo" style="color:#fff">⚠️ data.json introuvable</div><div class="su" style="max-width:300px;text-align:center;line-height:1.6">Placez data.json dans le même dossier que index.html.</div>';
+    document.getElementById('ls').innerHTML='<div class="lo" style="color:#fff">⚠️ data.json introuvable</div><div class="su" style="max-width:340px;text-align:center;line-height:1.7;color:rgba(255,255,255,.55)">Placez <code>data.json</code> dans le même dossier qu\'index.html, ou ouvrez le fichier standalone.</div>';
     return;
   }
   document.getElementById('ls').style.display='none';
   renderAll();
 }
-
-function saveLs(){try{localStorage.setItem('mrcg6',JSON.stringify(D));}catch(e){}}
+function saveLs(){try{localStorage.setItem('mrcg7',JSON.stringify(D));}catch(e){}}
 function exportJSON(){var b=new Blob([JSON.stringify(D,null,2)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='data.json';a.click();toast('💾 data.json exporté');}
-function importJSON(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=ev=>{try{D=JSON.parse(ev.target.result);saveLs();renderAll();toast('✅ Importé — '+D.meta.quarter);}catch(err){alert('❌ JSON invalide');}};r.readAsText(f);e.target.value='';}
+function importJSON(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(ev){try{D=JSON.parse(ev.target.result);saveLs();renderAll();toast('✅ Importé — '+D.meta.quarter);}catch(err){alert('JSON invalide');}};r.readAsText(f);e.target.value='';}
 
-// ── NAVIGATION ────────────────────────────────────────────────
-var VIEWS={overview:'Aperçu général',sectors:'Secteurs industriels',companies:'Entreprises du territoire',collab:'Zones de collaboration',muni:'Municipalités',trends:'Tendances'};
+// ─── PILLAR SWITCH ───
+function switchPillar(p,btn){
+  activePillar=p;
+  ['eco','am','sa'].forEach(function(id){
+    document.getElementById('pt-'+id).classList.remove('active-eco','active-am','active-sa');
+    document.getElementById('sbn'+cap(id)).style.display='none';
+  });
+  btn.classList.add('active-'+p);
+  document.getElementById('sbn'+cap(p)).style.display='';
+  var pBadge={eco:'<span>💼 Développement économique</span>',am:'<span>🗺️ Aménagement du territoire</span>',sa:'<span>🏥 Développement de la santé</span>'};
+  var pColor={eco:'var(--g700)',am:'var(--am600)',sa:'var(--sa700)'};
+  document.getElementById('sbBadge').innerHTML=pBadge[p];
+  document.documentElement.style.setProperty('--pillar-color',pColor[p]);
+  document.querySelectorAll('.ni').forEach(function(n){n.classList.remove('active');});
+  var firstViews={eco:'eco-overview',am:'am-overview',sa:'sa-portrait'};
+  var firstBtn=document.querySelector('#sbn'+cap(p)+' .ni');
+  V(firstViews[p],firstBtn);
+}
+function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+
+// ─── VIEW NAVIGATION ───
 function V(id,btn){
   document.querySelectorAll('.view').forEach(function(v){v.classList.remove('active');});
-  document.getElementById('view-'+id).classList.add('active');
+  var el=document.getElementById('view-'+id);
+  if(el)el.classList.add('active');
   document.querySelectorAll('.ni').forEach(function(n){n.classList.remove('active');});
   if(btn)btn.classList.add('active');
-  document.getElementById('pTitle').textContent=VIEWS[id]||'';
-  if(id==='trends')setTimeout(renderTrends,80);
-  if(id==='muni')renderMuniStats();
-  if(id==='collab')renderCollabStats();
-  if(id==='companies')initCoFilters();
   closeSectorPanel();
+  if(id==='eco-trends')setTimeout(renderTrends,80);
+  if(id==='eco-muni')renderMuniStats();
+  if(id==='eco-ml'){allMLPairs=getMLSuggestions();renderML();setTimeout(renderMLChart,80);}
+  if(id==='am-overview')setTimeout(renderAmOverviewCharts,80);
+  if(id==='am-permits'){renderPermitStats();setTimeout(renderPermitCharts,80);}
+  if(id==='am-land'){renderLandUse();setTimeout(renderMuniSurfChart,80);}
+  if(id==='am-conv'){renderConvView();setTimeout(renderConvCharts,80);}
+  if(id==='sa-portrait'){renderSdohPortrait();setTimeout(renderSdohRadar,80);}
+  if(id==='sa-governance')renderGovView();
+  if(id==='sa-links')renderLinksView();
+  if(id==='sa-vuln'){renderVulnStats();renderVulnGrid();setTimeout(renderVulnChart,80);}
 }
 
-// ── RENDER ALL ────────────────────────────────────────────────
+// ─── RENDER ALL ───
 function renderAll(){
-  document.getElementById('sbQ').textContent=D.meta.quarter;
-  document.getElementById('sbBy').textContent=D.meta.updatedBy;
-  document.getElementById('qBadge').textContent=D.meta.quarter;
-  renderStatsStrip();
-  renderKPIs();
+  if(D.meta){
+    document.getElementById('sbQ').textContent=D.meta.quarter||'—';
+    document.getElementById('sbBy').textContent=(D.meta.updatedBy||'').split('—')[0].trim();
+    document.getElementById('verLabel').textContent='v4.0 · '+(D.meta.quarter||'T2 2026');
+  }
+  allMLPairs=getMLSuggestions();
+  renderStatsStrip();renderKPIs();
   renderSectorCards('overviewSectors','all');
   renderSectorCards('sectorGrid','all');
-  renderMuniGrid('all');
-  renderCompanies();
+  renderMuniGrid('all');renderCompanies();
   renderCollabGrid('all');
+  renderAmOverviewKpis();renderAmConfirmedData();
+  renderPermitStats();renderLandStats();renderConvStats();
+  renderLandConfirmed();renderConvMuniList();renderConvLever();
+  renderSdohIntro();renderVulnStats();
   setTimeout(function(){renderBarChart();renderDonutChart();},100);
+  setTimeout(function(){renderAmOverviewCharts();},150);
 }
 
+// ─── PALETTE ───
+var C=['#1a4d2e','#2d7a4f','#285f40','#1d6b4f','#d97706','#b45309','#1d7a8a','#374151','#4b5563','#7c3aed','#be185d','#b45309','#0e7490'];
+var TC=['#1a4d2e','#d97706','#1d7a8a','#7c3aed','#b45309'];
+
+// ─── OVERVIEW ───
 function renderStatsStrip(){
   var tot=D.municipalities.reduce(function(a,b){return a+b.pop;},0);
   var realCo=D.companies.filter(function(c){return c.status!=='a_completer';});
+  var totalJ=realCo.reduce(function(a,b){return a+b.jobs;},0);
   document.getElementById('statsStrip').innerHTML=
-    '<div class="ss"><div class="ss-v">'+tot.toLocaleString('fr-CA')+'</div><div class="ss-l">Population (2026)</div></div>'+
-    '<div class="ss"><div class="ss-v">19</div><div class="ss-l">Municipalités</div></div>'+
-    '<div class="ss"><div class="ss-v">7 845</div><div class="ss-l">Travailleurs 25-64</div></div>'+
-    '<div class="ss"><div class="ss-v">77,6 %</div><div class="ss-l">Taux d\'emploi</div></div>'+
-    '<div class="ss"><div class="ss-v">'+realCo.length+'</div><div class="ss-l">Entreprises répertoriées</div></div>'+
-    '<div class="ss"><div class="ss-v">3 009</div><div class="ss-l">Emplois répertoriés</div></div>'+
-    '<div class="ss"><div class="ss-v">2e QC</div><div class="ss-l">Érablières Estrie</div></div>';
+    ss(tot.toLocaleString('fr-CA'),'Population (2026)')+
+    ss('19','Municipalités')+
+    ss('7 845','Travailleurs 25-64 ans')+
+    ss('77,6 %','Taux d\'emploi')+
+    ss(realCo.length,'Entreprises répertoriées')+
+    ss(totalJ.toLocaleString('fr-CA'),'Emplois répertoriés')+
+    ss('2e QC','Érablières Estrie (PPAQ)');
 }
+function ss(v,l){return '<div class="ss"><div class="ss-v">'+v+'</div><div class="ss-l">'+l+'</div></div>';}
 
 function renderKPIs(){
+  if(!D.kpis)return;
   document.getElementById('kpiGrid').innerHTML=D.kpis.map(function(k){
-    return '<div class="kpi"><div class="kpi-l">'+k.label+'</div><div class="kpi-v">'+k.value+'</div><div class="kpi-u">'+k.unit+'</div><div class="kpi-d '+(k.trend==='up'?'d-up':k.trend==='down'?'d-down':'d-flat')+'">'+k.delta+'</div></div>';
+    var dc=k.trend==='up'?'d-up':k.trend==='down'?'d-down':'d-flat';
+    return '<div class="kpi"><div class="kpi-l">'+k.label+'</div><div class="kpi-v">'+k.value+'</div>'+
+      '<div class="kpi-u">'+k.unit+'</div><div class="kpi-d '+dc+'">'+k.delta+'</div></div>';
   }).join('');
 }
 
-// ── SECTORS (clickable) ────────────────────────────────────────
+// ─── SECTOR CARDS ───
 function renderSectorCards(id,filter){
   var max=Math.max.apply(null,D.sectors.map(function(s){return s.jobs;}));
   var list=filter==='all'?D.sectors:D.sectors.filter(function(s){return s.cat===filter;});
@@ -550,56 +863,52 @@ function renderSectorCards(id,filter){
     var pct=Math.round(s.jobs/max*100);
     var coCount=D.companies.filter(function(c){return c.sector===s.name&&c.status!=='a_completer';}).length;
     return '<div class="sc" onclick="openSectorPanel(\''+s.id+'\')">'+
-      '<div class="sc-ic">'+s.icon+'</div>'+
-      '<div class="sc-nm">'+s.name+'</div>'+
-      '<div class="sc-j">'+s.jobs.toLocaleString('fr-CA')+'</div>'+
-      '<div class="sc-u">emplois estimés</div>'+
+      '<div class="sc-ic">'+s.icon+'</div><div class="sc-nm">'+s.name+'</div>'+
+      '<div class="sc-j">'+s.jobs.toLocaleString('fr-CA')+'</div><div class="sc-u">emplois estimés</div>'+
       '<div class="sc-tr '+(s.dir==='up'?'up':'down')+'">'+(s.dir==='up'?'↑':'↓')+' '+s.trend+'</div>'+
-      '<div class="sc-ds">'+s.desc.substring(0,90)+(s.desc.length>90?'…':'')+'</div>'+
+      '<div class="sc-ds">'+s.desc+'</div>'+
       '<div class="sc-bar"><div class="sc-bf" style="width:'+pct+'%"></div></div>'+
-      (coCount>0?'<div class="sc-hint">'+coCount+' entreprise'+(coCount>1?'s':'')+' →</div>':'')+
+      (coCount>0?'<div class="sc-hint">'+coCount+' entr. →</div>':'')+
       '</div>';
   }).join('');
 }
+function fSect(f,btn){
+  document.querySelectorAll('#sTabs .ft').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');renderSectorCards('sectorGrid',f);
+}
 
-function fSect(f,btn){document.querySelectorAll('#sTabs .ft').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');renderSectorCards('sectorGrid',f);}
-
-// ── SECTOR PANEL ──────────────────────────────────────────────
-function openSectorPanel(sectorId){
-  var sector=D.sectors.find(function(s){return s.id===sectorId;});
-  if(!sector)return;
-  var companies=D.companies.filter(function(c){return c.sector===sector.name&&c.status!=='a_completer';});
-  var totalJobs=companies.reduce(function(a,b){return a+b.jobs;},0);
-  document.getElementById('spIcon').textContent=sector.icon;
-  document.getElementById('spTitle').textContent=sector.name;
-  document.getElementById('spMeta').textContent=sector.jobs.toLocaleString('fr-CA')+' emplois estimés · '+companies.length+' entreprise'+(companies.length!==1?'s':'')+' répertoriée'+(companies.length!==1?'s':'');
-  var stMap={actif:'st-actif',reprise:'st-reprise',nouveau:'st-nouveau',expansion:'st-expansion',a_completer:'st-a_completer'};
-  var stLbl={actif:'✅ Actif',reprise:'🔄 Reprise',nouveau:'🆕 Nouveau',expansion:'📈 Expansion',a_completer:'📝 À compléter'};
+// ─── SECTOR PANEL ───
+function openSectorPanel(sid){
+  var sec=D.sectors.find(function(s){return s.id===sid;});if(!sec)return;
+  var cos=D.companies.filter(function(c){return c.sector===sec.name&&c.status!=='a_completer';});
+  var tj=cos.reduce(function(a,b){return a+b.jobs;},0);
+  document.getElementById('spIcon').textContent=sec.icon;
+  document.getElementById('spTitle').textContent=sec.name;
+  document.getElementById('spMeta').textContent=sec.jobs.toLocaleString('fr-CA')+' emplois estimés · '+cos.length+' entreprise'+(cos.length!==1?'s':'')+' répertoriée'+(cos.length!==1?'s':'');
+  var stM={actif:'st-actif',reprise:'st-reprise',nouveau:'st-nouveau',expansion:'st-expansion',a_completer:'st-a_completer'};
+  var stL={actif:'✅ Actif',reprise:'🔄 Reprise',nouveau:'🆕 Nouveau',expansion:'📈 Expansion',a_completer:'📝 À compléter'};
   var html='';
-  if(totalJobs>0)html+='<div class="sp-total"><span>'+companies.length+' entreprise'+(companies.length>1?'s':'')+' répertoriée'+(companies.length>1?'s':'')+' dans ce secteur</span><span>'+totalJobs.toLocaleString('fr-CA')+' emplois</span></div>';
-  if(companies.length===0){
-    html='<div class="sp-empty">Aucune entreprise répertoriée pour ce secteur.<br>Ajoutez-en via le panel admin ou dans data.json.</div>';
-  } else {
-    html+=companies.map(function(c){
-      return '<div class="co-item">'+
-        '<div class="co-item-head">'+
-          '<div class="co-item-name">'+c.name+'</div>'+
-          (c.status!=='a_completer'?'<span class="co-jobs-badge">'+c.jobs.toLocaleString('fr-CA')+'</span>':'')+
-        '</div>'+
-        '<div class="co-muni">📍 '+c.muni+'</div>'+
-        '<div class="co-desc">'+c.desc+'</div>'+
-        '<span class="co-status-tag '+(stMap[c.status]||'st-actif')+'">'+stLbl[c.status]+'</span>'+
-        '</div>';
+  if(!cos.length){html='<div style="text-align:center;color:var(--muted);padding:40px;font-size:13px">Aucune entreprise répertoriée.</div>';}
+  else{
+    html='<div class="sp-total"><span>'+cos.length+' entreprise'+(cos.length>1?'s':'')+' répertoriée'+(cos.length>1?'s':'')+' dans ce secteur</span><span>'+tj.toLocaleString('fr-CA')+' emplois</span></div>';
+    html+=cos.map(function(c){
+      return '<div class="co-item"><div class="co-item-head"><div class="co-item-name">'+c.name+'</div>'+
+        '<span class="co-jobs-badge">'+c.jobs.toLocaleString('fr-CA')+' emp.</span></div>'+
+        '<div class="co-muni">📍 '+c.muni+'</div><div class="co-desc-p">'+c.desc+'</div>'+
+        '<span class="co-status-tag '+(stM[c.status]||'st-actif')+'">'+stL[c.status]+'</span></div>';
     }).join('');
   }
   document.getElementById('spBody').innerHTML=html;
   document.getElementById('sectorPanel').classList.add('open');
   document.getElementById('panelBd').classList.add('open');
 }
-function closeSectorPanel(){document.getElementById('sectorPanel').classList.remove('open');document.getElementById('panelBd').classList.remove('open');}
+function closeSectorPanel(){
+  document.getElementById('sectorPanel').classList.remove('open');
+  document.getElementById('panelBd').classList.remove('open');
+}
 
-// ── COMPANIES ─────────────────────────────────────────────────
-function initCoFilters(){
+// ─── COMPANIES ───
+function renderCompanies(){
   var munis=[...new Set(D.companies.map(function(c){return c.muni;}))].sort();
   var sects=[...new Set(D.companies.map(function(c){return c.sector;}))].sort();
   var ms=document.getElementById('coMuni'),ss=document.getElementById('coSect');
@@ -607,264 +916,543 @@ function initCoFilters(){
   if(ss.options.length<=1)sects.forEach(function(s){var o=document.createElement('option');o.value=s;o.textContent=s;ss.appendChild(o);});
   filterCo();
 }
-
 function filterCo(){
-  var q=document.getElementById('coSearch').value.toLowerCase();
+  var q=(document.getElementById('coSearch').value||'').toLowerCase();
   var mu=document.getElementById('coMuni').value;
   var se=document.getElementById('coSect').value;
   var st=document.getElementById('coStatus').value;
   var list=D.companies.filter(function(c){
-    return(!q||c.name.toLowerCase().includes(q)||c.desc.toLowerCase().includes(q)||c.muni.toLowerCase().includes(q))&&
-           (!mu||c.muni===mu)&&(!se||c.sector===se)&&(!st||c.status===st);
+    return(!q||c.name.toLowerCase().includes(q)||c.desc.toLowerCase().includes(q)||c.muni.toLowerCase().includes(q))
+      &&(!mu||c.muni===mu)&&(!se||c.sector===se)&&(!st||c.status===st);
   });
-  var totalJobs=list.filter(function(c){return c.status!=='a_completer';}).reduce(function(a,b){return a+b.jobs;},0);
+  var tj=list.filter(function(c){return c.status!=='a_completer';}).reduce(function(a,b){return a+b.jobs;},0);
   document.getElementById('coTotal').innerHTML=
-    '<span>📊 <strong>'+list.length+'</strong> entreprise'+(list.length>1?'s':'')+' affichée'+(list.length>1?'s':'')+'</span>'+
-    '<span>·</span><span>Total emplois : <strong>'+totalJobs.toLocaleString('fr-CA')+'</strong></span>'+
-    '<span style="margin-left:auto;font-size:11px;color:var(--g600)">Liste partielle — à compléter</span>';
-  var stMap={actif:'st-actif',reprise:'st-reprise',nouveau:'st-nouveau',expansion:'st-expansion',a_completer:'st-a_completer'};
-  var stLbl={actif:'✅ Actif',reprise:'🔄 Reprise',nouveau:'🆕 Nouveau',expansion:'📈 Expansion',a_completer:'📝 À compléter'};
+    '<span>📊 <strong>'+list.length+'</strong> entreprise'+(list.length!==1?'s':'')+' affichée'+(list.length!==1?'s':'')+'</span>'+
+    '<span>·</span><span>Total emplois : <strong>'+tj.toLocaleString('fr-CA')+'</strong></span>'+
+    '<span style="margin-left:auto;font-size:11px;color:var(--g600)">Répertoire partiel — à enrichir</span>';
+  var stM={actif:'st-actif',reprise:'st-reprise',nouveau:'st-nouveau',expansion:'st-expansion',a_completer:'st-a_completer'};
+  var stL={actif:'✅ Actif',reprise:'🔄 Reprise',nouveau:'🆕 Nouveau',expansion:'📈 Expansion',a_completer:'📝 À compléter'};
   document.getElementById('coBody').innerHTML=list.map(function(c){
-    return '<tr><td><div style="font-weight:600;font-size:13px">'+c.name+'</div><div class="co-desc-tag">'+c.desc+'</div></td>'+
-      '<td><div class="co-muni-tag">📍 '+c.muni+'</div></td>'+
-      '<td><div style="font-size:12px">'+c.sector+'</div></td>'+
-      '<td style="text-align:right"><div class="co-jobs">'+(c.status==='a_completer'?'—':c.jobs.toLocaleString('fr-CA'))+'</div></td>'+
-      '<td><span class="co-status-tag '+(stMap[c.status]||'st-actif')+'">'+(stLbl[c.status]||c.status)+'</span></td></tr>';
+    return '<tr><td><div style="font-weight:600">'+c.name+'</div><div style="font-size:11px;color:var(--muted);margin-top:2px;line-height:1.3">'+c.desc+'</div></td>'+
+      '<td><div style="font-size:11px">📍 '+c.muni+'</div></td>'+
+      '<td><div style="font-size:11px">'+c.sector+'</div></td>'+
+      '<td style="text-align:right"><div class="co-jobs-cell">'+(c.status==='a_completer'?'—':c.jobs.toLocaleString('fr-CA'))+'</div></td>'+
+      '<td><span class="co-status-tag '+(stM[c.status]||'st-actif')+'">'+(stL[c.status]||c.status)+'</span></td></tr>';
   }).join('')||'<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:24px">Aucun résultat</td></tr>';
 }
 
-function renderCompanies(){initCoFilters();}
+// ─── ML RENDERING ───
+function renderML(){
+  renderHeatmap();renderMLSuggestions();renderCollabGrid('all');
+  document.getElementById('mlCount').textContent=allMLPairs.length+' paires au-dessus du seuil (score ≥ 52)';
+}
+function fML(f,btn){mlFilter=f;document.querySelectorAll('#mlStrTabs .ft').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');renderMLSuggestions();}
 
-// ── COLLABORATIONS ────────────────────────────────────────────
-function renderCollabStats(){
-  var conf=D.collaborations.filter(function(c){return c.type==='confirmee';}).length;
-  var poss=D.collaborations.filter(function(c){return c.type==='possible';}).length;
-  var inno=D.collaborations.filter(function(c){return c.type==='innovante';}).length;
-  document.getElementById('collabStats').innerHTML=
-    '<div class="ss"><div class="ss-v">'+D.collaborations.filter(function(c){return c.type!=='methodologie';}).length+'</div><div class="ss-l">Zones totales</div></div>'+
-    '<div class="ss"><div class="ss-v" style="color:var(--g700)">'+conf+'</div><div class="ss-l">✅ Confirmées</div></div>'+
-    '<div class="ss"><div class="ss-v" style="color:var(--amber)">'+poss+'</div><div class="ss-l">💡 Possibles</div></div>'+
-    '<div class="ss"><div class="ss-v" style="color:var(--purple)">'+inno+'</div><div class="ss-l">🚀 Innovantes</div></div>';
+function renderHeatmap(){
+  var s=D.sectors, mat=getSectorMatrix();
+  function hC(v){if(v===0)return'#f9fafb';if(v>=80)return'#1a4d2e';if(v>=60)return'#2d7a4f';if(v>=45)return'#4aaa72';if(v>=30)return'#a7f3d0';return'#d1fae5';}
+  var html='<table class="heatmap-table"><thead><tr><th style="background:var(--white);border:none"></th>';
+  s.forEach(function(sec){html+='<th title="'+sec.name+'">'+sec.icon+'</th>';});
+  html+='</tr></thead><tbody>';
+  s.forEach(function(sA,i){
+    html+='<tr><th style="text-align:right;white-space:nowrap;font-size:9px;background:var(--bg);border:1px solid var(--border);padding:3px 6px">'+sA.icon+' '+sA.name.substring(0,14)+'</th>';
+    s.forEach(function(sB,j){
+      var v=mat[i][j];var tc=v>=60?'#fff':v>=30?'#1a3d28':'#9ca3af';
+      html+='<td class="hm-cell" style="background:'+hC(v)+';color:'+tc+'" title="'+sA.name+' ↔ '+sB.name+' : '+v+'">'+(v>0?v:'')+'</td>';
+    });
+    html+='</tr>';
+  });
+  html+='</tbody></table>';
+  document.getElementById('heatmapWrap').innerHTML=html;
+}
+
+function renderMLSuggestions(){
+  var filtered=mlFilter==='all'?allMLPairs:allMLPairs.filter(function(p){return p.type===mlFilter;});
+  var sCol={fort:'var(--g700)',moyen:'var(--am600)',possible:'var(--muted)'};
+  document.getElementById('mlSuggestions').innerHTML=filtered.map(function(p){
+    var col=sCol[p.type];var pct=p.score;var c=Math.round(113*pct/100);
+    return '<div class="ml-pair"><div class="ml-score-ring">'+
+      '<svg viewBox="0 0 44 44" style="width:44px;height:44px;transform:rotate(-90deg)">'+
+        '<circle cx="22" cy="22" r="18" fill="none" stroke="var(--border)" stroke-width="4"/>'+
+        '<circle cx="22" cy="22" r="18" fill="none" stroke="'+col+'" stroke-width="4" stroke-dasharray="'+c+' 113"/>'+
+      '</svg><div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:11px;font-weight:700;color:'+col+'">'+p.score+'</div></div>'+
+      '<div class="ml-pair-info"><div class="ml-pair-names">'+p.cA.name+' <span style="color:var(--muted)">↔</span> '+p.cB.name+'</div>'+
+        '<div class="ml-pair-sectors">'+p.cA.sector+' · '+p.cB.sector+'</div>'+
+        '<div class="ml-pair-rationale">'+p.rationale+'</div></div>'+
+      '<span class="ml-strength ml-str-'+p.type+'">'+p.type.charAt(0).toUpperCase()+p.type.slice(1)+'</span></div>';
+  }).join('')||'<div style="text-align:center;color:var(--muted);padding:30px">Aucune paire pour ce filtre.</div>';
 }
 
 function renderCollabGrid(filter){
-  var meth=D.collaborations.find(function(c){return c.type==='methodologie';});
-  if(meth&&(filter==='all')){
-    document.getElementById('methodoBlock').innerHTML=
-      '<div class="methodo-card"><h3>🔬 '+meth.name+'</h3><p>'+meth.desc+'</p>'+
-      '<div class="methodo-steps">'+
-        '<div class="methodo-step"><strong>① Flux intersectoriels (I-O)</strong><span>Intrants produits localement mais achetés hors territoire — maillons manquants identifiés</span></div>'+
-        '<div class="methodo-step"><strong>② Clustering géographique</strong><span>Co-localisation dans les 5 parcs industriels, distances et densité de liens documentés</span></div>'+
-        '<div class="methodo-step"><strong>③ Profils de compétences</strong><span>Main-d\'œuvre partageable entre secteurs selon les types de postes recensés</span></div>'+
-        '<div class="methodo-step"><strong>④ Chaîne d\'approvisionnement</strong><span>Flux de matières premières qui quittent le territoire sans transformation locale</span></div>'+
-      '</div></div>';
-  } else { document.getElementById('methodoBlock').innerHTML=''; }
-  var visible=D.collaborations.filter(function(c){return c.type!=='methodologie';});
-  var list=filter==='all'?visible:visible.filter(function(c){return c.type===filter;});
-  var tMap={confirmee:'✅ Confirmée',possible:'💡 Possible',innovante:'🚀 Innovante'};
-  function scoreColor(s){return s>=85?'#1a4d2e':s>=70?'#d97706':'#7c3aed';}
+  var list=(D.collaborations||[]).filter(function(c){return c.type!=='methodologie'&&(filter==='all'||c.type===filter);});
+  var tM={confirmee:'✅ Confirmée',possible:'💡 Possible',innovante:'🚀 Innovante'};
+  function sc(s){return s>=85?'#1a4d2e':s>=70?'#d97706':'#7c3aed';}
   document.getElementById('collabGrid').innerHTML=list.map(function(c){
-    var sc=c.inference_score||null;
-    var scoreHtml=sc?'<div class="inf-score"><span style="font-size:10px;color:var(--muted);font-weight:600">Indice de collaboration</span><div class="inf-bar"><div class="inf-fill" style="width:'+sc+'%;background:'+scoreColor(sc)+'"></div></div><span class="inf-pct" style="color:'+scoreColor(sc)+'">'+sc+'%</span></div>':'';
-    return '<div class="cl-card '+c.type+'">'+
-      '<div class="cl-head"><div class="cl-emoji">'+c.emoji+'</div><div>'+
-        '<span class="cl-type t-'+c.type+'">'+tMap[c.type]+'</span>'+
-        '<div class="cl-nm">'+c.name+'</div>'+
-      '</div></div>'+
+    var si=c.inference_score;
+    return '<div class="cl-card '+c.type+'"><div class="cl-head"><div class="cl-emoji">'+c.emoji+'</div><div>'+
+      '<span class="cl-type-badge t-'+c.type+'">'+tM[c.type]+'</span>'+
+      '<div class="cl-nm">'+c.name+'</div></div></div>'+
       '<div class="cl-desc">'+c.desc+'</div>'+
-      (c.companies.length?'<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px">Entreprises impliquées</div><div class="cl-companies">'+c.companies.map(function(co){return '<span class="cl-co">'+co+'</span>';}).join('')+'</div>':'')+
-      (c.municipalities.length?'<div class="cl-munis">📍 '+c.municipalities.slice(0,5).join(' · ')+(c.municipalities.length>5?' + '+(c.municipalities.length-5)+' autres':'')+'</div>':'')+
+      (c.companies&&c.companies.length?'<div class="cl-companies">'+c.companies.slice(0,5).map(function(co){return'<span class="cl-co">'+co+'</span>';}).join('')+(c.companies.length>5?'<span class="cl-co">+'+( c.companies.length-5)+' autres</span>':'')+'</div>':'')+
       '<div class="cl-impact"><strong>Impact / potentiel</strong>'+c.impact+'</div>'+
-      scoreHtml+
-      '<div class="cl-status">Statut : <span>'+c.status+'</span></div>'+
-    '</div>';
+      (si?'<div class="inf-score"><span style="font-size:10px;color:var(--muted);font-weight:600">Score d\'inférence</span><div class="inf-bar"><div class="inf-fill" style="width:'+si+'%;background:'+sc(si)+'"></div></div><span style="font-size:11px;font-weight:700;color:'+sc(si)+'">'+si+'%</span></div>':'')+
+      '<div style="font-size:11px;color:var(--muted);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)">'+c.status+'</div></div>';
   }).join('');
 }
-
 function fCollab(f,btn){document.querySelectorAll('#clTabs .ft').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');renderCollabGrid(f);}
 
-// ── MUNICIPALITIES ────────────────────────────────────────────
+// ─── CHARTS: ÉCONOMIE ───
+function kc(k){if(charts[k]){try{charts[k].destroy();}catch(e){}delete charts[k];}}
+
+function renderBarChart(){
+  kc('bar');var ctx=document.getElementById('barChart');if(!ctx)return;
+  charts.bar=new Chart(ctx,{type:'bar',
+    data:{labels:D.sectors.map(function(s){return s.name;}),datasets:[{data:D.sectors.map(function(s){return s.jobs;}),backgroundColor:C,borderRadius:5}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+c.raw.toLocaleString('fr-CA')+' emplois';}}}},
+      scales:{x:{grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:function(v){return v.toLocaleString('fr-CA');},font:{size:10}}},
+              y:{grid:{display:false},ticks:{font:{size:9}}}}}});
+}
+function renderDonutChart(){
+  kc('donut');var ctx=document.getElementById('donutChart');if(!ctx)return;
+  var total=D.sectors.reduce(function(a,b){return a+b.jobs;},0);
+  charts.donut=new Chart(ctx,{type:'doughnut',
+    data:{labels:D.sectors.map(function(s){return s.name;}),datasets:[{data:D.sectors.map(function(s){return s.jobs;}),backgroundColor:C,borderWidth:2,borderColor:'#fff'}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'62%',
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+Math.round(c.raw/total*100)+'% — '+c.raw.toLocaleString('fr-CA')+' emp.';}}}}}});
+  document.getElementById('donutLegend').innerHTML=
+    D.sectors.slice(0,6).map(function(s,i){var pct=Math.round(s.jobs/total*100);return'<div class="dl-i"><div style="display:flex;align-items:center"><div class="dl-d" style="background:'+C[i]+'"></div>'+s.name+'</div><div class="dl-p">'+pct+'%</div></div>';}).join('')+
+    '<div class="dl-i" style="color:var(--muted);font-size:11px"><div>+'+(D.sectors.length-6)+' autres</div><div>—</div></div>';
+}
+
+function renderMLChart(){
+  kc('mlScore');var ctx=document.getElementById('mlScoreChart');if(!ctx)return;
+  var bins=[0,0,0,0,0];
+  allMLPairs.forEach(function(p){bins[p.score<=60?0:p.score<=70?1:p.score<=80?2:p.score<=90?3:4]++;});
+  charts.mlScore=new Chart(ctx,{type:'bar',
+    data:{labels:['52–60','61–70','71–80','81–90','91+'],datasets:[{data:bins,backgroundColor:['#d1fae5','#a7f3d0','#4aaa72','#2d7a4f','#1a4d2e'],borderRadius:6}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+c.raw+' paires';}}}},
+      scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{stepSize:1,font:{size:11}}}}}});
+}
+
+function renderTrends(){
+  kc('line');kc('newbiz');kc('multi');
+  var t=D.trends;
+  var lc=document.getElementById('lineChart');
+  if(lc)charts.line=new Chart(lc,{type:'line',data:{labels:t.years,datasets:[{data:t.totalJobs,borderColor:'#1a4d2e',backgroundColor:'rgba(26,77,46,.08)',fill:true,tension:.4,pointRadius:4,pointBackgroundColor:'#1a4d2e'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:function(v){return v.toLocaleString('fr-CA');},font:{size:11}}}}}});
+  var nc=document.getElementById('newBizChart');
+  if(nc)charts.newbiz=new Chart(nc,{type:'bar',data:{labels:t.years,datasets:[{data:t.newBiz,backgroundColor:t.newBiz.map(function(_,i,a){return i===a.length-1?'#1a4d2e':'#4aaa72';}),borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:11}}}}}});
+  var mc=document.getElementById('multiChart');
+  if(mc&&t.bySector){var entries=Object.entries(t.bySector);
+    charts.multi=new Chart(mc,{type:'line',data:{labels:t.years,datasets:entries.map(function(e,i){return{label:e[0],data:e[1],borderColor:TC[i],backgroundColor:'transparent',tension:.4,pointRadius:3,borderDash:i>2?[5,3]:[],pointBackgroundColor:TC[i]};})},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{font:{size:11},boxWidth:10,padding:10}}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:11}}}}}});}
+}
+
+// ─── MUNICIPALITIES ───
 function renderMuniStats(){
   var tot=D.municipalities.reduce(function(a,b){return a+b.pop;},0);
   document.getElementById('muniStats').innerHTML=
-    '<div class="ss"><div class="ss-v">'+tot.toLocaleString('fr-CA')+'</div><div class="ss-l">Pop. totale (2026)</div></div>'+
-    '<div class="ss"><div class="ss-v">'+D.municipalities.filter(function(m){return m.cat==='urbain';}).length+'</div><div class="ss-l">Urbain</div></div>'+
-    '<div class="ss"><div class="ss-v">'+D.municipalities.filter(function(m){return m.cat==='rural';}).length+'</div><div class="ss-l">Rural</div></div>'+
-    '<div class="ss"><div class="ss-v">'+D.municipalities.filter(function(m){return m.cat==='rural_eloigne';}).length+'</div><div class="ss-l">Rural éloigné</div></div>'+
-    '<div class="ss"><div class="ss-v">'+Math.round(D.municipalities.reduce(function(a,b){return a+b.surface;},0)).toLocaleString('fr-CA')+'</div><div class="ss-l">km² total</div></div>';
+    ss(tot.toLocaleString('fr-CA'),'Pop. totale')+
+    ss(D.municipalities.filter(function(m){return m.cat==='urbain';}).length,'Urbain')+
+    ss(D.municipalities.filter(function(m){return m.cat==='rural';}).length,'Rural')+
+    ss(D.municipalities.filter(function(m){return m.cat==='rural_eloigne';}).length,'Rural éloigné')+
+    ss('2 736 km²','Superficie totale');
 }
-
 function renderMuniGrid(filter){
   var list=filter==='all'?D.municipalities:D.municipalities.filter(function(m){return m.cat===filter;});
   var bm={urbain:'b-u',rural:'b-r',rural_eloigne:'b-re'};
   var lm={urbain:'Urbain',rural:'Rural',rural_eloigne:'Rural éloigné'};
   document.getElementById('muniGrid').innerHTML=list.map(function(m){
     var coCount=D.companies.filter(function(c){return c.muni===m.name&&c.status!=='a_completer';}).length;
-    return '<div class="mu '+m.cat+'">'+
-      '<span class="mbadge '+(bm[m.cat]||'b-r')+'">'+lm[m.cat]+'</span>'+
-      '<div class="mu-ty">'+m.type+' · Code '+m.code+'</div>'+
+    return '<div class="mu '+m.cat+'"><span class="mbadge '+bm[m.cat]+'">'+lm[m.cat]+'</span>'+
+      '<div class="mu-ty">'+m.type+' · '+m.code+'</div>'+
       '<div class="mu-nm">'+m.name+'</div>'+
       '<div class="mu-po">'+m.pop.toLocaleString('fr-CA')+' hab.</div>'+
-      '<div class="mu-st">'+
-        '<div class="mu-stat"><div class="mu-sv">'+m.surface+' km²</div><div class="mu-sl">Superficie</div></div>'+
-        '<div class="mu-stat"><div class="mu-sv">'+m.density+'</div><div class="mu-sl">hab./km²</div></div>'+
-        '<div class="mu-stat"><div class="mu-sv" style="color:var(--g700)">'+coCount+'</div><div class="mu-sl">entreprises</div></div>'+
-      '</div>'+
+      '<div class="mu-st"><div><div class="mu-sv">'+m.surface+' km²</div><div class="mu-sl">Superficie</div></div>'+
+        '<div><div class="mu-sv">'+m.density+'</div><div class="mu-sl">hab./km²</div></div>'+
+        '<div><div class="mu-sv" style="color:var(--g700)">'+coCount+'</div><div class="mu-sl">entreprises</div></div></div>'+
       '<div class="mu-ro">📍 '+m.role+'</div>'+
-      '<div class="mu-no">'+m.note+'</div>'+
-    '</div>';
+      '<div class="mu-no">'+m.note+'</div></div>';
+  }).join('');
+}
+function fMuni(f,btn){document.querySelectorAll('#mTabs .ft').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');renderMuniGrid(f);}
+
+// ═══════════════ AMÉNAGEMENT ═══════════════
+function renderAmOverviewKpis(){
+  if(!D.amenagement)return;
+  document.getElementById('amOverviewKpis').innerHTML=[
+    {l:'Superficie totale',v:'2 736 km²',u:'27,5 % de l\'Estrie — réel',d:'2e MRC en superficie',t:'flat'},
+    {l:'Zone agricole (LPTAA)',v:'145 078 ha',u:'Données réelles — PDZA MRC',d:'Protégée par la LPTAA',t:'flat'},
+    {l:'Couvert forestier',v:'249 696 ha',u:'dont 16 % érablières — PDZA MRC',d:'2e en érablières QC',t:'up'},
+    {l:'Permis de bâtir 2024',v:'54,8 M$',u:'Valeur totale — ISQ 2024',d:'↑ +10 % vs 2023',t:'up'}
+  ].map(function(k){
+    return '<div class="kpi" style="position:relative;overflow:hidden"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--am500)"></div>'+
+      '<div class="kpi-l">'+k.l+'</div><div class="kpi-v" style="font-size:20px;color:var(--am700)">'+k.v+'</div>'+
+      '<div class="kpi-u">'+k.u+'</div><div class="kpi-d '+(k.t==='up'?'d-up':'d-flat')+'">'+k.d+'</div></div>';
   }).join('');
 }
 
-function fMuni(f,btn){document.querySelectorAll('#mTabs .ft').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');renderMuniGrid(f);}
+function renderAmConfirmedData(){
+  if(!D.amenagement)return;
+  var html='';
+  (D.amenagement.landUse.confirmed||[]).forEach(function(c){
+    html+='<div class="land-row"><div class="land-label">'+c.label+' <span class="real-badge">Réel</span></div>'+
+      '<div class="land-ha">'+c.ha.toLocaleString('fr-CA')+' ha</div></div>';
+  });
+  html+='<div style="margin-top:10px;font-size:11px;color:var(--muted);line-height:1.5">'+D.amenagement.landUse.confirmed[1].note+'</div>';
+  document.getElementById('amConfirmedData').innerHTML=html;
+}
 
-// ── CHARTS ────────────────────────────────────────────────────
-var C=['#1a4d2e','#2d7a4f','#285f40','#1d6b4f','#d97706','#b45309','#1d7a8a','#374151','#4b5563','#7c3aed','#be185d','#b45309','#0e7490'];
-var TC=['#1a4d2e','#d97706','#1d7a8a','#7c3aed','#b45309'];
+function renderAmOverviewCharts(){
+  var am=D.amenagement;if(!am)return;
+  kc('amPermitLine');kc('amLandDonut');kc('amConvChart');
+  var ctx=document.getElementById('amPermitLine');
+  if(ctx)charts.amPermitLine=new Chart(ctx,{type:'line',
+    data:{labels:am.permits.years,datasets:[{data:am.permits.totalMk,borderColor:'#d97706',backgroundColor:'rgba(217,119,6,.1)',fill:true,tension:.4,pointRadius:4,pointBackgroundColor:'#d97706'}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+c.raw.toFixed(1)+' M$';}}}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{ticks:{callback:function(v){return v+' M$';},font:{size:11}}}}}});
+  var ctx2=document.getElementById('amLandDonut');
+  if(ctx2&&am.landUse)charts.amLandDonut=new Chart(ctx2,{type:'doughnut',
+    data:{labels:am.landUse.affectation.map(function(a){return a.label;}),datasets:[{data:am.landUse.affectation.map(function(a){return a.ha;}),backgroundColor:am.landUse.affectation.map(function(a){return a.color;}),borderWidth:2,borderColor:'#fff'}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'50%',plugins:{legend:{display:true,position:'right',labels:{font:{size:10},boxWidth:10,padding:7}}}}});
+  var cv=am.conversion;var ctx3=document.getElementById('amConvChart');
+  if(ctx3&&cv)charts.amConvChart=new Chart(ctx3,{type:'line',
+    data:{labels:cv.years,datasets:[
+      {label:'Chalet → Résidence',data:cv.chaletToResidence,borderColor:'#d97706',backgroundColor:'rgba(217,119,6,.08)',fill:true,tension:.4,pointRadius:3},
+      {label:'Résidence → Chalet',data:cv.residenceToChalet,borderColor:'#6b7280',backgroundColor:'rgba(107,114,128,.06)',fill:true,tension:.4,pointRadius:3}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{font:{size:10},boxWidth:10}}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{stepSize:5,font:{size:11}}}}}});
+}
 
-function kc(k){if(charts[k]){try{charts[k].destroy();}catch(e){}delete charts[k];}}
+function renderPermitStats(){
+  if(!D.amenagement||!D.amenagement.permits)return;
+  var mk=D.amenagement.permits.totalMk;
+  document.getElementById('permitStats').innerHTML=
+    ss('54,8 M$','Valeur 2024 (réel ISQ)')+
+    ss('+'+Math.round((mk[mk.length-1]/mk[mk.length-2]-1)*100)+' %','vs 2023')+
+    ss('+'+Math.round((mk[mk.length-1]/mk[1]-1)*100)+' %','vs 2020 (post-COVID)')+
+    ss('5 types','Catégories de permis (estimé)');
+}
+function renderPermitCharts(){
+  if(!D.amenagement)return;
+  var am=D.amenagement;kc('permitTotal');kc('permitType');
+  var ctx=document.getElementById('permitTotalChart');
+  if(ctx)charts.permitTotal=new Chart(ctx,{type:'bar',
+    data:{labels:am.permits.years,datasets:[{data:am.permits.totalMk,backgroundColor:am.permits.totalMk.map(function(_,i,a){return i===a.length-1?'#b45309':'#fcd34d';}),borderRadius:5}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+c.raw.toFixed(1)+' M$';}}}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{ticks:{callback:function(v){return v+' M$';},font:{size:11}}}}}});
+  var ctx2=document.getElementById('permitTypeDonut');
+  if(ctx2&&am.permits.byType){
+    var cols=['#b45309','#d97706','#fbbf24','#6b7280','#4aaa72'];
+    charts.permitType=new Chart(ctx2,{type:'doughnut',
+      data:{labels:am.permits.byType.map(function(t){return t.type;}),datasets:[{data:am.permits.byType.map(function(t){return t.mk;}),backgroundColor:cols,borderWidth:2,borderColor:'#fff'}]},
+      options:{responsive:true,maintainAspectRatio:false,cutout:'58%',plugins:{legend:{display:false}}}});
+    document.getElementById('permitTypeLegend').innerHTML=am.permits.byType.map(function(t,i){
+      return '<div class="dl-i"><div style="display:flex;align-items:center"><div class="dl-d" style="background:'+cols[i]+'"></div>'+t.type+(t.est?'<span class="est-badge">Est.</span>':'')+'</div><div class="dl-p">'+t.mk.toFixed(1)+' M$</div></div>';
+    }).join('');
+  }
+}
 
-function renderBarChart(){
-  kc('bar');
-  var ctx=document.getElementById('barChart');
-  if(!ctx||!D.sectors)return;
-  charts.bar=new Chart(ctx,{
-    type:'bar',
-    data:{labels:D.sectors.map(function(s){return s.name;}),datasets:[{data:D.sectors.map(function(s){return s.jobs;}),backgroundColor:C,borderRadius:5,borderSkipped:false}]},
+function renderLandStats(){
+  if(!D.amenagement)return;
+  document.getElementById('landStats').innerHTML=
+    ss('2 736 km²','Superficie totale')+ss('27,5 %','De l\'Estrie')+
+    ss('145 078 ha','Zone agricole (réel PDZA)')+
+    ss('249 696 ha','Couvert forestier (réel PDZA)')+ss('16 %','Érablières / couvert');
+}
+function renderLandUse(){
+  if(!D.amenagement)return;
+  var l=D.amenagement.landUse;
+  document.getElementById('landUseList').innerHTML=
+    l.affectation.map(function(a){
+      return '<div class="land-row">'+
+        '<div class="land-dot" style="background:'+a.color+'"></div>'+
+        '<div class="land-label">'+a.label+'</div>'+
+        '<div class="land-ha">'+a.ha.toLocaleString('fr-CA')+' ha</div>'+
+        '<div class="land-pct">'+a.pct+'%</div>'+
+        '<div class="land-bar"><div class="land-fill" style="width:'+a.pct+'%;background:'+a.color+'"></div></div></div>';
+    }).join('')+
+    '<div style="margin-top:10px;font-size:10px;color:var(--muted)">'+l.affectationSource+'</div>';
+  document.getElementById('landConfirmed').innerHTML=
+    l.confirmed.map(function(c){
+      return '<div style="padding:10px 0;border-bottom:1px solid var(--border)">'+
+        '<div style="font-size:12px;font-weight:700">'+c.label+' <span class="real-badge">Réel</span></div>'+
+        '<div style="font-size:18px;font-weight:700;color:var(--am700);margin:4px 0">'+c.ha.toLocaleString('fr-CA')+' ha</div>'+
+        '<div style="font-size:11px;color:var(--muted)">'+c.note+'</div></div>';
+    }).join('');
+}
+function renderMuniSurfChart(){
+  kc('muniSurf');var ctx=document.getElementById('muniSurfChart');if(!ctx)return;
+  var sorted=[].concat(D.municipalities).sort(function(a,b){return b.surface-a.surface;});
+  charts.muniSurf=new Chart(ctx,{type:'bar',
+    data:{labels:sorted.map(function(m){return m.name;}),
+      datasets:[{data:sorted.map(function(m){return m.surface;}),backgroundColor:sorted.map(function(m){return m.cat==='urbain'?'#1a4d2e':m.cat==='rural_eloigne'?'#9ca3af':'#4aaa72';}),borderRadius:4}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+c.raw+' km²';}}}},scales:{x:{grid:{display:false},ticks:{font:{size:9},maxRotation:35}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:function(v){return v+' km²';},font:{size:10}}}}}});
+}
+
+function renderConvStats(){
+  if(!D.amenagement||!D.amenagement.conversion)return;
+  var cv=D.amenagement.conversion;
+  var tot2r=cv.chaletToResidence.reduce(function(a,b){return a+b;},0);
+  var tot2c=cv.residenceToChalet.reduce(function(a,b){return a+b;},0);
+  document.getElementById('convStats').innerHTML=
+    ss(tot2r,'Conv. chalet → résidence (2020-2025, est.)')+
+    ss(tot2c,'Conv. résidence → chalet (est.)')+
+    ss(tot2r-tot2c,'Conversion nette (est.)')+
+    ss('Loi 67','Levier réglementaire 2023');
+}
+function renderConvView(){renderConvMuniList();renderConvLever();}
+function renderConvMuniList(){
+  if(!D.amenagement||!D.amenagement.conversion)return;
+  var vm={Élevée:'vill-high',Moyenne:'vill-med',Faible:'vill-low'};
+  document.getElementById('convMuniList').innerHTML=
+    (D.amenagement.conversion.byMuni||[]).map(function(m){
+      return '<div class="conv-muni-row"><div class="conv-muni-name">'+m.name+'</div>'+
+        '<span class="vill-badge '+(vm[m.villegiature]||'vill-med')+'">'+m.villegiature+'</span>'+
+        '<div style="font-size:11px;color:var(--muted)">'+m.net+' — '+m.note+'</div></div>';
+    }).join('');
+}
+function renderConvLever(){
+  if(!D.amenagement||!D.amenagement.conversion)return;
+  document.getElementById('convLever').textContent=D.amenagement.conversion.lever;
+}
+function renderConvCharts(){
+  if(!D.amenagement)return;
+  var cv=D.amenagement.conversion;kc('convFlow');kc('convNet');
+  var ctx=document.getElementById('convFlowChart');
+  if(ctx)charts.convFlow=new Chart(ctx,{type:'bar',
+    data:{labels:cv.years,datasets:[
+      {label:'Chalet → Résidence',data:cv.chaletToResidence,backgroundColor:'#d97706',borderRadius:4},
+      {label:'Résidence → Chalet',data:cv.residenceToChalet,backgroundColor:'#9ca3af',borderRadius:4}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{font:{size:10},boxWidth:10}}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{stepSize:5,font:{size:11}}}}}});
+  var net=cv.chaletToResidence.map(function(v,i){return v-cv.residenceToChalet[i];});
+  var ctx2=document.getElementById('convNetChart');
+  if(ctx2)charts.convNet=new Chart(ctx2,{type:'line',
+    data:{labels:cv.years,datasets:[{label:'Nette',data:net,borderColor:'#b45309',backgroundColor:'rgba(180,83,9,.1)',fill:true,tension:.4,pointRadius:4,pointBackgroundColor:'#b45309'}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{stepSize:5,font:{size:11}}}}}});
+}
+
+// ═══════════════ SANTÉ ═══════════════
+function sdohLvl(lv){return lv==='Atout fort'?'lv-fort':lv==='Favorable'?'lv-fav':lv==='À surveiller'?'lv-watch':lv==='Priorité'?'lv-prio':'lv-vigi';}
+function sdohCol(s){return s>=80?'#166534':s>=70?'#1a4d2e':s>=60?'#d97706':s>=50?'#b45309':'#dc2626';}
+function srcClass(src){return src.includes('conomie')?'src-eco':src.includes('m')?'src-am':src.includes('ouv')?'src-gov':'src-mix';}
+
+function renderSdohIntro(){
+  if(!D.sante)return;
+  document.getElementById('sdohIntro').innerHTML=
+    '<div class="sdp-badge">Santé dans toutes les politiques (SdTP)</div>'+
+    '<h3>Portrait des déterminants sociaux de la santé — MRC du Granit</h3>'+
+    '<p>'+D.sante.intro+'</p>';
+}
+
+function renderSdohPortrait(){
+  if(!D.sante)return;
+  var dets=D.sante.determinants;
+  var comp=Math.round(dets.reduce(function(a,b){return a+b.score;},0)/dets.length);
+  document.getElementById('sdohComposite').innerHTML=
+    '<div style="text-align:center;padding:18px 8px">'+
+    '<div style="font-size:56px;font-weight:700;color:'+sdohCol(comp)+';font-family:\'Fraunces\',serif;line-height:1">'+comp+'</div>'+
+    '<div style="font-size:12px;color:var(--muted);margin-bottom:16px">/ 100 — Indice territorial composite</div>'+
+    '</div>'+
+    dets.map(function(d){
+      return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">'+
+        '<span style="font-size:15px">'+d.icon+'</span>'+
+        '<div style="flex:1"><div style="font-size:11px;font-weight:600;margin-bottom:2px">'+d.name+'</div>'+
+          '<div style="height:4px;background:var(--border);border-radius:3px;overflow:hidden">'+
+            '<div style="width:'+d.score+'%;height:4px;background:'+sdohCol(d.score)+';border-radius:3px"></div></div></div>'+
+        '<div style="font-size:12px;font-weight:700;min-width:26px;text-align:right;color:'+sdohCol(d.score)+'">'+d.score+'</div></div>';
+    }).join('')+
+    '<div style="font-size:10px;color:var(--muted);margin-top:12px;line-height:1.6;background:var(--bg);padding:9px 11px;border-radius:7px">'+D.sante.compositeNote+'</div>';
+  document.getElementById('sdohGrid').innerHTML=dets.map(function(d){
+    return '<div class="det-card" style="--det-color:'+sdohCol(d.score)+'">'+
+      '<div class="det-icon">'+d.icon+'</div>'+
+      '<div class="det-name">'+d.name+'</div>'+
+      '<div class="det-score-bar"><div class="det-score-fill" style="width:'+d.score+'%;background:'+sdohCol(d.score)+'"></div></div>'+
+      '<div style="display:flex;align-items:center;justify-content:space-between">'+
+        '<div class="det-score-val" style="color:'+sdohCol(d.score)+'">'+d.score+'</div>'+
+        '<span class="det-level '+sdohLvl(d.level)+'">'+d.level+'</span>'+
+      '</div>'+
+      '<span class="det-source '+srcClass(d.source)+'">'+d.source+'</span>'+
+      '<div class="det-indicator">'+d.indicator+'</div>'+
+      '<div class="det-link">'+d.link+'</div></div>';
+  }).join('');
+}
+
+function renderSdohRadar(){
+  kc('sdohRadar');var ctx=document.getElementById('sdohRadar');if(!ctx||!D.sante)return;
+  var dets=D.sante.determinants;
+  charts.sdohRadar=new Chart(ctx,{type:'radar',
+    data:{labels:dets.map(function(d){return d.icon+' '+d.name.split('&')[0].trim().substring(0,18);}),
+      datasets:[{label:'Score territorial',data:dets.map(function(d){return d.score;}),
+        borderColor:'#0e7490',backgroundColor:'rgba(14,116,144,.15)',pointBackgroundColor:'#0e7490',pointRadius:4,borderWidth:2}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      scales:{r:{min:0,max:100,ticks:{stepSize:20,font:{size:9}},grid:{color:'rgba(0,0,0,.07)'},pointLabels:{font:{size:10}}}},
+      plugins:{legend:{display:false}}}});
+}
+
+function renderGovView(){
+  if(!D.sante)return;
+  var dn={};
+  D.sante.determinants.forEach(function(d){dn[d.id]=d.icon+' '+d.name;});
+  document.getElementById('govGrid').innerHTML=(D.sante.leviers||[]).map(function(lv){
+    return '<div class="lev-card"><div class="lev-head">'+
+      '<div class="lev-emoji">'+lv.emoji+'</div>'+
+      '<div><div class="lev-nm">'+lv.name+'</div><div class="lev-scope">📍 '+lv.scope+'</div></div></div>'+
+      '<div class="lev-desc">'+lv.desc+'</div>'+
+      '<div class="lev-dets">'+lv.determinants.map(function(did){return'<span class="lev-det-pill">'+(dn[did]||did)+'</span>';}).join('')+'</div></div>';
+  }).join('');
+}
+
+function renderLinksView(){
+  if(!D.sante)return;
+  var dn={};D.sante.determinants.forEach(function(d){dn[d.id]=d.name;});
+  function pillarClass(p){return p.includes('conomie')?'from-eco':p.includes('m')?'from-am':p.includes('ouv')?'from-gov':'from-mix';}
+  document.getElementById('linkGrid').innerHTML=(D.sante.links||[]).map(function(lk){
+    var det=D.sante.determinants.find(function(d){return d.id===lk.det;});
+    return '<div class="link-card">'+
+      '<span class="link-strength str-'+(lk.strength==='Fort'?'fort':'moyen')+'">'+lk.strength+'</span>'+
+      '<div class="link-from '+pillarClass(lk.pillar)+'">'+lk.pillar+'<br><strong>'+lk.from+'</strong></div>'+
+      '<div class="link-arrow">↓</div>'+
+      '<div class="link-to">'+(det?'🎯 '+det.name:'Déterminant')+'</div>'+
+      '<div class="link-desc">'+lk.desc+'</div></div>';
+  }).join('');
+}
+
+function computeVulnerability(m){
+  var base=m.cat==='rural_eloigne'?55:m.cat==='rural'?30:10;
+  var dens=m.density>50?0:m.density>20?10:m.density>8?20:30;
+  var area=Math.min(20,Math.round(m.surface/m.pop*2));
+  return Math.min(100,base+dens+area);
+}
+function renderVulnStats(){
+  var v=D.municipalities.map(function(m){return computeVulnerability(m);});
+  var avg=Math.round(v.reduce(function(a,b){return a+b;},0)/v.length);
+  document.getElementById('vulnStats').innerHTML=
+    ss(v.filter(function(x){return x>=70;}).length,'Vulnérabilité haute (≥70)')+
+    ss(v.filter(function(x){return x>=45&&x<70;}).length,'Vulnérabilité moyenne')+
+    ss(avg+'/100','Indice moyen MRC')+
+    ss('D8','Déterminant prioritaire : Accès services');
+}
+function renderVulnGrid(){
+  var vulns=D.municipalities.map(function(m){return{m:m,v:computeVulnerability(m)};}).sort(function(a,b){return b.v-a.v;});
+  function vC(v){return v>=70?'vuln-high':v>=45?'vuln-med':'vuln-low';}
+  function vF(v){return v>=70?'var(--red)':v>=45?'var(--am500)':'var(--g600)';}
+  document.getElementById('vulnGrid').innerHTML=vulns.map(function(x){
+    var m=x.m;var v=x.v;
+    var tags=[];
+    if(m.cat==='rural_eloigne')tags.push('Rural éloigné');
+    if(m.density<5)tags.push('< 5 hab/km²');
+    if(m.surface>200)tags.push('Grande superficie');
+    return '<div class="vuln-card '+vC(v)+'">'+
+      '<div class="vuln-name">'+m.name+'</div>'+
+      '<div style="display:flex;align-items:center;gap:7px;margin-bottom:4px">'+
+        '<div style="font-size:18px;font-weight:700;color:'+vF(v)+'">'+v+'</div>'+
+        '<div class="vuln-score-bar" style="flex:1"><div class="vuln-score-fill" style="width:'+v+'%;background:'+vF(v)+'"></div></div>'+
+      '</div>'+
+      '<div class="vuln-tags">'+tags.map(function(t){return'<span class="vuln-tag">'+t+'</span>';}).join('')+'</div>'+
+      '<div style="font-size:10px;color:var(--muted);margin-top:5px">'+m.pop.toLocaleString('fr-CA')+' hab. · '+m.density+' hab./km²</div></div>';
+  }).join('');
+}
+function renderVulnChart(){
+  kc('vulnChart');var ctx=document.getElementById('vulnChart');if(!ctx)return;
+  var vulns=D.municipalities.map(function(m){return{m:m,v:computeVulnerability(m)};}).sort(function(a,b){return b.v-a.v;});
+  charts.vulnChart=new Chart(ctx,{type:'bar',
+    data:{labels:vulns.map(function(x){return x.m.name;}),
+      datasets:[{data:vulns.map(function(x){return x.v;}),
+        backgroundColor:vulns.map(function(x){return x.v>=70?'#dc2626':x.v>=45?'#d97706':'#2d7a4f';}),borderRadius:4}]},
     options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+c.raw.toLocaleString('fr-CA')+' emplois';}}}},
-      scales:{x:{grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:function(v){return v.toLocaleString('fr-CA');},font:{size:11}}},y:{grid:{display:false},ticks:{font:{size:10},maxTicksLimit:15}}}}
-  });
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' Indice : '+c.raw+'/100';}}}},
+      scales:{x:{max:100,grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:10}}},y:{grid:{display:false},ticks:{font:{size:9}}}}}});
 }
 
-function renderDonutChart(){
-  kc('donut');
-  var ctx=document.getElementById('donutChart');
-  if(!ctx||!D.sectors)return;
-  var total=D.sectors.reduce(function(a,b){return a+b.jobs;},0);
-  charts.donut=new Chart(ctx,{
-    type:'doughnut',
-    data:{labels:D.sectors.map(function(s){return s.name;}),datasets:[{data:D.sectors.map(function(s){return s.jobs;}),backgroundColor:C,borderWidth:2,borderColor:'#fff'}]},
-    options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+Math.round(c.raw/total*100)+'%';}}}}}
-  });
-  document.getElementById('donutLegend').innerHTML=D.sectors.slice(0,6).map(function(s,i){
-    var pct=Math.round(s.jobs/total*100);
-    return '<div class="dl-i"><div style="display:flex;align-items:center"><div class="dl-d" style="background:'+C[i]+'"></div>'+s.name+'</div><div class="dl-p">'+pct+'%</div></div>';
-  }).join('')+'<div class="dl-i" style="color:var(--muted);font-style:italic"><div>+'+Math.max(0,D.sectors.length-6)+' autres</div><div>—</div></div>';
-}
-
-function renderTrends(){
-  kc('line');kc('permit');kc('newbiz');kc('multi');
-  var t=D.trends;
-  var lc=document.getElementById('lineChart');
-  if(lc)charts.line=new Chart(lc,{type:'line',data:{labels:t.years,datasets:[{data:t.totalJobs,borderColor:'#1a4d2e',backgroundColor:'rgba(26,77,46,.08)',fill:true,tension:.4,pointRadius:4,pointBackgroundColor:'#1a4d2e'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:function(v){return v.toLocaleString('fr-CA');},font:{size:11}}}}}});
-  var pc=document.getElementById('permitChart');
-  if(pc&&t.permitsMk)charts.permit=new Chart(pc,{type:'bar',data:{labels:t.years,datasets:[{data:t.permitsMk,backgroundColor:t.permitsMk.map(function(_,i,a){return i===a.length-1?'#1a4d2e':'#4aaa72';}),borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+c.raw.toFixed(1)+' M$';}}}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:function(v){return v+' M$';},font:{size:11}}}}}});
-  var nc=document.getElementById('newBizChart');
-  if(nc)charts.newbiz=new Chart(nc,{type:'bar',data:{labels:t.years,datasets:[{data:t.newBiz,backgroundColor:t.newBiz.map(function(_,i,a){return i===a.length-1?'#1a4d2e':'#4aaa72';}),borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:11}}}}}});
-  var mc=document.getElementById('multiChart');
-  if(mc){var entries=Object.entries(t.bySector);charts.multi=new Chart(mc,{type:'line',data:{labels:t.years,datasets:entries.map(function(e,i){return{label:e[0],data:e[1],borderColor:TC[i],backgroundColor:'transparent',tension:.4,pointRadius:3,borderDash:i>2?[5,3]:[],pointBackgroundColor:TC[i]};})},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{font:{size:11},boxWidth:11,boxHeight:8,padding:12}}},spaces:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:11}}}}}});}
-}
-
-// ── ADMIN ─────────────────────────────────────────────────────
+// ─── ADMIN ───
 function openAdmin(){document.getElementById('adminOv').classList.add('open');unlocked?showForm():showPW();}
 function closeAdmin(){document.getElementById('adminOv').classList.remove('open');}
-function openGH(){document.getElementById('ghOv').classList.add('open');}
-function closeGH(){document.getElementById('ghOv').classList.remove('open');}
-function bgC(e,id){if(e.target===document.getElementById(id)){if(id==='adminOv')closeAdmin();else closeGH();}}
+function bgClick(e,id){if(e.target===document.getElementById(id)){if(id==='adminOv')closeAdmin();}}
 
 function showPW(){
   document.getElementById('mTitle').textContent='🔒 Accès sécurisé';
-  document.getElementById('mBody').innerHTML='<div class="pw"><div style="font-size:42px;margin-bottom:11px">🔒</div><h3>Zone protégée</h3><p>Entrez le mot de passe pour modifier les données.</p><input type="password" id="pwIn" placeholder="Mot de passe…" onkeydown="if(event.key===\'Enter\')checkPW()"><div id="pwErr" class="pw-err"></div><button class="btn btn-g" style="margin-top:11px;width:240px" onclick="checkPW()">Connexion →</button></div>';
+  document.getElementById('mBody').innerHTML='<div class="pw"><div style="font-size:42px;margin-bottom:11px">🔐</div><h3>Zone protégée</h3><p>Entrez le mot de passe pour modifier les données du tableau de bord.</p>'+
+    '<input type="password" id="pwIn" placeholder="Mot de passe…" onkeydown="if(event.key===\'Enter\')checkPW()">'+
+    '<div id="pwErr" class="pw-err"></div>'+
+    '<button class="btn btn-p" style="margin-top:11px;width:240px" onclick="checkPW()">Connexion →</button></div>';
   document.getElementById('mFoot').innerHTML='';
-  setTimeout(function(){var el=document.getElementById('pwIn');if(el)el.focus();},80);
+  setTimeout(function(){var e=document.getElementById('pwIn');if(e)e.focus();},80);
 }
-function checkPW(){var v=document.getElementById('pwIn').value;if(v===D.meta.password){unlocked=true;showForm();}else{document.getElementById('pwErr').textContent='❌ Mot de passe incorrect.';document.getElementById('pwIn').value='';document.getElementById('pwIn').focus();}}
+function checkPW(){
+  var v=document.getElementById('pwIn').value;
+  if(v===(D.meta.password||'granit2025')){unlocked=true;showForm();}
+  else{document.getElementById('pwErr').textContent='Mot de passe incorrect.';document.getElementById('pwIn').value='';}
+}
 
 function showForm(){
-  document.getElementById('mTitle').textContent='✏️ Mise à jour — '+D.meta.quarter;
-  document.getElementById('mBody').innerHTML=
-    '<div class="fs"><div class="fs-t">📅 Informations générales</div>'+
+  document.getElementById('mTitle').textContent='✏️ Mise à jour — '+(D.meta.quarter||'');
+  var s='<div class="fs"><div class="fs-t">📅 Informations générales</div>'+
     '<div class="fgrid">'+
-      '<div class="fg"><label>Trimestre</label><input id="f_q" value="'+D.meta.quarter+'"></div>'+
-      '<div class="fg"><label>Mis à jour par</label><input id="f_by" value="'+D.meta.updatedBy+'"></div>'+
-    '</div>'+
-    '<div class="fg" style="margin-top:8px"><label>Note du trimestre (laissez vide pour aucun message)</label><textarea id="f_note" rows="2">'+(D.meta.note||'')+'</textarea></div></div>'+
-
-    '<div class="fs"><div class="fs-t">📊 Indicateurs clés (KPI)</div>'+
-    D.kpis.map(function(k,i){return '<div style="display:grid;grid-template-columns:2fr 1fr 1.3fr 70px;gap:5px;padding:8px 10px;background:var(--bg);border:1px solid var(--border);border-radius:8px;margin-bottom:5px;align-items:center">'+
+      '<div class="fg"><label>Trimestre</label><input id="f_q" value="'+(D.meta.quarter||'')+'"></div>'+
+      '<div class="fg"><label>Mis à jour par</label><input id="f_by" value="'+(D.meta.updatedBy||'')+'"></div>'+
+    '</div></div>';
+  s+='<div class="fs"><div class="fs-t">📊 KPI — Indicateurs clés</div>'+
+    (D.kpis||[]).map(function(k,i){return'<div style="display:grid;grid-template-columns:2fr 1fr 1.3fr 70px;gap:5px;padding:8px 10px;background:var(--bg);border:1px solid var(--border);border-radius:8px;margin-bottom:5px;align-items:center">'+
       '<div style="font-size:12px;font-weight:700">'+k.label+'</div>'+
       '<div class="fg"><input id="f_kv'+i+'" value="'+k.value+'"></div>'+
       '<div class="fg"><input id="f_kd'+i+'" value="'+k.delta+'"></div>'+
-      '<div class="fg"><select id="f_kt'+i+'">'+
-        '<option value="up" '+(k.trend==='up'?'selected':'')+'>↑ Hausse</option>'+
-        '<option value="down" '+(k.trend==='down'?'selected':'')+'>↓ Baisse</option>'+
-        '<option value="flat" '+(k.trend==='flat'?'selected':'')+'>→ Stable</option>'+
-      '</select></div></div>';}).join('')+'</div>'+
-
-    '<div class="fs"><div class="fs-t">🏭 Emplois par secteur</div>'+
-    D.sectors.map(function(s,i){return '<div class="sr">'+
-      '<div class="sn">'+s.icon+' '+s.name+'</div>'+
-      '<input id="f_sj'+i+'" type="number" value="'+s.jobs+'" min="0" step="10">'+
-      '<input id="f_st'+i+'" value="'+s.trend+'">'+
-      '<select id="f_sd'+i+'"><option value="up" '+(s.dir==='up'?'selected':'')+'>↑ Hausse</option><option value="down" '+(s.dir==='down'?'selected':'')+'>↓ Baisse</option></select>'+
-    '</div>';}).join('')+'</div>'+
-
-    '<div class="fs"><div class="fs-t">🏢 Emplois des entreprises</div>'+
-    D.companies.map(function(c,i){return '<div style="display:grid;grid-template-columns:1fr 75px 95px;gap:5px;padding:7px 10px;background:var(--bg);border:1px solid var(--border);border-radius:8px;margin-bottom:4px;align-items:center">'+
-      '<div><div style="font-size:12px;font-weight:700">'+c.name+'</div><div style="font-size:11px;color:var(--muted)">📍 '+c.muni+'</div></div>'+
+      '<div class="fg"><select id="f_kt'+i+'"><option value="up" '+(k.trend==='up'?'selected':'')+'>↑</option><option value="down" '+(k.trend==='down'?'selected':'')+'>↓</option><option value="flat" '+(k.trend==='flat'?'selected':'')+'>→</option></select></div></div>';}).join('')+'</div>';
+  s+='<div class="fs"><div class="fs-t">🏭 Emplois par secteur</div>'+
+    (D.sectors||[]).map(function(sec,i){return'<div class="sr"><div class="sn">'+sec.icon+' '+sec.name+'</div>'+
+      '<input id="f_sj'+i+'" type="number" value="'+sec.jobs+'" min="0" step="10">'+
+      '<input id="f_st'+i+'" value="'+sec.trend+'">'+
+      '<select id="f_sd'+i+'"><option value="up" '+(sec.dir==='up'?'selected':'')+'>↑</option><option value="down" '+(sec.dir==='down'?'selected':'')+'>↓</option></select></div>';}).join('')+'</div>';
+  s+='<div class="fs"><div class="fs-t">🏢 Emplois des entreprises</div>'+
+    (D.companies||[]).map(function(c,i){return'<div style="display:grid;grid-template-columns:1fr 75px 95px;gap:5px;padding:7px 10px;background:var(--bg);border:1px solid var(--border);border-radius:8px;margin-bottom:4px;align-items:center">'+
+      '<div><div style="font-size:12px;font-weight:700">'+c.name+'</div><div style="font-size:10px;color:var(--muted)">'+c.muni+'</div></div>'+
       '<div class="fg"><input id="f_cj'+i+'" type="number" value="'+c.jobs+'" min="0"></div>'+
-      '<div class="fg"><select id="f_cs'+i+'">'+
-        '<option value="actif" '+(c.status==='actif'?'selected':'')+'>✅ Actif</option>'+
-        '<option value="reprise" '+(c.status==='reprise'?'selected':'')+'>🔄 Reprise</option>'+
-        '<option value="nouveau" '+(c.status==='nouveau'?'selected':'')+'>🆕 Nouveau</option>'+
-        '<option value="expansion" '+(c.status==='expansion'?'selected':'')+'>📈 Expansion</option>'+
-        '<option value="a_completer" '+(c.status==='a_completer'?'selected':'')+'>📝 À compléter</option>'+
-      '</select></div></div>';}).join('')+'</div>'+
-
-    '<div class="fs"><div class="fs-t">📈 Historique annuel</div>'+
-    '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">'+
-      '<div class="fg"><label>Années</label><input id="f_years" value="'+D.trends.years.join(',')+'"></div>'+
-      '<div class="fg"><label>Emplois totaux</label><input id="f_jobs" value="'+D.trends.totalJobs.join(',')+'"></div>'+
-      '<div class="fg"><label>Nouvelles entreprises</label><input id="f_nbiz" value="'+D.trends.newBiz.join(',')+'"></div>'+
-      '<div class="fg" style="grid-column:1/-1"><label>Permis de bâtir (M$)</label><input id="f_permits" value="'+(D.trends.permitsMk||[]).join(',')+'"></div>'+
-    '</div></div>'+
-
-    '<div class="fs"><div class="fs-t">🔐 Changer le mot de passe</div>'+
+      '<div class="fg"><select id="f_cs'+i+'"><option value="actif" '+(c.status==='actif'?'selected':'')+'>✅ Actif</option><option value="reprise" '+(c.status==='reprise'?'selected':'')+'>🔄 Reprise</option><option value="nouveau" '+(c.status==='nouveau'?'selected':'')+'>🆕 Nouveau</option><option value="expansion" '+(c.status==='expansion'?'selected':'')+'>📈 Expansion</option><option value="a_completer" '+(c.status==='a_completer'?'selected':'')+'>📝 À compléter</option></select></div></div>';}).join('')+'</div>';
+  s+='<div class="fs"><div class="fs-t">📈 Historique annuel</div>'+
     '<div class="fgrid">'+
-      '<div class="fg"><label>Actuel</label><input type="password" id="f_pwold" placeholder="Mot de passe actuel"></div>'+
-      '<div class="fg"><label>Nouveau</label><input type="password" id="f_pwnew" placeholder="Nouveau (min. 4 car.)"></div>'+
+      '<div class="fg"><label>Années (virgule)</label><input id="f_years" value="'+(D.trends.years||[]).join(',')+'"></div>'+
+      '<div class="fg"><label>Emplois totaux</label><input id="f_jobs" value="'+(D.trends.totalJobs||[]).join(',')+'"></div>'+
+      '<div class="fg"><label>Nouvelles entreprises</label><input id="f_nbiz" value="'+(D.trends.newBiz||[]).join(',')+'"></div>'+
+      '<div class="fg"><label>Permis bâtir (M$)</label><input id="f_permits" value="'+(D.trends.permitsMk||[]).join(',')+'"></div>'+
     '</div></div>';
-
+  s+='<div class="fs"><div class="fs-t">🔐 Changer le mot de passe</div>'+
+    '<div class="fgrid"><div class="fg"><label>Actuel</label><input type="password" id="f_pwold"></div>'+
+    '<div class="fg"><label>Nouveau (min 4 car.)</label><input type="password" id="f_pwnew"></div></div></div>';
+  document.getElementById('mBody').innerHTML=s;
   document.getElementById('mFoot').innerHTML=
     '<button class="btn" onclick="unlocked=false;closeAdmin()">🔒 Verrouiller</button>'+
     '<button class="btn" onclick="closeAdmin()">Annuler</button>'+
-    '<button class="btn btn-g" onclick="saveForm()">✅ Enregistrer</button>';
+    '<button class="btn btn-p" onclick="saveForm()">✅ Enregistrer &amp; recalculer</button>';
 }
 
 function saveForm(){
   var po=document.getElementById('f_pwold').value,pn=document.getElementById('f_pwnew').value;
-  if(po||pn){if(po!==D.meta.password){alert('❌ MDP actuel incorrect.');return;}if(pn.length<4){alert('❌ Trop court.');return;}D.meta.password=pn;}
+  if(po||pn){if(po!==(D.meta.password||'granit2025')){alert('MDP actuel incorrect.');return;}if(pn.length<4){alert('Nouveau MDP trop court.');return;}D.meta.password=pn;}
   D.meta.quarter=document.getElementById('f_q').value.trim()||D.meta.quarter;
   D.meta.updatedBy=document.getElementById('f_by').value.trim();
-  D.meta.note=document.getElementById('f_note').value.trim();
   D.meta.updatedDate=new Date().toLocaleDateString('fr-CA');
-  D.kpis.forEach(function(k,i){k.value=document.getElementById('f_kv'+i).value.trim();k.delta=document.getElementById('f_kd'+i).value.trim();k.trend=document.getElementById('f_kt'+i).value;});
-  D.sectors.forEach(function(s,i){s.jobs=parseInt(document.getElementById('f_sj'+i).value)||0;s.trend=document.getElementById('f_st'+i).value.trim();s.dir=document.getElementById('f_sd'+i).value;});
-  D.companies.forEach(function(c,i){c.jobs=parseInt(document.getElementById('f_cj'+i).value)||0;c.status=document.getElementById('f_cs'+i).value;});
+  (D.kpis||[]).forEach(function(k,i){k.value=document.getElementById('f_kv'+i).value.trim();k.delta=document.getElementById('f_kd'+i).value.trim();k.trend=document.getElementById('f_kt'+i).value;});
+  (D.sectors||[]).forEach(function(s,i){s.jobs=parseInt(document.getElementById('f_sj'+i).value)||0;s.trend=document.getElementById('f_st'+i).value.trim();s.dir=document.getElementById('f_sd'+i).value;});
+  (D.companies||[]).forEach(function(c,i){c.jobs=parseInt(document.getElementById('f_cj'+i).value)||0;c.status=document.getElementById('f_cs'+i).value;});
   try{
-    D.trends.years=document.getElementById('f_years').value.split(',').map(function(v){return v.trim();}).filter(Boolean);
-    D.trends.totalJobs=document.getElementById('f_jobs').value.split(',').map(function(v){return parseInt(v)||0;});
-    D.trends.newBiz=document.getElementById('f_nbiz').value.split(',').map(function(v){return parseInt(v)||0;});
-    D.trends.permitsMk=document.getElementById('f_permits').value.split(',').map(function(v){return parseFloat(v)||0;});
+    var yrs=document.getElementById('f_years').value.split(',').map(function(v){return v.trim();}).filter(Boolean);
+    if(yrs.length)D.trends.years=yrs;
+    var jobs=document.getElementById('f_jobs').value.split(',').map(function(v){return parseInt(v)||0;}).filter(function(_,i){return i<yrs.length;});
+    if(jobs.length)D.trends.totalJobs=jobs;
+    var nbiz=document.getElementById('f_nbiz').value.split(',').map(function(v){return parseInt(v)||0;}).filter(function(_,i){return i<yrs.length;});
+    if(nbiz.length)D.trends.newBiz=nbiz;
+    var pm=document.getElementById('f_permits').value.split(',').map(function(v){return parseFloat(v)||0;}).filter(function(_,i){return i<yrs.length;});
+    if(pm.length)D.trends.permitsMk=pm;
   }catch(e){}
-  saveLs();renderAll();closeAdmin();
-  toast('✅ Enregistré — '+D.meta.quarter+' · Exportez data.json et commitez sur le serveur');
+  saveLs();allMLPairs=getMLSuggestions();renderAll();closeAdmin();
+  toast('✅ Données enregistrées · Maillages recalculés · Exportez data.json pour déployer');
 }
 
-function toast(msg){var t=document.createElement('div');t.className='toast';t.textContent=msg;document.body.appendChild(t);setTimeout(function(){t.remove();},4200);}
+function toast(msg){
+  var t=document.createElement('div');t.className='toast';t.textContent=msg;
+  document.body.appendChild(t);setTimeout(function(){try{t.remove();}catch(e){}},4500);
+}
 
 init();
+
 </script>
 </body>
 </html>

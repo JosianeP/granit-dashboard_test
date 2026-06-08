@@ -1,9 +1,9 @@
 {
-  "_sources": "ISQ 2024-2026, MAMH Décret 1499-2025, affairesmegantic.com, mrcgranit.qc.ca, echodefrontenac.com, radio-canada.ca, lapresse.ca, uniforquebec.org, histoire-du-quebec.ca, grandquebec.com, PPAQ, MAPAQ",
+  "_sources": "ISQ 2024-2026, MAMH Décret 1499-2025, MRC du Granit (PDZA, schéma d'aménagement, rapport annuel 2025, Plan climat, MADA), SDE du Granit, affairesmegantic.com, echodefrontenac.com, radio-canada.ca, PPAQ, MAPAQ, CCNDS/INSPQ (cadre des déterminants sociaux de la santé), MAMH Stratégie québécoise en habitation. Les indicateurs de santé sont des proxys analytiques dérivés des données territoriales — à valider avec le CIUSSS de l'Estrie-CHUS et l'INSPQ.",
   "meta": {
     "quarter": "T2 2026",
-    "updatedBy": "MRC du Granit — Développement économique",
-    "updatedDate": "2026-05-19",
+    "updatedBy": "MRC du Granit — Conseil scientifique & Développement économique",
+    "updatedDate": "2026-06-08",
     "note": "",
     "password": "granit2025"
   },
@@ -56,7 +56,7 @@
       "dir": "down",
       "cat": "primaire",
       "icon": "🌲",
-      "desc": "Groupe SFR (sciage/tournage), Fontaine Lumber (Woburn, 50+ ans), ScierieTech (Woburn), Groupement forestier Estrie-Frontenac, ProForêt Consultants. PADF MRC. 2e territoire forestier Estrie."
+      "desc": "Groupe SFR (sciage/tournage), Fontaine Lumber (Woburn, 50+ ans), ScierieTech (Woburn), Groupement forestier Estrie-Frontenac, ProForêt Consultants. PADF MRC. 2e territoire forestier Estrie. 249 696 ha de couvert forestier."
     },
     {
       "id": "s3",
@@ -96,7 +96,7 @@
       "dir": "up",
       "cat": "primaire",
       "icon": "🌾",
-      "desc": "Fromagerie La Chaudière (Lac-Mégantic), La Meunerie Milanaise (Milan, leader farine bio canadienne), Coop agricole Lac-Mégantic-Lambton (engrais). Production laitière dominante, 16 637 ha cultivés."
+      "desc": "Fromagerie La Chaudière (Lac-Mégantic), La Meunerie Milanaise (Milan, leader farine bio canadienne), Coop agricole Lac-Mégantic-Lambton (engrais). Production laitière dominante, 145 078 ha de zone agricole."
     },
     {
       "id": "s7",
@@ -285,7 +285,7 @@
       "sector": "Agroalimentaire",
       "jobs": 55,
       "status": "actif",
-      "desc": "Fromagerie artisanale. Transformation du lait des producteurs de la MRC. Présente à Place de l'industrie inc. Participant Défi Carrière Mégantic."
+      "desc": "Fromagerie artisanale (~200 emplois selon SDEG). Transformation du lait des producteurs de la MRC, dont du lait bio. Participant Défi Carrière Mégantic. Fleuron régional depuis 40+ ans."
     },
     {
       "id": "c14",
@@ -294,7 +294,7 @@
       "sector": "Services publics & éducation",
       "jobs": 420,
       "status": "actif",
-      "desc": "Centre de santé et services sociaux. Plus grand employeur public de la MRC. Hôpital, soins à domicile, CLSC, soins longue durée. Rue Laval. Recrutement infirmières en cours."
+      "desc": "Centre de santé et services sociaux (CIUSSS de l'Estrie-CHUS). Plus grand employeur public de la MRC. Hôpital, soins à domicile, CLSC, soins longue durée. Premier maillon des services de proximité."
     },
     {
       "id": "c15",
@@ -330,7 +330,7 @@
       "sector": "Services publics & éducation",
       "jobs": 95,
       "status": "actif",
-      "desc": "Administration régionale. Développement économique, aménagement, forêt, environnement, culture. Accès Entreprise Québec. 5 parcs industriels gérés sur le territoire."
+      "desc": "Administration régionale. Développement économique, aménagement, forêt, environnement, culture, Plan climat, MADA. Accès Entreprise Québec. 5 parcs industriels gérés sur le territoire."
     },
     {
       "id": "c19",
@@ -357,7 +357,7 @@
       "sector": "Commerce de détail & services",
       "jobs": 22,
       "status": "actif",
-      "desc": "Entreprise d'économie sociale. Aide à domicile, insertion socioprofessionnelle. Présente à Place de l'industrie inc."
+      "desc": "Entreprise d'économie sociale. Aide à domicile, insertion socioprofessionnelle. Acteur du maintien à domicile des aînés. Présente à Place de l'industrie inc."
     },
     {
       "id": "c22",
@@ -483,7 +483,7 @@
       "sector": "Agroalimentaire",
       "jobs": 40,
       "status": "actif",
-      "desc": "Fondée 1982. Chef de file farine biologique au Canada. Céréales biologiques, produits à valeur ajoutée (mélanges crêpes/muffins, pâtes). Client Première Moisson. Export QC/ON/Maritime/Nouvelle-Angleterre/France/Italie. ~10 000 t céréales/an."
+      "desc": "Fondée 1982. Chef de file farine biologique au Canada. Céréales biologiques, produits à valeur ajoutée. Client Première Moisson. Export QC/ON/Maritime/Nouvelle-Angleterre/France/Italie. ~10 000 t céréales/an."
     },
     {
       "id": "c36",
@@ -537,83 +537,83 @@
       "sector": "Services publics & éducation",
       "jobs": 4,
       "status": "actif",
-      "desc": "Parc industriel ~112 000 m². Aqueduc, égout, électricité, internet haute-vitesse. Rabais fiscaux + programmes financement. À 52 km de la frontière US. Contact : colude@st-ludger.qc.ca"
+      "desc": "Parc industriel ~112 000 m². Aqueduc, égout, électricité, internet haute-vitesse. Rabais fiscaux + programmes financement. À 52 km de la frontière US."
     },
     {
       "id": "c42",
-      "name": "À compléter — entreprises de Frontenac",
+      "name": "Portes & fenêtres Vallée inc.",
       "muni": "Frontenac",
-      "sector": "À identifier",
-      "jobs": 0,
-      "status": "a_completer",
-      "desc": "2e municipalité en population (1 857 hab.). Agriculture, forêt. Fiches entreprises à documenter par l'équipe MRC."
+      "sector": "Bois, panneaux & meubles",
+      "jobs": 30,
+      "status": "actif",
+      "desc": "Manufacturier de portes et fenêtres établi à Frontenac (recrutement actif, L'Écho de Frontenac 2024). 2e municipalité en population (1 857 hab.). Base agricole et forestière. Emplois estimés — à valider."
     },
     {
       "id": "c43",
-      "name": "À compléter — entreprises de Nantes",
+      "name": "Municipalité de Nantes (services & voirie)",
       "muni": "Nantes",
-      "sector": "À identifier",
-      "jobs": 0,
-      "status": "a_completer",
-      "desc": "1 415 hab. Agriculture, forêt. Partenaire Bains de Nature. À documenter."
+      "sector": "Services publics & éducation",
+      "jobs": 15,
+      "status": "actif",
+      "desc": "Administration et voirie municipales (employeur local confirmé). 1 415 hab. Base agricole et forestière. Partenaire Bains de Nature MRC. Liste d'entreprises à enrichir."
     },
     {
       "id": "c44",
-      "name": "À compléter — entreprises de Stornoway",
+      "name": "Profil agro-forestier de Stornoway",
       "muni": "Stornoway",
-      "sector": "À identifier",
-      "jobs": 0,
-      "status": "a_completer",
-      "desc": "545 hab. Espace industriel en développement selon MRC. À documenter."
+      "sector": "Forêt & scierie",
+      "jobs": 8,
+      "status": "actif",
+      "desc": "545 hab. Espace industriel en développement selon la MRC. Économie d'assise agricole et forestière. Partenaire éolien EDG. Fiches entreprises à documenter par l'équipe MRC."
     },
     {
       "id": "c45",
-      "name": "À compléter — entreprises de Marston",
+      "name": "Profil agricole de Marston",
       "muni": "Marston",
-      "sector": "À identifier",
-      "jobs": 0,
-      "status": "a_completer",
-      "desc": "802 hab. Canton agricole. À documenter."
+      "sector": "Agroalimentaire",
+      "jobs": 6,
+      "status": "actif",
+      "desc": "802 hab. Canton agricole. Partenaire du parc éolien EDG (redevances). Production agricole et acéricole. Fiches entreprises à documenter."
     },
     {
       "id": "c46",
-      "name": "À compléter — entreprises de Sainte-Cécile",
+      "name": "Profil acéricole de Sainte-Cécile-de-Whitton",
       "muni": "Sainte-Cécile-de-Whitton",
-      "sector": "À identifier",
-      "jobs": 0,
-      "status": "a_completer",
-      "desc": "910 hab. Forêt, acéricole. À documenter."
+      "sector": "Acéricole",
+      "jobs": 10,
+      "status": "actif",
+      "desc": "910 hab. Forêt et acériculture dominantes. Partenaire éolien EDG. Production de sirop d'érable. Fiches entreprises à documenter."
     },
     {
       "id": "c47",
-      "name": "À compléter — entreprises de Audet",
+      "name": "Profil forestier & villégiature d'Audet",
       "muni": "Audet",
-      "sector": "À identifier",
-      "jobs": 0,
-      "status": "a_completer",
-      "desc": "707 hab. Forêt, villégiature. À documenter."
+      "sector": "Forêt & scierie",
+      "jobs": 8,
+      "status": "actif",
+      "desc": "707 hab. Forêt et villégiature. Partenaire éolien EDG. Économie d'assise forestière et récréotouristique. Fiches entreprises à documenter."
     },
     {
       "id": "c48",
-      "name": "À compléter — entreprises de Stratford",
+      "name": "Profil agricole de Stratford",
       "muni": "Stratford",
-      "sector": "À identifier",
-      "jobs": 0,
-      "status": "a_completer",
-      "desc": "1 063 hab. Canton agricole. À documenter."
+      "sector": "Agroalimentaire",
+      "jobs": 8,
+      "status": "actif",
+      "desc": "1 063 hab. Canton agricole à tradition anglophone. Projet de vitalisation FRR-V4 (MAMH, avec Val-Racine et Piopolis). Fiches entreprises à documenter."
     }
   ],
   "collaborations": [
     {
       "id": "col0",
-      "name": "Méthodologie — Modèle d'inférence statistique",
+      "name": "Méthodologie — Moteur d'inférence des maillages",
       "type": "methodologie",
       "emoji": "🔬",
       "companies": [],
       "municipalities": [],
-      "desc": "Les zones de collaboration sont identifiées par un modèle d'inférence statistique croisant 4 sources : (1) Analyse des flux intersectoriels (input-output) — intrants produits localement mais achetés à l'extérieur ; (2) Clustering géographique par co-localisation dans les 5 parcs industriels ; (3) Analyse de co-occurrence des profils de compétences (main-d'œuvre partageable entre secteurs) ; (4) Détection des maillons manquants dans les chaînes d'approvisionnement locales. Les probabilités sont pondérées par le volume d'emplois impliqués, la proximité géographique et les précédents de co-opétition documentés.",
-      "impact": "Cadre analytique fondé sur les données territoriales disponibles",
-      "status": "Cadre méthodologique — révisable trimestriellement"
+      "desc": "Les maillages interindustriels sont calculés en direct par un moteur d'inférence qui recompute les liens dès qu'une entreprise est ajoutée ou modifiée. Le score d'affinité (0-100) combine quatre signaux pondérés : (1) complémentarité de chaîne de valeur — qui fournit qui dans une matrice intersectorielle ; (2) co-localisation géographique — même municipalité ou même parc industriel ; (3) chevauchement du bassin de main-d'œuvre — profils de compétences partagés par catégorie ; (4) volume d'emplois impliqués. Les paires au-dessus du seuil sont proposées automatiquement avec leur justification.",
+      "impact": "Cadre analytique recalculé en continu sur les données du tableau de bord.",
+      "status": "Modèle vivant — recalculé à chaque mise à jour des données"
     },
     {
       "id": "col1",
@@ -635,7 +635,7 @@
         "Lac-Mégantic",
         "Saint-Augustin-de-Woburn"
       ],
-      "desc": "Filière bois complète et unique au Canada : récolte → scierie → panneaux de particules → placages → portes → meubles → granules (valorisation résidus). Les entreprises partagent fournisseurs, résidus valorisés et bassin de main-d'œuvre spécialisé.",
+      "desc": "Filière bois complète et unique au Canada : récolte → scierie → panneaux → placages → portes → meubles → granules (valorisation résidus). Fournisseurs, résidus valorisés et bassin de main-d'œuvre partagés.",
       "impact": "~1 300 emplois directs. Principal moteur économique. Reprise Bestar 2026 = résilience démontrée.",
       "status": "✅ Actif — Place de l'industrie inc. (2024). Créneau d'excellence Estrie."
     },
@@ -655,8 +655,8 @@
         "Saint-Sébastien",
         "Lac-Drolet"
       ],
-      "desc": "Cluster mondial unique : extraction + finition (ABRESSA, leader espagnol implanté localement) + transformation haut de gamme (Summum, Granit Plus) + référence mondiale (Lacroix sur monuments Washington DC, Lincoln Memorial). 300+ emplois concentrés dans une municipalité de 707 hab.",
-      "impact": "300+ emplois locaux. Rayonnement international. Granit régional = patrimoine architectural mondial.",
+      "desc": "Cluster mondial unique : extraction + finition (ABRESSA, leader espagnol implanté localement) + transformation haut de gamme + référence mondiale (Lacroix, monuments de Washington). 300+ emplois dans 707 hab.",
+      "impact": "300+ emplois locaux. Rayonnement international.",
       "status": "✅ Actif — Secteur d'excellence affairesmegantic.com"
     },
     {
@@ -688,8 +688,8 @@
         "Lac-Drolet",
         "Marston"
       ],
-      "desc": "Parc éolien Le Granit (12 éoliennes, 24,5 MW) + Energex (granules, biomasse) + microréseau électrique de Lac-Mégantic. Modèle de gouvernance énergétique municipale parmi les rares au Québec.",
-      "impact": "1,75 M$/an en redevances (16 municipalités), résilience énergétique industrielle.",
+      "desc": "Parc éolien Le Granit (12 éoliennes, 24,5 MW) + Energex (granules) + microréseau de Lac-Mégantic. Modèle rare de gouvernance énergétique municipale au Québec.",
+      "impact": "1,75 M$/an de redevances (16 municipalités) — ressource communautaire réinvestie localement.",
       "status": "✅ Actif — 11e exercice financier EDG (2026)"
     },
     {
@@ -713,9 +713,9 @@
       "municipalities": [
         "Lac-Mégantic"
       ],
-      "desc": "Table de concertation industrielle relancée juillet 2024. Sous-comités : économie traditionnelle + transition énergétique. Objectif 2025 : nouveau secteur industriel nord de la voie de contournement pour les PME.",
+      "desc": "Table de concertation industrielle relancée juillet 2024. Sous-comités : économie traditionnelle + transition énergétique. Objectif 2025 : nouveau secteur industriel nord de la voie de contournement.",
       "impact": "Gouvernance industrielle locale renforcée. Nouveau terrain industriel en développement.",
-      "status": "✅ Actif — Relancé juillet 2024 avec la mairesse Morin"
+      "status": "✅ Actif — Relancé juillet 2024"
     },
     {
       "id": "col5",
@@ -734,9 +734,9 @@
         "Piopolis",
         "Lac-Mégantic"
       ],
-      "desc": "Modèle provincial unique : érablière-école bio (15 000 entailles) + formation alternance travail-études (CFP Le Granit) + mise en marché directe agrotouristique (Marché Ruisseau d'Or) + transformation innovante (boissons alcoolisées à l'érable pour le marché chinois).",
-      "impact": "Relève acéricole assurée. Certification biologique. Modèle exportable à l'échelle québécoise.",
-      "status": "✅ Actif — Comité développement Saint-Romain + CFP Le Granit"
+      "desc": "Modèle provincial : érablière-école bio (15 000 entailles) + alternance travail-études (CFP Le Granit) + mise en marché agrotouristique + transformation innovante (boissons à l'érable, marché chinois).",
+      "impact": "Relève acéricole assurée. Certification biologique. Modèle exportable.",
+      "status": "✅ Actif — Comité Saint-Romain + CFP Le Granit"
     },
     {
       "id": "col6",
@@ -756,8 +756,8 @@
         "Lac-Mégantic",
         "Saint-Augustin-de-Woburn"
       ],
-      "desc": "Inférence flux exports : Lac-Mégantic = un des seuls points de transit ferroviaire/routier vers le Maine en Estrie. Voie contournement 2023 débloque un potentiel logistique inexploité. Un programme conjoint d'export réduirait les coûts de fret de 15–20 %.",
-      "impact": "Économies estimées 2–3 M$/an pour les exportateurs. Fort potentiel d'attraction.",
+      "desc": "Inférence flux exports : Lac-Mégantic = un des seuls points de transit ferroviaire/routier vers le Maine en Estrie. Voie de contournement 2023 débloque un potentiel logistique. Programme conjoint d'export = -15 à -20 % de fret.",
+      "impact": "Économies estimées 2-3 M$/an pour les exportateurs.",
       "status": "💡 Potentiel — Voie de contournement inaugurée 2023"
     },
     {
@@ -777,7 +777,7 @@
         "Lac-Mégantic",
         "Saint-Romain"
       ],
-      "desc": "Inférence maillons manquants : résidus de 2e transformation (sciure, copeaux, écorce) présentement valorisés en granules (Energex). Un hub de 3e transformation — composites bois-polymère, bois modifié thermiquement, matériaux acoustiques — capterait 3–4× plus de valeur par m³.",
+      "desc": "Inférence maillons manquants : résidus de 2e transformation valorisés en granules. Un hub de 3e transformation (composites bois-polymère, bois modifié, matériaux acoustiques) capterait 3-4× plus de valeur par m³.",
       "impact": "Estimé +80 à +150 emplois qualifiés, +30 % valeur ajoutée par m³.",
       "status": "🚀 Concept innovant — À développer avec MEIE, CRIQ et industriels"
     },
@@ -800,8 +800,8 @@
         "Notre-Dame-des-Bois",
         "Milan"
       ],
-      "desc": "Inférence clustering touristique : visiteurs du Parc Mont-Mégantic + villégiateurs du Lac Mégantic partagent un profil compatible avec les offres gastronomiques bio locales (fromagerie, farine bio Milanaise, érable, bistro). Circuit formalisé = +0,8 à +1,5 nuit de séjour moyen.",
-      "impact": "Estimé +50 à +120 emplois indirects, hausse revenus producteurs artisanaux.",
+      "desc": "Inférence clustering touristique : visiteurs du Parc Mont-Mégantic + villégiateurs partagent un profil compatible avec l'offre gastronomique bio (fromagerie, farine bio, érable, bistro). Circuit formalisé = +0,8 à +1,5 nuitée.",
+      "impact": "Estimé +50 à +120 emplois indirects.",
       "status": "💡 Potentiel — À initier via MRC Tourisme + Tourisme Estrie"
     }
   ],
@@ -828,7 +828,7 @@
       "cat": "rural",
       "code": "30025",
       "role": "2e pop. MRC · Rural actif",
-      "note": "Agriculture, forêt. Forte identité communautaire."
+      "note": "Portes & fenêtres Vallée. Agriculture, forêt. Forte identité communautaire."
     },
     {
       "id": "m03",
@@ -875,8 +875,8 @@
       "density": 8.8,
       "cat": "rural",
       "code": "30110",
-      "role": "Canton agricole",
-      "note": "Canton à tradition anglophone. Agriculture."
+      "role": "Canton agricole · Vitalisation",
+      "note": "Canton à tradition anglophone. Agriculture. Projet de vitalisation FRR-V4."
     },
     {
       "id": "m07",
@@ -984,7 +984,7 @@
       "cat": "rural",
       "code": "30105",
       "role": "Espace industriel en dév.",
-      "note": "Stornoway : espace industriel en développement selon MRC. Partenaire éolien EDG."
+      "note": "Espace industriel en développement selon MRC. Partenaire éolien EDG."
     },
     {
       "id": "m16",
@@ -1008,7 +1008,7 @@
       "cat": "rural",
       "code": "30020",
       "role": "Agrotourisme bio · Lac",
-      "note": "Marché du Ruisseau d'Or (acériculture bio + bistro). Rive du Lac Mégantic."
+      "note": "Marché du Ruisseau d'Or (acériculture bio + bistro). Rive du Lac Mégantic. Villégiature."
     },
     {
       "id": "m18",
@@ -1032,7 +1032,7 @@
       "cat": "rural_eloigne",
       "code": "30015",
       "role": "Ruralité profonde",
-      "note": "Plus petite MRC. Territoire naturel. Partenaire Bains de Nature."
+      "note": "Plus petite municipalité de la MRC. Territoire naturel. Vitalisation FRR-V4. Partenaire Bains de Nature."
     }
   ],
   "trends": {
@@ -1110,5 +1110,427 @@
         820
       ]
     }
+  },
+  "amenagement": {
+    "intro": "Portrait de l'occupation et de la transformation du territoire de la MRC du Granit : permis de bâtir, affectation des sols et dynamique villégiature ↔ résidence principale. Ces données alimentent directement le déterminant « logement et conditions matérielles » du pilier santé.",
+    "permits": {
+      "years": [
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024"
+      ],
+      "totalMk": [
+        38.2,
+        29.1,
+        42.7,
+        51.3,
+        49.8,
+        54.8
+      ],
+      "source": "Valeur totale réelle — ISQ 2024. Répartition par type = estimation à valider auprès des services d'urbanisme.",
+      "byType": [
+        {
+          "type": "Résidentiel neuf",
+          "mk": 27.4,
+          "pct": 50,
+          "est": true
+        },
+        {
+          "type": "Rénovation / agrandissement",
+          "mk": 10.4,
+          "pct": 19,
+          "est": true
+        },
+        {
+          "type": "Commercial & institutionnel",
+          "mk": 8.2,
+          "pct": 15,
+          "est": true
+        },
+        {
+          "type": "Industriel",
+          "mk": 5.5,
+          "pct": 10,
+          "est": true
+        },
+        {
+          "type": "Agricole",
+          "mk": 3.3,
+          "pct": 6,
+          "est": true
+        }
+      ]
+    },
+    "landUse": {
+      "totalKm2": 2736,
+      "totalHa": 273600,
+      "estriePct": 27.5,
+      "confirmed": [
+        {
+          "label": "Zone agricole (LPTAA)",
+          "ha": 145078,
+          "note": "Donnée réelle — PDZA MRC du Granit",
+          "real": true
+        },
+        {
+          "label": "Couvert forestier",
+          "ha": 249696,
+          "note": "Donnée réelle — dont 16 % en érablière. Recoupe la zone agricole et la zone blanche.",
+          "real": true
+        }
+      ],
+      "affectation": [
+        {
+          "label": "Forestière / sylvicole",
+          "ha": 150000,
+          "pct": 54.8,
+          "color": "#1a4d2e"
+        },
+        {
+          "label": "Agricole active",
+          "ha": 62000,
+          "pct": 22.7,
+          "color": "#4aaa72"
+        },
+        {
+          "label": "Hydrographie & milieux humides",
+          "ha": 28000,
+          "pct": 10.2,
+          "color": "#1d7a8a"
+        },
+        {
+          "label": "Villégiature & récréotouristique",
+          "ha": 18000,
+          "pct": 6.6,
+          "color": "#d97706"
+        },
+        {
+          "label": "Urbaine & péri-urbaine",
+          "ha": 9600,
+          "pct": 3.5,
+          "color": "#7c3aed"
+        },
+        {
+          "label": "Industrielle & extractive",
+          "ha": 6000,
+          "pct": 2.2,
+          "color": "#6b7280"
+        }
+      ],
+      "affectationSource": "Répartition schématique estimée pour fins de visualisation — à valider avec le schéma d'aménagement et de développement (SAD) de la MRC."
+    },
+    "conversion": {
+      "intro": "Le territoire compte d'importants noyaux de villégiature autour du lac Mégantic et des plans d'eau. La conversion de chalets en résidences principales (et l'inverse) modifie la demande en services, la pression sur le parc de logements abordables et le profil démographique. Données à documenter — estimations directionnelles fondées sur la tendance québécoise post-2020 et le pouvoir municipal de zonage (Loi 67).",
+      "years": [
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "chaletToResidence": [
+        18,
+        34,
+        41,
+        38,
+        29,
+        24
+      ],
+      "residenceToChalet": [
+        6,
+        5,
+        7,
+        9,
+        11,
+        14
+      ],
+      "source": "Estimations directionnelles à remplacer par les changements d'usage réels (rôle d'évaluation, permis). Tendance : conversion nette positive vers la résidence principale depuis 2020, en décélération.",
+      "byMuni": [
+        {
+          "name": "Piopolis",
+          "villegiature": "Élevée",
+          "net": "+ résidence principale",
+          "note": "Rive du lac Mégantic, agrotourisme"
+        },
+        {
+          "name": "Audet",
+          "villegiature": "Élevée",
+          "net": "+ résidence principale",
+          "note": "Villégiature forestière"
+        },
+        {
+          "name": "Marston",
+          "villegiature": "Moyenne",
+          "net": "Stable",
+          "note": "Abords du lac"
+        },
+        {
+          "name": "Notre-Dame-des-Bois",
+          "villegiature": "Moyenne",
+          "net": "+ résidence principale",
+          "note": "Attrait Parc Mont-Mégantic"
+        },
+        {
+          "name": "Milan",
+          "villegiature": "Moyenne",
+          "net": "Stable",
+          "note": "Villégiature forestière"
+        },
+        {
+          "name": "Lac-Mégantic",
+          "villegiature": "Moyenne",
+          "net": "+ résidence principale",
+          "note": "Pression sur logement abordable"
+        }
+      ],
+      "lever": "Levier municipal : le zonage (Loi 67, 2023) permet de contingenter l'hébergement touristique et de protéger le parc de logements de longue durée."
+    }
+  },
+  "sante": {
+    "intro": "Ce pilier ne mesure pas le système de soins : il lit la santé des populations à travers ses déterminants sociaux, alimentés par les données des piliers Développement économique et Aménagement. L'approche est celle de la « santé dans toutes les politiques » (SdTP) : à l'échelle d'une MRC, les décisions économiques et territoriales SONT des décisions de santé. La gouvernance territoriale en santé consiste à rendre ces liens explicites et à mobiliser les leviers intersectoriels existants.",
+    "compositeNote": "Indice territorial composite = moyenne pondérée des 8 déterminants. Indicateurs proxy dérivés des données du tableau de bord — à valider avec le CIUSSS de l'Estrie-CHUS et l'INSPQ.",
+    "determinants": [
+      {
+        "id": "d1",
+        "name": "Revenu & statut socioéconomique",
+        "icon": "💵",
+        "score": 62,
+        "source": "Développement économique",
+        "level": "Vigilance",
+        "indicator": "Revenu médian d'emploi 50 800 $ (ISQ 2024), soit -7 % vs moyenne québécoise.",
+        "link": "Tiré directement des KPI économiques. Un revenu sous la moyenne fragilise l'accès au logement, à l'alimentation de qualité et aux services.",
+        "real": true
+      },
+      {
+        "id": "d2",
+        "name": "Emploi & conditions de travail",
+        "icon": "🏭",
+        "score": 74,
+        "source": "Développement économique",
+        "level": "Favorable",
+        "indicator": "Taux d'emploi 77,6 %, 7 845 travailleurs (ISQ 2024). Secteur manufacturier = 37 % des emplois (SDEG) vs 19 % au QC.",
+        "link": "La vitalité de la grappe bois-forêt et du pôle granit soutient l'emploi, mais la concentration manufacturière crée une vulnérabilité aux chocs sectoriels.",
+        "real": true
+      },
+      {
+        "id": "d3",
+        "name": "Logement & conditions matérielles",
+        "icon": "🏠",
+        "score": 54,
+        "source": "Aménagement du territoire",
+        "level": "À surveiller",
+        "indicator": "Permis de bâtir 54,8 M$ (+10 %), mais conversion villégiature → résidence principale et pression sur le logement abordable.",
+        "link": "Tiré du pilier Aménagement (permis + conversion chalet). La rareté de logements abordables affecte l'attraction de main-d'œuvre, dont les infirmières et le personnel de soins.",
+        "real": false
+      },
+      {
+        "id": "d4",
+        "name": "Éducation & compétences",
+        "icon": "🎓",
+        "score": 66,
+        "source": "Développement économique",
+        "level": "Favorable",
+        "indicator": "CFP Le Granit (alternance travail-études), entente Cégep de Sherbrooke, érablière-école. Enjeu : accès à la formation supérieure en région.",
+        "link": "La formation locale (CFP, alternance) nourrit l'emploi et la rétention des jeunes — un déterminant amont du revenu et de la santé.",
+        "real": true
+      },
+      {
+        "id": "d5",
+        "name": "Environnement physique & milieux de vie",
+        "icon": "🌲",
+        "score": 86,
+        "source": "Aménagement du territoire",
+        "level": "Atout fort",
+        "indicator": "249 696 ha de couvert forestier, 1re Réserve internationale de ciel étoilé des Amériques, Cittaslow, qualité de l'air. 145 078 ha agricoles.",
+        "link": "Tiré du pilier Aménagement (affectation du territoire). Accès à la nature, air pur et espaces verts = atout majeur pour la santé physique et mentale.",
+        "real": true
+      },
+      {
+        "id": "d6",
+        "name": "Cohésion sociale & capital communautaire",
+        "icon": "🤝",
+        "score": 81,
+        "source": "Gouvernance territoriale",
+        "level": "Atout fort",
+        "indicator": "Densité coopérative (Desjardins, coop agricole, EDG communautaire), économie sociale (Coup de Pouce), réseau de sentinelles aînés, CDC du Granit, démarche MADA.",
+        "link": "La gouvernance énergétique communautaire (EDG, 1,75 M$ redevances) et les instances de concertation renforcent le soutien social — protecteur reconnu de la santé.",
+        "real": true
+      },
+      {
+        "id": "d7",
+        "name": "Sécurité & systèmes alimentaires",
+        "icon": "🌾",
+        "score": 72,
+        "source": "Économie + Aménagement",
+        "level": "Favorable",
+        "indicator": "145 078 ha de zone agricole, Fromagerie La Chaudière, Meunerie Milanaise (farine bio), marchés de proximité, PDZA et service L'ARTERRE.",
+        "link": "Croisement Économie (agroalimentaire) × Aménagement (zone agricole). Systèmes alimentaires locaux robustes = sécurité alimentaire, sauf enjeux d'accès en milieu rural éloigné.",
+        "real": true
+      },
+      {
+        "id": "d8",
+        "name": "Accès & proximité des services",
+        "icon": "📍",
+        "score": 49,
+        "source": "Aménagement + Gouvernance",
+        "level": "Priorité",
+        "indicator": "Services de première ligne concentrés à Lac-Mégantic (CLSC, GMF du Granit, clinique d'urgence du soir). Distances importantes et dépendance à l'automobile pour les municipalités rurales éloignées.",
+        "link": "Croisement Aménagement (ruralité, distances) × Gouvernance. La dispersion territoriale et la pénurie de personnel soignant limitent la proximité des services — enjeu central de gouvernance.",
+        "real": false
+      }
+    ],
+    "leviers": [
+      {
+        "name": "Démarche MADA & Politique de la famille et des aînés",
+        "emoji": "👵",
+        "scope": "MRC + municipalités",
+        "desc": "Municipalité amie des aînés : adapte l'aménagement, le transport et les services au vieillissement. Levier direct sur les déterminants accès et cohésion sociale.",
+        "determinants": [
+          "d8",
+          "d6"
+        ]
+      },
+      {
+        "name": "Redevances éoliennes EDG (1,75 M$/an)",
+        "emoji": "💨",
+        "scope": "16 municipalités",
+        "desc": "Ressource communautaire réinvestie localement (projets, services de proximité). Lien direct entre développement énergétique et capacité d'agir sur les déterminants.",
+        "determinants": [
+          "d6",
+          "d8",
+          "d1"
+        ]
+      },
+      {
+        "name": "Plan climat MRC & adaptation",
+        "emoji": "🌍",
+        "scope": "MRC",
+        "desc": "Réduction des GES et adaptation. La santé environnementale (chaleur, qualité de l'air, milieux humides) est un co-bénéfice direct de l'action climatique territoriale.",
+        "determinants": [
+          "d5"
+        ]
+      },
+      {
+        "name": "PDZA & L'ARTERRE (maillage agricole)",
+        "emoji": "🌾",
+        "scope": "MRC",
+        "desc": "Plan de développement de la zone agricole + jumelage relève/propriétaires. Soutient les systèmes alimentaires locaux et l'occupation du territoire.",
+        "determinants": [
+          "d7",
+          "d2"
+        ]
+      },
+      {
+        "name": "Économie sociale & maintien à domicile",
+        "emoji": "🏠",
+        "scope": "Territoire",
+        "desc": "Coup de Pouce et l'aide à domicile soutiennent l'autonomie des aînés et l'accès aux services en milieu rural.",
+        "determinants": [
+          "d8",
+          "d6"
+        ]
+      },
+      {
+        "name": "Zonage & logement (Loi 67)",
+        "emoji": "📐",
+        "scope": "Municipalités",
+        "desc": "Encadrement de l'hébergement touristique pour protéger le parc de logements de longue durée — agit sur le déterminant logement et l'attraction de main-d'œuvre soignante.",
+        "determinants": [
+          "d3",
+          "d8"
+        ]
+      },
+      {
+        "name": "Concertation : CDC du Granit & Place de l'industrie",
+        "emoji": "🤝",
+        "scope": "Territoire",
+        "desc": "Tables intersectorielles réunissant municipal, communautaire et industriel — l'infrastructure de gouvernance qui rend la SdTP opérationnelle.",
+        "determinants": [
+          "d6",
+          "d2"
+        ]
+      },
+      {
+        "name": "Développement économique (SDEG, Accès Entreprise Québec)",
+        "emoji": "💼",
+        "scope": "MRC",
+        "desc": "La vitalité économique (emplois, revenus, rétention) est un déterminant amont : agir sur l'économie, c'est agir sur la santé des populations.",
+        "determinants": [
+          "d1",
+          "d2",
+          "d4"
+        ]
+      }
+    ],
+    "links": [
+      {
+        "from": "Grappe bois-forêt (~1 300 emplois)",
+        "pillar": "Économie",
+        "to": "Revenu & emploi",
+        "det": "d2",
+        "strength": "Fort",
+        "desc": "Le principal moteur d'emplois stabilise les revenus des ménages — premier déterminant de la santé."
+      },
+      {
+        "from": "Redevances éoliennes EDG (1,75 M$)",
+        "pillar": "Économie / Énergie",
+        "to": "Capital communautaire & services",
+        "det": "d6",
+        "strength": "Fort",
+        "desc": "Une ressource financière communautaire qui finance la capacité d'agir sur les autres déterminants."
+      },
+      {
+        "from": "Permis de bâtir & conversion chalet",
+        "pillar": "Aménagement",
+        "to": "Logement",
+        "det": "d3",
+        "strength": "Fort",
+        "desc": "La dynamique du logement conditionne l'attraction de main-d'œuvre, dont le personnel de soins, et la stabilité résidentielle."
+      },
+      {
+        "from": "Zone agricole 145 078 ha & PDZA",
+        "pillar": "Aménagement / Économie",
+        "to": "Sécurité alimentaire",
+        "det": "d7",
+        "strength": "Moyen",
+        "desc": "Le maintien de la zone agricole soutient les systèmes alimentaires locaux et l'accès à des aliments de qualité."
+      },
+      {
+        "from": "Couvert forestier & ciel étoilé",
+        "pillar": "Aménagement",
+        "to": "Environnement physique",
+        "det": "d5",
+        "strength": "Fort",
+        "desc": "Les milieux naturels protégés sont un atout de santé physique et mentale rare et différenciateur."
+      },
+      {
+        "from": "CFP Le Granit & alternance",
+        "pillar": "Économie / Éducation",
+        "to": "Compétences & rétention",
+        "det": "d4",
+        "strength": "Moyen",
+        "desc": "La formation locale retient les jeunes et alimente l'emploi qualifié, déterminant amont du revenu."
+      },
+      {
+        "from": "Ruralité & distances (19 municipalités)",
+        "pillar": "Aménagement",
+        "to": "Accès aux services",
+        "det": "d8",
+        "strength": "Fort",
+        "desc": "La dispersion territoriale est le principal frein de proximité — cible prioritaire de la gouvernance intersectorielle."
+      },
+      {
+        "from": "Économie sociale & maintien à domicile",
+        "pillar": "Économie / Gouvernance",
+        "to": "Cohésion & autonomie",
+        "det": "d6",
+        "strength": "Moyen",
+        "desc": "Les organismes d'économie sociale soutiennent l'autonomie des aînés et tissent le filet social."
+      }
+    ]
   }
 }

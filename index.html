@@ -21,9 +21,9 @@ body{background:var(--bg);color:var(--text);display:flex;flex-direction:column;m
 h2,h3{font-family:'Fraunces',serif}
 
 /* ── LOADING ── */
-#ls{position:fixed;inset:0;background:var(--g800);display:flex;align-items:center;justify-content:center;z-index:999;flex-direction:column;gap:14px}
-#ls .lo{color:#fff;font-size:22px;font-weight:700;font-family:'Fraunces',serif}
-#ls .su{color:rgba(255,255,255,.4);font-size:12px}
+#ls{position:fixed;inset:0;background:var(--g800);display:flex;align-items:center;justify-content:center;z-index:999;flex-direction:column;gap:16px}
+#ls .ls-brand{color:#fff;font-size:24px;font-weight:700;font-family:'Fraunces',serif;letter-spacing:-.3px}
+#ls .su{color:rgba(255,255,255,.45);font-size:12px}
 .sp{width:26px;height:26px;border:3px solid rgba(255,255,255,.15);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
@@ -402,11 +402,9 @@ h2,h3{font-family:'Fraunces',serif}
 </head>
 <body>
 <div id="ls">
-  <div class="ls-logo">
-    <div class="ls-mark"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-    <div class="ls-text"><div class="org">MRC du Granit &middot; Estrie</div><div class="name">Tableau de bord territorial</div></div>
-  </div>
+  <div class="ls-brand">MRC du Granit</div>
   <div class="sp"></div>
+  <div class="su">Chargement du tableau de bord territorial…</div>
 </div>
 
 <header class="pillar-bar">
@@ -773,22 +771,33 @@ function getSectorMatrix(){
   });
 }
 
-// ─── INIT ───
-async function init(){
-  var ok=false;
-  try{
-    var r=await fetch('./data.json?v='+Date.now());
-    if(!r.ok){var base=window.location.href.replace(/\/[^\/]*$/,'/');r=await fetch(base+'data.json?v='+Date.now());}
-    if(r.ok){D=await r.json();ok=true;}
-  }catch(e){}
-  if(!ok){try{var s=localStorage.getItem('mrcg7');if(s){D=JSON.parse(s);ok=true;}}catch(e){}}
-  if(!ok&&typeof DEFAULT_DATA!=='undefined'){D=DEFAULT_DATA;ok=true;}
-  if(!ok||!D.sectors){
-    document.getElementById('ls').innerHTML='<div class="lo" style="color:#fff">⚠️ data.json introuvable</div><div class="su" style="max-width:340px;text-align:center;line-height:1.7;color:rgba(255,255,255,.55)">Placez <code>data.json</code> dans le même dossier qu\'index.html, ou ouvrez le fichier standalone.</div>';
+// ─── INIT (synchrone, non bloquant) ───
+function init(){
+  // 1. Données embarquées en priorité (fonctionne toujours, même en standalone)
+  if(typeof DEFAULT_DATA!=='undefined' && DEFAULT_DATA && DEFAULT_DATA.sectors){ D=DEFAULT_DATA; }
+  // 2. Override éventuel par localStorage (modifs locales non exportées)
+  try{ var s=localStorage.getItem('mrcg7'); if(s){ var p=JSON.parse(s); if(p && p.sectors){ D=p; } } }catch(e){}
+  // 3. Échec total → message d'erreur
+  if(!D || !D.sectors){
+    var ls=document.getElementById('ls');
+    if(ls)ls.innerHTML='<div class="ls-brand" style="color:#fff">Données introuvables</div><div class="su" style="max-width:340px;text-align:center;line-height:1.7;color:rgba(255,255,255,.55)">Placez data.json dans le même dossier qu\'index.html.</div>';
     return;
   }
-  document.getElementById('ls').style.display='none';
+  // 4. Affichage immédiat
+  var ls=document.getElementById('ls'); if(ls)ls.style.display='none';
   renderAll();
+  // 5. En arrière-plan : tenter de charger un data.json externe (version déployée)
+  fetchExternalData();
+}
+function fetchExternalData(){
+  if(typeof fetch==='undefined')return;
+  try{
+    fetch('./data.json?v='+Date.now()).then(function(r){
+      return r.ok?r.json():null;
+    }).then(function(j){
+      if(j && j.sectors){ D=j; allMLPairs=getMLSuggestions(); renderAll(); }
+    }).catch(function(){});
+  }catch(e){}
 }
 function saveLs(){try{localStorage.setItem('mrcg7',JSON.stringify(D));}catch(e){}}
 function exportJSON(){var b=new Blob([JSON.stringify(D,null,2)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='data.json';a.click();toast('💾 data.json exporté');}
@@ -850,7 +859,7 @@ function renderAll(){
   renderCollabGrid('all');
   renderAmOverviewKpis();renderAmConfirmedData();
   renderPermitStats();renderLandStats();renderConvStats();
-  renderLandConfirmed();renderConvMuniList();renderConvLever();
+  renderConvMuniList();renderConvLever();
   renderSdohIntro();renderVulnStats();
   setTimeout(function(){renderBarChart();renderDonutChart();},300);
   setTimeout(function(){renderAmOverviewCharts();},350);

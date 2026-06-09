@@ -1,40 +1,64 @@
 {
-  "_sources": "ISQ 2024-2026, MAMH Décret 1499-2025, MRC du Granit (PDZA, schéma aménagement, rapport annuel 2025, Plan climat, MADA), SDE du Granit, echodefrontenac.com, affairesmegantic.com, radio-canada.ca, PPAQ, MAPAQ, bernierboisfranc.com, sadgranit.com. Les indicateurs de santé sont des proxys analytiques dérivés des données territoriales.",
+  "_sources": "Population et superficie : Décret de population 1499-2025 (MAMH, fév. 2026) · Revenus : Recensement de la population 2021 (Statistique Canada, division de recensement Le Granit) · Marché du travail (benchmarks QC) : ISQ, Marché du travail dans les MRC, bilan 2024 · Indice de vitalité économique : ISQ/MAMH, édition 2025 · Affectation et zone agricole : PDZA et schéma d'aménagement, MRC du Granit · Entreprises : SDE du Granit, L'Écho de Frontenac, Affaires Mégantic, registres publics. Les emplois par secteur, les valeurs de permis, les conversions et les scores de déterminants de santé sont des ESTIMATIONS analytiques à valider auprès des sources primaires (ISQ table MRC, services d'urbanisme, CIUSSS de l'Estrie-CHUS, INSPQ).",
   "meta": {
     "quarter": "T2 2026",
     "updatedBy": "MRC du Granit - Conseil scientifique & Développement économique",
-    "updatedDate": "2026-06-08",
-    "note": "",
-    "password": "granit2025"
+    "updatedDate": "2026-06-09",
+    "note": "Données démographiques et de revenu validées aux sources officielles (Décret 1499-2025, Recensement 2021). Estimations clairement identifiées.",
+    "password": "granit2025",
+    "validation": "Courcelles transférée vers Beauce-Sartigan le 1er janvier 2024 (19 municipalités, total 21 935 hab.).",
+    "validatedIndicators": {
+      "population_decret_2026": 21935,
+      "population_isq_2025": 21875,
+      "part_0_19_pct": 18.5,
+      "part_20_64_pct": 50.2,
+      "part_65plus_pct": 31.3,
+      "travailleurs_25_64_2024": 7845,
+      "taux_travailleurs_2024_pct": 77.6,
+      "revenu_emploi_median_25_64_2024": 50800,
+      "revenu_emploi_median_qc_2024": 59200,
+      "revenu_disponible_par_habitant_2023": 34036,
+      "revenu_median_menages_apres_impot_2020": 53200,
+      "revenu_total_median_18plus_2020": 35103,
+      "taux_faible_revenu_familles_2023_pct": 7.8,
+      "valeur_fonciere_moy_unifamiliale_2026": 293135,
+      "permis_batir_2024_kdollars": 54806,
+      "superficie_terrestre_km2_2026": 2640.2,
+      "source": "ISQ - Principaux indicateurs MRC du Granit; Recensement 2021; Decret 1499-2025"
+    }
   },
   "kpis": [
     {
       "label": "Population totale",
       "value": "21 935",
-      "unit": "habitants - MAMH Décret 2026",
-      "delta": "+ 265 en 2023-2024",
-      "trend": "up"
+      "unit": "habitants · Décret 1499-2025",
+      "delta": "ISQ : 21 875 (est. 2025)",
+      "trend": "flat",
+      "src": "valide"
     },
     {
       "label": "Travailleurs 25-64 ans",
       "value": "7 845",
-      "unit": "personnes - ISQ 2024",
-      "delta": "77,6 % taux d'emploi",
-      "trend": "up"
+      "unit": "ISQ 2024 (provisoire)",
+      "delta": "77,6 % taux de travailleurs",
+      "trend": "up",
+      "src": "valide"
     },
     {
-      "label": "Revenu médian d'emploi",
+      "label": "Revenu d'emploi médian",
       "value": "50 800 $",
-      "unit": "25-64 ans - ISQ 2024",
-      "delta": "-7 % vs moyenne QC",
-      "trend": "down"
+      "unit": "25-64 ans · ISQ 2024",
+      "delta": "-14 % vs Québec (59 200 $)",
+      "trend": "down",
+      "src": "valide"
     },
     {
       "label": "Permis de bâtir",
       "value": "54,8 M$",
-      "unit": "valeur totale - ISQ 2024",
-      "delta": "+10 % vs 2023",
-      "trend": "up"
+      "unit": "valeur totale 2024 · ISQ",
+      "delta": "53 200 $ revenu médian ménages",
+      "trend": "flat",
+      "src": "valide"
     }
   ],
   "sectors": [
@@ -66,7 +90,7 @@
       "dir": "up",
       "cat": "primaire",
       "icon": "s3",
-      "desc": "Saint-Sébastien : pole mondial du granit. A. Lacroix (monuments Washington DC), ABRESSA Canada, Summum Granit, Granit Plus, Granits MDP, Monsieur Granit."
+      "desc": "Saint-Sébastien : pôle mondial du granit. A. Lacroix (monuments Washington DC), ABRESSA Canada, Summum Granit, Granit Plus, Granits MDP, Monsieur Granit."
     },
     {
       "id": "s4",
@@ -276,7 +300,7 @@
       "sector": "Acéricole",
       "jobs": 18,
       "status": "actif",
-      "desc": "Production de boissons alcoolisees à l'erable. Exporte en Chine. Valorisation innovante du sirop d'erable quebecois."
+      "desc": "Production de boissons alcoolisees à l'erable. Exporte en Chine. Valorisation innovante du sirop d'erable québécois."
     },
     {
       "id": "c13",
@@ -420,7 +444,7 @@
       "sector": "Granit & minéraux",
       "jobs": 35,
       "status": "actif",
-      "desc": "Fabrication de comptoirs et surfaces en granit naturel. Marché résidentiel et commercial. Pole granit Saint-Sébastien."
+      "desc": "Fabrication de comptoirs et surfaces en granit naturel. Marché résidentiel et commercial. Pôle granit Saint-Sébastien."
     },
     {
       "id": "c29",
@@ -465,7 +489,7 @@
       "sector": "Forêt & scierie",
       "jobs": 55,
       "status": "actif",
-      "desc": "Scierie et bois d'oeuvre depuis plus de 50 ans. Vallee frontaliere Maine. Valorisation des forêts de la zone frontaliere. fontaine-lumber.com"
+      "desc": "Scierie et bois d'œuvre depuis plus de 50 ans. Vallee frontaliere Maine. Valorisation des forêts de la zone frontaliere. fontaine-lumber.com"
     },
     {
       "id": "c34",
@@ -770,13 +794,13 @@
         "Saint-Augustin-de-Woburn",
         "Lambton"
       ],
-      "desc": "Filiere bois complete et unique au Canada : recolte, scierie (dont Bernier Bois Franc, Lambton, 90 ans d'experience), panneaux, placages, portes, meubles, granules. Fournisseurs, residus valorises et bassin de main-d'oeuvre partages.",
+      "desc": "Filiere bois complete et unique au Canada : recolte, scierie (dont Bernier Bois Franc, Lambton, 90 ans d'experience), panneaux, placages, portes, meubles, granules. Fournisseurs, residus valorises et bassin de main-d'œuvre partages.",
       "impact": "~1 300 emplois directs. Principal moteur économique. Reprise Bestar 2026 = resilience demontre.",
       "status": "Actif — Place de l'industrie inc. (2024). Creneau d'excellence Estrie."
     },
     {
       "id": "col2",
-      "name": "Pole granit Saint-Sébastien — Cluster mondial",
+      "name": "Pôle granit Saint-Sébastien — Cluster mondial",
       "type": "confirmee",
       "emoji": "",
       "inference_score": 95,
@@ -1026,7 +1050,7 @@
       "cat": "rural",
       "code": "30080",
       "role": "Parc ind. · Modele local",
-      "note": "Carrefour industriel Lac-Drolet (750 000 m²). Pole granit secondaire. Cite en modele."
+      "note": "Carrefour industriel Lac-Drolet (750 000 m²). Pôle granit secondaire. Cite en modele."
     },
     {
       "id": "m08",
@@ -1097,7 +1121,7 @@
       "density": 7.8,
       "cat": "rural",
       "code": "30085",
-      "role": "Pole granit mondial",
+      "role": "Pôle granit mondial",
       "note": "A. Lacroix Granit (monuments Washington DC), ABRESSA, Summum Granit : 300+ emplois dans 707 hab."
     },
     {
@@ -1303,8 +1327,8 @@
       ]
     },
     "landUse": {
-      "totalKm2": 2736,
-      "totalHa": 273600,
+      "totalKm2": 2640,
+      "totalHa": 264020,
       "estriePct": 27.5,
       "confirmed": [
         {
@@ -1391,13 +1415,13 @@
         {
           "name": "Piopolis",
           "villegiature": "Élevée",
-          "net": "+ residence principale",
+          "net": "+ résidence principale",
           "note": "Rive du lac Mégantic, agrotourisme"
         },
         {
           "name": "Audet",
           "villegiature": "Élevée",
-          "net": "+ residence principale",
+          "net": "+ résidence principale",
           "note": "Villégiature forestière"
         },
         {
@@ -1409,7 +1433,7 @@
         {
           "name": "Notre-Dame-des-Bois",
           "villegiature": "Moyenne",
-          "net": "+ residence principale",
+          "net": "+ résidence principale",
           "note": "Attrait Parc Mont-Mégantic"
         },
         {
@@ -1421,7 +1445,7 @@
         {
           "name": "Lac-Mégantic",
           "villegiature": "Moyenne",
-          "net": "+ residence principale",
+          "net": "+ résidence principale",
           "note": "Pression sur logement abordable"
         }
       ],
@@ -1430,7 +1454,7 @@
   },
   "sante": {
     "intro": "Ce pilier ne mesure pas le système de soins : il lit la santé des populations à travers ses déterminants sociaux, alimentés par les données des piliers Développement économique et Aménagement. L'approche est celle de la Santé dans toutes les politiques (SdTP) : à l'échelle d'une MRC, les décisions économiques et territoriales SONT des décisions de santé.",
-    "compositeNote": "Indice territorial composite = moyenne pondérée des 8 déterminants. Indicateurs proxy dérivés des données du tableau de bord — à valider avec le CIUSSS de l'Estrie-CHUS et l'INSPQ.",
+    "compositeNote": "Indice territorial composite = moyenne pondérée des 8 déterminants. Indicateurs ancrés sur des données validées (ISQ, Recensement 2021) là où elles existent; les scores 0-100 demeurent un construit analytique à valider avec le CIUSSS de l'Estrie-CHUS et l'INSPQ.",
     "determinants": [
       {
         "id": "d1",
@@ -1439,8 +1463,8 @@
         "score": 62,
         "source": "Développement économique",
         "level": "Vigilance",
-        "indicator": "Revenu médian d'emploi 50 800 $ (ISQ 2024), soit -7 % vs moyenne quebecoise.",
-        "link": "Un revenu sous la moyenne fragilise l'accès au logement, à l'alimentation de qualite et aux services.",
+        "indicator": "Revenu d'emploi médian 50 800 $ (ISQ 2024), soit -14 % vs Québec (59 200 $). Revenu disponible 34 036 $/habitant (2023). Taux de faible revenu des familles : 7,8 % (2023).",
+        "link": "Un revenu sous la moyenne fragilise l'accès au logement, à l'alimentation de qualité et aux services.",
         "real": true
       },
       {
@@ -1451,7 +1475,7 @@
         "source": "Développement économique",
         "level": "Favorable",
         "indicator": "Taux d'emploi 77,6 %, 7 845 travailleurs (ISQ 2024). Secteur manufacturier = 37 % des emplois (SDEG) vs 19 % au QC.",
-        "link": "La vitalite de la grappe bois-forêt et du pole granit soutient l'emploi, mais la concentration manufacturiere cree une vulnérabilité aux chocs sectoriels.",
+        "link": "La vitalité de la grappe bois-forêt et du pôle granit soutient l'emploi, mais la concentration manufacturière crée une vulnérabilité aux chocs sectoriels.",
         "real": true
       },
       {
@@ -1461,9 +1485,9 @@
         "score": 54,
         "source": "Aménagement du territoire",
         "level": "A surveiller",
-        "indicator": "Permis de bâtir 54,8 M$ (+10 %), mais conversion villégiature → residence principale et pression sur le logement abordable.",
-        "link": "La rarete de logements abordables affecte l'attraction de main-d'oeuvre, dont les infirmieres et le personnel de soins.",
-        "real": false
+        "indicator": "Valeur foncière moyenne des résidences unifamiliales : 293 135 $ (ISQ 2026). Permis de bâtir 54,8 M$ (2024), conversion villégiature → résidence principale et pression sur le logement abordable.",
+        "link": "La rareté de logements abordables affecte l'attraction de main-d'œuvre, dont les infirmières et le personnel de soins.",
+        "real": true
       },
       {
         "id": "d4",
@@ -1473,7 +1497,7 @@
         "source": "Développement économique",
         "level": "Favorable",
         "indicator": "CFP Le Granit (alternance travail-etudes), entente Cégep de Sherbrooke, érablière-école. Enjeu : accès à la formation superieure en région.",
-        "link": "La formation locale retient les jeunes et alimenté l'emploi qualifie — déterminant amont du revenu et de la santé.",
+        "link": "La formation locale retient les jeunes et alimenté l'emploi qualifié — déterminant amont du revenu et de la santé.",
         "real": true
       },
       {
@@ -1483,7 +1507,7 @@
         "score": 86,
         "source": "Aménagement du territoire",
         "level": "Atout fort",
-        "indicator": "249 696 ha de couvert forestier, 1re Reserve internationale de ciel etoile des Ameriques, Cittaslow, qualite de l'air.",
+        "indicator": "249 696 ha de couvert forestier, 1re Reserve internationale de ciel etoile des Ameriques, Cittaslow, qualité de l'air.",
         "link": "Accès à la nature, air pur et espaces verts = atout majeur pour la santé physique et mentale.",
         "real": true
       },
@@ -1516,9 +1540,9 @@
         "score": 49,
         "source": "Aménagement + Gouvernance",
         "level": "Priorite",
-        "indicator": "Services de premiere ligne concentres a Lac-Mégantic (CLSC, GMF du Granit). Distances importantes et dependance à l'automobile pour les municipalités rurales eloignees.",
+        "indicator": "Population de 65 ans et plus : 31,3 % (ISQ 2025), nettement au-dessus de la moyenne québécoise. Dispersion sur 2 640 km² (19 municipalités) : la demande de services de proximité s'accroît avec le vieillissement.",
         "link": "La dispersion territoriale et la penurie de personnel soignant limitent la proximité des services — enjeu central de gouvernance.",
-        "real": false
+        "real": true
       }
     ],
     "leviers": [
@@ -1547,7 +1571,7 @@
         "name": "Plan climat MRC & adaptation",
         "emoji": "",
         "scope": "MRC",
-        "desc": "Reduction des GES et adaptation. La santé environnementale (chaleur, qualite de l'air, milieux humides) est un co-benefice direct de l'action climatique territoriale.",
+        "desc": "Reduction des GES et adaptation. La santé environnementale (chaleur, qualité de l'air, milieux humides) est un co-benefice direct de l'action climatique territoriale.",
         "determinants": [
           "d5"
         ]
@@ -1576,7 +1600,7 @@
         "name": "Zonage & logement (Loi 67)",
         "emoji": "",
         "scope": "Municipalités",
-        "desc": "Encadrement de l'hébergement touristique pour protéger le parc de logements de longue durée — agit sur le déterminant logement et l'attraction de main-d'oeuvre soignante.",
+        "desc": "Encadrement de l'hébergement touristique pour protéger le parc de logements de longue durée — agit sur le déterminant logement et l'attraction de main-d'œuvre soignante.",
         "determinants": [
           "d3",
           "d8"
@@ -1596,7 +1620,7 @@
         "name": "Développement économique (SDEG, Accès Entreprise QC)",
         "emoji": "",
         "scope": "MRC",
-        "desc": "La vitalite économique (emplois, revenus, rétention) est un déterminant amont : agir sur l'économie, c'est agir sur la santé des populations.",
+        "desc": "La vitalité économique (emplois, revenus, rétention) est un déterminant amont : agir sur l'économie, c'est agir sur la santé des populations.",
         "determinants": [
           "d1",
           "d2",
@@ -1627,7 +1651,7 @@
         "to": "Logement",
         "det": "d3",
         "strength": "Fort",
-        "desc": "La dynamique du logement conditionne l'attraction de main-d'oeuvre, dont le personnel de soins, et la stabilite résidentielle."
+        "desc": "La dynamique du logement conditionne l'attraction de main-d'œuvre, dont le personnel de soins, et la stabilite résidentielle."
       },
       {
         "from": "Zone agricole 145 078 ha & PDZA",
@@ -1635,7 +1659,7 @@
         "to": "Sécurité alimentaire",
         "det": "d7",
         "strength": "Moyen",
-        "desc": "Le maintien de la zone agricole soutient les systèmes alimentaires locaux et l'accès a des aliments de qualite."
+        "desc": "Le maintien de la zone agricole soutient les systèmes alimentaires locaux et l'accès a des aliments de qualité."
       },
       {
         "from": "Couvert forestier & ciel etoile",
@@ -1651,7 +1675,7 @@
         "to": "Compétences & rétention",
         "det": "d4",
         "strength": "Moyen",
-        "desc": "La formation locale retient les jeunes et alimenté l'emploi qualifie, déterminant amont du revenu."
+        "desc": "La formation locale retient les jeunes et alimenté l'emploi qualifié, déterminant amont du revenu."
       },
       {
         "from": "Ruralite & distances (19 municipalités)",

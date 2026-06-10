@@ -1,10 +1,10 @@
 {
-  "_sources": "Population et superficie : Décret de population 1499-2025 (MAMH, fév. 2026) · Revenus : Recensement de la population 2021 (Statistique Canada, division de recensement Le Granit) · Marché du travail (benchmarks QC) : ISQ, Marché du travail dans les MRC, bilan 2024 · Indice de vitalité économique : ISQ/MAMH, édition 2025 · Affectation et zone agricole : PDZA et schéma d'aménagement, MRC du Granit · Entreprises : SDE du Granit, L'Écho de Frontenac, Affaires Mégantic, registres publics. Les emplois par secteur, les valeurs de permis, les conversions et les scores de déterminants de santé sont des ESTIMATIONS analytiques à valider auprès des sources primaires (ISQ table MRC, services d'urbanisme, CIUSSS de l'Estrie-CHUS, INSPQ).",
+  "_sources": "Population et superficie : Décret de population 1499-2025 (MAMH, fév. 2026) · Revenus : Recensement de la population 2021 (Statistique Canada, division de recensement Le Granit) · Marché du travail (benchmarks QC) : ISQ, Marché du travail dans les MRC, bilan 2024 · Indice de vitalité économique : ISQ/MAMH, édition 2025 · Affectation et zone agricole : PDZA et schéma d'aménagement, MRC du Granit · Entreprises : SDE du Granit, L'Écho de Frontenac, Affaires Mégantic, registres publics. Les emplois par secteur, les valeurs de permis, les conversions et les scores de déterminants de santé sont des ESTIMATIONS analytiques à valider auprès des sources primaires (ISQ table MRC, services d'urbanisme, CIUSSS de l'Estrie-CHUS, INSPQ). · Portrait industriel (656 établissements, 5 245 emplois, 733 M$ PIB, 2 G$ ventes) : LGP, « Portrait économique sectoriel et pistes de collaboration inter-MRC », Table des MRC de l'Estrie, avril 2026.",
   "meta": {
     "quarter": "T2 2026",
     "updatedBy": "MRC du Granit - Conseil scientifique & Développement économique",
-    "updatedDate": "2026-06-09",
-    "note": "Données démographiques et de revenu validées aux sources officielles (Décret 1499-2025, Recensement 2021). Estimations clairement identifiées.",
+    "updatedDate": "2026-06-10",
+    "note": "Données démographiques et de revenu validées aux sources officielles (Décret 1499-2025, Recensement 2021). Portrait industriel officiel intégré (LGP / Table des MRC de l'Estrie, avril 2026). Estimations clairement identifiées.",
     "password": "granit2025",
     "validation": "Courcelles transférée vers Beauce-Sartigan le 1er janvier 2024 (19 municipalités, total 21 935 hab.).",
     "validatedIndicators": {
@@ -484,6 +484,15 @@
     },
     {
       "id": "c33",
+      "name": "Attraction inc.",
+      "muni": "Lac-Drolet",
+      "sector": "Textile & vêtements",
+      "jobs": 120,
+      "status": "actif",
+      "desc": "Fondée en 1980, manufacturier intégré et syndiqué de vêtements (design, taillage, couture, décoration, expédition). Principal employeur de Lac-Drolet (~110-130 emp.). Marques Ethica (coton bio, polyester recyclé), Initial, Jameo. Marchés promotionnel et récréotouristique (Canada/USA). Repris en 2017 par Julia Gagnon et Sébastien Jacques. Grand employeur industriel — Fil/Textile/Habillement, 100-249 (LGP 2026). 672, rue du Parc."
+    },
+    {
+      "id": "c34",
       "name": "Fontaine Lumber",
       "muni": "Saint-Augustin-de-Woburn",
       "sector": "Forêt & scierie",
@@ -492,7 +501,7 @@
       "desc": "Scierie et bois d'œuvre depuis plus de 50 ans. Vallee frontaliere Maine. Valorisation des forêts de la zone frontaliere. fontaine-lumber.com"
     },
     {
-      "id": "c34",
+      "id": "c35",
       "name": "ScierieTech inc.",
       "muni": "Saint-Augustin-de-Woburn",
       "sector": "Forêt & scierie",
@@ -501,7 +510,7 @@
       "desc": "Usine de sciage spécialisée dans la transformation et commercialisation du pin blanc de l'Est. Corridor Maine-Atlantique."
     },
     {
-      "id": "c35",
+      "id": "c36",
       "name": "La Meunerie Milanaise",
       "muni": "Milan",
       "sector": "Agroalimentaire",
@@ -510,7 +519,7 @@
       "desc": "Fondee 1982. Chef de file farine biologique au Canada. Cereales biologiques, produits a valeur ajoutee. Client Premiere Moisson. Export QC/ON/Maritime/France/Italie. ~10 000 t cereales/an."
     },
     {
-      "id": "c36",
+      "id": "c37",
       "name": "Parc national Mont-Mégantic / ASTROLab",
       "muni": "Notre-Dame-des-Bois",
       "sector": "Tourisme & plein air",
@@ -519,7 +528,7 @@
       "desc": "Parc national (SEPAQ) + observatoire astronomique. 1re Reserve internationale de ciel etoile en Amerique du Nord. Tourisme astral de renommee mondiale."
     },
     {
-      "id": "c37",
+      "id": "c38",
       "name": "Energie du Granit (EDG)",
       "muni": "Saint-Robert-Bellarmin",
       "sector": "Énergie & granules",
@@ -528,7 +537,7 @@
       "desc": "Organisme communautaire propriétaire du Parc éolien Le Granit. 12 eoliennes, 24,5 MW. Redevances 1,75 M$ a 16 municipalités partenaires en 2026 (11e exercice financier)."
     },
     {
-      "id": "c38",
+      "id": "c39",
       "name": "Érablière-école de Saint-Romain",
       "muni": "Saint-Romain",
       "sector": "Acéricole",
@@ -537,7 +546,7 @@
       "desc": "15 000 entailles certifiées biologiques. Comité développement Saint-Romain. Formation pratique CFP Le Granit (alternance travail-etudes). Modele provincial acériculture durable."
     },
     {
-      "id": "c39",
+      "id": "c40",
       "name": "Marché du Ruisseau d'Or / Bistro",
       "muni": "Piopolis",
       "sector": "Acéricole",
@@ -546,7 +555,7 @@
       "desc": "Productrice Melissa Nadeau. Acériculture biologique certifiée, marché public, bistro gastronomique. Rive du Lac Mégantic. Modele de diversification économique rurale."
     },
     {
-      "id": "c40",
+      "id": "c41",
       "name": "SPIL (Ste pour la promotion industrielle Lambton)",
       "muni": "Lambton",
       "sector": "Services publics & éducation",
@@ -555,7 +564,7 @@
       "desc": "Gestion du parc industriel de Lambton. 10 000 m² desservis aqueduc/egout/electricite/internet, route 108. Accompagnement des entrepreneurs."
     },
     {
-      "id": "c41",
+      "id": "c42",
       "name": "Parc industriel de Saint-Ludger",
       "muni": "Saint-Ludger",
       "sector": "Services publics & éducation",
@@ -564,7 +573,7 @@
       "desc": "Parc industriel ~112 000 m². Aqueduc, egout, electricite, internet haute-vitesse. Rabais fiscaux + programmes financement. A 52 km de la frontiere US."
     },
     {
-      "id": "c42",
+      "id": "c43",
       "name": "Bernier Bois Franc inc. (Kennebec Lumber)",
       "muni": "Lambton",
       "sector": "Forêt & scierie",
@@ -573,7 +582,7 @@
       "desc": "Scierie bois franc fondee en 1934 par Adjutor Bernier. 3e generation. Specialiste chene rouge, frene, erable shipping dry. Exporte localement et internationalement. Maintenant sous Kennebec Lumber CO (famille Carrier, Maine). 229, 2e avenue, Lambton. — bernierboisfranc.com (confirme L'Echo de Frontenac)"
     },
     {
-      "id": "c43",
+      "id": "c44",
       "name": "Portes & fenetres Vallee inc.",
       "muni": "Frontenac",
       "sector": "Bois, panneaux & meubles",
@@ -582,7 +591,7 @@
       "desc": "Manufacturier de portes et fenetres établi a Frontenac. Recrutement actif confirme (L'Echo de Frontenac 2024). 2e municipalité en population de la MRC (1 857 hab.). Emplois estimes — à valider."
     },
     {
-      "id": "c44",
+      "id": "c45",
       "name": "Municipalité de Nantes — services, voirie & développement",
       "muni": "Nantes",
       "sector": "Services publics & éducation",
@@ -591,7 +600,7 @@
       "desc": "Administration et voirie municipale. Comité de développement actif (sondage planification strategique 2026). Lac Whitton, McKenzie et Orignal — potentiel ecotourisme. 1 415 hab. Partenaire Bains de Nature MRC."
     },
     {
-      "id": "c45",
+      "id": "c46",
       "name": "Profil forestier & acéricole — Stornoway",
       "muni": "Stornoway",
       "sector": "Forêt & scierie",
@@ -600,7 +609,7 @@
       "desc": "545 hab. Carrefour routes 108/161. Espace industriel en développement (MRC du Granit confirme). Base économique : forêt, agriculture, commerce local. Partenaire éolien EDG. A documenter."
     },
     {
-      "id": "c46",
+      "id": "c47",
       "name": "Profil agricole & éolien — Marston",
       "muni": "Marston",
       "sector": "Agroalimentaire",
@@ -609,7 +618,7 @@
       "desc": "802 hab. Canton agricole. Partenaire du parc éolien EDG (redevances). Production agricole et acéricole. Abords du lac Mégantic. A documenter."
     },
     {
-      "id": "c47",
+      "id": "c48",
       "name": "Profil acéricole & granit — Ste-Cecile-de-Whitton",
       "muni": "Sainte-Cécile-de-Whitton",
       "sector": "Acéricole",
@@ -618,7 +627,7 @@
       "desc": "910 hab. Fondee 1870. Territoire riche en terres fertiles, forestières et carrieres de granit historiques (MRC confirme). Acériculture, forêt. Partenaire éolien EDG. A documenter."
     },
     {
-      "id": "c48",
+      "id": "c49",
       "name": "Profil forestier & villégiature — Audet",
       "muni": "Audet",
       "sector": "Forêt & scierie",
@@ -627,7 +636,7 @@
       "desc": "707 hab. Forêt et villégiature. Partenaire éolien EDG. Économie d'assise forestière et récréotouristique. A documenter."
     },
     {
-      "id": "c49",
+      "id": "c50",
       "name": "Profil agricole — Stratford (FRR-V4)",
       "muni": "Stratford",
       "sector": "Agroalimentaire",
@@ -636,7 +645,7 @@
       "desc": "1 063 hab. Canton a tradition anglophone. Projet de vitalisation FRR-V4 (MAMH 492 000$, avec Val-Racine et Piopolis — MRC confirme 2025). Agriculture. A documenter."
     },
     {
-      "id": "c50",
+      "id": "c51",
       "name": "Municipalité de Saint-Robert-Bellarmin / EDG",
       "muni": "Saint-Robert-Bellarmin",
       "sector": "Énergie & granules",
@@ -645,7 +654,7 @@
       "desc": "522 hab. Siège du parc éolien Le Granit (EDG). Économie : forêt, acériculture (1 million d'erables a sucre sur le territoire — MRC confirme), chasse. Beaucoup de Bellarminois travaillent a Saint-Gedeon-de-Beauce."
     },
     {
-      "id": "c51",
+      "id": "c52",
       "name": "Bains de Nature / ZEC Louise-Gosford",
       "muni": "Val-Racine",
       "sector": "Tourisme & plein air",
@@ -654,7 +663,7 @@
       "desc": "191 hab. Plus petite muni de la MRC. Bains de Nature (produit touristique MRC) et ZEC Louise-Gosford (chasse/peche, 168 km², couvre Val-Racine et Frontenac). FRR-V4 vitalisation. Territoire naturel exceptionnel."
     },
     {
-      "id": "c49",
+      "id": "c53",
       "name": "Portes Lambton",
       "muni": "Lambton",
       "sector": "Bois, panneaux & meubles",
@@ -663,7 +672,7 @@
       "desc": "Manufacturier nord-américain de portes architecturales, commerciales et institutionnelles haut de gamme. Portes 5-plis, coupe-feu, acoustiques, plombées, pare-balles. Projets dans universités, complexes sportifs, sièges sociaux. Parc industriel Lambton. (SDEG / Portes Lambton 2024)"
     },
     {
-      "id": "c50",
+      "id": "c54",
       "name": "Maison Usinex inc.",
       "muni": "Milan",
       "sector": "Construction",
@@ -672,7 +681,7 @@
       "desc": "Leader québécois des maisons préfabriquées personnalisables depuis 30+ ans. Famille Morin (6 frères fondateurs). 11x primé meilleur constructeur QC. ~51-200 employés. 114, Rte 214, Milan. (Jobillico / ZoomInfo 2024)"
     },
     {
-      "id": "c51",
+      "id": "c55",
       "name": "Microbrasserie La Gare'Nison",
       "muni": "Lac-Mégantic",
       "sector": "Agroalimentaire",
@@ -681,7 +690,7 @@
       "desc": "Microbrasserie artisanale à Lac-Mégantic. Bières régionales artisanales. Producteur «Produit étoile du Granit» MRC. Tourisme brassicole et commerce de proximité. (L'Écho de Frontenac 2020)"
     },
     {
-      "id": "c52",
+      "id": "c56",
       "name": "Ferme Couture inc.",
       "muni": "Stratford",
       "sector": "Agroalimentaire",
@@ -690,7 +699,7 @@
       "desc": "Fraises, framboises, légumes frais depuis 1863 (6e génération). Auto-cueillette saisonnière. Points de vente à Nantes et Robertsonville. Producteur «Produit étoile du Granit». (Créateurs de saveurs Cantons-de-l'Est)"
     },
     {
-      "id": "c53",
+      "id": "c57",
       "name": "Alegria",
       "muni": "Stornoway",
       "sector": "Agroalimentaire",
@@ -699,7 +708,7 @@
       "desc": "Producteur agroalimentaire local. Membre «Produit étoile du Granit» — programme MRC du Granit et Créateurs de saveurs Cantons-de-l'Est. 347, Rte 161 S, Stornoway. (L'Écho de Frontenac 2020)"
     },
     {
-      "id": "c54",
+      "id": "c58",
       "name": "Domaine des Coulées",
       "muni": "Sainte-Cécile-de-Whitton",
       "sector": "Acéricole",
@@ -708,7 +717,7 @@
       "desc": "Domaine agrotouristique acéricole. Producteur «Produit étoile du Granit». Dégustation et vente directe de produits de l'érable. Sainte-Cécile-de-Whitton. (L'Écho de Frontenac 2020)"
     },
     {
-      "id": "c55",
+      "id": "c59",
       "name": "Érablière Roy-Philippon",
       "muni": "Marston",
       "sector": "Acéricole",
@@ -717,7 +726,7 @@
       "desc": "Production acéricole. Producteur «Produit étoile du Granit» — programme MRC du Granit. Vente directe, circuits courts. Marston. (L'Écho de Frontenac 2020)"
     },
     {
-      "id": "c56",
+      "id": "c60",
       "name": "Ferme maraîchère Roy",
       "muni": "Nantes",
       "sector": "Agroalimentaire",
@@ -726,7 +735,7 @@
       "desc": "Maraîchage de proximité. Producteur «Produit étoile du Granit». 1919, Qc-161, Nantes. Vente directe et circuits courts régionaux. (L'Écho de Frontenac 2020)"
     },
     {
-      "id": "c57",
+      "id": "c61",
       "name": "Ferme du Ruisseau d'Or",
       "muni": "Saint-Ludger",
       "sector": "Agroalimentaire",
@@ -735,7 +744,7 @@
       "desc": "Production agricole et agroalimentaire. Producteur «Produit étoile du Granit». Circuits courts. Saint-Ludger, MRC du Granit. (L'Écho de Frontenac 2020)"
     },
     {
-      "id": "c58",
+      "id": "c62",
       "name": "Vive les épices",
       "muni": "Saint-Ludger",
       "sector": "Agroalimentaire",
@@ -744,7 +753,16 @@
       "desc": "Transformateur artisanal de mélanges d'épices et condiments régionaux. Producteur «Produit étoile du Granit». Vente directe et épiceries régionales. Saint-Ludger. (L'Écho de Frontenac 2020)"
     },
     {
-      "id": "c59",
+      "id": "c63",
+      "name": "Les Équipements Lapierre inc.",
+      "muni": "Saint-Ludger",
+      "sector": "Produits métalliques",
+      "jobs": 150,
+      "status": "actif",
+      "desc": "Fondée en 1978 par Donald Lapierre. Chef de file nord-américain des équipements acéricoles : évaporateurs (Ouragan Force-5, Turbo 3), concentrateurs, extracteurs de sève, réservoirs inox, tubulures. 200+ employés sur 3 usines (St-Ludger + Waterloo). Découpe laser, pliage numérique, soudure inox. Réseau de vente QC/Canada/USA. Grand employeur industriel — Fab. de machines, 100-249 (LGP 2026). 99, rue de l'Escale."
+    },
+    {
+      "id": "c64",
       "name": "Érablière Caséal",
       "muni": "Milan",
       "sector": "Acéricole",
@@ -753,7 +771,7 @@
       "desc": "Érablière artisanale. Producteur «Produit étoile du Granit». Sirop et produits de l'érable, mise en marché directe. Milan, MRC du Granit. (L'Écho de Frontenac 2020)"
     },
     {
-      "id": "c60",
+      "id": "c65",
       "name": "Le jardin des Grenouilles charmantes",
       "muni": "Notre-Dame-des-Bois",
       "sector": "Agroalimentaire",
@@ -762,7 +780,7 @@
       "desc": "Maraîchage artisanal à Notre-Dame-des-Bois. Producteur «Produit étoile du Granit». Circuits courts, vente directe. À proximité du Parc national Mont-Mégantic. (L'Écho de Frontenac 2020)"
     },
     {
-      "id": "c61",
+      "id": "c66",
       "name": "Ferme des Petits Torrieux",
       "muni": "Frontenac",
       "sector": "Agroalimentaire",
@@ -1692,6 +1710,535 @@
         "det": "d6",
         "strength": "Moyen",
         "desc": "L'aide à domicile communautaire soutient l'autonomie des aînés dans toutes les 19 municipalités."
+      }
+    ]
+  },
+  "portraitLGP": {
+    "source": "LGP — Table des MRC de l'Estrie, « Portrait économique sectoriel et pistes de collaboration inter-MRC » (avril 2026). Données : Statistique Canada (36-10-0711-01, 36-10-0489-01, 33-10-0551-01, 16-10-0117-01), Registraire des entreprises du Québec (Civision), base Scott's, validations des MRC. PIB 2022 (dollars courants), ratios de ventes 2024.",
+    "perimetre": "« Industriel » = périmètre de codes SCIAN couvrant production et transformation (primaire et secondaire) + certaines activités de soutien (logistique, services techniques). Limité aux établissements AVEC employés (exclut travailleurs autonomes). PIB et ventes = ordres de grandeur estimés.",
+    "note": "Cet univers (≈5 245 emplois industriels) diffère de l'estimation « tous secteurs » du tableau de bord (≈6 905 emplois 2024, qui inclut services publics, commerce et services). Les deux lectures sont complémentaires : LGP = base factuelle officielle harmonisée à l'échelle de l'Estrie; la taxonomie des 13 secteurs = lecture locale enrichie alimentant le moteur de maillage.",
+    "agregats": {
+      "etablissements": 656,
+      "emplois": 5245,
+      "pibMk": 733,
+      "ventesMk": 2009,
+      "grandsEtab250plus": 1
+    },
+    "tailleEtab": [
+      {
+        "label": "1 à 10 employés",
+        "pct": 88
+      },
+      {
+        "label": "11 à 99 employés",
+        "pct": 11
+      },
+      {
+        "label": "100 à 249 employés",
+        "pct": 1
+      },
+      {
+        "label": "250 employés et plus",
+        "pct": 0.2
+      }
+    ],
+    "tailleEmplois": [
+      {
+        "label": "1 à 10 employés",
+        "pct": 39
+      },
+      {
+        "label": "11 à 99 employés",
+        "pct": 34
+      },
+      {
+        "label": "100 à 249 employés",
+        "pct": 19
+      },
+      {
+        "label": "250 employés et plus",
+        "pct": 8
+      }
+    ],
+    "secteurSplit": [
+      {
+        "label": "Secteur primaire",
+        "pct": 20,
+        "color": "#4aaa72"
+      },
+      {
+        "label": "Secteur secondaire",
+        "pct": 64,
+        "color": "#1a4d2e"
+      },
+      {
+        "label": "Secteur tertiaire",
+        "pct": 17,
+        "color": "#d97706"
+      }
+    ],
+    "grandesIndustries": [
+      {
+        "nom": "Matériaux et services de construction",
+        "empN": 1559,
+        "empP": 30,
+        "etN": 176,
+        "etP": 27,
+        "pibN": 251,
+        "pibP": 34,
+        "venN": 688,
+        "venP": 34
+      },
+      {
+        "nom": "Agro-alimentaire",
+        "empN": 1031,
+        "empP": 20,
+        "etN": 224,
+        "etP": 34,
+        "pibN": 138,
+        "pibP": 19,
+        "venN": 433,
+        "venP": 22
+      },
+      {
+        "nom": "Produits forestiers",
+        "empN": 545,
+        "empP": 10,
+        "etN": 55,
+        "etP": 8,
+        "pibN": 98,
+        "pibP": 13,
+        "venN": 233,
+        "venP": 12
+      },
+      {
+        "nom": "Transport / Entreposage / Logistique",
+        "empN": 460,
+        "empP": 9,
+        "etN": 69,
+        "etP": 11,
+        "pibN": 51,
+        "pibP": 7,
+        "venN": 117,
+        "venP": 6
+      },
+      {
+        "nom": "Fil / Textile / Habillement",
+        "empN": 270,
+        "empP": 5,
+        "etN": 5,
+        "etP": 1,
+        "pibN": 23,
+        "pibP": 3,
+        "venN": 52,
+        "venP": 3
+      },
+      {
+        "nom": "Mobilier",
+        "empN": 268,
+        "empP": 5,
+        "etN": 10,
+        "etP": 2,
+        "pibN": 23,
+        "pibP": 3,
+        "venN": 56,
+        "venP": 3
+      },
+      {
+        "nom": "Mines / Traitement des métaux et minéraux",
+        "empN": 254,
+        "empP": 5,
+        "etN": 10,
+        "etP": 2,
+        "pibN": 49,
+        "pibP": 7,
+        "venN": 150,
+        "venP": 7
+      },
+      {
+        "nom": "Fabrication de machines",
+        "empN": 230,
+        "empP": 4,
+        "etN": 8,
+        "etP": 1,
+        "pibN": 29,
+        "pibP": 4,
+        "venN": 80,
+        "venP": 4
+      },
+      {
+        "nom": "Autres services industriels",
+        "empN": 155,
+        "empP": 3,
+        "etN": 17,
+        "etP": 3,
+        "pibN": 18,
+        "pibP": 3,
+        "venN": 30,
+        "venP": 1
+      },
+      {
+        "nom": "Matériel roulant",
+        "empN": 142,
+        "empP": 3,
+        "etN": 24,
+        "etP": 4,
+        "pibN": 11,
+        "pibP": 2,
+        "venN": 22,
+        "venP": 1
+      },
+      {
+        "nom": "Commerce en gros",
+        "empN": 99,
+        "empP": 2,
+        "etN": 25,
+        "etP": 4,
+        "pibN": 13,
+        "pibP": 2,
+        "venN": 82,
+        "venP": 4
+      },
+      {
+        "nom": "Autres secteurs manufacturiers",
+        "empN": 82,
+        "empP": 2,
+        "etN": 6,
+        "etP": 1,
+        "pibN": 6,
+        "pibP": 1,
+        "venN": 13,
+        "venP": 1
+      },
+      {
+        "nom": "Produits métalliques",
+        "empN": 73,
+        "empP": 1,
+        "etN": 9,
+        "etP": 1,
+        "pibN": 10,
+        "pibP": 1,
+        "venN": 25,
+        "venP": 1
+      },
+      {
+        "nom": "TI et Télécommunications",
+        "empN": 47,
+        "empP": 1,
+        "etN": 14,
+        "etP": 2,
+        "pibN": 7,
+        "pibP": 1,
+        "venN": 15,
+        "venP": 1
+      },
+      {
+        "nom": "Équipement médical",
+        "empN": 12,
+        "empP": 0,
+        "etN": 2,
+        "etP": 0,
+        "pibN": 2,
+        "pibP": 0,
+        "venN": 4,
+        "venP": 0
+      },
+      {
+        "nom": "Autres produits chimiques",
+        "empN": 12,
+        "empP": 0,
+        "etN": 1,
+        "etP": 0,
+        "pibN": 2,
+        "pibP": 0,
+        "venN": 8,
+        "venP": 0
+      },
+      {
+        "nom": "Produits cosmétiques et de toilette",
+        "empN": 6,
+        "empP": 0,
+        "etN": 1,
+        "etP": 0,
+        "pibN": 1,
+        "pibP": 0,
+        "venN": 2,
+        "venP": 0
+      }
+    ],
+    "piliers": [
+      {
+        "scian": "321",
+        "nom": "Fabrication de produits en bois",
+        "empN": 1036,
+        "empP": 20,
+        "etN": 24,
+        "etP": 4,
+        "pibN": 214,
+        "pibP": 29,
+        "venN": 557,
+        "venP": 28
+      },
+      {
+        "scian": "238",
+        "nom": "Entrepreneurs spécialisés",
+        "empN": 539,
+        "empP": 10,
+        "etN": 106,
+        "etP": 16,
+        "pibN": 68,
+        "pibP": 9,
+        "venN": 185,
+        "venP": 9
+      },
+      {
+        "scian": "111",
+        "nom": "Cultures agricoles",
+        "empN": 445,
+        "empP": 8,
+        "etN": 129,
+        "etP": 20,
+        "pibN": 62,
+        "pibP": 8,
+        "venN": 138,
+        "venP": 7
+      },
+      {
+        "scian": "484",
+        "nom": "Transport par camion",
+        "empN": 337,
+        "empP": 6,
+        "etN": 53,
+        "etP": 8,
+        "pibN": 36,
+        "pibP": 5,
+        "venN": 86,
+        "venP": 4
+      },
+      {
+        "scian": "311",
+        "nom": "Fabrication d'aliments",
+        "empN": 305,
+        "empP": 6,
+        "etN": 13,
+        "etP": 2,
+        "pibN": 44,
+        "pibP": 6,
+        "venN": 201,
+        "venP": 10
+      },
+      {
+        "scian": "337",
+        "nom": "Fabrication de meubles et de produits connexes",
+        "empN": 268,
+        "empP": 5,
+        "etN": 10,
+        "etP": 2,
+        "pibN": 23,
+        "pibP": 3,
+        "venN": 56,
+        "venP": 3
+      },
+      {
+        "scian": "333",
+        "nom": "Fabrication de machines",
+        "empN": 230,
+        "empP": 4,
+        "etN": 8,
+        "etP": 1,
+        "pibN": 29,
+        "pibP": 4,
+        "venN": 80,
+        "venP": 4
+      },
+      {
+        "scian": "315",
+        "nom": "Fabrication de vêtements",
+        "empN": 225,
+        "empP": 4,
+        "etN": 4,
+        "etP": 1,
+        "pibN": 19,
+        "pibP": 3,
+        "venN": 44,
+        "venP": 2
+      },
+      {
+        "scian": "112",
+        "nom": "Élevage et aquaculture",
+        "empN": 215,
+        "empP": 4,
+        "etN": 70,
+        "etP": 11,
+        "pibN": 22,
+        "pibP": 3,
+        "venN": 67,
+        "venP": 3
+      },
+      {
+        "scian": "236",
+        "nom": "Construction de bâtiments",
+        "empN": 202,
+        "empP": 4,
+        "etN": 54,
+        "etP": 8,
+        "pibN": 25,
+        "pibP": 3,
+        "venN": 69,
+        "venP": 3
+      },
+      {
+        "scian": "113",
+        "nom": "Foresterie et exploitation forestière",
+        "empN": 179,
+        "empP": 3,
+        "etN": 29,
+        "etP": 4,
+        "pibN": 23,
+        "pibP": 3,
+        "venN": 56,
+        "venP": 3
+      },
+      {
+        "scian": "811",
+        "nom": "Réparation et entretien",
+        "empN": 154,
+        "empP": 3,
+        "etN": 28,
+        "etP": 4,
+        "pibN": 12,
+        "pibP": 2,
+        "venN": 23,
+        "venP": 1
+      }
+    ],
+    "distinctifsNote": "Indice de spécialisation (≈ quotient de localisation, combinant emplois 30 %, établissements 30 %, PIB 20 %, ventes 20 %). Indice > 1 = surreprésenté; ≥ 1,25 distinctif; ≥ 1,50 très distinctif. Valeurs ci-dessous lues approximativement sur les graphiques LGP — le classement est fiable, la valeur est indicative.",
+    "distinctifsEstrie": [
+      {
+        "nom": "Extraction minière et exploitation en carrière",
+        "indice": 8.5
+      },
+      {
+        "nom": "Foresterie et exploitation forestière",
+        "indice": 5.0
+      },
+      {
+        "nom": "Fabrication de produits en bois",
+        "indice": 4.9
+      },
+      {
+        "nom": "Fabrication de vêtements",
+        "indice": 3.5
+      },
+      {
+        "nom": "Cultures agricoles",
+        "indice": 2.4
+      },
+      {
+        "nom": "Fabrication de meubles et de produits connexes",
+        "indice": 1.8
+      },
+      {
+        "nom": "Fabrication de produits minéraux non métalliques",
+        "indice": 1.7
+      },
+      {
+        "nom": "Transport par camion",
+        "indice": 1.5
+      },
+      {
+        "nom": "Élevage et aquaculture",
+        "indice": 1.4
+      },
+      {
+        "nom": "Fabrication d'aliments",
+        "indice": 1.1
+      }
+    ],
+    "distinctifsQuebec": [
+      {
+        "nom": "Fabrication de produits en bois",
+        "indice": 9.0
+      },
+      {
+        "nom": "Foresterie et exploitation forestière",
+        "indice": 6.3
+      },
+      {
+        "nom": "Cultures agricoles",
+        "indice": 4.7
+      },
+      {
+        "nom": "Fabrication de textiles, vêtements et cuir (SCIAN 313-316)",
+        "indice": 4.2
+      },
+      {
+        "nom": "Fabrication de produits minéraux non métalliques",
+        "indice": 2.9
+      },
+      {
+        "nom": "Élevage et aquaculture",
+        "indice": 2.7
+      },
+      {
+        "nom": "Fabrication de meubles et de produits connexes",
+        "indice": 2.5
+      },
+      {
+        "nom": "Extraction minière et exploitation en carrière",
+        "indice": 1.5
+      },
+      {
+        "nom": "Fabrication de machines",
+        "indice": 1.5
+      },
+      {
+        "nom": "Transport par camion",
+        "indice": 1.4
+      }
+    ],
+    "grandsEmployeurs": [
+      {
+        "nom": "Tafisa Canada Inc.",
+        "cat": "250 - 499",
+        "industrie": "Matériaux et services de construction",
+        "scian": "Fabrication de produits en bois"
+      },
+      {
+        "nom": "Bestar Inc.",
+        "cat": "100 - 249",
+        "industrie": "Mobilier",
+        "scian": "Fabrication de meubles et de produits connexes"
+      },
+      {
+        "nom": "Fromages La Chaudière Inc.",
+        "cat": "100 - 249",
+        "industrie": "Agro-alimentaire",
+        "scian": "Fabrication d'aliments"
+      },
+      {
+        "nom": "Les Équipements Lapierre Inc.",
+        "cat": "100 - 249",
+        "industrie": "Fabrication de machines",
+        "scian": "Fabrication de machines"
+      },
+      {
+        "nom": "Portes Lambton",
+        "cat": "100 - 249",
+        "industrie": "Matériaux et services de construction",
+        "scian": "Fabrication de produits en bois"
+      },
+      {
+        "nom": "Attraction Inc.",
+        "cat": "100 - 249",
+        "industrie": "Fil / Textile / Habillement",
+        "scian": "Fabrication de vêtements"
+      },
+      {
+        "nom": "A. Lacroix & Fils Granit Ltée",
+        "cat": "100 - 249",
+        "industrie": "Mines / Traitement des métaux et minéraux",
+        "scian": "Fabrication de produits minéraux non métalliques"
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
- "_sources": "Population et superficie : Décret de population 1499-2025 (MAMH, fév. 2026) · Revenus : Recensement de la population 2021 (Statistique Canada, division de recensement Le Granit) · Marché du travail (benchmarks QC) : ISQ, Marché du travail dans les MRC, bilan 2024 · Indice de vitalité économique : ISQ/MAMH, édition 2025 · Affectation et zone agricole : PDZA et schéma d'aménagement, MRC du Granit · Entreprises : SDE du Granit, L'Écho de Frontenac, Affaires Mégantic, registres publics. Les emplois par secteur, les valeurs de permis, les conversions et les scores de déterminants de santé sont des ESTIMATIONS analytiques à valider auprès des sources primaires (ISQ table MRC, services d'urbanisme, CIUSSS de l'Estrie-CHUS, INSPQ). · Portrait industriel (656 établissements, 5 245 emplois, 733 M$ PIB, 2 G$ ventes) : LGP, « Portrait économique sectoriel et pistes de collaboration inter-MRC », Table des MRC de l'Estrie, avril 2026. · Tourisme et commerces : Tourisme Région de Mégantic, Cantons-de-l'Est, Destination Lac-Mégantic, L'Écho de Frontenac, Les Affaires (2021-2026). · Santé : DSP de l'Estrie — Faits saillants RLS du Granit (avril 2025) et Tableau de bord – Santé publique Estrie (santeestrie.qc.ca). Projections de population : ISQ, série 2025 (base Recensement 2021). Portrait municipal : Tableau de bord du développement des municipalités de l'Estrie (rec. 2021).",
+ "_sources": "Population et superficie : Décret de population 1499-2025 (MAMH, fév. 2026) · Revenus : Recensement de la population 2021 (Statistique Canada, division de recensement Le Granit) · Marché du travail (benchmarks QC) : ISQ, Marché du travail dans les MRC, bilan 2024 · Indice de vitalité économique : ISQ/MAMH, édition 2025 · Affectation et zone agricole : PDZA et schéma d'aménagement, MRC du Granit · Entreprises : SDE du Granit, L'Écho de Frontenac, Affaires Mégantic, registres publics. Les emplois par secteur, les valeurs de permis, les conversions et les scores de déterminants de santé sont des ESTIMATIONS analytiques à valider auprès des sources primaires (ISQ table MRC, services d'urbanisme, CIUSSS de l'Estrie-CHUS, INSPQ). · Portrait industriel (656 établissements, 5 245 emplois, 733 M$ PIB, 2 G$ ventes) : LGP, « Portrait économique sectoriel et pistes de collaboration inter-MRC », Table des MRC de l'Estrie, avril 2026. · Tourisme et commerces : Tourisme Région de Mégantic, Cantons-de-l'Est, Destination Lac-Mégantic, L'Écho de Frontenac, Les Affaires (2021-2026). · Santé : DSP de l'Estrie — Faits saillants RLS du Granit (avril 2025) et Tableau de bord – Santé publique Estrie (santeestrie.qc.ca). Projections de population : ISQ, série 2025 (base Recensement 2021). Portrait municipal : Tableau de bord du développement des municipalités de l'Estrie (rec. 2021). · Portrait démographique municipal (structure par âge, projections) : ISQ — Estimations série 2026 et projections série 2025 (scénario Référence A2025, base Recensement 2021), tableaux par groupe d'âge, MRC/RLS du Granit.",
  "meta": {
   "quarter": "T2 2026",
   "updatedBy": "MRC du Granit - Conseil scientifique & Développement économique",
@@ -1698,7 +1698,74 @@
    "cat": "urbain",
    "code": "30030",
    "role": "Chef-lieu · Ville-centre",
-   "note": "Centre économique. Parc industriel (21 industries + 22 services). Voie contournement 2023. 1re ville francophone certifiée Cittaslow en Ameriques."
+   "note": "Centre économique. Parc industriel (21 industries + 22 services). Voie contournement 2023. 1re ville francophone certifiée Cittaslow en Ameriques.",
+   "demo": {
+    "pyr": [
+     193,
+     235,
+     250,
+     325,
+     257,
+     203,
+     249,
+     252,
+     320,
+     385,
+     308,
+     337,
+     472,
+     499,
+     546,
+     427,
+     335,
+     179,
+     175
+    ],
+    "agg": {
+     "a017": 868,
+     "a1864": 2918,
+     "a65": 2161,
+     "tot": 5947
+    },
+    "trend": {
+     "2001": 6008,
+     "2006": 5944,
+     "2011": 5895,
+     "2016": 5655,
+     "2021": 5754,
+     "2025": 5947
+    },
+    "proj": {
+     "2026": {
+      "tot": 5938,
+      "a019": 979,
+      "a2064": 2764,
+      "a65": 2195
+     },
+     "2031": {
+      "tot": 5930,
+      "a019": 881,
+      "a2064": 2665,
+      "a65": 2384
+     },
+     "2036": {
+      "tot": 5879,
+      "a019": 857,
+      "a2064": 2651,
+      "a65": 2371
+     },
+     "2041": {
+      "tot": 5777,
+      "a019": 851,
+      "a2064": 2636,
+      "a65": 2290
+     }
+    },
+    "agemoy": {
+     "2026": 51.26,
+     "2041": 53.48
+    }
+   }
   },
   {
    "id": "m02",
@@ -1710,7 +1777,74 @@
    "cat": "rural",
    "code": "30025",
    "role": "2e pop. MRC · Rural actif",
-   "note": "Portes & fenetres Vallee. Agriculture, forêt. ZEC Louise-Gosford (chasse/peche). Forte identite communautaire."
+   "note": "Portes & fenetres Vallee. Agriculture, forêt. ZEC Louise-Gosford (chasse/peche). Forte identite communautaire.",
+   "demo": {
+    "pyr": [
+     60,
+     87,
+     114,
+     133,
+     88,
+     66,
+     83,
+     95,
+     112,
+     133,
+     110,
+     134,
+     150,
+     172,
+     138,
+     93,
+     50,
+     24,
+     13
+    ],
+    "agg": {
+     "a017": 343,
+     "a1864": 1022,
+     "a65": 490,
+     "tot": 1855
+    },
+    "trend": {
+     "2001": 1512,
+     "2006": 1643,
+     "2011": 1686,
+     "2016": 1736,
+     "2021": 1833,
+     "2025": 1855
+    },
+    "proj": {
+     "2026": {
+      "tot": 1881,
+      "a019": 385,
+      "a2064": 1007,
+      "a65": 489
+     },
+     "2031": {
+      "tot": 1937,
+      "a019": 343,
+      "a2064": 1036,
+      "a65": 558
+     },
+     "2036": {
+      "tot": 1989,
+      "a019": 325,
+      "a2064": 1069,
+      "a65": 595
+     },
+     "2041": {
+      "tot": 2042,
+      "a019": 325,
+      "a2064": 1085,
+      "a65": 632
+     }
+    },
+    "agemoy": {
+     "2026": 45.62,
+     "2041": 49.05
+    }
+   }
   },
   {
    "id": "m03",
@@ -1722,7 +1856,74 @@
    "cat": "rural",
    "code": "30095",
    "role": "Parc industriel SPIL · Scierie",
-   "note": "Bernier Bois Franc (scierie bois franc, 90 ans, Kennebec Lumber). Parc industriel Lambton (SPIL). Services de proximité. Grand lac Saint-Francois."
+   "note": "Bernier Bois Franc (scierie bois franc, 90 ans, Kennebec Lumber). Parc industriel Lambton (SPIL). Services de proximité. Grand lac Saint-Francois.",
+   "demo": {
+    "pyr": [
+     52,
+     63,
+     94,
+     102,
+     74,
+     52,
+     73,
+     81,
+     80,
+     82,
+     86,
+     116,
+     198,
+     177,
+     135,
+     113,
+     68,
+     40,
+     28
+    ],
+    "agg": {
+     "a017": 273,
+     "a1864": 880,
+     "a65": 561,
+     "tot": 1714
+    },
+    "trend": {
+     "2001": 1545,
+     "2006": 1636,
+     "2011": 1576,
+     "2016": 1608,
+     "2021": 1621,
+     "2025": 1714
+    },
+    "proj": {
+     "2026": {
+      "tot": 1750,
+      "a019": 300,
+      "a2064": 858,
+      "a65": 592
+     },
+     "2031": {
+      "tot": 1787,
+      "a019": 262,
+      "a2064": 815,
+      "a65": 710
+     },
+     "2036": {
+      "tot": 1798,
+      "a019": 239,
+      "a2064": 809,
+      "a65": 750
+     },
+     "2041": {
+      "tot": 1792,
+      "a019": 238,
+      "a2064": 810,
+      "a65": 744
+     }
+    },
+    "agemoy": {
+     "2026": 50.2,
+     "2041": 53.78
+    }
+   }
   },
   {
    "id": "m04",
@@ -1734,7 +1935,74 @@
    "cat": "rural",
    "code": "30045",
    "role": "Rural · Plein air & tourisme",
-   "note": "Agriculture, forêt. Lacs Whitton, McKenzie et Orignal. Partenaire Bains de Nature MRC. Comité de développement actif (2026)."
+   "note": "Agriculture, forêt. Lacs Whitton, McKenzie et Orignal. Partenaire Bains de Nature MRC. Comité de développement actif (2026).",
+   "demo": {
+    "pyr": [
+     65,
+     70,
+     78,
+     84,
+     61,
+     46,
+     62,
+     85,
+     78,
+     96,
+     99,
+     96,
+     134,
+     125,
+     110,
+     82,
+     26,
+     10,
+     5
+    ],
+    "agg": {
+     "a017": 266,
+     "a1864": 788,
+     "a65": 358,
+     "tot": 1412
+    },
+    "trend": {
+     "2001": 1444,
+     "2006": 1450,
+     "2011": 1383,
+     "2016": 1377,
+     "2021": 1385,
+     "2025": 1412
+    },
+    "proj": {
+     "2026": {
+      "tot": 1415,
+      "a019": 305,
+      "a2064": 749,
+      "a65": 361
+     },
+     "2031": {
+      "tot": 1406,
+      "a019": 298,
+      "a2064": 701,
+      "a65": 407
+     },
+     "2036": {
+      "tot": 1415,
+      "a019": 299,
+      "a2064": 691,
+      "a65": 425
+     },
+     "2041": {
+      "tot": 1433,
+      "a019": 302,
+      "a2064": 696,
+      "a65": 435
+     }
+    },
+    "agemoy": {
+     "2026": 45.19,
+     "2041": 46.7
+    }
+   }
   },
   {
    "id": "m05",
@@ -1746,7 +2014,74 @@
    "cat": "rural",
    "code": "30010",
    "role": "Tourisme astral mondial",
-   "note": "Parc national Mont-Mégantic + ASTROLab. 1re Reserve ciel etoile Ameriques."
+   "note": "Parc national Mont-Mégantic + ASTROLab. 1re Reserve ciel etoile Ameriques.",
+   "demo": {
+    "pyr": [
+     37,
+     51,
+     57,
+     74,
+     47,
+     42,
+     48,
+     52,
+     61,
+     93,
+     79,
+     128,
+     124,
+     126,
+     99,
+     53,
+     25,
+     8,
+     5
+    ],
+    "agg": {
+     "a017": 194,
+     "a1864": 699,
+     "a65": 316,
+     "tot": 1209
+    },
+    "trend": {
+     "2001": 773,
+     "2006": 963,
+     "2011": 914,
+     "2016": 938,
+     "2021": 1035,
+     "2025": 1209
+    },
+    "proj": {
+     "2026": {
+      "tot": 1212,
+      "a019": 207,
+      "a2064": 671,
+      "a65": 334
+     },
+     "2031": {
+      "tot": 1316,
+      "a019": 183,
+      "a2064": 707,
+      "a65": 426
+     },
+     "2036": {
+      "tot": 1407,
+      "a019": 176,
+      "a2064": 726,
+      "a65": 505
+     },
+     "2041": {
+      "tot": 1482,
+      "a019": 186,
+      "a2064": 709,
+      "a65": 587
+     }
+    },
+    "agemoy": {
+     "2026": 48.62,
+     "2041": 53.8
+    }
+   }
   },
   {
    "id": "m06",
@@ -1758,7 +2093,74 @@
    "cat": "rural",
    "code": "30110",
    "role": "Canton agricole · Vitalisation FRR-V4",
-   "note": "Canton a tradition anglophone. Agriculture. Projet de vitalisation FRR-V4 (MAMH 492 000$, 2025)."
+   "note": "Canton a tradition anglophone. Agriculture. Projet de vitalisation FRR-V4 (MAMH 492 000$, 2025).",
+   "demo": {
+    "pyr": [
+     18,
+     25,
+     32,
+     37,
+     25,
+     29,
+     36,
+     45,
+     35,
+     53,
+     50,
+     93,
+     147,
+     155,
+     121,
+     81,
+     38,
+     26,
+     16
+    ],
+    "agg": {
+     "a017": 99,
+     "a1864": 526,
+     "a65": 437,
+     "tot": 1062
+    },
+    "trend": {
+     "2001": 886,
+     "2006": 1086,
+     "2011": 1059,
+     "2016": 944,
+     "2021": 1038,
+     "2025": 1062
+    },
+    "proj": {
+     "2026": {
+      "tot": 1088,
+      "a019": 119,
+      "a2064": 512,
+      "a65": 457
+     },
+     "2031": {
+      "tot": 1078,
+      "a019": 113,
+      "a2064": 461,
+      "a65": 504
+     },
+     "2036": {
+      "tot": 1054,
+      "a019": 107,
+      "a2064": 443,
+      "a65": 504
+     },
+     "2041": {
+      "tot": 1022,
+      "a019": 103,
+      "a2064": 433,
+      "a65": 486
+     }
+    },
+    "agemoy": {
+     "2026": 55.77,
+     "2041": 58.02
+    }
+   }
   },
   {
    "id": "m07",
@@ -1770,7 +2172,74 @@
    "cat": "rural",
    "code": "30080",
    "role": "Parc ind. · Modele local",
-   "note": "Carrefour industriel Lac-Drolet (750 000 m²). Pôle granit secondaire. Cite en modele."
+   "note": "Carrefour industriel Lac-Drolet (750 000 m²). Pôle granit secondaire. Cite en modele.",
+   "demo": {
+    "pyr": [
+     45,
+     50,
+     44,
+     47,
+     33,
+     41,
+     57,
+     58,
+     43,
+     60,
+     62,
+     77,
+     97,
+     130,
+     86,
+     52,
+     50,
+     20,
+     14
+    ],
+    "agg": {
+     "a017": 168,
+     "a1864": 546,
+     "a65": 352,
+     "tot": 1066
+    },
+    "trend": {
+     "2001": 1181,
+     "2006": 1142,
+     "2011": 1070,
+     "2016": 1018,
+     "2021": 1067,
+     "2025": 1066
+    },
+    "proj": {
+     "2026": {
+      "tot": 1102,
+      "a019": 195,
+      "a2064": 546,
+      "a65": 361
+     },
+     "2031": {
+      "tot": 1126,
+      "a019": 197,
+      "a2064": 525,
+      "a65": 404
+     },
+     "2036": {
+      "tot": 1143,
+      "a019": 198,
+      "a2064": 529,
+      "a65": 416
+     },
+     "2041": {
+      "tot": 1152,
+      "a019": 201,
+      "a2064": 534,
+      "a65": 417
+     }
+    },
+    "agemoy": {
+     "2026": 49.11,
+     "2041": 50.89
+    }
+   }
   },
   {
    "id": "m08",
@@ -1782,7 +2251,74 @@
    "cat": "rural",
    "code": "30072",
    "role": "Parc industriel actif",
-   "note": "Parc industriel ~112 000 m². Agriculture, acéricole. A 52 km de la frontiere US."
+   "note": "Parc industriel ~112 000 m². Agriculture, acéricole. A 52 km de la frontiere US.",
+   "demo": {
+    "pyr": [
+     45,
+     39,
+     51,
+     50,
+     61,
+     42,
+     53,
+     46,
+     64,
+     57,
+     60,
+     76,
+     91,
+     94,
+     92,
+     63,
+     56,
+     32,
+     19
+    ],
+    "agg": {
+     "a017": 171,
+     "a1864": 564,
+     "a65": 356,
+     "tot": 1091
+    },
+    "trend": {
+     "2001": 1211,
+     "2006": 1200,
+     "2011": 1252,
+     "2016": 1069,
+     "2021": 1079,
+     "2025": 1091
+    },
+    "proj": {
+     "2026": {
+      "tot": 1094,
+      "a019": 188,
+      "a2064": 541,
+      "a65": 365
+     },
+     "2031": {
+      "tot": 1066,
+      "a019": 172,
+      "a2064": 508,
+      "a65": 386
+     },
+     "2036": {
+      "tot": 1045,
+      "a019": 171,
+      "a2064": 493,
+      "a65": 381
+     },
+     "2041": {
+      "tot": 1027,
+      "a019": 179,
+      "a2064": 482,
+      "a65": 366
+     }
+    },
+    "agemoy": {
+     "2026": 49.39,
+     "2041": 51.04
+    }
+   }
   },
   {
    "id": "m09",
@@ -1794,7 +2330,74 @@
    "cat": "rural",
    "code": "30035",
    "role": "Canton agricole · Lac Mégantic",
-   "note": "Canton agricole. Abords du lac Mégantic. Partenaire éolien EDG. Production agricole et acéricole."
+   "note": "Canton agricole. Abords du lac Mégantic. Partenaire éolien EDG. Production agricole et acéricole.",
+   "demo": {
+    "pyr": [
+     32,
+     37,
+     49,
+     42,
+     29,
+     28,
+     38,
+     49,
+     52,
+     51,
+     49,
+     55,
+     74,
+     76,
+     64,
+     45,
+     19,
+     9,
+     4
+    ],
+    "agg": {
+     "a017": 145,
+     "a1864": 440,
+     "a65": 217,
+     "tot": 802
+    },
+    "trend": {
+     "2001": 634,
+     "2006": 688,
+     "2011": 666,
+     "2016": 705,
+     "2021": 783,
+     "2025": 802
+    },
+    "proj": {
+     "2026": {
+      "tot": 831,
+      "a019": 170,
+      "a2064": 436,
+      "a65": 225
+     },
+     "2031": {
+      "tot": 876,
+      "a019": 163,
+      "a2064": 449,
+      "a65": 264
+     },
+     "2036": {
+      "tot": 912,
+      "a019": 155,
+      "a2064": 474,
+      "a65": 283
+     },
+     "2041": {
+      "tot": 944,
+      "a019": 149,
+      "a2064": 500,
+      "a65": 295
+     }
+    },
+    "agemoy": {
+     "2026": 46.07,
+     "2041": 49.19
+    }
+   }
   },
   {
    "id": "m10",
@@ -1806,7 +2409,74 @@
    "cat": "rural",
    "code": "30050",
    "role": "Forêt, granit & acéricole",
-   "note": "Fondee 1870. Carrieres de granit historiques. Terres fertiles et forestières. Acériculture. Partenaire éolien EDG."
+   "note": "Fondee 1870. Carrieres de granit historiques. Terres fertiles et forestières. Acériculture. Partenaire éolien EDG.",
+   "demo": {
+    "pyr": [
+     43,
+     51,
+     50,
+     61,
+     37,
+     33,
+     45,
+     44,
+     66,
+     69,
+     51,
+     52,
+     73,
+     77,
+     68,
+     54,
+     21,
+     10,
+     5
+    ],
+    "agg": {
+     "a017": 182,
+     "a1864": 493,
+     "a65": 235,
+     "tot": 910
+    },
+    "trend": {
+     "2001": 890,
+     "2006": 903,
+     "2011": 894,
+     "2016": 863,
+     "2021": 855,
+     "2025": 910
+    },
+    "proj": {
+     "2026": {
+      "tot": 923,
+      "a019": 206,
+      "a2064": 473,
+      "a65": 244
+     },
+     "2031": {
+      "tot": 937,
+      "a019": 194,
+      "a2064": 470,
+      "a65": 273
+     },
+     "2036": {
+      "tot": 958,
+      "a019": 193,
+      "a2064": 486,
+      "a65": 279
+     },
+     "2041": {
+      "tot": 982,
+      "a019": 197,
+      "a2064": 493,
+      "a65": 292
+     }
+    },
+    "agemoy": {
+     "2026": 44.79,
+     "2041": 47.65
+    }
+   }
   },
   {
    "id": "m11",
@@ -1818,7 +2488,74 @@
    "cat": "rural",
    "code": "30100",
    "role": "Acériculture durable",
-   "note": "Érablière-école bio (15 000 entailles). Parc industriel Saint-Romain. Modele provincial."
+   "note": "Érablière-école bio (15 000 entailles). Parc industriel Saint-Romain. Modele provincial.",
+   "demo": {
+    "pyr": [
+     36,
+     31,
+     41,
+     37,
+     31,
+     29,
+     35,
+     33,
+     42,
+     38,
+     45,
+     44,
+     81,
+     78,
+     58,
+     22,
+     25,
+     5,
+     5
+    ],
+    "agg": {
+     "a017": 136,
+     "a1864": 387,
+     "a65": 193,
+     "tot": 716
+    },
+    "trend": {
+     "2001": 681,
+     "2006": 633,
+     "2011": 700,
+     "2016": 690,
+     "2021": 715,
+     "2025": 716
+    },
+    "proj": {
+     "2026": {
+      "tot": 716,
+      "a019": 142,
+      "a2064": 378,
+      "a65": 196
+     },
+     "2031": {
+      "tot": 707,
+      "a019": 126,
+      "a2064": 356,
+      "a65": 225
+     },
+     "2036": {
+      "tot": 699,
+      "a019": 118,
+      "a2064": 358,
+      "a65": 223
+     },
+     "2041": {
+      "tot": 703,
+      "a019": 118,
+      "a2064": 362,
+      "a65": 223
+     }
+    },
+    "agemoy": {
+     "2026": 46.28,
+     "2041": 48.59
+    }
+   }
   },
   {
    "id": "m12",
@@ -1830,7 +2567,74 @@
    "cat": "rural",
    "code": "30055",
    "role": "Forêt & villégiature",
-   "note": "Forêt, villégiature. Partenaire éolien EDG. Économie d'assise forestière et récréotouristique."
+   "note": "Forêt, villégiature. Partenaire éolien EDG. Économie d'assise forestière et récréotouristique.",
+   "demo": {
+    "pyr": [
+     37,
+     60,
+     61,
+     52,
+     16,
+     22,
+     36,
+     48,
+     50,
+     40,
+     29,
+     34,
+     66,
+     56,
+     57,
+     21,
+     12,
+     6,
+     3
+    ],
+    "agg": {
+     "a017": 187,
+     "a1864": 364,
+     "a65": 155,
+     "tot": 706
+    },
+    "trend": {
+     "2001": 740,
+     "2006": 666,
+     "2011": 728,
+     "2016": 734,
+     "2021": 713,
+     "2025": 706
+    },
+    "proj": {
+     "2026": {
+      "tot": 694,
+      "a019": 190,
+      "a2064": 327,
+      "a65": 177
+     },
+     "2031": {
+      "tot": 670,
+      "a019": 161,
+      "a2064": 309,
+      "a65": 200
+     },
+     "2036": {
+      "tot": 654,
+      "a019": 138,
+      "a2064": 322,
+      "a65": 194
+     },
+     "2041": {
+      "tot": 658,
+      "a019": 135,
+      "a2064": 340,
+      "a65": 183
+     }
+    },
+    "agemoy": {
+     "2026": 42.75,
+     "2041": 45.73
+    }
+   }
   },
   {
    "id": "m13",
@@ -1842,7 +2646,74 @@
    "cat": "rural",
    "code": "30085",
    "role": "Pôle granit mondial",
-   "note": "A. Lacroix Granit (monuments Washington DC), ABRESSA, Summum Granit : 300+ emplois dans 707 hab."
+   "note": "A. Lacroix Granit (monuments Washington DC), ABRESSA, Summum Granit : 300+ emplois dans 707 hab.",
+   "demo": {
+    "pyr": [
+     46,
+     50,
+     50,
+     22,
+     21,
+     25,
+     47,
+     40,
+     40,
+     34,
+     24,
+     40,
+     81,
+     65,
+     58,
+     32,
+     19,
+     5,
+     5
+    ],
+    "agg": {
+     "a017": 158,
+     "a1864": 362,
+     "a65": 184,
+     "tot": 704
+    },
+    "trend": {
+     "2001": 817,
+     "2006": 751,
+     "2011": 703,
+     "2016": 659,
+     "2021": 681,
+     "2025": 704
+    },
+    "proj": {
+     "2026": {
+      "tot": 725,
+      "a019": 171,
+      "a2064": 353,
+      "a65": 201
+     },
+     "2031": {
+      "tot": 742,
+      "a019": 170,
+      "a2064": 333,
+      "a65": 239
+     },
+     "2036": {
+      "tot": 758,
+      "a019": 164,
+      "a2064": 353,
+      "a65": 241
+     },
+     "2041": {
+      "tot": 775,
+      "a019": 166,
+      "a2064": 383,
+      "a65": 226
+     }
+    },
+    "agemoy": {
+     "2026": 44.53,
+     "2041": 46.65
+    }
+   }
   },
   {
    "id": "m14",
@@ -1854,7 +2725,74 @@
    "cat": "rural_eloigne",
    "code": "30005",
    "role": "Forestier · Frontalier Maine",
-   "note": "Fontaine Lumber, ScierieTech. Corridor Maine-Atlantique. ZEC Louise-Gosford (secteur sud)."
+   "note": "Fontaine Lumber, ScierieTech. Corridor Maine-Atlantique. ZEC Louise-Gosford (secteur sud).",
+   "demo": {
+    "pyr": [
+     27,
+     31,
+     36,
+     37,
+     26,
+     25,
+     30,
+     30,
+     32,
+     42,
+     24,
+     60,
+     69,
+     82,
+     51,
+     39,
+     27,
+     6,
+     3
+    ],
+    "agg": {
+     "a017": 115,
+     "a1864": 354,
+     "a65": 208,
+     "tot": 677
+    },
+    "trend": {
+     "2001": 730,
+     "2006": 704,
+     "2011": 700,
+     "2016": 693,
+     "2021": 667,
+     "2025": 677
+    },
+    "proj": {
+     "2026": {
+      "tot": 672,
+      "a019": 120,
+      "a2064": 340,
+      "a65": 212
+     },
+     "2031": {
+      "tot": 651,
+      "a019": 99,
+      "a2064": 307,
+      "a65": 245
+     },
+     "2036": {
+      "tot": 632,
+      "a019": 94,
+      "a2064": 286,
+      "a65": 252
+     },
+     "2041": {
+      "tot": 614,
+      "a019": 98,
+      "a2064": 277,
+      "a65": 239
+     }
+    },
+    "agemoy": {
+     "2026": 48.6,
+     "2041": 52.11
+    }
+   }
   },
   {
    "id": "m15",
@@ -1866,7 +2804,74 @@
    "cat": "rural",
    "code": "30105",
    "role": "Espace industriel en dev.",
-   "note": "Carrefour routes 108/161. Espace industriel en développement (MRC). Partenaire éolien EDG."
+   "note": "Carrefour routes 108/161. Espace industriel en développement (MRC). Partenaire éolien EDG.",
+   "demo": {
+    "pyr": [
+     25,
+     21,
+     23,
+     18,
+     28,
+     16,
+     28,
+     34,
+     28,
+     26,
+     36,
+     39,
+     62,
+     46,
+     34,
+     42,
+     23,
+     11,
+     6
+    ],
+    "agg": {
+     "a017": 76,
+     "a1864": 308,
+     "a65": 162,
+     "tot": 546
+    },
+    "trend": {
+     "2001": 614,
+     "2006": 584,
+     "2011": 563,
+     "2016": 530,
+     "2021": 542,
+     "2025": 546
+    },
+    "proj": {
+     "2026": {
+      "tot": 551,
+      "a019": 94,
+      "a2064": 288,
+      "a65": 169
+     },
+     "2031": {
+      "tot": 542,
+      "a019": 90,
+      "a2064": 260,
+      "a65": 192
+     },
+     "2036": {
+      "tot": 531,
+      "a019": 86,
+      "a2064": 249,
+      "a65": 196
+     },
+     "2041": {
+      "tot": 517,
+      "a019": 77,
+      "a2064": 244,
+      "a65": 196
+     }
+    },
+    "agemoy": {
+     "2026": 48.69,
+     "2041": 52.94
+    }
+   }
   },
   {
    "id": "m16",
@@ -1878,7 +2883,74 @@
    "cat": "rural_eloigne",
    "code": "30070",
    "role": "Éolien · Forêt · Acéricole",
-   "note": "Siège du parc éolien Le Granit (EDG). 1 million d'erables a sucre sur le territoire. Économie : forêt, acériculture, chasse."
+   "note": "Siège du parc éolien Le Granit (EDG). 1 million d'erables a sucre sur le territoire. Économie : forêt, acériculture, chasse.",
+   "demo": {
+    "pyr": [
+     13,
+     11,
+     32,
+     30,
+     17,
+     29,
+     25,
+     23,
+     36,
+     35,
+     30,
+     38,
+     60,
+     58,
+     45,
+     24,
+     11,
+     3,
+     3
+    ],
+    "agg": {
+     "a017": 73,
+     "a1864": 306,
+     "a65": 144,
+     "tot": 523
+    },
+    "trend": {
+     "2001": 701,
+     "2006": 650,
+     "2011": 677,
+     "2016": 575,
+     "2021": 531,
+     "2025": 523
+    },
+    "proj": {
+     "2026": {
+      "tot": 516,
+      "a019": 86,
+      "a2064": 283,
+      "a65": 147
+     },
+     "2031": {
+      "tot": 488,
+      "a019": 72,
+      "a2064": 242,
+      "a65": 174
+     },
+     "2036": {
+      "tot": 469,
+      "a019": 68,
+      "a2064": 220,
+      "a65": 181
+     },
+     "2041": {
+      "tot": 451,
+      "a019": 77,
+      "a2064": 201,
+      "a65": 173
+     }
+    },
+    "agemoy": {
+     "2026": 48.21,
+     "2041": 52.13
+    }
+   }
   },
   {
    "id": "m17",
@@ -1890,7 +2962,74 @@
    "cat": "rural",
    "code": "30020",
    "role": "Agrotourisme bio · Lac",
-   "note": "Marché du Ruisseau d'Or (acériculture bio + bistro). Rive du Lac Mégantic. Villégiature. FRR-V4 vitalisation."
+   "note": "Marché du Ruisseau d'Or (acériculture bio + bistro). Rive du Lac Mégantic. Villégiature. FRR-V4 vitalisation.",
+   "demo": {
+    "pyr": [
+     8,
+     9,
+     8,
+     25,
+     9,
+     6,
+     10,
+     15,
+     13,
+     30,
+     20,
+     37,
+     49,
+     53,
+     49,
+     41,
+     24,
+     10,
+     1
+    ],
+    "agg": {
+     "a017": 39,
+     "a1864": 200,
+     "a65": 178,
+     "tot": 417
+    },
+    "trend": {
+     "2001": 335,
+     "2006": 374,
+     "2011": 360,
+     "2016": 357,
+     "2021": 397,
+     "2025": 417
+    },
+    "proj": {
+     "2026": {
+      "tot": 397,
+      "a019": 46,
+      "a2064": 174,
+      "a65": 177
+     },
+     "2031": {
+      "tot": 388,
+      "a019": 39,
+      "a2064": 153,
+      "a65": 196
+     },
+     "2036": {
+      "tot": 382,
+      "a019": 42,
+      "a2064": 144,
+      "a65": 196
+     },
+     "2041": {
+      "tot": 365,
+      "a019": 44,
+      "a2064": 131,
+      "a65": 190
+     }
+    },
+    "agemoy": {
+     "2026": 56.58,
+     "2041": 59
+    }
+   }
   },
   {
    "id": "m18",
@@ -1902,7 +3041,74 @@
    "cat": "rural_eloigne",
    "code": "30040",
    "role": "Meunerie bio · Forêt",
-   "note": "La Meunerie Milanaise (chef de file farine bio canadienne, 1982). Forêt, villégiature."
+   "note": "La Meunerie Milanaise (chef de file farine bio canadienne, 1982). Forêt, villégiature.",
+   "demo": {
+    "pyr": [
+     18,
+     19,
+     16,
+     15,
+     4,
+     14,
+     21,
+     22,
+     18,
+     18,
+     16,
+     22,
+     45,
+     28,
+     26,
+     12,
+     10,
+     1,
+     2
+    ],
+    "agg": {
+     "a017": 63,
+     "a1864": 185,
+     "a65": 79,
+     "tot": 327
+    },
+    "trend": {
+     "2001": 324,
+     "2006": 301,
+     "2011": 273,
+     "2016": 299,
+     "2021": 324,
+     "2025": 327
+    },
+    "proj": {
+     "2026": {
+      "tot": 342,
+      "a019": 71,
+      "a2064": 188,
+      "a65": 83
+     },
+     "2031": {
+      "tot": 356,
+      "a019": 71,
+      "a2064": 176,
+      "a65": 109
+     },
+     "2036": {
+      "tot": 369,
+      "a019": 69,
+      "a2064": 181,
+      "a65": 119
+     },
+     "2041": {
+      "tot": 376,
+      "a019": 65,
+      "a2064": 188,
+      "a65": 123
+     }
+    },
+    "agemoy": {
+     "2026": 45.32,
+     "2041": 50.15
+    }
+   }
   },
   {
    "id": "m19",
@@ -1914,7 +3120,74 @@
    "cat": "rural_eloigne",
    "code": "30015",
    "role": "Ruralite profonde · Nature",
-   "note": "Plus petite muni de la MRC. Bains de Nature MRC. ZEC Louise-Gosford. FRR-V4 vitalisation (492 000$ MAMH, 2025). Territoire naturel exceptionnel."
+   "note": "Plus petite muni de la MRC. Bains de Nature MRC. ZEC Louise-Gosford. FRR-V4 vitalisation (492 000$ MAMH, 2025). Territoire naturel exceptionnel.",
+   "demo": {
+    "pyr": [
+     10,
+     3,
+     6,
+     8,
+     5,
+     5,
+     12,
+     10,
+     8,
+     14,
+     15,
+     19,
+     16,
+     30,
+     16,
+     10,
+     3,
+     0,
+     1
+    ],
+    "agg": {
+     "a017": 23,
+     "a1864": 108,
+     "a65": 60,
+     "tot": 191
+    },
+    "trend": {
+     "2001": 117,
+     "2006": 144,
+     "2011": 169,
+     "2016": 178,
+     "2021": 184,
+     "2025": 191
+    },
+    "proj": {
+     "2026": {
+      "tot": 187,
+      "a019": 24,
+      "a2064": 102,
+      "a65": 61
+     },
+     "2031": {
+      "tot": 189,
+      "a019": 26,
+      "a2064": 91,
+      "a65": 72
+     },
+     "2036": {
+      "tot": 191,
+      "a019": 27,
+      "a2064": 87,
+      "a65": 77
+     },
+     "2041": {
+      "tot": 189,
+      "a019": 29,
+      "a2064": 80,
+      "a65": 80
+     }
+    },
+    "agemoy": {
+     "2026": 50.45,
+     "2041": 54.53
+    }
+   }
   }
  ],
  "trends": {
@@ -3017,5 +4290,107 @@
   "constat": "Le bassin actif (15-64 ans) compte 12 797 personnes, mais le vieillissement réduit la relève : seulement 2 120 jeunes de 15-24 ans, contre 6 849 personnes de 65 ans et plus (ISQ 2024). Une scolarisation plus faible qu'en Estrie (≈ 40 % des 25-64 ans sans diplôme postsecondaire) et un taux d'emploi de 54 % accentuent la pression sur le recrutement — enjeu central pour les manufacturiers du territoire. Le taux de chômage à l'échelle MRC n'est pas publié par l'ISQ (qui diffuse le « taux de travailleurs »); la valeur du Recensement 2021 reste à intégrer.",
   "source": "ISQ — Estimations et projections de population par RLS (série 2025, base Recensement 2021), 2024; ISQ — Principaux indicateurs MRC du Granit (2024); DSP de l'Estrie — Faits saillants RLS du Granit (avril 2025); Recensement 2021 (Statistique Canada).",
   "dashboardLink": "https://www.santeestrie.qc.ca/medias-publications/sante-publique/tableau-de-bord-sante-publique-estrie"
+ },
+ "demographie": {
+  "source": "ISQ — Estimations de population (série 2026) et projections (série 2025, scénario Référence A2025, base Recensement 2021), MRC du Granit / RLS du Granit. Effectifs par groupe d'âge quinquennal, total des sexes. Estimations 2025; projections 2026-2041.",
+  "note": "Réinterprétation du portrait démographique municipal historique (« Tableau de classification de la population ») à l'aide des données officielles courantes de l'ISQ. Là où le document d'origine répartissait la population en sous-groupes d'activité (étudiants, retraités, travailleurs, sans travail), ce portrait s'appuie sur la structure par âge — la donnée infra-municipale validée et comparable dans le temps. Les totaux ISQ (estimation 2025) peuvent différer légèrement de la population du Décret, base de calcul des transferts gouvernementaux.",
+  "bands": [
+   "0-4",
+   "5-9",
+   "10-14",
+   "15-19",
+   "20-24",
+   "25-29",
+   "30-34",
+   "35-39",
+   "40-44",
+   "45-49",
+   "50-54",
+   "55-59",
+   "60-64",
+   "65-69",
+   "70-74",
+   "75-79",
+   "80-84",
+   "85-89",
+   "90+"
+  ],
+  "projYears": [
+   2026,
+   2031,
+   2036,
+   2041
+  ],
+  "trendYears": [
+   2001,
+   2006,
+   2011,
+   2016,
+   2021,
+   2025
+  ],
+  "mrc": {
+   "pyr": [
+    810,
+    943,
+    1092,
+    1199,
+    869,
+    753,
+    988,
+    1062,
+    1178,
+    1356,
+    1193,
+    1497,
+    2089,
+    2127,
+    1853,
+    1306,
+    842,
+    405,
+    313
+   ],
+   "agg": {
+    "a017": 3579,
+    "a1864": 11450,
+    "a65": 6846,
+    "tot": 21875
+   },
+   "trend": {
+    "2001": 21143,
+    "2006": 21462,
+    "2011": 21268,
+    "2016": 20628,
+    "2021": 21204,
+    "2025": 21875
+   },
+   "proj": {
+    "2026": {
+     "tot": 22034,
+     "a019": 3998,
+     "a2064": 10990,
+     "a65": 7046
+    },
+    "2031": {
+     "tot": 22192,
+     "a019": 3660,
+     "a2064": 10564,
+     "a65": 7968
+    },
+    "2036": {
+     "tot": 22285,
+     "a019": 3526,
+     "a2064": 10571,
+     "a65": 8188
+    },
+    "2041": {
+     "tot": 22301,
+     "a019": 3540,
+     "a2064": 10584,
+     "a65": 8177
+    }
+   }
+  }
  }
 }

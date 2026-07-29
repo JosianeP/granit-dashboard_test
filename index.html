@@ -880,6 +880,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
           <div class="cu-src" id="cuSrc"></div>
         </div>
         <div class="ss-row" id="cuStrip"></div>
+        <div class="lg-legend" id="cuLegend"></div>
         <div class="cu-cap-grid" id="cuCapGrid"></div>
         <div class="two-col" style="align-items:start">
           <div class="card"><div class="ct">D&eacute;penses per capita en loisirs et culture (2022)</div><div style="position:relative;height:430px"><canvas id="cuCapChart"></canvas></div></div>
@@ -901,7 +902,6 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
       <!-- LOGEMENTS & GARDERIES -->
       <div class="view" id="view-eco-housing">
         <div class="section-header"><div class="sh-left"><h2>Logements &amp; garderies</h2><p>Offre résidentielle et services de garde par municipalité &mdash; MRC du Granit</p></div><span class="pillar-badge pb-eco">Économie</span></div>
-        </div>
 
         <div class="lg-hero">
           <h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg>Logement et petite enfance dans le Granit</h3>
@@ -3121,6 +3121,11 @@ function renderCulture(){
     ss(cuN(a.perCapQc)+' $','Moyenne provinciale')+
     ss(a.nAboveTaille+' / 19','Au-dessus du comparateur')+
     ss(cuN(a.investCultureLoisirTotal)+' $','Instruments MRC 2026');
+  var lg=C.legende||{},cle=document.getElementById('cuLegend');
+  if(cle)cle.innerHTML='<span class="lg-legend-t">Fiabilité des données</span>'+
+    '<span class="lg-legend-i"><span class="lg-tag lg-tag-real">Réel</span> '+(lg.real||'')+'</span>'+
+    '<span class="lg-legend-i"><span class="lg-tag lg-tag-est">Estimé</span> '+(lg.est||'')+'</span>'+
+    '<span class="lg-legend-i"><span class="lg-tag lg-tag-todo">À compléter</span> '+(lg.todo||'')+'</span>';
   document.getElementById('cuCapGrid').innerHTML=
     cuCap(cuN(a.qpTotal)+' $','Quote-part culture et loisir','Règlement 2026-02 · '+a.qpMunicipalitesParticipantes+' municipalités participantes')+
     cuCap(cuN(a.diffEnveloppe)+' $','Politique des organismes diffuseurs',a.diffProjets+' projets soutenus · résolution 2026-98')+

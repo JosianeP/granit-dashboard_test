@@ -1,4 +1,4 @@
-# Tableau de bord territorial - MRC du Granit (v4.7)
+# Tableau de bord territorial - MRC du Granit (v4.8)
 
 Outil interne de développement territorial à trois piliers (économie, aménagement, santé). Hébergé sur GitHub Pages.
 
@@ -15,6 +15,13 @@ Outil interne de développement territorial à trois piliers (économie, aménag
 | `exceljs.min.js` | Régénération du gabarit Excel depuis la plateforme |
 
 Les sept fichiers doivent se trouver dans le même dossier du dépôt.
+
+## Nouveautés de la version 4.8
+
+- Aperçu général. Carte « Repères de revenu des ménages » qui donne les tranches faible, modeste, moyen et élevé selon la taille du ménage. Les bornes sont calculées à partir du seuil de la Mesure de faible revenu après impôt de 2020 (26 503 $ pour une personne, Statistique Canada) et de la définition de la classe moyenne de la Chaire en fiscalité et en finances publiques (75 % à 150 % du revenu médian ajusté). Les paramètres se trouvent dans `reperesRevenu` de `data.json`.
+- Logements et garderies. Carte « Enfants en attente d'une place » avec la donnée régionale publiée par le ministère de la Famille (Estrie et Québec, 31 mai 2025), un ratio de places pour 100 enfants de 0 à 4 ans calculé par la plateforme et une chronologie sourcée du manque de places. Le nombre d'enfants en attente propre au Granit n'est pas publié; il se saisit dans la feuille « MRC - Logements » du chiffrier (deux nouvelles cellules) et s'affiche « À compléter » d'ici là.
+- Municipalités. Vignette « MRC du Granit » placée en tête de grille, au même gabarit que les municipalités (population, superficie, densité, entreprises, structure par âge, logements et places de garde), et son portrait démographique détaillé au clic.
+- Le chiffrier Excel doit être régénéré depuis la plateforme pour obtenir les deux nouvelles cellules. Un chiffrier antérieur s'importe toujours, avec un simple avertissement pour ces deux champs.
 
 ## Nouveautés de la version 4.7
 

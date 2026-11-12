@@ -4,7 +4,7 @@
     "quarter": "T2 2026",
     "updatedBy": "MRC du Granit - Conseil scientifique & Développement économique",
     "updatedDate": "2026-06-17",
-    "note": "Données démographiques et de revenu validées aux sources officielles (Décret 1499-2025, Recensement 2021). Portrait industriel officiel intégré (LGP / Table des MRC de l'Estrie, avril 2026). Liste d'entreprises triangulée : liste manufacturière SDEG 2025 + infolettre avril 2026 + registre « Le Granit ». Ajouts tourisme et commerce par recherche documentaire (juin 2026). Effectifs non confirmés marqués « à compléter » et exclus des totaux. Estimations clairement identifiées. Pilier Santé enrichi des données réelles de la DSP de l'Estrie (RLS du Granit, avril 2025) et du Tableau de bord – Santé publique Estrie. Section Plan climat ajoutée au pilier Aménagement (v4.6) à partir de l'Inventaire collectif des émissions de GES de la MRC du Granit, version préliminaire v2, année de référence 2024. Toutes les valeurs de cette section proviennent de ce chiffrier; la classification des sources selon la portée des instruments d'aménagement est une lecture analytique, signalée comme telle. Section Culture retirée du tableau de bord (v4.7). Mise à jour trimestrielle par chiffrier Excel chiffré, une feuille par municipalité, importé directement dans la plateforme (v4.7).",
+    "note": "Données démographiques et de revenu validées aux sources officielles (Décret 1499-2025, Recensement 2021). Portrait industriel officiel intégré (LGP / Table des MRC de l'Estrie, avril 2026). Liste d'entreprises triangulée : liste manufacturière SDEG 2025 + infolettre avril 2026 + registre « Le Granit ». Ajouts tourisme et commerce par recherche documentaire (juin 2026). Effectifs non confirmés marqués « à compléter » et exclus des totaux. Estimations clairement identifiées. Pilier Santé enrichi des données réelles de la DSP de l'Estrie (RLS du Granit, avril 2025) et du Tableau de bord – Santé publique Estrie. Section Plan climat ajoutée au pilier Aménagement (v4.6) à partir de l'Inventaire collectif des émissions de GES de la MRC du Granit, version préliminaire v2, année de référence 2024. Toutes les valeurs de cette section proviennent de ce chiffrier; la classification des sources selon la portée des instruments d'aménagement est une lecture analytique, signalée comme telle. Section Culture retirée du tableau de bord (v4.7). Mise à jour trimestrielle par chiffrier Excel chiffré, une feuille par municipalité, importé directement dans la plateforme (v4.7). Repères de revenu des ménages (aperçu), enfants en attente d'une place en service de garde et vignette de la MRC dans la vue Municipalités ajoutés (v4.8).",
     "password": "granit2025",
     "validation": "Courcelles transférée vers Beauce-Sartigan le 1er janvier 2024 (19 municipalités, total 21 935 hab.).",
     "validatedIndicators": {
@@ -9003,7 +9003,9 @@
       "tauxInoccupation": null,
       "garderiesInstallations": 6,
       "placesGardeTotal": 633,
-      "placesMilieuFamilial": 381
+      "placesMilieuFamilial": 381,
+      "enfantsEnAttente": null,
+      "enfantsEnAttenteDate": null
     },
     "parMuni": [
       {
@@ -9405,7 +9407,53 @@
           "real": false
         }
       }
-    ]
+    ],
+    "attente": {
+      "regions": [
+        {
+          "label": "Estrie",
+          "valeur": 2442,
+          "date": "31 mai 2025",
+          "real": true
+        },
+        {
+          "label": "Ensemble du Québec",
+          "valeur": 30688,
+          "date": "31 mai 2025",
+          "real": true
+        }
+      ],
+      "constat": "Sur sa page de statistiques, le ministère de la Famille diffuse le nombre d'enfants en attente d'une place par région administrative seulement. La donnée du 31 mai 2025 est la dernière disponible, le déploiement du Portail d'inscription aux services de garde ayant modifié la méthode de collecte. Aucun chiffre propre au territoire du Granit n'y figure; il reste à obtenir du bureau coordonnateur (CPE Sous les Étoiles) ou du ministère, puis à saisir dans la feuille « MRC - Logements » du chiffrier.",
+      "ratioNote": "Ratio brut calculé par la plateforme, soit les places reconnues (y compris les places au permis du bureau coordonnateur en milieu familial) rapportées aux enfants de 0 à 4 ans (ISQ 2025). Il ne s'agit pas du taux de couverture du ministère, qui compare l'offre à une demande estimée.",
+      "signaux": [
+        {
+          "periode": "2020-2021",
+          "texte": "Pénurie documentée par le milieu. Au sondage du comité Garderie de novembre 2020, 27 % des 192 répondants cherchaient une place; en février 2021, plus d'une centaine de personnes étaient à la recherche d'une place en milieu familial.",
+          "source": "SADC région de Mégantic; Radio-Canada, février 2021"
+        },
+        {
+          "periode": "2021-2022",
+          "texte": "Territoire ciblé par le ministère de la Famille, à l'appel de projets en continu (25 à 74 places possibles) puis à la conversion de places non subventionnées (21 à 39 places, territoire 501).",
+          "source": "Gouvernement du Québec, communiqués du Grand chantier pour les familles"
+        },
+        {
+          "periode": "2021-2023",
+          "texte": "Douze nouvelles responsables de services de garde reconnues en deux ans, soit 63 places en milieu familial.",
+          "source": "L'Écho de Frontenac, 26 avril 2023"
+        },
+        {
+          "periode": "Janvier 2025",
+          "texte": "Ouverture de 28 places en CPE à Saint-Sébastien et conversion de 32 places en places subventionnées à Lac-Mégantic.",
+          "source": "Ministère de la Famille, 14 janvier 2025"
+        },
+        {
+          "periode": "Juin 2026",
+          "texte": "À l'échelle du Québec, 94 des 159 territoires de bureaux coordonnateurs étaient en déficit de places. Le solde propre au Granit se lit dans le Tableau de bord du modèle d'estimation de l'offre et de la demande du ministère (territoire 501); il n'a pas pu être intégré ici et reste à valider.",
+          "source": "Options politiques (IRPP), août 2026, d'après le ministère de la Famille"
+        }
+      ],
+      "source": "Ministère de la Famille, Statistiques sur le réseau des services de garde éducatifs à l'enfance, section « Enfants en attente au guichet unique » (page mise à jour le 15 octobre 2026)."
+    }
   },
   "climat": {
     "statut": "Réel",
@@ -10341,5 +10389,50 @@
       }
     ],
     "pont": "Le lien entre climat et santé passe ici par des canaux mesurables sur le territoire. La conversion du mazout améliore la qualité de l'air intérieur et réduit la précarité énergétique des ménages, dont la part de 65 ans et plus atteint 31,3 % dans la MRC. La compacité des périmètres d'urbanisation raccourcit les distances vers les services de proximité, un déterminant déjà suivi au pilier Santé. Les 3 297 litres de carburant liquide par habitant traduisent une dépendance automobile qui pèse à la fois sur le budget des ménages et sur l'accès aux soins pour les personnes sans permis ou sans véhicule."
+  },
+  "reperesRevenu": {
+    "annee": "2020",
+    "concept": "Revenu après impôt du ménage, ajusté selon la taille du ménage (racine carrée du nombre de personnes).",
+    "seuilMfrUnePersonne": 26503,
+    "tailles": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "classes": [
+      {
+        "id": "faible",
+        "label": "Faible revenu",
+        "min": null,
+        "max": 50,
+        "desc": "Sous la Mesure de faible revenu après impôt, soit moins de 50 % du revenu médian ajusté"
+      },
+      {
+        "id": "modeste",
+        "label": "Revenu modeste",
+        "min": 50,
+        "max": 75,
+        "desc": "Au-dessus du seuil de faible revenu, sous la classe moyenne (50 % à 75 %)"
+      },
+      {
+        "id": "moyen",
+        "label": "Revenu moyen",
+        "min": 75,
+        "max": 150,
+        "desc": "Classe moyenne, de 75 % à 150 % du revenu médian ajusté"
+      },
+      {
+        "id": "eleve",
+        "label": "Revenu élevé",
+        "min": 150,
+        "max": null,
+        "desc": "Plus de 150 % du revenu médian ajusté"
+      }
+    ],
+    "intro": "Bornes de revenu après impôt du ménage en 2020, selon la taille du ménage. Elles découlent de la Mesure de faible revenu après impôt de Statistique Canada, fixée à 26 503 $ pour une personne seule et multipliée par la racine carrée de la taille du ménage. L'année 2020 est retenue parce qu'elle correspond au revenu médian des ménages du Granit tiré du Recensement de 2021.",
+    "source": "Statistique Canada, Dictionnaire du Recensement de la population de 2021, Mesure de faible revenu après impôt (MFR-ApI), seuil de 26 503 $ pour un ménage d'une personne en 2020. Chaire de recherche en fiscalité et en finances publiques de l'Université de Sherbrooke pour la classe moyenne, définie entre 75 % et 150 % du revenu médian ajusté.",
+    "note": "Les tranches « modeste » et « élevé » sont les intervalles résiduels de part et d'autre de la classe moyenne; elles ne sont pas des catégories officielles. D'autres travaux étendent la classe moyenne jusqu'à 200 % du revenu médian. Montants arrondis à la centaine de dollars. Le taux de faible revenu des familles affiché au bandeau provient de l'ISQ (données fiscales de 2023) et repose sur ses propres seuils, non sur les bornes de 2020 présentées ici."
   }
 }

@@ -258,7 +258,9 @@
         { type: 'fields', title: 'Agrégats', items: [fld('logements.annee', 'Année de référence', 'text'), fld('logements.agregats.menagesLocataires', 'Ménages locataires', 'int'),
           fld('logements.agregats.logementsSociaux', 'Logements sociaux et communautaires', 'int'), fld('logements.agregats.tauxInoccupation', 'Taux d\'inoccupation', 'num', { decimals: 1, note: '% — laisser vide si non publié' }),
           fld('logements.agregats.garderiesInstallations', 'Installations (CPE + garderies)', 'int'), fld('logements.agregats.placesGardeTotal', 'Places en service de garde — total', 'int'),
-          fld('logements.agregats.placesMilieuFamilial', 'Places en milieu familial', 'int'), fld('logements.source', 'Source affichée', 'text')] }
+          fld('logements.agregats.placesMilieuFamilial', 'Places en milieu familial', 'int'),
+          fld('logements.agregats.enfantsEnAttente', 'Enfants en attente d\'une place — territoire du Granit', 'int', { note: 'laisser vide si non obtenu du bureau coordonnateur ou du ministère' }),
+          fld('logements.agregats.enfantsEnAttenteDate', 'Enfants en attente — date et source', 'text'), fld('logements.source', 'Source affichée', 'text')] }
       ]
     });
 

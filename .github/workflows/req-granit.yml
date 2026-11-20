@@ -1,0 +1,28 @@
+name: Registre des entreprises - Granit
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 10 3,18 * *"   # le 3 et le 18 de chaque mois (le jeu est mis à jour deux fois par mois)
+
+permissions:
+  contents: write
+
+jobs:
+  extraire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Télécharger et filtrer le registre
+        run: python tools/req_granit.py --out data/req
+      - name: Publier les résultats
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/req
+          git diff --cached --quiet || git commit -m "REQ : extraction du $(date +%F) pour la MRC du Granit"
+          git push

@@ -1,16 +1,127 @@
 {
  "_source": "Ministère de la Famille, Liste des centres de la petite enfance (CPE) et des garderies en fonction (fichier du 2026-11-03) et Liste des bureaux coordonnateurs de la garde éducative en milieu familial (fichier du 2026-11-03), Données Québec, extraction du 2026-11-20. Licence CC-BY 4.0.",
  "extraction": "2026-11-20",
- "installations": [],
+ "installations": [
+  {
+   "numero": "",
+   "nom": "CENTRE DE LA PETITE ENFANCE SOUS LES ÉTOILES - INSTALLATION LE PAPILLON LUNE",
+   "entreprise": "",
+   "type": "cpe",
+   "type_source": "CPE",
+   "subvention_source": "CR",
+   "muni": "Lac-Mégantic",
+   "adresse": "5470, rue Frontenac",
+   "telephone": "(819) 583-3000",
+   "courriel": "direction@cpeetoiles.com",
+   "places": 42,
+   "poupons": 10
+  },
+  {
+   "numero": "",
+   "nom": "CENTRE DE LA PETITE ENFANCE SOUS LES ÉTOILES - INSTALLATION SOUS LES ÉTOILES",
+   "entreprise": "",
+   "type": "cpe",
+   "type_source": "CPE",
+   "subvention_source": "CR",
+   "muni": "Lac-Mégantic",
+   "adresse": "4290, rue Cartier",
+   "telephone": "(819) 583-3000, poste 226",
+   "courriel": "direction@cpeetoiles.com",
+   "places": 80,
+   "poupons": 10
+  },
+  {
+   "numero": "",
+   "nom": "JARDIN D'ENFANTS CASSIOPÉE INC.",
+   "entreprise": "",
+   "type": "garderie_subventionnee",
+   "type_source": "GARD",
+   "subvention_source": "CR",
+   "muni": "Lac-Mégantic",
+   "adresse": "3189, rue Agnès",
+   "telephone": "(819) 554-8823",
+   "courriel": "jecassiopee@hotmail.com",
+   "places": 34,
+   "poupons": 0
+  },
+  {
+   "numero": "",
+   "nom": "CENTRE DE LA PETITE ENFANCE SOUS LES ÉTOILES - INSTALLATION LA PETITE BOTTINE",
+   "entreprise": "",
+   "type": "cpe",
+   "type_source": "CPE",
+   "subvention_source": "CR",
+   "muni": "Lac-Drolet",
+   "adresse": "700, rue Principale",
+   "telephone": "(819) 583-3000, poste 226",
+   "courriel": "direction@cpeetoiles.com",
+   "places": 29,
+   "poupons": 5
+  },
+  {
+   "numero": "",
+   "nom": "CENTRE DE LA PETITE ENFANCE SOUS LES ÉTOILES - INSTALLATION LA PETITE BOTTINE",
+   "entreprise": "",
+   "type": "cpe",
+   "type_source": "CPE",
+   "subvention_source": "CR",
+   "muni": "Lac-Drolet",
+   "adresse": "698, rue Principale",
+   "telephone": "(819) 583-3000, poste 226",
+   "courriel": "direction@cpetoiles.com",
+   "places": 10,
+   "poupons": 0
+  },
+  {
+   "numero": "",
+   "nom": "CENTRE DE LA PETITE ENFANCE BOUTONS D'OR - SUCRES D'OR",
+   "entreprise": "",
+   "type": "cpe",
+   "type_source": "CPE",
+   "subvention_source": "CR",
+   "muni": "Saint-Ludger",
+   "adresse": "102, rue l'Escale",
+   "telephone": "(819) 548-5300",
+   "courriel": "info@cpeboutonsdor.com",
+   "places": 21,
+   "poupons": 5
+  },
+  {
+   "numero": "",
+   "nom": "CENTRE DE LA PETITE ENFANCE SOUS LES ÉTOILES - INSTALLATION LA BOÎTE À SOURIRES",
+   "entreprise": "",
+   "type": "cpe",
+   "type_source": "CPE",
+   "subvention_source": "CR",
+   "muni": "Saint-Romain",
+   "adresse": "329, rue Principale",
+   "telephone": "(819) 583-3000, poste 226",
+   "courriel": "direction@cpeetoiles.com",
+   "places": 29,
+   "poupons": 5
+  },
+  {
+   "numero": "",
+   "nom": "CENTRE DE LA PETITE ENFANCE SOUS LES ÉTOILES - INSTALLATION MONTS ET MERVEILLES",
+   "entreprise": "",
+   "type": "cpe",
+   "type_source": "CPE",
+   "subvention_source": "CR",
+   "muni": "Saint-Sébastien",
+   "adresse": "651, rue Dorval",
+   "telephone": "(819) 583-3000, poste 226",
+   "courriel": "direction@cpeetoiles.com",
+   "places": 28,
+   "poupons": 10
+  }
+ ],
  "bureaux_coordonnateurs": [
   {
-   "nom": "Lac-Mégantic",
-   "muni": "",
-   "territoire": "",
+   "nom": "CENTRE DE LA PETITE ENFANCE SOUS LES ÉTOILES",
+   "muni": "Lac-Mégantic",
+   "territoire": "MRC Le Granit",
    "places": 381,
-   "places_detail": {
-    "PLACE_TOTAL": 381
-   }
+   "rsg_reconnues": 48
   }
  ]
 }

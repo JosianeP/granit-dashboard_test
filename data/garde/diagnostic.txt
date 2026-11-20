@@ -2,12 +2,21 @@ Extraction du 2026-11-20
 Jeu be36f85e-e419-4978-9c34-cb5795622595 : ressource « Liste des centres de la petite enfance (CPE) et des garderies en fonction », modifiée le 2026-11-03T13:46:16.617830, https://www.donneesquebec.ca/recherche/dataset/be36f85e-e419-4978-9c34-cb5795622595/resource/89af3537-4506-488c-8d0e-6d85b4033a0e/download/repertoire-installation.csv
 Installations : encodage utf-8-sig, séparateur ',', 3813 lignes
 Installations : colonnes ['NOM_MUN_COMPO', 'CODE_POSTAL_COMPO', 'PLACE_TOTAL_POUPON', 'PLACE_TOTAL', 'CODE_REGION_COMPO', 'INTERNET', 'PROVINCE', 'NOM', 'TYPE', 'REGION', 'ADRESSE', 'SUBV', 'telephone1', 'TELECOPIEUR1']
-Colonnes retenues : {'municipalité': None, 'code postal': 'CODE_POSTAL_COMPO', 'nom': 'NOM_MUN_COMPO', 'entreprise': None, 'type': 'TYPE', 'adresse': 'ADRESSE', 'MRC': None, 'numéro': None, 'places (toutes)': ['PLACE_TOTAL_POUPON', 'PLACE_TOTAL'], 'places totales': 'PLACE_TOTAL_POUPON', 'poupons': 'PLACE_TOTAL_POUPON'}
+Colonnes retenues : {'municipalité': 'NOM_MUN_COMPO', 'code postal': 'CODE_POSTAL_COMPO', 'nom': 'NOM', 'entreprise': None, 'type': 'TYPE', 'adresse': 'ADRESSE', 'subvention': 'SUBV', 'MRC': None, 'numéro': None, 'places (toutes)': ['PLACE_TOTAL_POUPON', 'PLACE_TOTAL'], 'places totales': 'PLACE_TOTAL', 'poupons': 'PLACE_TOTAL_POUPON'}
 Valeurs de « TYPE » (tout le Québec) : [('GARD', 1984), ('CPE', 1829)]
-Installations retenues : 0 ; rejets par code postal (homonymes) : []
+Valeurs de (type, « SUBV ») : [(('CPE', 'CR'), 1829), (('GARD', 'CR'), 1068), (('GARD', ''), 916)]
+Installations retenues : 8 ; rejets par code postal (homonymes) : []
+  - Lac-Mégantic | CENTRE DE LA PETITE ENFANCE SOUS LES ÉTOILES - INSTALLATION LE PAPILLON LUNE | CPE | 42 places | 
+  - Lac-Mégantic | CENTRE DE LA PETITE ENFANCE SOUS LES ÉTOILES - INSTALLATION SOUS LES ÉTOILES | CPE | 80 places | 
+  - Lac-Mégantic | JARDIN D'ENFANTS CASSIOPÉE INC. | GARD | 34 places | 
+  - Lac-Drolet | CENTRE DE LA PETITE ENFANCE SOUS LES ÉTOILES - INSTALLATION LA PETITE BOTTINE | CPE | 29 places | 
+  - Lac-Drolet | CENTRE DE LA PETITE ENFANCE SOUS LES ÉTOILES - INSTALLATION LA PETITE BOTTINE | CPE | 10 places | 
+  - Saint-Ludger | CENTRE DE LA PETITE ENFANCE BOUTONS D'OR - SUCRES D'OR | CPE | 21 places | 
+  - Saint-Romain | CENTRE DE LA PETITE ENFANCE SOUS LES ÉTOILES - INSTALLATION LA BOÎTE À SOURIRES | CPE | 29 places | 
+  - Saint-Sébastien | CENTRE DE LA PETITE ENFANCE SOUS LES ÉTOILES - INSTALLATION MONTS ET MERVEILLES | CPE | 28 places | 
 Jeu ed951823-4179-415b-bb25-b009320450e6 : ressource « Liste des bureaux coordonnateurs de la garde éducative en milieu familial  », modifiée le 2026-11-03T13:46:31.620122, https://www.donneesquebec.ca/recherche/dataset/ed951823-4179-415b-bb25-b009320450e6/resource/bc9dbf00-a697-4b58-bded-753f1b25335b/download/repertoire-bc.csv
 Bureaux coordonnateurs : encodage utf-8-sig, séparateur ',', 160 lignes
 Bureaux coordonnateurs : colonnes ['NOM_MUN_COMPO', 'CODE_POSTAL_COMPO', 'PLACE_TOTAL', 'CODE_REGION_COMPO', 'TYPE_FINANCEMENT_COMPO', 'INTERNET', 'NOM', 'TYPE', 'REGION', 'ADRESSE', 'SUBV', 'telephone1', 'TELECOPIEUR1', 'NOM_TERR', 'NOMBRE_DE_RSG_RECONNUES']
-BC, colonnes retenues : {'municipalité': None, 'nom': 'NOM_MUN_COMPO', 'territoire': None, 'places': ['PLACE_TOTAL']}
+BC, colonnes retenues : {'municipalité': 'NOM_MUN_COMPO', 'nom': 'NOM', 'territoire': 'NOM_TERR', 'places': ['PLACE_TOTAL']}
 Bureaux coordonnateurs retenus : 1
   - {'NOM_MUN_COMPO': 'Lac-Mégantic', 'CODE_POSTAL_COMPO': 'G6B 2X1', 'PLACE_TOTAL': '381', 'CODE_REGION_COMPO': '5', 'TYPE_FINANCEMENT_COMPO': 'BC-MF', 'INTERNET': 'direction@cpeetoiles.com', 'NOM': 'CENTRE DE LA PETITE ENFANCE SOUS LES ÉTOILES', 'TYPE': 'BC', 'REGION': '5 - Estrie', 'ADRESSE': '4290, rue Cartier', 'SUBV': 'CR', 'telephone1': '(819) 583-3000, poste 226', 'TELECOPIEUR1': '(819) 583-6308', 'NOM_TERR': 'MRC Le Granit', 'NOMBRE_DE_RSG_RECONNUES': '48'}

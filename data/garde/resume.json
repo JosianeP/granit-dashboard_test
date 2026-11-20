@@ -3,126 +3,166 @@
  "extraction": "2026-11-20",
  "fichier_installations": "2026-11-03",
  "fichier_bc": "2026-11-03",
- "installations": 0,
- "cpe": 0,
- "garderies": 0,
- "places_installation": 0,
+ "installations": 8,
+ "cpe": 7,
+ "garderies": 1,
+ "places_installation": 273,
  "places_milieu_familial": 381,
- "places_total": 381,
+ "rsg_reconnues": 48,
+ "places_poupons": 45,
+ "places_total": 654,
  "par_municipalite": {
   "Lac-Mégantic": {
-   "installations": 0,
-   "cpe": 0,
-   "garderies": 0,
-   "places": 0
+   "installations": 3,
+   "cpe": 2,
+   "garderies": 1,
+   "garderies_subventionnees": 1,
+   "places": 156,
+   "poupons": 20
   },
   "Frontenac": {
    "installations": 0,
    "cpe": 0,
    "garderies": 0,
-   "places": 0
+   "garderies_subventionnees": 0,
+   "places": 0,
+   "poupons": 0
   },
   "Lambton": {
    "installations": 0,
    "cpe": 0,
    "garderies": 0,
-   "places": 0
+   "garderies_subventionnees": 0,
+   "places": 0,
+   "poupons": 0
   },
   "Nantes": {
    "installations": 0,
    "cpe": 0,
    "garderies": 0,
-   "places": 0
+   "garderies_subventionnees": 0,
+   "places": 0,
+   "poupons": 0
   },
   "Notre-Dame-des-Bois": {
    "installations": 0,
    "cpe": 0,
    "garderies": 0,
-   "places": 0
+   "garderies_subventionnees": 0,
+   "places": 0,
+   "poupons": 0
   },
   "Stratford": {
    "installations": 0,
    "cpe": 0,
    "garderies": 0,
-   "places": 0
+   "garderies_subventionnees": 0,
+   "places": 0,
+   "poupons": 0
   },
   "Lac-Drolet": {
-   "installations": 0,
-   "cpe": 0,
+   "installations": 2,
+   "cpe": 2,
    "garderies": 0,
-   "places": 0
+   "garderies_subventionnees": 0,
+   "places": 39,
+   "poupons": 5
   },
   "Saint-Ludger": {
-   "installations": 0,
-   "cpe": 0,
+   "installations": 1,
+   "cpe": 1,
    "garderies": 0,
-   "places": 0
+   "garderies_subventionnees": 0,
+   "places": 21,
+   "poupons": 5
   },
   "Marston": {
    "installations": 0,
    "cpe": 0,
    "garderies": 0,
-   "places": 0
+   "garderies_subventionnees": 0,
+   "places": 0,
+   "poupons": 0
   },
   "Sainte-Cécile-de-Whitton": {
    "installations": 0,
    "cpe": 0,
    "garderies": 0,
-   "places": 0
+   "garderies_subventionnees": 0,
+   "places": 0,
+   "poupons": 0
   },
   "Saint-Romain": {
-   "installations": 0,
-   "cpe": 0,
+   "installations": 1,
+   "cpe": 1,
    "garderies": 0,
-   "places": 0
+   "garderies_subventionnees": 0,
+   "places": 29,
+   "poupons": 5
   },
   "Audet": {
    "installations": 0,
    "cpe": 0,
    "garderies": 0,
-   "places": 0
+   "garderies_subventionnees": 0,
+   "places": 0,
+   "poupons": 0
   },
   "Saint-Sébastien": {
-   "installations": 0,
-   "cpe": 0,
+   "installations": 1,
+   "cpe": 1,
    "garderies": 0,
-   "places": 0
+   "garderies_subventionnees": 0,
+   "places": 28,
+   "poupons": 10
   },
   "Saint-Augustin-de-Woburn": {
    "installations": 0,
    "cpe": 0,
    "garderies": 0,
-   "places": 0
+   "garderies_subventionnees": 0,
+   "places": 0,
+   "poupons": 0
   },
   "Stornoway": {
    "installations": 0,
    "cpe": 0,
    "garderies": 0,
-   "places": 0
+   "garderies_subventionnees": 0,
+   "places": 0,
+   "poupons": 0
   },
   "Saint-Robert-Bellarmin": {
    "installations": 0,
    "cpe": 0,
    "garderies": 0,
-   "places": 0
+   "garderies_subventionnees": 0,
+   "places": 0,
+   "poupons": 0
   },
   "Piopolis": {
    "installations": 0,
    "cpe": 0,
    "garderies": 0,
-   "places": 0
+   "garderies_subventionnees": 0,
+   "places": 0,
+   "poupons": 0
   },
   "Milan": {
    "installations": 0,
    "cpe": 0,
    "garderies": 0,
-   "places": 0
+   "garderies_subventionnees": 0,
+   "places": 0,
+   "poupons": 0
   },
   "Val-Racine": {
    "installations": 0,
    "cpe": 0,
    "garderies": 0,
-   "places": 0
+   "garderies_subventionnees": 0,
+   "places": 0,
+   "poupons": 0
   }
  }
 }

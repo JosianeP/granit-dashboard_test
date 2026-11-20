@@ -1,7 +1,5 @@
 Extraction du 2026-11-20
-Échec https://www12.statcan.gc.ca/census-recensement/2021/dp-pd/prof/details/download-telecharger/comp/GetFile.cfm?Lang=F&FILETYPE=CSV&GEONO=006_Quebec : HTTP Error 403: Forbidden
-Échec https://www12.statcan.gc.ca/census-recensement/2021/dp-pd/prof/details/download-telecharger/comp/GetFile.cfm?Lang=E&FILETYPE=CSV&GEONO=006_Quebec : HTTP Error 403: Forbidden
-Liste de codes : 7050827 octets
+Liste de codes : 7050828 octets
 Liste de codes : 2631 caractéristiques lues
 Total selon le mode d'occupation : [('1400', ['Total - Private households by tenure - 25% sample data', "Total - Ménages privés selon le mode d'occupation - Données-échantillon (25 %)"])]
 Codes retenus : {'1400': ('menages', ['Total - Private households by tenure - 25% sample data', "Total - Ménages privés selon le mode d'occupation - Données-échantillon (25 %)"]), '1401': ('proprietaires', ['Owner', 'Propriétaire']), '1402': ('locataires', ['Renter', 'Locataire'])}

@@ -1,0 +1,335 @@
+{
+ "_source": "Statistique Canada, Profil du recensement, Recensement de la population de 2021, division de recensement Le Granit (2430). Données-échantillon de 25 %, arrondies. Les personnes sont comptées à leur lieu de résidence.",
+ "extraction": "2026-11-20",
+ "annee": 2021,
+ "taux": [
+  {
+   "id": "2228",
+   "nom": "Taux d'activité",
+   "nom_en": "Participation rate",
+   "valeur": 57.5
+  },
+  {
+   "id": "2229",
+   "nom": "Taux d'emploi",
+   "nom_en": "Employment rate",
+   "valeur": 54
+  },
+  {
+   "id": "2230",
+   "nom": "Taux de chômage",
+   "nom_en": "Unemployment rate",
+   "valeur": 6.2
+  }
+ ],
+ "activite": [
+  {
+   "id": "2223",
+   "nom": "Total - Population âgée de 15 ans et plus selon la situation d'activité - Données-échantillon (25 %)",
+   "nom_en": "Total - Population aged 15 years and over by labour force status - 25% sample data",
+   "valeur": 18270
+  },
+  {
+   "id": "2224",
+   "nom": "Population active",
+   "nom_en": "In the labour force",
+   "valeur": 10510
+  },
+  {
+   "id": "2225",
+   "nom": "Personnes occupées",
+   "nom_en": "Employed",
+   "valeur": 9860
+  },
+  {
+   "id": "2226",
+   "nom": "Chômeurs",
+   "nom_en": "Unemployed",
+   "valeur": 655
+  },
+  {
+   "id": "2227",
+   "nom": "Population inactive",
+   "nom_en": "Not in the labour force",
+   "valeur": 7760
+  },
+  {
+   "id": "2228",
+   "nom": "Taux d'activité",
+   "nom_en": "Participation rate",
+   "valeur": 57.5
+  },
+  {
+   "id": "2229",
+   "nom": "Taux d'emploi",
+   "nom_en": "Employment rate",
+   "valeur": 54
+  },
+  {
+   "id": "2230",
+   "nom": "Taux de chômage",
+   "nom_en": "Unemployment rate",
+   "valeur": 6.2
+  }
+ ],
+ "industrie": [
+  {
+   "id": "2259",
+   "nom": "Total - Population active âgée de 15 ans et plus selon l'industrie - Secteurs - Système de classification des industries de l'Amérique du Nord (SCIAN) 2017 - Données-échantillon (25 %)",
+   "nom_en": "Total - Labour force aged 15 years and over by industry - Sectors - North American Industry Classification System (NAICS) 2017 - 25% sample data",
+   "valeur": 10510
+  },
+  {
+   "id": "2260",
+   "nom": "Industrie - sans objet",
+   "nom_en": "Industry - not applicable",
+   "valeur": 180
+  },
+  {
+   "id": "2261",
+   "nom": "Toutes les industries",
+   "nom_en": "All industries",
+   "valeur": 10335
+  },
+  {
+   "id": "2262",
+   "nom": "11 Agriculture, foresterie, pêche et chasse",
+   "nom_en": "11 Agriculture, forestry, fishing and hunting",
+   "valeur": 775
+  },
+  {
+   "id": "2263",
+   "nom": "21 Extraction minière, exploitation en carrière, et extraction de pétrole et de gaz",
+   "nom_en": "21 Mining, quarrying, and oil and gas extraction",
+   "valeur": 35
+  },
+  {
+   "id": "2264",
+   "nom": "22 Services publics",
+   "nom_en": "22 Utilities",
+   "valeur": 10
+  },
+  {
+   "id": "2265",
+   "nom": "23 Construction",
+   "nom_en": "23 Construction",
+   "valeur": 810
+  },
+  {
+   "id": "2266",
+   "nom": "31-33 Fabrication",
+   "nom_en": "31-33 Manufacturing",
+   "valeur": 2790
+  },
+  {
+   "id": "2267",
+   "nom": "41 Commerce de gros",
+   "nom_en": "41 Wholesale trade",
+   "valeur": 150
+  },
+  {
+   "id": "2268",
+   "nom": "44-45 Commerce de détail",
+   "nom_en": "44-45 Retail trade",
+   "valeur": 1045
+  },
+  {
+   "id": "2269",
+   "nom": "48-49 Transport et entreposage",
+   "nom_en": "48-49 Transportation and warehousing",
+   "valeur": 445
+  },
+  {
+   "id": "2270",
+   "nom": "51 Industrie de l'information et industrie culturelle",
+   "nom_en": "51 Information and cultural industries",
+   "valeur": 75
+  },
+  {
+   "id": "2271",
+   "nom": "52 Finance et assurances",
+   "nom_en": "52 Finance and insurance",
+   "valeur": 195
+  },
+  {
+   "id": "2272",
+   "nom": "53 Services immobiliers et services de location et de location à bail",
+   "nom_en": "53 Real estate and rental and leasing",
+   "valeur": 55
+  },
+  {
+   "id": "2273",
+   "nom": "54 Services professionnels, scientifiques et techniques",
+   "nom_en": "54 Professional, scientific and technical services",
+   "valeur": 305
+  },
+  {
+   "id": "2274",
+   "nom": "55 Gestion de sociétés et d'entreprises",
+   "nom_en": "55 Management of companies and enterprises",
+   "valeur": 0
+  },
+  {
+   "id": "2275",
+   "nom": "56 Services administratifs, services de soutien, services de gestion des déchets et services d'assainissement",
+   "nom_en": "56 Administrative and support, waste management and remediation services",
+   "valeur": 250
+  },
+  {
+   "id": "2276",
+   "nom": "61 Services d'enseignement",
+   "nom_en": "61 Educational services",
+   "valeur": 620
+  },
+  {
+   "id": "2277",
+   "nom": "62 Soins de santé et assistance sociale",
+   "nom_en": "62 Health care and social assistance",
+   "valeur": 1300
+  },
+  {
+   "id": "2278",
+   "nom": "71 Arts, spectacles et loisirs",
+   "nom_en": "71 Arts, entertainment and recreation",
+   "valeur": 110
+  },
+  {
+   "id": "2279",
+   "nom": "72 Services d'hébergement et de restauration",
+   "nom_en": "72 Accommodation and food services",
+   "valeur": 410
+  },
+  {
+   "id": "2280",
+   "nom": "81 Autres services (sauf les administrations publiques)",
+   "nom_en": "81 Other services (except public administration)",
+   "valeur": 515
+  },
+  {
+   "id": "2281",
+   "nom": "91 Administrations publiques",
+   "nom_en": "91 Public administration",
+   "valeur": 430
+  }
+ ],
+ "lieu_travail": [
+  {
+   "id": "2593",
+   "nom": "Total - Catégorie du lieu de travail pour la population active occupée âgée de 15 ans et plus - Données-échantillon (25 %)",
+   "nom_en": "Total - Place of work status for the employed labour force aged 15 years and over - 25% sample data",
+   "valeur": 9860
+  },
+  {
+   "id": "2594",
+   "nom": "À domicile",
+   "nom_en": "Worked at home",
+   "valeur": 1115
+  },
+  {
+   "id": "2595",
+   "nom": "À l'extérieur du Canada",
+   "nom_en": "Worked outside Canada",
+   "valeur": 40
+  },
+  {
+   "id": "2596",
+   "nom": "Sans adresse de travail fixe",
+   "nom_en": "No fixed workplace address",
+   "valeur": 1075
+  },
+  {
+   "id": "2597",
+   "nom": "Lieu habituel de travail",
+   "nom_en": "Usual place of work",
+   "valeur": 7635
+  }
+ ],
+ "navettage": [
+  {
+   "id": "2598",
+   "nom": "Total - Destination du navettage pour la population active occupée âgée de 15 ans et plus ayant un lieu habituel de travail - Données-échantillon (25 %)",
+   "nom_en": "Total - Commuting destination for the employed labour force aged 15 years and over with a usual place of work - 25% sample data",
+   "valeur": 7630
+  },
+  {
+   "id": "2599",
+   "nom": "Navettage à l'intérieur de la subdivision de recensement (SDR) de résidence",
+   "nom_en": "Commute within census subdivision (CSD) of residence",
+   "valeur": 3160
+  },
+  {
+   "id": "2600",
+   "nom": "Navettage jusqu'à une subdivision de recensement (SDR) différente à l'intérieur de la division de recensement (DR) de résidence",
+   "nom_en": "Commute to a different census subdivision (CSD) within census division (CD) of residence",
+   "valeur": 3265
+  },
+  {
+   "id": "2601",
+   "nom": "Navettage jusqu'à une subdivision de recensement (SDR) et une division de recensement (DR) différentes à l'intérieur de la province ou du territoire de résidence",
+   "nom_en": "Commute to a different census subdivision (CSD) and census division (CD) within province or territory of residence",
+   "valeur": 1205
+  },
+  {
+   "id": "2602",
+   "nom": "Navettage jusqu'à une province ou un territoire différent",
+   "nom_en": "Commute to a different province or territory",
+   "valeur": 10
+  }
+ ],
+ "categorie": [
+  {
+   "id": "2237",
+   "nom": "Total - Population active âgée de 15 ans et plus selon la catégorie de travailleur incluant la permanence de l'emploi - Données-échantillon (25 %)",
+   "nom_en": "Total - Labour force aged 15 years and over by class of worker including job permanency - 25% sample data",
+   "valeur": 10510
+  },
+  {
+   "id": "2238",
+   "nom": "Catégorie de travailleur - sans objet",
+   "nom_en": "Class of worker - not applicable",
+   "valeur": 180
+  },
+  {
+   "id": "2239",
+   "nom": "Toutes les catégories de travailleurs",
+   "nom_en": "All classes of workers",
+   "valeur": 10335
+  },
+  {
+   "id": "2240",
+   "nom": "Employé",
+   "nom_en": "Employee",
+   "valeur": 8720
+  },
+  {
+   "id": "2241",
+   "nom": "Poste permanent",
+   "nom_en": "Permanent position",
+   "valeur": 7305
+  },
+  {
+   "id": "2242",
+   "nom": "Poste temporaire",
+   "nom_en": "Temporary position",
+   "valeur": 1415
+  },
+  {
+   "id": "2243",
+   "nom": "Poste de durée déterminée (1 an ou plus)",
+   "nom_en": "Fixed term (1 year or more)",
+   "valeur": 405
+  },
+  {
+   "id": "2244",
+   "nom": "Poste occasionnel, saisonnier ou à court terme (moins de 1 an)",
+   "nom_en": "Casual, seasonal or short-term position (less than 1 year)",
+   "valeur": 1010
+  },
+  {
+   "id": "2245",
+   "nom": "Travailleur autonome",
+   "nom_en": "Self-employed",
+   "valeur": 1620
+  }
+ ]
+}

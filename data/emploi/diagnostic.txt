@@ -1,0 +1,65 @@
+Extraction du 2026-11-20
+Liste de codes DF_CD : 2983676 octets
+Caractéristiques lues : 2631
+activite : en-têtes [('2223', "Total - Population âgée de 15 ans et plus selon la situation d'activité - Données-échantillon (25 %)")]
+industrie : en-têtes [('2259', "Total - Population active âgée de 15 ans et plus selon l'industrie - Secteurs - Système de classification des industries de l'Amérique du Nord (SCIAN) 2017 - Données-échantillon (25 %)")]
+lieu_travail : en-têtes [('2593', 'Total - Catégorie du lieu de travail pour la population active occupée âgée de 15 ans et plus - Données-échantillon (25 %)')]
+navettage : en-têtes [('2598', 'Total - Destination du navettage pour la population active occupée âgée de 15 ans et plus ayant un lieu habituel de travail - Données-échantillon (25 %)')]
+categorie : en-têtes [('2237', "Total - Population active âgée de 15 ans et plus selon la catégorie de travailleur incluant la permanence de l'emploi - Données-échantillon (25 %)")]
+Données : 50 observations
+== activite
+   2223 | Total - Population âgée de 15 ans et plus selon la situation d'activité - Données-échantillon (25 %) | 18270
+   2224 | Population active | 10510
+   2225 | Personnes occupées | 9860
+   2226 | Chômeurs | 655
+   2227 | Population inactive | 7760
+   2228 | Taux d'activité | 57.5
+   2229 | Taux d'emploi | 54
+   2230 | Taux de chômage | 6.2
+== industrie
+   2259 | Total - Population active âgée de 15 ans et plus selon l'industrie - Secteurs - Système de classification des industries de l'Amérique du Nord (SCIAN) 2017 - Données-échantillon (25 %) | 10510
+   2260 | Industrie - sans objet | 180
+   2261 | Toutes les industries | 10335
+   2262 | 11 Agriculture, foresterie, pêche et chasse | 775
+   2263 | 21 Extraction minière, exploitation en carrière, et extraction de pétrole et de gaz | 35
+   2264 | 22 Services publics | 10
+   2265 | 23 Construction | 810
+   2266 | 31-33 Fabrication | 2790
+   2267 | 41 Commerce de gros | 150
+   2268 | 44-45 Commerce de détail | 1045
+   2269 | 48-49 Transport et entreposage | 445
+   2270 | 51 Industrie de l'information et industrie culturelle | 75
+   2271 | 52 Finance et assurances | 195
+   2272 | 53 Services immobiliers et services de location et de location à bail | 55
+   2273 | 54 Services professionnels, scientifiques et techniques | 305
+   2274 | 55 Gestion de sociétés et d'entreprises | 0
+   2275 | 56 Services administratifs, services de soutien, services de gestion des déchets et services d'assainissement | 250
+   2276 | 61 Services d'enseignement | 620
+   2277 | 62 Soins de santé et assistance sociale | 1300
+   2278 | 71 Arts, spectacles et loisirs | 110
+   2279 | 72 Services d'hébergement et de restauration | 410
+   2280 | 81 Autres services (sauf les administrations publiques) | 515
+   2281 | 91 Administrations publiques | 430
+== lieu_travail
+   2593 | Total - Catégorie du lieu de travail pour la population active occupée âgée de 15 ans et plus - Données-échantillon (25 %) | 9860
+   2594 | À domicile | 1115
+   2595 | À l'extérieur du Canada | 40
+   2596 | Sans adresse de travail fixe | 1075
+   2597 | Lieu habituel de travail | 7635
+== navettage
+   2598 | Total - Destination du navettage pour la population active occupée âgée de 15 ans et plus ayant un lieu habituel de travail - Données-échantillon (25 %) | 7630
+   2599 | Navettage à l'intérieur de la subdivision de recensement (SDR) de résidence | 3160
+   2600 | Navettage jusqu'à une subdivision de recensement (SDR) différente à l'intérieur de la division de recensement (DR) de résidence | 3265
+   2601 | Navettage jusqu'à une subdivision de recensement (SDR) et une division de recensement (DR) différentes à l'intérieur de la province ou du territoire de résidence | 1205
+   2602 | Navettage jusqu'à une province ou un territoire différent | 10
+== categorie
+   2237 | Total - Population active âgée de 15 ans et plus selon la catégorie de travailleur incluant la permanence de l'emploi - Données-échantillon (25 %) | 10510
+   2238 | Catégorie de travailleur - sans objet | 180
+   2239 | Toutes les catégories de travailleurs | 10335
+   2240 | Employé | 8720
+   2241 | Poste permanent | 7305
+   2242 | Poste temporaire | 1415
+   2243 | Poste de durée déterminée (1 an ou plus) | 405
+   2244 | Poste occasionnel, saisonnier ou à court terme (moins de 1 an) | 1010
+   2245 | Travailleur autonome | 1620
+== taux : [("Taux d'activité", 57.5), ("Taux d'emploi", 54), ('Taux de chômage', 6.2)]

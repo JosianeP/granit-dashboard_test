@@ -1,4 +1,4 @@
-# Tableau de bord territorial - MRC du Granit (v4.10)
+# Tableau de bord territorial - MRC du Granit (v4.11)
 
 Outil interne de développement territorial à trois piliers (économie, aménagement, santé). Hébergé sur GitHub Pages.
 
@@ -20,6 +20,11 @@ Outil interne de développement territorial à trois piliers (économie, aménag
 | `data/appariement.json` | Liens entre les fiches locales et le Registraire (par NEQ) |
 
 Ces fichiers doivent se trouver dans le même dossier du dépôt.
+
+## Nouveautés de la version 4.11
+
+- Vue « Légende et repères », accessible par le bouton Légende de l'en-tête, par le menu latéral et par le lien au bas de chaque vue. Elle regroupe les pastilles de provenance, les libellés des entreprises, la table des 13 secteurs, les repères de revenu par tranche, les définitions et les sources des logements et des services de garde, ainsi que le calendrier des mises à jour.
+- Ces éléments quittent les vues où ils se répétaient : la légende des pastilles au bas de chaque vue, la carte des repères de revenu de l'aperçu, la légende et la carte des sources de la vue Logements, la note de lecture du Registre. Les notes restantes tiennent en une ligne et renvoient à la légende.
 
 ## Nouveautés de la version 4.10
 

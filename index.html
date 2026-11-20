@@ -729,6 +729,27 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
 .prov-legend-i{display:inline-flex;align-items:center;gap:7px}
 .prov-legend .prov{margin-left:0;flex-shrink:0}
 @media print{.prov-legend{display:none}}
+/* ═══ LÉGENDE ET REPÈRES (v4.11) : les explications quittent les vues et se regroupent ici ═══ */
+.lgd-pied{margin-top:26px;padding-top:13px;border-top:1px solid var(--border);font-size:13.5px;color:var(--muted)}
+.lgd-lien{background:none;border:none;padding:0;font:inherit;font-weight:700;color:var(--g700);cursor:pointer}
+.lgd-lien:hover{text-decoration:underline}
+.lgd-som{display:flex;flex-wrap:wrap;gap:8px;margin:-4px 0 18px}
+.lgd-som button{padding:7px 13px;border-radius:999px;border:1px solid var(--border);background:var(--white);font:inherit;font-size:13.5px;font-weight:600;color:var(--text2);cursor:pointer}
+.lgd-som button:hover{border-color:var(--g400);color:var(--g700)}
+.lgd-card{margin-bottom:14px;scroll-margin-top:calc(var(--hh) + 14px)}
+.lgd-dl{display:grid;grid-template-columns:minmax(150px,230px) 1fr;gap:9px 18px;font-size:14px;line-height:1.55;align-items:baseline;margin:0}
+.lgd-dl dt{font-weight:600;color:var(--text)}.lgd-dl dd{margin:0;color:var(--text2)}
+.lgd-dl .prov,.lgd-dl .rq-pill,.lgd-dl .co-status-tag{margin-left:0}
+.lgd-tb{width:100%;border-collapse:collapse;font-size:14px;line-height:1.5}
+.lgd-tb th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);text-align:left;padding:7px 10px;border-bottom:1px solid var(--border)}
+.lgd-tb td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:top;color:var(--text2)}
+.lgd-tb td:first-child{font-weight:600;color:var(--text);white-space:nowrap}.lgd-tb td.n,.lgd-tb th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.lgd-h{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:18px 0 9px}
+.lgd-h:first-of-type{margin-top:2px}
+#view-legende #revReperes,#view-legende .lgd-nu{box-shadow:none;border:none;padding:0;margin:0;background:none}
+#view-legende #revReperes>.ct{display:none}
+@media(max-width:760px){.lgd-dl{grid-template-columns:1fr;gap:2px 0}.lgd-dl dd{margin-bottom:9px}}
+@media print{.lgd-pied{display:none}}
 
 /* ─── Cartes : une seule famille ─── */
 .card,.kpi,.ss,.sc,.mu,.cl-card,.det-card,.lev-card,.link-card,.vuln-card,.cl-sc,.cl-cap,.cl-lim,.cl-cst,.tr-cap,.lg-cap,.tr-macc,.ml-pair,.tr-partners,.lg-legend{border-radius:var(--r);box-shadow:var(--sh-sm)}
@@ -817,7 +838,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
     <div class="pb-brand-text">
       <div class="org">MRC du Granit &middot; Estrie</div>
       <div class="name">Tableau de bord territorial</div>
-      <div class="ver" id="verLabel">v4.10</div>
+      <div class="ver" id="verLabel">v4.11</div>
     </div>
   </div>
   <nav class="pillar-tabs">
@@ -865,6 +886,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
     </button>
   </nav>
   <div class="pb-right">
+    <button class="btn" onclick="voirLegende()" title="Pastilles, libellés, secteurs, repères de revenu et sources">Légende</button>
     <button class="btn" onclick="exportJSON()">Exporter JSON</button>
     <button class="btn" onclick="document.getElementById('ii').click()">Importer JSON</button>
     <input type="file" id="ii" accept=".json" style="display:none" onchange="importJSON(event)">
@@ -906,6 +928,10 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
       <button class="ni" onclick="V('sa-links',this)"><div class="ni-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>Liens d&eacute;veloppement &#8596; sant&eacute;</button>
       <button class="ni" onclick="V('sa-vuln',this)"><div class="ni-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>Vuln&eacute;rabilit&eacute; territoriale</button>
     </div>
+    <div class="sbn" id="sbnAide">
+      <div class="ngl">Aide à la lecture</div>
+      <button class="ni" id="niLegende" onclick="V('legende',this)"><div class="ni-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>Légende et repères</button>
+    </div>
     <div class="sb-footer">
       <div class="sb-footer-label">Trimestre</div>
       <div class="sb-footer-val" id="sbQ">&mdash;</div>
@@ -922,7 +948,6 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
         <div class="section-header"><div class="sh-left"><h2>Aperçu général</h2><p id="ovQuarter">Portrait économique du territoire</p></div><span class="pillar-badge pb-eco">Économie</span></div>
         <div class="ss-row" id="statsStrip"></div>
         <div class="kpi-grid" id="kpiGrid"></div>
-        <div class="card mb18" id="revReperes" style="display:none"></div>
         <div style="display:grid;grid-template-columns:1fr 280px;gap:12px;margin-bottom:18px">
           <div class="card"><div class="ct">Emplois estimés par secteur</div><div style="position:relative;height:310px"><canvas id="barChart"></canvas><div class="no-chart-msg" id="noBarMsg" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="14" width="4" height="7" rx="1"/><rect x="10" y="9" width="4" height="12" rx="1"/><rect x="17" y="4" width="4" height="17" rx="1"/></svg><span>Chargement du graphique...</span></div></div></div>
           <div class="card"><div class="ct">Répartition des emplois</div><div style="position:relative;height:185px"><canvas id="donutChart"></canvas></div><div class="dl" id="donutLegend"></div></div>
@@ -1000,14 +1025,6 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
         <div class="ss-row" id="lgStrip"></div>
         <div class="tr-cap-grid" id="lgCapGrid"></div>
 
-        <div class="lg-legend">
-          <span class="lg-legend-t">Fiabilité des données</span>
-          <span class="lg-legend-i"><span class="prov prov-reel">Réel</span> donnée officielle sourcée</span>
-          <span class="lg-legend-i"><span class="prov prov-est">Estimation</span> estimation analytique à valider</span>
-          <span class="lg-legend-i"><span class="prov prov-todo">À compléter</span> donnée non encore renseignée</span>
-          <span class="lg-legend-i"><span class="prov prov-calc">Calcul</span> ratio calculé par la plateforme</span>
-        </div>
-
         <div class="card" id="lgAttente" style="display:none;margin-bottom:18px"></div>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px">
@@ -1019,7 +1036,6 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
         <div style="font-size:13.5px;color:var(--muted);margin-bottom:12px">Cliquez sur une municipalité pour afficher le détail de son offre de logements et de services de garde.</div>
         <div class="tr-muni-acc" id="lgMuniAcc"></div>
 
-        <div class="card" style="margin-top:18px"><div class="ct">Sources et pistes de collecte (phase 2)</div><div class="source-box" id="lgSource"></div></div>
       </div>
 
       <div class="view" id="view-eco-ml">
@@ -1284,14 +1300,93 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
         <div class="vuln-grid" id="vulnGrid"></div>
       </div>
 
-      <div class="prov-legend" aria-label="Légende des pastilles de provenance">
-        <span class="prov-legend-t">Lire les pastilles</span>
-        <span class="prov-legend-i"><span class="prov prov-reel">Réel</span>donnée officielle sourcée</span>
-        <span class="prov-legend-i"><span class="prov prov-est">Estimation</span>estimation analytique à valider</span>
-        <span class="prov-legend-i"><span class="prov prov-reg">Registraire</span>Registre des entreprises du Québec, déclaré par les entreprises, à la date d'extraction affichée</span>
-        <span class="prov-legend-i"><span class="prov prov-todo">À compléter</span>donnée non encore renseignée</span>
-        <span class="prov-legend-i"><span class="prov prov-calc">Calcul</span>ratio calculé par la plateforme</span>
+      <!-- LÉGENDE ET REPÈRES -->
+      <div class="view" id="view-legende">
+        <div class="section-header"><div class="sh-left"><h2>Légende et repères</h2><p>Tout ce qui sert à lire le tableau de bord, regroupé à un seul endroit</p></div></div>
+        <div class="lgd-som">
+          <button onclick="voirLegende('lgd-pastilles')">Pastilles</button>
+          <button onclick="voirLegende('lgd-ent')">Entreprises</button>
+          <button onclick="voirLegende('lgd-secteurs')">Secteurs</button>
+          <button onclick="voirLegende('lgd-revenu')">Revenu par tranche</button>
+          <button onclick="voirLegende('lgd-vie')">Logements et garde</button>
+          <button onclick="voirLegende('lgd-maj')">Mises à jour et sources</button>
+        </div>
+
+        <div class="card lgd-card" id="lgd-pastilles"><div class="ct">Pastilles de provenance</div>
+          <dl class="lgd-dl">
+            <dt><span class="prov prov-reel">Réel</span></dt><dd>Donnée officielle sourcée (recensement, registre ou publication d'un ministère).</dd>
+            <dt><span class="prov prov-reg">Registraire</span></dt><dd>Registre des entreprises du Québec. Les renseignements sont déclarés par les entreprises et valent à la date d'extraction affichée.</dd>
+            <dt><span class="prov prov-est">Estimation</span></dt><dd>Estimation analytique, à valider auprès de la source primaire.</dd>
+            <dt><span class="prov prov-calc">Calcul</span></dt><dd>Ratio calculé par la plateforme à partir de deux données affichées.</dd>
+            <dt><span class="prov prov-todo">À compléter</span></dt><dd>Donnée non encore renseignée.</dd>
+          </dl>
+        </div>
+
+        <div class="card lgd-card" id="lgd-ent"><div class="ct">Entreprises - libellés et lecture des chiffres</div>
+          <div class="lgd-h">Ce que comptent les indicateurs</div>
+          <dl class="lgd-dl">
+            <dt>Entreprise active</dt><dd>Entreprise immatriculée au Registraire. Cela inclut les sociétés de gestion, les fermes, les organismes sans but lucratif et les entreprises sans employé.</dd>
+            <dt>Entreprise en exploitation</dt><dd>Entreprise active, sans les sociétés de gestion et de portefeuille, qui détiennent des placements sans activité commerciale.</dd>
+            <dt>Avec employés déclarés</dt><dd>Au moins un employé au Québec, hors sociétés de gestion.</dd>
+            <dt>Employés (Québec)</dt><dd>Tranche déclarée par l'entreprise pour l'ensemble du Québec, et non pour son seul établissement du Granit. Les tranches ne s'additionnent pas pour estimer l'emploi local.</dd>
+            <dt>Emplois estimés</dt><dd>Emplois inscrits dans le répertoire local de la MRC. Ce sont les seuls qui décrivent l'emploi sur le territoire.</dd>
+            <dt>Ce qui échappe au registre</dt><dd>Les adresses des personnes physiques sont exclues du jeu de données; plusieurs travailleurs autonomes n'y figurent donc pas.</dd>
+          </dl>
+          <div class="lgd-h">Mentions sur une entreprise</div>
+          <dl class="lgd-dl">
+            <dt><span class="rq-pill rq-p-loc">Répertoire local</span></dt><dd>L'entreprise a une fiche dans le répertoire économique de la MRC, avec description et emplois estimés.</dd>
+            <dt><span class="rq-pill rq-p-tour">Tourisme</span></dt><dd>Membre du guide touristique de la région de Mégantic.</dd>
+            <dt><span class="rq-pill rq-p-hors">Hors registre</span></dt><dd>Fiche locale sans inscription rattachée au Registraire (nom différent, organisme public ou rapprochement à valider).</dd>
+            <dt><span class="rq-pill rq-p-new">Nouvelle</span></dt><dd>Immatriculée depuis moins de 12 mois.</dd>
+            <dt><span class="rq-pill rq-p-eta">Siège hors territoire</span></dt><dd>Établissement situé dans le Granit, dont le siège est ailleurs.</dd>
+            <dt><span class="rq-pill rq-p-ges">Société de gestion</span></dt><dd>Société de portefeuille ou de placements, repérée par son code d'activité ou son activité déclarée.</dd>
+          </dl>
+          <div class="lgd-h">État d'une fiche du répertoire local</div>
+          <dl class="lgd-dl">
+            <dt><span class="co-status-tag st-actif">✅ Actif</span></dt><dd>Entreprise en activité.</dd>
+            <dt><span class="co-status-tag st-reprise">🔄 Reprise</span></dt><dd>Entreprise reprise ou relancée par de nouveaux propriétaires.</dd>
+            <dt><span class="co-status-tag st-nouveau">🆕 Nouveau</span></dt><dd>Entreprise récemment établie.</dd>
+            <dt><span class="co-status-tag st-expansion">📈 Expansion</span></dt><dd>Projet d'agrandissement ou d'investissement documenté.</dd>
+            <dt><span class="co-status-tag st-a_completer">📝 À compléter</span></dt><dd>Effectif non confirmé; la fiche est exclue des totaux d'emplois.</dd>
+          </dl>
+        </div>
+
+        <div class="card lgd-card" id="lgd-secteurs"><div class="ct">Les 13 secteurs du tableau de bord</div>
+          <div class="rv-p">Chaque entreprise du Registraire est classée dans un secteur d'après le code d'activité (CAE) qu'elle a déclaré. Une fiche du répertoire local garde le secteur que la MRC lui a attribué. Ce classement est indicatif.</div>
+          <div id="lgdSecteurs"></div>
+        </div>
+
+        <div class="card lgd-card" id="lgd-revenu"><div class="ct">Repères de revenu des ménages - faible, modeste, moyen, élevé <span class="prov prov-reel">Réel</span></div>
+          <div id="revReperes" style="display:none"></div>
+        </div>
+
+        <div class="card lgd-card" id="lgd-vie"><div class="ct">Logements et services de garde</div>
+          <dl class="lgd-dl">
+            <dt>Logements privés</dt><dd>Tous les logements du Recensement de 2021, y compris les chalets, les résidences secondaires et les logements vacants.</dd>
+            <dt>Parc total</dt><dd>Logements privés occupés par des résidents habituels, donc habités à l'année.</dd>
+            <dt>Locatifs</dt><dd>Ménages locataires. La donnée vient d'un échantillon de 25 % et elle est arrondie; dans les petites municipalités, sa marge d'erreur est appréciable.</dd>
+            <dt>Sociaux / abordables</dt><dd>Logements à loyer modique. Seul le total de la MRC est connu.</dd>
+            <dt>Installation</dt><dd>Lieu de garde reconnu par le ministère de la Famille, soit un centre de la petite enfance (CPE) ou une garderie.</dd>
+            <dt>Milieu familial</dt><dd>Places offertes par des responsables reconnues par le bureau coordonnateur, à l'échelle de la MRC.</dd>
+            <dt>Places pour 100 enfants</dt><dd>Places reconnues rapportées aux enfants de 0 à 4 ans. Ce n'est pas le taux de couverture du ministère.</dd>
+          </dl>
+          <div class="lgd-h">Sources détaillées</div>
+          <div class="source-box" id="lgSource"></div>
+        </div>
+
+        <div class="card lgd-card" id="lgd-maj"><div class="ct">Mises à jour et sources</div>
+          <table class="lgd-tb"><thead><tr><th>Donnée</th><th>Source</th><th>Mise à jour</th></tr></thead><tbody>
+            <tr><td>Entreprises</td><td>Registraire des entreprises du Québec, données ouvertes</td><td>Automatique, le 3 et le 18 de chaque mois</td></tr>
+            <tr><td>Services de garde</td><td>Ministère de la Famille, Données Québec</td><td>Automatique, en janvier, avril, juillet et octobre</td></tr>
+            <tr><td>Parc de logements</td><td>Statistique Canada, Recensement de 2021</td><td>Automatique; les valeurs changeront au Recensement de 2026</td></tr>
+            <tr><td>Tout le reste</td><td>Chiffrier Excel de la MRC, une feuille par municipalité</td><td>Chaque trimestre, par importation du chiffrier</td></tr>
+          </tbody></table>
+          <div class="lgd-h">Sources générales</div>
+          <div class="source-box" id="lgdSources"></div>
+        </div>
       </div>
+
+      <div class="lgd-pied"><button class="lgd-lien" onclick="voirLegende()">Légende, libellés et repères →</button> Pastilles, définitions, secteurs, tranches de revenu et sources.</div>
     </div>
   </main>
 </div>
@@ -1489,6 +1584,15 @@ function V(id,btn){
   if(id==='sa-links')renderLinksView();
   if(id==='sa-vuln'){renderVulnStats();renderVulnGrid();setTimeout(renderVulnChart,80);}
 }
+// ─── LÉGENDE ET REPÈRES (v4.11) ───
+// Ouvre la vue Légende, au besoin sur une de ses cartes (identifiant de la carte).
+function voirLegende(ancre){
+  if(typeof closeSectorPanel==='function')closeSectorPanel();
+  if(typeof closeDemoModal==='function')closeDemoModal();
+  if(currentViewId!=='legende')V('legende',document.getElementById('niLegende'));
+  var el=ancre?document.getElementById(ancre):null;
+  if(el)el.scrollIntoView({block:'start'});else window.scrollTo(0,0);
+}
 // ─── NAVIGATION PAR GROUPES (livraison 2) ───
 // Le pilier Économie passe de 12 entrées (13 avec le registre) à 6. Les vues, leurs identifiants et
 // V(id,btn) ne changent pas : les anciens boutons restent dans #sbnEco, masqués par le CSS.
@@ -1534,11 +1638,12 @@ function renderAll(){
   if(D.meta){
     document.getElementById('sbQ').textContent=D.meta.quarter||'—';
     document.getElementById('sbBy').textContent=(D.meta.updatedBy||'').split('—')[0].trim();
-    document.getElementById('verLabel').textContent='v4.10 · '+(D.meta.quarter||'');
+    document.getElementById('verLabel').textContent='v4.11 · '+(D.meta.quarter||'');
     var ovq=document.getElementById('ovQuarter'); if(ovq)ovq.textContent='Portrait économique du territoire — MRC du Granit, '+(D.meta.quarter||'');
   }
   allMLPairs=getMLSuggestions();
   renderStatsStrip();renderKPIs();renderRevReperes();
+  var lgs=document.getElementById('lgdSources'); if(lgs)lgs.textContent=D._sources||'';
   renderSectorCards('overviewSectors','all');
   renderSectorCards('sectorGrid','all');
   renderMuniGrid('all');renderCompanies();

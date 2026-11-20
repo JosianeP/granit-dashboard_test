@@ -31,6 +31,7 @@
   function lienReg(filtre, texte) {
     return '<button class="gx-lien" onclick="GranitREQ.voir(' + js(filtre) + ')">' + texte + ' →</button>';
   }
+  function lgd(ancre, texte) { return '<button class="gx-lien" style="font-size:13px" onclick="voirLegende(\'' + ancre + '\')">' + texte + ' →</button>'; }
   function dateSrc() { return 'Registraire des entreprises du Québec, extraction du ' + esc(R().libelles.dateFr(R().extraction())); }
 
   /* ── Styles ── */
@@ -103,9 +104,7 @@
       '<select onchange="GranitCroise.sp(\'muni\',this.value)"><option value="">Toutes les municipalités</option>' +
       Object.keys(munis).sort(function (a, b) { return a.localeCompare(b, 'fr'); }).map(function (m) { return '<option value="' + esc(m) + '"' + (X.sp.muni === m ? ' selected' : '') + '>' + esc(m) + ' (' + munis[m] + ')</option>'; }).join('') + '</select></div>' +
       '<div id="gxSpListe"></div>' +
-      '<p class="gx-note">Les fiches du répertoire local apparaissent en premier, avec leurs emplois estimés (' + fmt(emplois) + ' au total). Les autres entreprises proviennent du Registraire et sont classées dans ce secteur d\'après le code d\'activité qu\'elles ont déclaré; ce classement est indicatif. ' +
-      (sid === 's4' ? 'Aucun code d\'activité ne correspond à ce secteur, qui ne contient donc que des fiches locales. ' : '') +
-      'La tranche d\'employés du Registraire vaut pour tout le Québec. ' + dateSrc() + '.</p>' +
+      '<p class="gx-note">Fiches locales en premier, puis entreprises du Registraire classées par code d\'activité (' + fmt(emplois) + ' emplois estimés au répertoire local). ' + lgd('lgd-secteurs', 'Comment les secteurs sont classés') + '</p>' +
       '<div style="margin-top:10px">' + lienReg({ s13: sid }, 'Ouvrir ce secteur dans le Registre (tri, filtres, export CSV)') + '</div>';
     document.getElementById('spBody').innerHTML = h;
     listeSecteur();
@@ -149,7 +148,7 @@
         return '<li><b>' + esc(nomDe(r)) + '</b> - ' + emplois(r.jobs) + '<div class="gx-sm">' + (m.isMrc ? esc(r.muni) + ' - ' : '') + esc(R().libelles.s13(r.s13)) + '</div></li>';
       }).join('') + '</ul>' : '') +
       '<div style="margin-top:12px">' + lienReg(f, 'Voir les ' + pl(l.length, 'entreprise') + (m.isMrc ? ' du territoire' : ' de ' + esc(m.name)) + ' dans le Registre') + '</div>' +
-      '<p class="gx-note">Une entreprise active est une entreprise immatriculée, ce qui inclut les fermes, les organismes sans but lucratif et les entreprises sans employé. ' + dateSrc() + '.</p></div>';
+      '<p class="gx-note">' + dateSrc() + '. ' + lgd('lgd-ent', 'Comment lire ces chiffres') + '</p></div>';
   }
 
   /* ════════ VUE D'ENSEMBLE ════════ */
@@ -198,7 +197,7 @@
       }).join('') + '<tr><td><b>Total avec employés déclarés</b></td><td class="n"><b>' + fmt(l.length) + '</b></td><td class="n"><b>' + fmt(l.filter(function (r) { return r.eta; }).length) + '</b></td></tr></tbody></table></div>' +
       '<div><div class="gx-sep" style="margin-top:0">Employeurs de 50 emplois et plus au répertoire local</div><ul class="gx-liste">' +
       (gros.map(function (r) { return '<li><b>' + esc(nomDe(r)) + '</b> - ' + emplois(r.jobs) + '<div class="gx-sm">' + esc(r.muni) + ' - ' + esc(L.s13(r.s13)) + '</div></li>'; }).join('') || '<li>Aucun</li>') + '</ul></div></div>' +
-      '<p class="gx-note">La tranche d\'employés est déclarée par l\'entreprise pour l\'ensemble du Québec, et non pour son seul établissement du Granit. Les grandes tranches comptent donc surtout des chaînes et des institutions dont le siège est ailleurs; elles ne peuvent pas être additionnées pour estimer l\'emploi local. ' + dateSrc() + '.</p>';
+      '<p class="gx-note">Les tranches valent pour tout le Québec et ne s\'additionnent pas pour estimer l\'emploi local. ' + dateSrc() + '. ' + lgd('lgd-ent', 'Comment lire ces chiffres') + '</p>';
   }
 
   /* ════════ LOGEMENTS ET SERVICES DE GARDE ════════ */
@@ -293,6 +292,37 @@
     }
   }
 
+  /* ════════ LÉGENDE : table des 13 secteurs ════════ */
+  var DEF_SECT = {
+    s1: 'Fabrication de produits du bois (sauf les scieries) et de meubles',
+    s2: 'Exploitation et services forestiers, scieries, camionnage et commerce de gros de produits forestiers',
+    s3: 'Carrières, sablières et gravières, produits en pierre, en béton et en verre, monuments funéraires',
+    s4: 'Aucun code d\'activité propre. Le secteur ne contient que des fiches du répertoire local',
+    s5: 'Érablières',
+    s6: 'Agriculture et services agricoles (sauf les érablières), pêche, fabrication d\'aliments et de boissons, commerce de gros agricole et alimentaire',
+    s7: 'Produits métalliques, machinerie, matériel de transport et produits électriques, soudage',
+    s8: 'Cuir, textile et habillement',
+    s9: 'Transport et entreposage (sauf le camionnage de produits forestiers)',
+    s10: 'Hébergement, restauration, loisirs et divertissement, agences de voyages, musées',
+    s11: 'Services gouvernementaux, enseignement, santé et services sociaux, services publics',
+    s12: 'Commerce de gros et de détail, communications, finance et assurances, services aux entreprises, services personnels et autres services',
+    s13: 'Construction, entrepreneurs spécialisés et lotissement',
+    autres: 'Sociétés de gestion et de portefeuille, exploitants immobiliers, associations et organismes, édition, production de films, fabrication diverse, activité non déclarée'
+  };
+  function legendeSecteurs() {
+    var el = document.getElementById('lgdSecteurs'); if (!el || !window.D || !window.D.sectors) return;
+    var ok = pret(), c = {};
+    if (ok) R().lignes().forEach(function (r) { c[r.s13] = (c[r.s13] || 0) + 1; });
+    var lignes = window.D.sectors.map(function (x) { return [x.id, x.name, x.jobs]; }).concat([['autres', 'Autres activités', null]]);
+    el.innerHTML = '<div style="overflow-x:auto"><table class="lgd-tb"><thead><tr><th>Secteur</th><th>Ce qui y est classé</th><th class="n">Entreprises</th><th class="n">Emplois estimés</th></tr></thead><tbody>' +
+      lignes.map(function (x) {
+        return '<tr><td>' + esc(x[1]) + '</td><td>' + DEF_SECT[x[0]] + '</td>' +
+          '<td class="n">' + (ok ? '<button class="lgd-lien" onclick="GranitREQ.voir(' + js({ s13: x[0] }) + ')">' + fmt(c[x[0]] || 0) + '</button>' : '-') + '</td>' +
+          '<td class="n">' + (x[2] != null ? fmt(x[2]) : '-') + '</td></tr>';
+      }).join('') + '</tbody></table></div>' +
+      '<p class="gx-note">Les entreprises comprennent les inscriptions du Registraire et les fiches locales sans inscription rattachée. Les emplois estimés par secteur viennent du portrait de la MRC et non du Registraire.' + (ok ? ' ' + dateSrc() + '.' : '') + '</p>';
+  }
+
   /* ════════ Rafraîchissement des vues déjà affichées ════════ */
   function filtreActif(sel) {
     var b = document.querySelector(sel + ' .ft.active'), m = b && (b.getAttribute('onclick') || '').match(/\('([^']+)'/);
@@ -312,7 +342,7 @@
       apresRendu();
     } catch (e) { if (w.console) console.warn('granit-croise', e); }
   }
-  function apresRendu() { try { noteMilieu(); carteEmployeurs(); } catch (e) {} }
+  function apresRendu() { try { noteMilieu(); carteEmployeurs(); legendeSecteurs(); } catch (e) {} }
   function json(u) { return fetch(u + '?t=' + Date.now()).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); }
   function demarrer() {
     styles();

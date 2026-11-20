@@ -279,10 +279,9 @@
     var h = '';
     h += '<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px">' +
       '<span class="prov prov-reg">Registraire des entreprises du Québec - extrait le ' + esc(dateFr(S.extraction)) + '</span>' +
-      '<span style="font-size:13px;color:var(--muted)">Mise à jour automatique le 3 et le 18 de chaque mois. Aucune saisie municipale requise.</span></div>';
-    h += '<div class="rq-note"><strong>Comment lire ces chiffres.</strong> Une entreprise « active » est une entreprise immatriculée au Registraire, ce qui inclut les sociétés de gestion, les fermes, les organismes sans but lucratif et les entreprises sans employé. ' +
-      'Les renseignements sont déclarés par les entreprises elles-mêmes. La tranche d\'employés vaut pour l\'ensemble du Québec et non pour le seul établissement local. ' +
-      'Les adresses des personnes physiques sont exclues du jeu de données, de sorte que plusieurs travailleurs autonomes n\'y figurent pas.</div>';
+      '<span style="font-size:13px;color:var(--muted)">Mise à jour automatique le 3 et le 18 de chaque mois.</span>' +
+      '<button class="lgd-lien" style="font-size:13px;margin-left:auto" onclick="voirLegende(\'lgd-ent\')">Comment lire ces chiffres →</button></div>';
+    /* Les définitions (entreprise active, tranche d'employés, mentions) sont regroupées dans la vue Légende. */
     h += '<div class="kpi-grid">' +
       kpi('Entreprises actives', fmt(all.length), 'immatriculées dans les ' + munis.length + ' municipalités', 'Registraire') +
       kpi('Entreprises en exploitation', fmt(nOper), 'sans les ' + fmt(all.length - nOper) + ' sociétés de gestion, qui détiennent des placements sans activité commerciale', 'Repérage') +

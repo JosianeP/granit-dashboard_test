@@ -4,12 +4,12 @@ Types de domaines de valeur : ['ACT_ECON', 'FORM_JURI', 'INTVAL_EMPLO_QUE', 'PAY
 Entreprise.csv : ['NEQ', 'IND_FAIL', 'DAT_IMMAT', 'COD_REGIM_JURI', 'COD_INTVAL_EMPLO_QUE', 'DAT_CESS_PREVU', 'COD_STAT_IMMAT', 'COD_FORME_JURI', 'DAT_STAT_IMMAT', 'COD_REGIM_JURI_CONSTI', 'DAT_DEPO_DECLR', 'AN_DECL', 'AN_PROD', 'DAT_LIMIT_PROD', 'AN_PROD_PRE', 'DAT_LIMIT_PROD_PRE', 'DAT_MAJ_INDEX_NOM', 'COD_ACT_ECON_CAE', 'NO_ACT_ECON_ASSUJ', 'DESC_ACT_ECON_ASSUJ', 'COD_ACT_ECON_CAE2', 'NO_ACT_ECON_ASSUJ2', 'DESC_ACT_ECON_ASSUJ2', 'NOM_LOCLT_CONSTI', 'DAT_CONSTI', 'IND_CONVEN_UNMN_ACTNR', 'IND_RET_TOUT_POUVR', 'IND_LIMIT_RESP', 'DAT_DEB_RESP', 'DAT_FIN_RESP', 'OBJET_SOC', 'NO_MTR_VOLONT', 'ADR_DOMCL_ADR_DISP', 'ADR_DOMCL_LIGN1_ADR', 'ADR_DOMCL_LIGN2_ADR', 'ADR_DOMCL_LIGN3_ADR', 'ADR_DOMCL_LIGN4_ADR']
 Colonnes d'adresse (domicile) : ['ADR_DOMCL_ADR_DISP', 'ADR_DOMCL_LIGN1_ADR', 'ADR_DOMCL_LIGN2_ADR', 'ADR_DOMCL_LIGN3_ADR', 'ADR_DOMCL_LIGN4_ADR']
 Colonnes retenues : {'statut': 'COD_STAT_IMMAT', 'forme': 'COD_FORME_JURI', 'immat': 'DAT_IMMAT', 'dstat': 'DAT_STAT_IMMAT', 'emp': 'COD_INTVAL_EMPLO_QUE', 'cae': 'COD_ACT_ECON_CAE', 'cae_desc': 'DESC_ACT_ECON_ASSUJ', 'faillite': 'IND_FAIL'}
-Entreprises lues : 2976049 ; rattachées par domicile : 4534
+Entreprises lues : 2976049 ; rattachées par domicile : 4736
 Etablissements.csv : ['NEQ', 'NO_SUF_ETAB', 'IND_ETAB_PRINC', 'IND_SALON_BRONZ', 'IND_VENTE_TABAC_DETL', 'IND_DISP', 'LIGN1_ADR', 'LIGN2_ADR', 'LIGN3_ADR', 'LIGN4_ADR', 'COD_ACT_ECON', 'DESC_ACT_ECON_ETAB', 'NO_ACT_ECON_ETAB', 'COD_ACT_ECON2', 'DESC_ACT_ECON_ETAB2', 'NO_ACT_ECON_ETAB2', 'NOM_ETAB']
 Colonnes d'adresse (établissements) : ['LIGN1_ADR', 'LIGN2_ADR', 'LIGN3_ADR', 'LIGN4_ADR']
-Ajoutées par établissement (siège hors Granit) : 387
+Ajoutées par établissement (siège hors Granit) : 412
 Nom.csv : ['NEQ', 'NOM_ASSUJ', 'NOM_ASSUJ_LANG_ETRNG', 'STAT_NOM', 'TYP_NOM_ASSUJ', 'DAT_INIT_NOM_ASSUJ', 'DAT_FIN_NOM_ASSUJ']
-Codes de statut rencontrés : [('IM', 2632), ('RO', 2074), ('RD', 94), ('RX', 62), ('NI', 59)]
-Rejets par code postal (municipalité homonyme, RTA) : [(('Saint-Robert-Bellarmin', 'J0G'), 350), (('Notre-Dame-des-Bois', 'J0B'), 251), (('Saint-Sébastien', 'J0J'), 201), (('Lac-Mégantic', 'G0N'), 3), (('Lambton', 'G0H'), 2), (('Audet', 'G0A'), 1), (('Stratford', 'J0Y'), 1), (('Nantes', 'G8B'), 1), (('Saint-Ludger', 'G0W'), 1)]
-Actives par municipalité : {'Lac-Mégantic': 707, 'Frontenac': 211, 'Lambton': 291, 'Nantes': 150, 'Notre-Dame-des-Bois': 0, 'Stratford': 151, 'Lac-Drolet': 127, 'Saint-Ludger': 161, 'Marston': 75, 'Sainte-Cécile-de-Whitton': 108, 'Saint-Romain': 124, 'Audet': 76, 'Saint-Sébastien': 96, 'Saint-Augustin-de-Woburn': 87, 'Stornoway': 92, 'Saint-Robert-Bellarmin': 27, 'Piopolis': 73, 'Milan': 49, 'Val-Racine': 27}
-Actives sans nom apparié : 55 sur 2632
+Codes de statut rencontrés : [('IM', 2746), ('RO', 2172), ('RD', 99), ('RX', 70), ('NI', 61)]
+Rejets par code postal (municipalité homonyme, RTA) : [(('Saint-Robert-Bellarmin', 'J0G'), 350), (('Saint-Sébastien', 'J0J'), 201), (('Lac-Mégantic', 'G0N'), 3), (('Lambton', 'G0H'), 2), (('Audet', 'G0A'), 1), (('Stratford', 'J0Y'), 1), (('Nantes', 'G8B'), 1), (('Saint-Ludger', 'G0W'), 1)]
+Actives par municipalité : {'Lac-Mégantic': 706, 'Frontenac': 211, 'Lambton': 291, 'Nantes': 150, 'Notre-Dame-des-Bois': 116, 'Stratford': 151, 'Lac-Drolet': 127, 'Saint-Ludger': 161, 'Marston': 75, 'Sainte-Cécile-de-Whitton': 108, 'Saint-Romain': 124, 'Audet': 76, 'Saint-Sébastien': 96, 'Saint-Augustin-de-Woburn': 87, 'Stornoway': 92, 'Saint-Robert-Bellarmin': 27, 'Piopolis': 73, 'Milan': 49, 'Val-Racine': 26}
+Actives sans nom apparié : 56 sur 2746

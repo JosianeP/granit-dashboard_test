@@ -13,3 +13,4 @@ Codes de statut rencontrés : [('IM', 2746), ('RO', 2172), ('RD', 99), ('RX', 70
 Rejets par code postal (municipalité homonyme, RTA) : [(('Saint-Robert-Bellarmin', 'J0G'), 350), (('Saint-Sébastien', 'J0J'), 201), (('Lac-Mégantic', 'G0N'), 3), (('Lambton', 'G0H'), 2), (('Audet', 'G0A'), 1), (('Stratford', 'J0Y'), 1), (('Nantes', 'G8B'), 1), (('Saint-Ludger', 'G0W'), 1)]
 Actives par municipalité : {'Lac-Mégantic': 706, 'Frontenac': 211, 'Lambton': 291, 'Nantes': 150, 'Notre-Dame-des-Bois': 116, 'Stratford': 151, 'Lac-Drolet': 127, 'Saint-Ludger': 161, 'Marston': 75, 'Sainte-Cécile-de-Whitton': 108, 'Saint-Romain': 124, 'Audet': 76, 'Saint-Sébastien': 96, 'Saint-Augustin-de-Woburn': 87, 'Stornoway': 92, 'Saint-Robert-Bellarmin': 27, 'Piopolis': 73, 'Milan': 49, 'Val-Racine': 26}
 Actives sans nom apparié : 56 sur 2746
+Actives sans code CAE : 5 ; avec code mais sans libellé : 0

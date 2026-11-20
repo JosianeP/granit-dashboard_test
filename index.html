@@ -851,7 +851,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
     <div class="pb-brand-text">
       <div class="org">MRC du Granit - Estrie</div>
       <div class="name">Tableau de bord territorial</div>
-      <div class="ver" id="verLabel">v4.12</div>
+      <div class="ver" id="verLabel">v4.13</div>
     </div>
   </div>
   <nav class="pillar-tabs">
@@ -960,6 +960,8 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
       <div class="view active" id="view-eco-overview">
         <div class="section-header"><div class="sh-left"><h2>Aperçu général</h2><p id="ovQuarter">Portrait économique du territoire</p></div><span class="pillar-badge pb-eco">Économie</span></div>
         <div id="gxFrais"></div>
+        <div id="gcApercu"></div>
+        <div id="gxConstats"></div>
         <div class="ss-row" id="statsStrip"></div>
         <div class="kpi-grid" id="kpiGrid"></div>
         <div style="display:grid;grid-template-columns:1fr 280px;gap:12px;margin-bottom:18px">
@@ -1089,6 +1091,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
       <div class="view" id="view-eco-muni">
         <div class="section-header"><div class="sh-left"><h2>Municipalités</h2><p>19 municipalités - 2&nbsp;736 km² - 21&nbsp;935 habitants</p></div><span class="pillar-badge pb-eco">Économie</span></div>
         <div class="ss-row" id="muniStats"></div>
+        <div id="gcMuni"></div>
         <div class="ftabs" id="mTabs">
           <button class="ft active" onclick="fMuni('all',this)">Toutes (19)</button>
           <button class="ft" onclick="fMuni('urbain',this)">Urbain</button>
@@ -1654,7 +1657,7 @@ function renderAll(){
   if(D.meta){
     document.getElementById('sbQ').textContent=D.meta.quarter||'—';
     document.getElementById('sbBy').textContent=(D.meta.updatedBy||'').split('—')[0].trim();
-    document.getElementById('verLabel').textContent='v4.12 - '+(D.meta.quarter||'');
+    document.getElementById('verLabel').textContent='v4.13 - '+(D.meta.quarter||'');
     var ovq=document.getElementById('ovQuarter'); if(ovq)ovq.textContent='Portrait économique du territoire - MRC du Granit, '+(D.meta.quarter||'');
   }
   allMLPairs=getMLSuggestions();
@@ -1675,6 +1678,7 @@ function renderAll(){
   setTimeout(function(){renderBarChart();renderDonutChart();},300);
   setTimeout(function(){renderAmOverviewCharts();},350);
   if(window.GranitCroise)GranitCroise.apresRendu();
+  if(window.GranitCarte)GranitCarte.rendre();
 }
 
 // Nombre à la française (virgule décimale, espace des milliers); laisse passer les valeurs non numériques.
@@ -3660,10 +3664,11 @@ init();
 </div>
 <script src="./xlsx-populate.min.js"></script>
 <script src="./exceljs.min.js"></script>
-<script src="./granit-excel.js?v=4.12"></script>
-<script src="./granit-import.js?v=4.12"></script>
+<script src="./granit-excel.js?v=4.13"></script>
+<script src="./granit-import.js?v=4.13"></script>
 <!-- Le suffixe ?v= force le navigateur à recharger ces scripts à chaque version : le changer ici quand un des fichiers granit-*.js change. -->
-<script src="./granit-req.js?v=4.12"></script>
-<script src="./granit-croise.js?v=4.12"></script>
+<script src="./granit-req.js?v=4.13"></script>
+<script src="./granit-croise.js?v=4.13"></script>
+<script src="./granit-carte.js?v=4.13"></script>
 </body>
 </html>

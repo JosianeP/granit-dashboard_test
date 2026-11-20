@@ -1,4 +1,4 @@
-# Tableau de bord territorial - MRC du Granit (v4.12)
+# Tableau de bord territorial - MRC du Granit (v4.13)
 
 Outil interne de développement territorial à trois piliers (économie, aménagement, santé). Hébergé sur GitHub Pages.
 
@@ -15,11 +15,18 @@ Outil interne de développement territorial à trois piliers (économie, aménag
 | `exceljs.min.js` | Régénération du gabarit Excel depuis la plateforme |
 
 | `granit-req.js` | Vue « Registre des entreprises » et chargement du registre pour les autres vues |
+| `granit-carte.js` | Carte des municipalités, colorée selon l'indicateur choisi |
 | `granit-croise.js` | Croisements entre les vues : le registre, les services de garde et le recensement s'affichent partout où il y a une fiche ou un bloc cliquable |
 | `data/req/`, `data/garde/`, `data/logement/` | Extractions automatiques produites par GitHub Actions. Ne pas modifier à la main |
 | `data/appariement.json` | Liens entre les fiches locales et le Registraire (par NEQ) |
 
 Ces fichiers doivent se trouver dans le même dossier du dépôt.
+
+## Nouveautés de la version 4.13
+
+- Carte des 19 municipalités en tête de l'aperçu et de la vue Municipalités (`granit-carte.js`). Un menu choisit l'indicateur qui colore la carte (population, 65 ans et plus, entreprises par 1 000 habitants, logements non occupés à l'année, ménages locataires, places de garde, vulnérabilité). Le survol affiche les chiffres de la municipalité et le clic ouvre son portrait.
+- Les contours viennent du Système sur les découpages administratifs (SDA) du gouvernement du Québec, extraits par `tools/carte_granit.py` dans `data/carte/`. Le flux « Carte - Granit » se lance à la main si une limite municipale change.
+- Trois constats en phrases sous la carte (vieillissement, logements non habités à l'année, places de garde), calculés à partir des données affichées; ils se mettent donc à jour d'eux-mêmes.
 
 ## Nouveautés de la version 4.12 (revue complète avant démonstration)
 

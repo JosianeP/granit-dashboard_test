@@ -72,6 +72,13 @@
       '.gx-frais-i{display:inline-flex;align-items:center;gap:7px;padding:5px 12px;border-radius:999px;border:1px solid var(--border);background:var(--white);font:inherit;font-size:13px;color:var(--text2);cursor:pointer}' +
       '.gx-frais-i:hover{border-color:var(--g400)}.gx-frais-i b{font-weight:700;color:var(--text)}' +
       '.gx-frais-i i{width:8px;height:8px;border-radius:50%;background:var(--muted2)}.gx-frais-i i.auto{background:#2d8a52;box-shadow:0 0 0 3px rgba(45,138,82,.18)}' +
+      '.gx-cst-t{font-size:15px;font-weight:700;color:var(--text);margin:0 0 10px}.gx-cst-t span{font-size:13px;font-weight:500;color:var(--muted);margin-left:8px}' +
+      '.gx-cst{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}' +
+      '.gx-cst-c{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--g600);border-radius:var(--r);box-shadow:var(--sh-sm);padding:16px 18px;display:flex;flex-direction:column;gap:3px}' +
+      '.gx-cst-v{font-family:"Fraunces",serif;font-size:34px;font-weight:600;color:var(--g700);line-height:1.05}' +
+      '.gx-cst-l{font-size:15px;font-weight:700;color:var(--text);line-height:1.3}' +
+      '.gx-cst-c p{font-size:13.5px;color:var(--text2);line-height:1.55;margin:6px 0 10px;flex:1}' +
+      '@media(max-width:1000px){.gx-cst{grid-template-columns:1fr}}@media print{.gx-cst .gx-lien{display:none}}' +
       '.sc-reg{font-size:12.5px;color:var(--muted);margin-top:7px;line-height:1.35}.sc-reg b{color:var(--text);font-weight:700}';
     document.head.appendChild(c);
   }
@@ -318,6 +325,41 @@
     }).join('') + '</div>';
   }
 
+  /* ════════ APERÇU : trois constats, calculés à partir des données affichées ════════ */
+  function constats() {
+    var el = document.getElementById('gxConstats'); if (!el || !window.D) return;
+    var D = window.D, c = [];
+    function pct(a, b) { return b ? Math.round(a / b * 100) : null; }
+    try {
+      var mrc = D.demographie && D.demographie.mrc, g = mrc && mrc.agg, p41 = mrc && mrc.proj && mrc.proj['2041'];
+      if (g && g.tot) c.push({ v: pct(g.a65, g.tot) + ' %', t: 'de la population a 65 ans et plus',
+        p: p41 && p41.tot ? 'L\'ISQ projette ' + pct(p41.a65, p41.tot) + ' % en 2041. Le défi du territoire tient moins à la décroissance qu\'au vieillissement.' : 'Estimation de l\'ISQ pour 2025.',
+        l: 'Portrait démographique', a: "V('eco-demo',niOf('eco-demo'))" });
+    } catch (e) {}
+    try {
+      var L = D.logements, a = L && L.agregats;
+      if (a && a.logementsPrives && a.logementsTotal) {
+        var top = null;
+        (L.parMuni || []).forEach(function (x) { var o = x.logements; if (o && o.prives && o.total != null) { var r = (o.prives - o.total) / o.prives; if (!top || r > top.r) top = { r: r, n: x.muni }; } });
+        c.push({ v: pct(a.logementsPrives - a.logementsTotal, a.logementsPrives) + ' %', t: 'des logements ne sont pas habités à l\'année',
+          p: 'Soit ' + fmt(a.logementsPrives - a.logementsTotal) + ' chalets, résidences secondaires et logements vacants sur ' + fmt(a.logementsPrives) + (top ? '. La part atteint ' + Math.round(top.r * 100) + ' % à ' + top.n + '.' : '.'),
+          l: 'Logements et garderies', a: "G('vie')" });
+      }
+      var p04 = D.demographie && D.demographie.mrc && D.demographie.mrc.pyr ? D.demographie.mrc.pyr[0] : null;
+      if (a && a.placesGardeTotal && p04) {
+        var sans = (L.parMuni || []).filter(function (x) { return x.garderies && x.garderies.real && !x.garderies.placesTotal; }).length;
+        c.push({ v: Math.round(a.placesGardeTotal / p04 * 100), t: 'places de garde pour 100 enfants de 0 à 4 ans',
+          p: fmt(a.placesGardeTotal) + ' places reconnues pour ' + fmt(p04) + ' enfants' + (sans ? ', et ' + sans + ' municipalités sur ' + L.parMuni.length + ' sans CPE ni garderie.' : '.'),
+          l: 'Logements et garderies', a: "G('vie')" });
+      }
+    } catch (e) {}
+    if (!c.length) { el.innerHTML = ''; return; }
+    el.innerHTML = '<div class="gx-cst-t">Trois constats à retenir <span>calculés à partir des données affichées</span></div><div class="gx-cst">' + c.slice(0, 3).map(function (x) {
+      return '<div class="gx-cst-c"><div class="gx-cst-v">' + x.v + '</div><div class="gx-cst-l">' + x.t + '</div><p>' + esc(x.p) + '</p>' +
+        '<button class="gx-lien" onclick="' + x.a + ';window.scrollTo(0,0)">' + x.l + ' →</button></div>';
+    }).join('') + '</div>';
+  }
+
   /* ════════ LÉGENDE : table des 13 secteurs ════════ */
   var DEF_SECT = {
     s1: 'Fabrication de produits du bois (sauf les scieries) et de meubles',
@@ -368,7 +410,7 @@
       apresRendu();
     } catch (e) { if (w.console) console.warn('granit-croise', e); }
   }
-  function apresRendu() { try { noteMilieu(); carteEmployeurs(); legendeSecteurs(); fraicheur(); } catch (e) {} }
+  function apresRendu() { try { noteMilieu(); carteEmployeurs(); legendeSecteurs(); fraicheur(); constats(); } catch (e) {} try { if (window.GranitCarte) window.GranitCarte.rendre(); } catch (e) {} }
   function json(u) { return fetch(u + '?t=' + Date.now()).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); }
   function demarrer() {
     styles();

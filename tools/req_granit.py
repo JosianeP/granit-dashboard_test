@@ -11,6 +11,7 @@ Ce script ne modifie PAS data.json. Il écrit dans data/req/ :
   - resume.json          décomptes par municipalité, secteur, forme juridique, année d'immatriculation
   - snapshots/AAAA-MM-JJ.csv   instantané compact (toutes les entreprises, actives ou non)
   - mouvements.json      apparitions, radiations et réactivations depuis l'instantané précédent
+  - historique.json      série chronologique, une ligne par extraction
   - diagnostic.txt       en-têtes lus, colonnes retenues, rejets, pour valider la qualité
 
 Usage : python tools/req_granit.py [--zip chemin.zip] [--out data/req]
@@ -281,6 +282,17 @@ def main():
               "par_activite_cae": dict(Counter((e["cae_lib"] or e["cae"] or "Non déclaré") for e in actifs).most_common(60)),
               "immatriculations_par_annee": dict(sorted(Counter(e["immat"][:4] for e in actifs if e["immat"][:4] >= "2000").items()))}
     json.dump(resume, open(os.path.join(out, "resume.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+
+    # Série chronologique : une ligne par extraction, pour suivre la tendance dans le tableau de bord
+    ch = os.path.join(out, "historique.json")
+    hist = json.load(open(ch, encoding="utf-8")) if os.path.exists(ch) else {"_source": attribution, "serie": []}
+    hist["_source"] = attribution
+    hist["serie"] = [x for x in hist.get("serie", []) if x.get("date") != jour]
+    hist["serie"].append({"date": jour, "total_actives": len(actifs),
+                          "par_municipalite": resume["par_municipalite"],
+                          "par_rattachement": resume["par_rattachement"]})
+    hist["serie"].sort(key=lambda x: x["date"])
+    json.dump(hist, open(ch, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
     # Instantané et mouvements
     snaps = sorted(x for x in os.listdir(os.path.join(out, "snapshots")) if x.endswith(".csv") and x[:10] < jour)

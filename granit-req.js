@@ -1,4 +1,7 @@
-/* granit-req.js - Vue « Registre des entreprises » (v4.9)
+/* granit-req.js - Vue « Registre des entreprises » (v5.0)
+   Livraison 3 : le registre devient le socle unique. Les fiches du répertoire local et les membres
+   touristiques (data.json, clé id) s'y rattachent par le NEQ au moyen de data/appariement.json
+   (produit par tools/apparier.py). Seuls les liens de statut auto ou valide sont appliqués.
    Lit data/req/*.json produits par tools/req_granit.py (extraction automatisée du
    Registre des entreprises du Québec, données ouvertes, licence CC BY-NC-SA 4.0).
    S'insère de lui-même dans le pilier Économie : aucun autre changement requis dans index.html
@@ -8,7 +11,7 @@
   var BASE = './data/req/';
   var PAGE = 40;
   var S = { loaded: false, loading: false, rows: [], hist: null, mouv: null, extraction: '', source: '',
-            portee: 'tout', q: '', muni: '', sect: '', emp: '', forme: '', sort: 'nom', dir: 1, page: 0, parHab: false };
+            ap: null, portee: 'tout', q: '', muni: '', sect: '', emp: '', forme: '', sort: 'nom', dir: 1, page: 0, parHab: false };
   var charts = {};
 
   /* Grands secteurs : regroupement des divisions de la Classification des activités économiques (CAE) */
@@ -83,6 +86,9 @@
       '.rq-p-loc{background:var(--g100);color:var(--g700)}' +
       '.rq-p-ges{background:var(--border2);color:var(--muted)}' +
       '.rq-p-new{background:var(--am100);color:var(--am700)}' +
+      '.rq-p-tour{background:#e0f2fe;color:#075985}' +
+      '.rq-p-hors{background:var(--white);color:var(--muted);border:1px dashed var(--muted2)}' +
+      '.rq-desc{font-size:13px;color:var(--text2);margin-top:4px;line-height:1.45;max-width:62ch}' +
       '.rq-th{cursor:pointer;user-select:none}.rq-th:hover{color:var(--g700)}' +
       '.rq-pager{display:flex;align-items:center;gap:10px;justify-content:flex-end;margin-top:11px;font-size:14px;color:var(--muted)}' +
       '.rq-btn{padding:7px 13px;border-radius:8px;border:1px solid var(--border);background:var(--white);font-size:14px;font-weight:600;color:var(--text2);cursor:pointer;font-family:inherit;box-shadow:var(--sh-sm)}' +
@@ -119,12 +125,22 @@
     if (S.loaded) { rendre(); return; }
     if (S.loading) return;
     S.loading = true;
-    Promise.all([getJSON('granit_latest.json'), getJSON('historique.json', true), getJSON('mouvements.json', true)])
+    Promise.all([getJSON('granit_latest.json'), getJSON('historique.json', true), getJSON('mouvements.json', true),
+                 fetch('./data/appariement.json?t=' + Date.now()).then(function (x) { return x.ok ? x.json() : null; }).catch(function () { return null; })])
       .then(function (r) {
         var g = r[0]; S.hist = r[1]; S.mouv = r[2];
         S.extraction = g.extraction || ''; S.source = g._source || '';
         var local = [];
         try { (window.D.companies || []).forEach(function (c) { if (c.src === 'eco') { var k = norm(c.name); if (k.length >= 4) local.push(k); } }); } catch (e) {}
+        /* Appariement par NEQ : fiches locales et membres touristiques rattachés au registre */
+        var liens = (r[3] && r[3].liens) || null, parNeq = {}, statutDe = {}, fiches = {}, actifs = {};
+        try { (window.D.companies || []).forEach(function (c) { fiches[c.id] = c; }); } catch (e) {}
+        (g.entreprises || []).forEach(function (e) { actifs[e.neq] = 1; });
+        if (liens) liens.forEach(function (l) {
+          if (!fiches[l.id]) return;
+          statutDe[l.id] = l.statut;
+          if ((l.statut === 'auto' || l.statut === 'valide') && l.neq && actifs[l.neq]) { (parNeq[l.neq] = parNeq[l.neq] || []).push(fiches[l.id]); statutDe[l.id] = 'lie'; }
+        });
         var il = new Date(S.extraction || Date.now()); il.setFullYear(il.getFullYear() - 1);
         var seuil = il.toISOString().slice(0, 10);
         S.rows = (g.entreprises || []).map(function (e) {
@@ -132,17 +148,41 @@
           var noms = [e.nom || ''].concat(e.autres_noms || []);
           var keys = noms.map(norm).filter(Boolean);
           var act = (e.cae_desc && e.cae_desc !== '-') ? e.cae_desc : '';
+          var fl = parNeq[e.neq] || [];
+          var fe = fl.filter(function (c) { return c.src === 'eco'; })[0] || null;
+          var ft = fl.filter(function (c) { return c.src === 'tourisme'; })[0] || null;
           return {
+            usage: ((fe || ft) && norm((fe || ft).name) !== norm(e.nom || '')) ? (fe || ft).name : '',
+            hors: false, propose: false, tour: !!ft, desc: (fe && fe.desc) || '', jobs: (fe && fe.jobs > 0) ? fe.jobs : 0,
+            sectLoc: fe ? fe.sector : (ft ? ft.sector : ''),
             neq: e.neq, nom: e.nom || '', autres: e.autres_noms || [], muni: e.muni, eta: e.rattachement === 'etablissement',
             sect: sx[0], cae: e.cae || '', caeLib: e.cae_lib || '', act: act,
             emp: e.emp || 'N', forme: e.forme || '', formeLib: e.forme_lib || FORME[e.forme] || e.forme || '',
             immat: e.immat || '', recent: (e.immat || '') >= seuil,
             gestion: /^72/.test(e.cae || '') || RE_GESTION.test(act),
-            local: keys.some(function (k) { return local.some(function (l) { return k === l || (l.length >= 7 && k.indexOf(l) > -1) || (k.length >= 7 && l.indexOf(k) > -1); }); }),
-            cherche: norm(noms.join(' ') + ' ' + act + ' ' + (e.cae_lib || '') + ' ' + e.muni) + ' ' + e.neq
+            local: liens ? !!fe : keys.some(function (k) { return local.some(function (l) { return k === l || (l.length >= 7 && k.indexOf(l) > -1) || (k.length >= 7 && l.indexOf(k) > -1); }); }),
+            cherche: norm(noms.join(' ') + ' ' + act + ' ' + (e.cae_lib || '') + ' ' + e.muni + ' ' + fl.map(function (c) { return c.name + ' ' + c.sector; }).join(' ')) + ' ' + e.neq
           };
         });
         S.nLocal = local.length;
+        S.ap = null;
+        if (liens) {
+          var cpt = { eco: 0, tour: 0, lieEco: 0, lieTour: 0, propose: 0, hors: 0 };
+          Object.keys(fiches).forEach(function (id) {
+            var c = fiches[id], eco = c.src === 'eco', st = statutDe[id] || 'aucun';
+            cpt[eco ? 'eco' : 'tour']++;
+            if (st === 'lie') { cpt[eco ? 'lieEco' : 'lieTour']++; return; }
+            if (st === 'a_valider') cpt.propose++;
+            cpt.hors++;
+            S.rows.push({
+              neq: '', nom: c.name, autres: [], muni: c.muni, eta: false, sect: 'nc', cae: '', caeLib: '', act: '',
+              emp: 'N', forme: '', formeLib: '', immat: '', recent: false, gestion: false,
+              hors: true, propose: st === 'a_valider', local: eco, tour: !eco, desc: c.desc || '', jobs: c.jobs > 0 ? c.jobs : 0, sectLoc: c.sector || '',
+              cherche: norm(c.name + ' ' + (c.sector || '') + ' ' + c.muni)
+            });
+          });
+          S.ap = cpt;
+        }
         S.loaded = true; S.loading = false; rendre();
       })
       .catch(function (err) {
@@ -154,12 +194,16 @@
 
   /* ── Filtres ── */
   function dansPortee(r) {
-    if (S.portee === 'operant') return !r.gestion;
-    if (S.portee === 'employeurs') return r.emp !== 'O' && r.emp !== 'N' && !r.gestion;
+    if (S.portee === 'local') return r.local;
+    if (S.portee === 'tour') return r.tour;
+    if (S.portee === 'hors') return r.hors;
+    if (S.portee === 'operant') return !r.hors && !r.gestion;
+    if (S.portee === 'employeurs') return !r.hors && r.emp !== 'O' && r.emp !== 'N' && !r.gestion;
     if (S.portee === 'ailleurs') return r.eta;
     if (S.portee === 'recent') return r.recent;
     return true;
   }
+  function registre() { return S.rows.filter(function (r) { return !r.hors; }); }
   function base() { return S.rows.filter(dansPortee); }
   function filtrees() {
     var q = norm(S.q), qn = S.q.replace(/\D/g, '');
@@ -172,7 +216,7 @@
 
   /* ── Rendu ── */
   function rendre() {
-    var all = S.rows, b = base();
+    var all = registre(), b = base();
     var nOper = all.filter(function (r) { return !r.gestion; }).length;
     var nEmp = all.filter(function (r) { return r.emp !== 'O' && r.emp !== 'N' && !r.gestion; }).length;
     var nEta = all.filter(function (r) { return r.eta; }).length;
@@ -180,6 +224,12 @@
     var nLocTrouve = all.filter(function (r) { return r.local; }).length;
     var portees = [['tout', 'Tout le registre', all.length], ['operant', 'Sans les sociétés de gestion', nOper], ['employeurs', 'Avec employés déclarés', nEmp],
                    ['ailleurs', 'Siège hors territoire', nEta], ['recent', 'Immatriculées depuis 12 mois', nRec]];
+    if (S.ap) {
+      portees[0] = ['tout', 'Toutes les entreprises', S.rows.length];
+      portees.push(['local', 'Répertoire local', S.rows.filter(function (r) { return r.local; }).length],
+                   ['tour', 'Tourisme', S.rows.filter(function (r) { return r.tour; }).length],
+                   ['hors', 'Hors registre', S.ap.hors]);
+    }
     var munis = Object.keys(compter(all, function (r) { return r.muni; })).sort(function (a, c) { return a.localeCompare(c, 'fr'); });
     var formes = Object.keys(compter(all, function (r) { return r.forme; })).sort();
     var h = '';
@@ -204,7 +254,13 @@
       '<div class="card"><div class="ct">Année d\'immatriculation des entreprises encore actives</div><div style="position:relative;height:220px"><canvas id="rqAn"></canvas></div>' +
       '<div style="font-size:13px;color:var(--muted);margin-top:8px;line-height:1.5">Ce graphique ne montre que les entreprises toujours actives. Il sous-estime donc les créations des années anciennes et ne mesure pas un taux de création.</div></div>' +
       '<div class="card"><div class="ct">Évolution d\'une extraction à l\'autre</div>' + blocEvolution() + '</div></div>';
-    if (S.nLocal) {
+    if (S.ap) {
+      h += '<div class="card mb18" style="margin-bottom:14px"><div class="ct">Une entreprise, une ligne</div><div style="font-size:14px;color:var(--text2);line-height:1.6">' +
+        'Le tableau réunit le Registraire, le répertoire économique local et les membres touristiques. ' +
+        '<strong>' + fmt(S.ap.lieEco) + '</strong> des ' + fmt(S.ap.eco) + ' fiches locales et <strong>' + fmt(S.ap.lieTour) + '</strong> des ' + fmt(S.ap.tour) + ' membres touristiques sont rattachés à leur inscription par le NEQ; leur description et leurs emplois s\'affichent sur la ligne du registre. ' +
+        'Les <strong>' + fmt(S.ap.hors) + '</strong> autres figurent comme lignes <span class="rq-pill rq-p-hors">Hors registre</span>, dont ' + fmt(S.ap.propose) + ' pour lesquelles un rapprochement est proposé et reste à valider. ' +
+        'Les indicateurs et les graphiques ci-dessus ne comptent que les inscriptions du Registraire.</div></div>';
+    } else if (S.nLocal) {
       h += '<div class="card mb18" style="margin-bottom:14px"><div class="ct">Lien avec le répertoire économique local</div><div style="font-size:14.5px;color:var(--text2);line-height:1.6">' +
         '<strong>' + fmt(nLocTrouve) + '</strong> inscriptions du Registraire correspondent, par leur nom, à l\'une des ' + fmt(S.nLocal) + ' entreprises du répertoire local (onglet Entreprises). ' +
         'Elles portent la mention <span class="rq-pill rq-p-loc">Répertoire local</span> dans le tableau. L\'appariement se fait sur le nom et reste indicatif.</div></div>';
@@ -256,7 +312,7 @@
   function tuer(k) { if (charts[k]) { charts[k].destroy(); charts[k] = null; } }
   function graphiques() {
     if (!window.Chart) return;
-    var b = base(), P = pop();
+    var b = base().filter(function (r) { return !r.hors; }), P = pop();
     var cm = compter(b, function (r) { return r.muni; });
     var lm = Object.keys(cm).map(function (m) { return [m, S.parHab && P[m] ? Math.round(cm[m] / P[m] * 10000) / 10 : cm[m]]; }).sort(function (a, c) { return c[1] - a[1]; });
     var opt = function (unite) {
@@ -295,7 +351,7 @@
     l.sort(function (a, c) {
       var x, y;
       if (k === 'emp') { x = EMP_ORDRE.indexOf(a.emp); y = EMP_ORDRE.indexOf(c.emp); return (x - y) * d || a.nom.localeCompare(c.nom, 'fr'); }
-      x = a[k] || '\uffff'; y = c[k] || '\uffff';
+      x = (k === 'nom' ? (a.usage || a.nom) : a[k]) || '\uffff'; y = (k === 'nom' ? (c.usage || c.nom) : c[k]) || '\uffff';
       return x.localeCompare(y, 'fr') * d || a.nom.localeCompare(c.nom, 'fr');
     });
     return l;
@@ -304,29 +360,34 @@
     var l = triees(), n = l.length, pages = Math.max(1, Math.ceil(n / PAGE));
     if (S.page >= pages) S.page = pages - 1;
     var seg = l.slice(S.page * PAGE, S.page * PAGE + PAGE);
-    document.getElementById('rqTotal').innerHTML = '<span><strong>' + fmt(n) + '</strong> entreprise' + (n > 1 ? 's' : '') + ' affichée' + (n > 1 ? 's' : '') + '</span>' +
+    var nh = l.filter(function (r) { return r.hors; }).length;
+    document.getElementById('rqTotal').innerHTML = '<span><strong>' + fmt(n) + '</strong> entreprise' + (n > 1 ? 's' : '') + ' affichée' + (n > 1 ? 's' : '') + (nh && nh < n ? ', dont ' + fmt(nh) + ' hors registre' : '') + '</span>' +
       '<span style="margin-left:auto;font-size:13px;color:var(--g600)">Cliquer sur un titre de colonne pour trier</span>';
     document.getElementById('rqRows').innerHTML = seg.map(function (r) {
       var sx = SECT_BY[r.sect];
-      var detail = r.caeLib || r.act;
-      return '<tr><td><div style="font-weight:600">' + (r.nom ? esc(r.nom) : '<span style="color:var(--muted);font-weight:500">Nom non diffusé (entreprise individuelle)</span>') +
-        (r.local ? ' <span class="rq-pill rq-p-loc">Répertoire local</span>' : '') + (r.recent ? ' <span class="rq-pill rq-p-new">Nouvelle</span>' : '') + '</div>' +
-        '<div style="font-size:13px;color:var(--muted);margin-top:2px;line-height:1.35">' + (r.autres.length ? 'Aussi connue comme ' + esc(r.autres.slice(0, 3).join(', ')) + '. ' : '') + esc(r.formeLib) + ' - NEQ ' + esc(r.neq) + '</div></td>' +
+      var detail = r.hors ? r.sectLoc : (r.caeLib || r.act);
+      return '<tr><td><div style="font-weight:600">' + (r.usage || r.nom ? esc(r.usage || r.nom) : '<span style="color:var(--muted);font-weight:500">Nom non diffusé (entreprise individuelle)</span>') +
+        (r.local ? ' <span class="rq-pill rq-p-loc">Répertoire local</span>' : '') + (r.tour ? ' <span class="rq-pill rq-p-tour">Tourisme</span>' : '') + (r.hors ? ' <span class="rq-pill rq-p-hors">Hors registre</span>' : '') + (r.recent ? ' <span class="rq-pill rq-p-new">Nouvelle</span>' : '') + '</div>' +
+        '<div style="font-size:13px;color:var(--muted);margin-top:2px;line-height:1.35">' + (r.hors ? 'Fiche locale sans inscription rattachée au Registraire' + (r.propose ? ' - rapprochement proposé, à valider' : '') :
+          (r.usage ? 'Nom légal ' + esc(r.nom) + '. ' : (r.autres.length ? 'Aussi connue comme ' + esc(r.autres.slice(0, 3).join(', ')) + '. ' : '')) + esc(r.formeLib) + ' - NEQ ' + esc(r.neq)) + '</div>' +
+        (r.desc ? '<div class="rq-desc">' + esc(r.desc.length > 190 ? r.desc.slice(0, 187).replace(/\s+\S*$/, '') + '...' : r.desc) + '</div>' : '') + '</td>' +
         '<td><div style="font-size:14px">' + esc(r.muni) + '</div>' + (r.eta ? '<span class="rq-pill rq-p-eta">Siège hors territoire</span>' : '') + '</td>' +
         '<td><div style="font-size:14px"><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:' + sx[4] + ';margin-right:6px"></span>' + esc(sx[1]) + '</div>' +
         '<div style="font-size:13px;color:var(--muted);margin-top:2px">' + esc(detail) + (r.caeLib && r.act && norm(r.act) !== norm(r.caeLib) ? ' (déclaré : ' + esc(r.act.toLowerCase()) + ')' : '') + (r.gestion ? ' <span class="rq-pill rq-p-ges">Société de gestion</span>' : '') + '</div></td>' +
-        '<td style="font-size:14px;white-space:nowrap">' + esc(EMP[r.emp] || r.emp) + '</td>' +
-        '<td style="font-size:14px;white-space:nowrap">' + esc(r.immat.slice(0, 4)) + '</td></tr>';
+        '<td style="font-size:14px;white-space:nowrap">' + (r.jobs ? '<div style="font-weight:700">' + fmt(r.jobs) + ' emplois</div><div style="font-size:12px;color:var(--muted)">répertoire local</div>' : '') +
+          (r.hors ? (r.jobs ? '' : '-') : '<div' + (r.jobs ? ' style="font-size:12px;color:var(--muted);margin-top:3px"' : '') + '>' + (r.jobs ? 'Registraire : ' : '') + esc(EMP[r.emp] || r.emp) + '</div>') + '</td>' +
+        '<td style="font-size:14px;white-space:nowrap">' + (r.hors ? '-' : esc(r.immat.slice(0, 4))) + '</td></tr>';
     }).join('') || '<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:24px">Aucun résultat</td></tr>';
     document.getElementById('rqPager').innerHTML = '<button class="rq-btn" ' + (S.page === 0 ? 'disabled' : '') + ' onclick="GranitREQ.page(-1)">Précédent</button>' +
       '<span>Page ' + (S.page + 1) + ' de ' + pages + '</span><button class="rq-btn" ' + (S.page >= pages - 1 ? 'disabled' : '') + ' onclick="GranitREQ.page(1)">Suivant</button>';
   }
   function csv() {
     var l = triees(), q = function (v) { return '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"'; };
-    var out = [['NEQ', 'Nom', 'Autres noms', 'Municipalité', 'Rattachement', 'Grand secteur', 'Code CAE', 'Activité (CAE)', 'Activité déclarée', 'Employés au Québec', 'Forme juridique', 'Date d\'immatriculation', 'Société de gestion (repérage)', 'Source'].map(q).join(',')];
+    var out = [['NEQ', 'Nom', 'Autres noms', 'Municipalité', 'Rattachement', 'Grand secteur', 'Code CAE', 'Activité (CAE)', 'Activité déclarée', 'Employés au Québec', 'Forme juridique', 'Date d\'immatriculation', 'Société de gestion (repérage)', 'Répertoire local', 'Tourisme', 'Hors registre', 'Nom d\'usage (répertoire local)', 'Emplois (répertoire local)', 'Secteur (répertoire local)', 'Description (répertoire local)', 'Source'].map(q).join(',')];
     l.forEach(function (r) {
-      out.push([r.neq, r.nom, r.autres.join(' | '), r.muni, r.eta ? 'Établissement (siège hors territoire)' : 'Domicile', SECT_BY[r.sect][1], r.cae, r.caeLib, r.act, EMP[r.emp] || r.emp, r.formeLib, r.immat, r.gestion ? 'oui' : 'non',
-        'Registraire des entreprises du Québec, données ouvertes, extraction du ' + S.extraction + ', CC BY-NC-SA 4.0'].map(q).join(','));
+      out.push([r.neq, r.nom, r.autres.join(' | '), r.muni, r.hors ? '' : (r.eta ? 'Établissement (siège hors territoire)' : 'Domicile'), SECT_BY[r.sect][1], r.cae, r.caeLib, r.act, EMP[r.emp] || r.emp, r.formeLib, r.immat, r.gestion ? 'oui' : 'non',
+        r.local ? 'oui' : 'non', r.tour ? 'oui' : 'non', r.hors ? 'oui' : 'non', r.usage || '', r.jobs || '', r.sectLoc, r.desc,
+        r.hors ? 'Répertoire local de la MRC du Granit (data.json)' : 'Registraire des entreprises du Québec, données ouvertes, extraction du ' + S.extraction + ', CC BY-NC-SA 4.0'].map(q).join(','));
     });
     var a = document.createElement('a');
     a.href = URL.createObjectURL(new Blob(['\ufeff' + out.join('\r\n')], { type: 'text/csv;charset=utf-8' }));

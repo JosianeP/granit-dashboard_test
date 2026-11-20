@@ -349,7 +349,75 @@
       '<p class="gx-note">Les entreprises comprennent les inscriptions du Registraire et les fiches locales sans inscription rattachée. Les emplois estimés par secteur viennent du portrait de la MRC et non du Registraire.' + (ok ? ' ' + dateSrc() + '.' : '') + '</p>';
   }
 
-  /* ════════ LÉGENDE : les quatre mesures de l'emploi, avec leurs valeurs ════════ */
+  /* ════════ EMPLOI : Recensement de 2021 et comparaison avec les estimations de la MRC ════════ */
+  /* Familles : secteurs du tableau de bord d'un côté, industries du SCIAN (deux chiffres) de l'autre. */
+  var FAMILLES = [
+    ['Ressources et fabrication', ['s1', 's2', 's3', 's4', 's5', 's6', 's7', 's8'], ['11', '21', '22', '31-33']],
+    ['Construction', ['s13'], ['23']],
+    ['Transport et logistique', ['s9'], ['48-49']],
+    ['Tourisme, hébergement et loisirs', ['s10'], ['71', '72']],
+    ['Services publics, santé et éducation', ['s11'], ['61', '62', '91']],
+    ['Commerce et autres services', ['s12'], ['41', '44-45', '51', '52', '53', '54', '55', '56', '81']]
+  ];
+  function empVal(bloc, motif) { var x = (X.emp[bloc] || []).filter(function (r) { return plie(r.nom).indexOf(motif) === 0; })[0]; return x ? x.valeur : null; }
+  function empIndustries() {
+    return (X.emp.industrie || []).map(function (r) { var m = /^(\d\d(?:-\d\d)?)\s+(.*)$/.exec(r.nom); return m ? { code: m[1], nom: m[2], v: r.valeur || 0 } : null; }).filter(Boolean);
+  }
+  function empReperes() {
+    if (!X.emp) return null;
+    var hab = empVal('navettage', 'navettage a l\'interieur'), mrc = empVal('navettage', 'navettage jusqu\'a une subdivision de recensement (sdr) differente a l\'interieur'),
+      tot = empVal('navettage', 'total'), dom = empVal('lieu_travail', 'a domicile');
+    return { occ: empVal('activite', 'personnes occupees'), act: empVal('activite', 'population active'), cho: empVal('activite', 'chomeurs'),
+      taux: empVal('activite', 'taux de chomage'), auto: empVal('categorie', 'travailleur autonome'), actInd: empVal('categorie', 'toutes les categories'),
+      navTot: tot, dansMrc: (hab || 0) + (mrc || 0), dom: dom, hors: tot != null ? tot - (hab || 0) - (mrc || 0) : null };
+  }
+  function carteEmploiRec() {
+    var el = document.getElementById('gxEmploiRec'); if (!el || !X.emp || !window.D) return;
+    var R0 = empReperes(), ind = empIndustries().sort(function (a, b) { return b.v - a.v; }), max = ind.length ? ind[0].v : 1, totInd = ind.reduce(function (a, b) { return a + b.v; }, 0);
+    function kpi(l, v, u) { return '<div class="kpi"><div class="kpi-l">' + l + '<span class="prov prov-reel">Réel</span></div><div class="kpi-v">' + v + '</div><div class="kpi-u">' + u + '</div></div>'; }
+    var jobs = {}; (window.D.sectors || []).forEach(function (s) { jobs[s.id] = s.jobs || 0; });
+    var parCode = {}; ind.forEach(function (x) { parCode[x.code] = x.v; });
+    var tE = 0, tR = 0, sur = [], sous = [];
+    var lignes = FAMILLES.map(function (f) {
+      var e = f[1].reduce(function (a, k) { return a + (jobs[k] || 0); }, 0), r = f[2].reduce(function (a, k) { return a + (parCode[k] || 0); }, 0);
+      tE += e; tR += r;
+      var ec = r ? Math.round((e - r) / r * 100) : null;
+      if (ec != null && ec >= 20) sur.push(f[0].toLowerCase()); if (ec != null && ec <= -20) sous.push(f[0].toLowerCase());
+      return '<tr><td>' + f[0] + '</td><td class="n">' + fmt(e) + '</td><td class="n">' + fmt(r) + '</td><td class="n" style="font-weight:700;color:' + (ec == null || Math.abs(ec) < 20 ? 'var(--muted)' : 'var(--am600)') + '">' + (ec == null ? '-' : (ec > 0 ? '+' : '') + ec + ' %') + '</td></tr>';
+    }).join('');
+    var lecture = (sur.length ? 'Les estimations de la MRC dépassent le recensement pour ' + sur.join(', ') + '. ' : '') + (sous.length ? 'Elles sont nettement plus basses pour ' + sous.join(', ') + '. ' : '');
+    el.innerHTML =
+      '<div class="card" style="margin-bottom:14px"><div class="ct">Emploi des résidents - Recensement de 2021 <span class="prov prov-reel">Réel</span></div>' +
+      '<div class="kpi-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:16px">' +
+      kpi('Personnes occupées', fmt(R0.occ), 'résidents de 15 ans et plus en emploi') +
+      kpi('Taux de chômage', String(R0.taux).replace('.', ',') + ' %', fmt(R0.cho) + ' chômeurs sur ' + fmt(R0.act) + ' actifs') +
+      kpi('Travaillent dans la MRC', Math.round(R0.dansMrc / R0.navTot * 100) + ' %', fmt(R0.dansMrc) + ' des ' + fmt(R0.navTot) + ' résidents ayant un lieu habituel de travail') +
+      kpi('Travailleurs autonomes', Math.round(R0.auto / R0.actInd * 100) + ' %', fmt(R0.auto) + ' personnes') + '</div>' +
+      '<div class="two-col" style="gap:26px;align-items:start"><div><div class="gx-sep" style="margin-top:0">Population active par industrie (SCIAN)</div><div class="gx-barres">' +
+      ind.filter(function (x) { return x.v > 0; }).map(function (x) {
+        return '<div class="gx-b" style="cursor:default;grid-template-columns:minmax(150px,250px) 1fr 86px"><span>' + esc(x.nom.replace(/, et extraction de pétrole et de gaz/, '').replace(/, services de soutien.*$/, ' et de soutien').replace(/ \(sauf les administrations publiques\)/, '')) + '</span><span class="gx-bt"><i style="width:' + Math.max(1, Math.round(x.v / max * 100)) + '%"></i></span><span class="gx-bv">' + fmt(x.v) + ' <span style="font-weight:500;color:var(--muted)">' + Math.round(x.v / totInd * 100) + ' %</span></span></div>';
+      }).join('') + '</div></div>' +
+      '<div><div class="gx-sep" style="margin-top:0">Estimations de la MRC comparées au recensement</div>' +
+      '<table class="gx-tb"><thead><tr><th>Famille de secteurs</th><th class="n">Estimation MRC</th><th class="n">Recensement 2021</th><th class="n">Écart</th></tr></thead><tbody>' + lignes +
+      '<tr><td><b>Total</b></td><td class="n"><b>' + fmt(tE) + '</b></td><td class="n"><b>' + fmt(tR) + '</b></td><td class="n"><b>' + (tR ? (tE > tR ? '+' : '') + Math.round((tE - tR) / tR * 100) + ' %' : '-') + '</b></td></tr></tbody></table>' +
+      '<p class="gx-note">' + lecture + 'Les deux colonnes ne mesurent pas la même chose : l\'estimation compte des postes sur le territoire, le recensement compte les résidents actifs (en emploi ou en chômage) selon leur industrie, où qu\'ils travaillent. L\'écart reste un bon indice des secteurs à revoir en priorité.</p></div></div>' +
+      '<p class="gx-note">' + esc(X.emp._source || '') + ' Le découpage du recensement s\'arrête aux grands secteurs; il ne distingue pas le bois, le granit ou le textile à l\'intérieur de la fabrication.</p></div>';
+  }
+  function notesEmploi() {
+    if (!X.emp || !window.D) return;
+    var R0 = empReperes(), t = window.D.trends || {}, vi = (window.D.meta && window.D.meta.validatedIndicators) || {};
+    var o = document.getElementById('ovEmpNote');
+    if (o) o.innerHTML = 'Estimations de la MRC, secteur par secteur. Repère officiel : ' + fmt(R0.occ) + ' résidents en emploi au Recensement de 2021. ' + lgd('lgd-emplois', 'Lire les mesures de l\'emploi') +
+      ' <button class="gx-lien" style="font-size:13px;margin-left:10px" onclick="G(\'emploi\');window.scrollTo(0,0)">Comparer avec le recensement →</button>';
+    var n = document.getElementById('trEmpNote');
+    if (n) {
+      var i21 = (t.years || []).indexOf('2021'), e21 = i21 > -1 && t.totalJobs ? t.totalJobs[i21] : null, plancher = (R0.dansMrc || 0) + (R0.dom || 0);
+      n.innerHTML = 'Série estimée par la MRC, sans source officielle.' + (e21 ? ' Elle indique ' + fmt(e21) + ' emplois en 2021, alors qu\'au recensement de la même année au moins ' + fmt(plancher) + ' résidents travaillaient sur le territoire (' + fmt(R0.dansMrc) + ' à un lieu habituel situé dans la MRC et ' + fmt(R0.dom) + ' à domicile). La série sous-estime donc l\'emploi.' : '') +
+        (vi.travailleurs_25_64_2024 ? ' Autre repère : ' + fmt(vi.travailleurs_25_64_2024) + ' travailleurs de 25 à 64 ans en 2024 (ISQ).' : '');
+    }
+  }
+
+  /* ════════ LÉGENDE : les mesures de l'emploi, avec leurs valeurs ════════ */
   function legendeEmplois() {
     var el = document.getElementById('lgdEmplois'); if (!el || !window.D) return;
     var D = window.D, vi = (D.meta && D.meta.validatedIndicators) || {}, L = D.portraitLGP && D.portraitLGP.agregats, t = D.trends || {};
@@ -357,9 +425,10 @@
     var fj = (D.companies || []).filter(function (c) { return c.src !== 'tourisme' && c.status !== 'a_completer'; }).reduce(function (a, b) { return a + (b.jobs || 0); }, 0);
     var h = '';
     function l(titre, texte) { h += '<dt>' + titre + '</dt><dd>' + texte + '</dd>'; }
+    if (X.emp) { var R0 = empReperes(); l('Personnes occupées <span class="prov prov-reel">Réel</span>', '<b>' + fmt(R0.occ) + '</b> résidents de 15 ans et plus en emploi au Recensement de 2021, tous secteurs confondus. ' + Math.round(R0.dansMrc / R0.navTot * 100) + ' % de ceux qui ont un lieu habituel de travail l\'ont dans la MRC. C\'est le repère le plus complet, ventilé par industrie dans la vue Emploi.'); }
     if (vi.travailleurs_25_64_2024) l('Travailleurs de 25 à 64 ans <span class="prov prov-reel">Réel</span>', '<b>' + fmt(vi.travailleurs_25_64_2024) + '</b> résidents du Granit qui occupent un emploi, peu importe où ils travaillent (ISQ, 2024). C\'est une mesure des personnes, pas des postes situés sur le territoire.');
     if (L && L.emplois) l('Emplois industriels <span class="prov prov-reel">Réel</span>', '<b>' + fmt(L.emplois) + '</b> emplois dans les ' + fmt(L.etablissements) + ' établissements industriels avec employés (portrait LGP, avril 2026). Les services publics, le commerce et les travailleurs autonomes n\'y sont pas.');
-    l('Emplois estimés par secteur <span class="prov prov-est">Estimation</span>', 'Estimations analytiques de la MRC pour chacun des 13 secteurs. Leur somme (<b>' + fmt(sj) + '</b>)' + (t.totalJobs && t.totalJobs.length ? ' dépasse le total estimé de ' + t.years[t.years.length - 1] + ' (<b>' + fmt(t.totalJobs[t.totalJobs.length - 1]) + '</b>)' : '') + ', parce que les deux séries n\'ont pas été conciliées. Elles servent à comparer les secteurs entre eux, pas à établir un total.');
+    l('Emplois estimés par secteur <span class="prov prov-est">Estimation</span>', 'Estimations analytiques de la MRC pour chacun des 13 secteurs. Leur somme (<b>' + fmt(sj) + '</b>)' + (t.totalJobs && t.totalJobs.length ? ' dépasse le total estimé de ' + t.years[t.years.length - 1] + ' (<b>' + fmt(t.totalJobs[t.totalJobs.length - 1]) + '</b>)' : '') + ', parce que les deux séries n\'ont pas été conciliées.' + (X.emp ? ' La vue Emploi les compare au recensement, famille de secteurs par famille.' : ''));
     l('Emplois des fiches <span class="prov prov-est">Estimation</span>', '<b>' + fmt(fj) + '</b> emplois inscrits sur les fiches du répertoire local. C\'est un plancher documenté, puisque le répertoire ne couvre pas toutes les entreprises.');
     el.innerHTML = h;
   }
@@ -383,7 +452,7 @@
       apresRendu();
     } catch (e) { if (w.console) console.warn('granit-croise', e); }
   }
-  function apresRendu() { try { noteMilieu(); carteEmployeurs(); legendeSecteurs(); legendeEmplois(); fraicheur(); } catch (e) {} try { if (window.GranitCarte) window.GranitCarte.rendre(); } catch (e) {} }
+  function apresRendu() { try { noteMilieu(); carteEmployeurs(); legendeSecteurs(); legendeEmplois(); fraicheur(); carteEmploiRec(); notesEmploi(); } catch (e) {} try { if (window.GranitCarte) window.GranitCarte.rendre(); } catch (e) {} }
   function json(u) { return fetch(u + '?t=' + Date.now()).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); }
   function demarrer() {
     styles();
@@ -394,7 +463,8 @@
       window.renderHousing = function () { h0(); noteMilieu(); };
       window.renderHousing._gx = true;
     }
-    Promise.all([json('./data/garde/granit_latest.json'), json('./data/garde/resume.json'), json('./data/logement/recensement2021.json')]).then(function (r) {
+    Promise.all([json('./data/garde/granit_latest.json'), json('./data/garde/resume.json'), json('./data/logement/recensement2021.json'), json('./data/emploi/recensement2021.json')]).then(function (r) {
+      if (r[3] && r[3].industrie && r[3].activite) X.emp = r[3];
       if (r[0] && r[1] && (r[0].installations || []).length) X.garde = { installations: r[0].installations, bc: r[0].bureaux_coordonnateurs || [], resume: r[1] };
       if (r[2] && r[2].par_municipalite) X.rec = r[2];
       rafraichir();

@@ -1,4 +1,4 @@
-# Tableau de bord territorial - MRC du Granit (v4.15)
+# Tableau de bord territorial - MRC du Granit (v4.16)
 
 Outil interne de développement territorial à trois piliers (économie, aménagement, santé). Hébergé sur GitHub Pages.
 
@@ -21,6 +21,14 @@ Outil interne de développement territorial à trois piliers (économie, aménag
 | `data/appariement.json` | Liens entre les fiches locales et le Registraire (par NEQ) |
 
 Ces fichiers doivent se trouver dans le même dossier du dépôt.
+
+## Nouveautés de la version 4.16 (emploi revu à la source)
+
+- `tools/emploi_granit.py` lit le Recensement de 2021 pour la division Le Granit (situation d'activité, population active par industrie du SCIAN, lieu de travail, navettage, catégorie de travailleur) et l'écrit dans `data/emploi/`. Le flux « Milieu de vie - Granit » l'exécute avec les autres extractions.
+- Vue Emploi. Nouvelle carte « Emploi des résidents - Recensement de 2021 » : 9 860 personnes occupées, taux de chômage de 6,2 % (l'indicateur était « À compléter »), 84 % des résidents travaillent dans la MRC, répartition par industrie.
+- Comparaison des estimations de la MRC avec le recensement, par famille de secteurs. Les estimations dépassent le recensement pour les ressources et la fabrication et sont nettement plus basses pour les services.
+- Vue Tendances. Les séries d'emplois portent la pastille Estimation, et une note situe la série par rapport au recensement.
+- Les 13 estimations par secteur et la série 2019-2024 ne sont pas modifiées : le recensement s'arrête aux grands secteurs et compte des résidents, pas des postes. La révision elle-même revient à la MRC.
 
 ## Nouveautés de la version 4.15 (cohérence des données)
 

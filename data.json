@@ -4,7 +4,7 @@
     "quarter": "T2 2026",
     "updatedBy": "MRC du Granit - Conseil scientifique & Développement économique",
     "updatedDate": "2026-11-20",
-    "note": "Données démographiques et de revenu validées aux sources officielles (Décret 1499-2025, Recensement 2021). Portrait industriel officiel intégré (LGP / Table des MRC de l'Estrie, avril 2026). Liste d'entreprises triangulée : liste manufacturière SDEG 2025 + infolettre avril 2026 + registre « Le Granit ». Ajouts tourisme et commerce par recherche documentaire (juin 2026). Effectifs non confirmés marqués « à compléter » et exclus des totaux. Estimations clairement identifiées. Pilier Santé enrichi des données réelles de la DSP de l'Estrie (RLS du Granit, avril 2025) et du Tableau de bord – Santé publique Estrie. Section Plan climat ajoutée au pilier Aménagement (v4.6) à partir de l'Inventaire collectif des émissions de GES de la MRC du Granit, version préliminaire v2, année de référence 2024. Toutes les valeurs de cette section proviennent de ce chiffrier; la classification des sources selon la portée des instruments d'aménagement est une lecture analytique, signalée comme telle. Section Culture retirée du tableau de bord (v4.7). Mise à jour trimestrielle par chiffrier Excel chiffré, une feuille par municipalité, importé directement dans la plateforme (v4.7). Repères de revenu des ménages (aperçu), enfants en attente d'une place en service de garde et vignette de la MRC dans la vue Municipalités ajoutés (v4.8). Registre des entreprises croisé avec toutes les vues, services de garde extraits automatiquement du ministère de la Famille et parc de logements du Recensement de 2021 pour les 19 municipalités (v4.10). Royer reclassé dans Textile & vêtements; emplois de ce secteur alignés sur le portrait LGP (270) et ceux de Produits métalliques sur la somme des fiches documentées (355). Noms d'organismes mis à jour (v4.15).",
+    "note": "Données démographiques et de revenu validées aux sources officielles (Décret 1499-2025, Recensement 2021). Portrait industriel officiel intégré (LGP / Table des MRC de l'Estrie, avril 2026). Liste d'entreprises triangulée : liste manufacturière SDEG 2025 + infolettre avril 2026 + registre « Le Granit ». Ajouts tourisme et commerce par recherche documentaire (juin 2026). Effectifs non confirmés marqués « à compléter » et exclus des totaux. Estimations clairement identifiées. Pilier Santé enrichi des données réelles de la DSP de l'Estrie (RLS du Granit, avril 2025) et du Tableau de bord – Santé publique Estrie. Section Plan climat ajoutée au pilier Aménagement (v4.6) à partir de l'Inventaire collectif des émissions de GES de la MRC du Granit, version préliminaire v2, année de référence 2024. Toutes les valeurs de cette section proviennent de ce chiffrier; la classification des sources selon la portée des instruments d'aménagement est une lecture analytique, signalée comme telle. Section Culture retirée du tableau de bord (v4.7). Mise à jour trimestrielle par chiffrier Excel chiffré, une feuille par municipalité, importé directement dans la plateforme (v4.7). Repères de revenu des ménages (aperçu), enfants en attente d'une place en service de garde et vignette de la MRC dans la vue Municipalités ajoutés (v4.8). Registre des entreprises croisé avec toutes les vues, services de garde extraits automatiquement du ministère de la Famille et parc de logements du Recensement de 2021 pour les 19 municipalités (v4.10). Royer reclassé dans Textile & vêtements; emplois de ce secteur alignés sur le portrait LGP (270) et ceux de Produits métalliques sur la somme des fiches documentées (355). Noms d'organismes mis à jour (v4.15). Emploi revu à la source : population active par industrie, taux de chômage et navettage du Recensement de 2021 (division Le Granit), comparés aux estimations de la MRC (v4.16).",
     "password": "granit2025",
     "validation": "Courcelles transférée vers Beauce-Sartigan le 1er janvier 2024 (19 municipalités, total 21 935 hab.).",
     "validatedIndicators": {
@@ -5787,9 +5787,9 @@
       },
       {
         "label": "Taux de chômage (MRC)",
-        "value": "—",
-        "unit": "non publié par l'ISQ · Recensement 2021 à intégrer",
-        "real": false
+        "value": "6,2 %",
+        "unit": "Recensement de 2021 - 655 chômeurs sur 10 510 actifs",
+        "real": true
       }
     ],
     "education": {
@@ -5821,7 +5821,7 @@
         }
       ]
     },
-    "constat": "Le bassin actif (15-64 ans) compte 12 797 personnes, mais le vieillissement réduit la relève : seulement 2 120 jeunes de 15-24 ans, contre 6 849 personnes de 65 ans et plus (ISQ 2024). Une scolarisation plus faible qu'en Estrie (≈ 40 % des 25-64 ans sans diplôme postsecondaire) et un taux d'emploi de 54 % accentuent la pression sur le recrutement - enjeu central pour les manufacturiers du territoire. Le taux de chômage à l'échelle MRC n'est pas publié par l'ISQ (qui diffuse le « taux de travailleurs »); la valeur du Recensement 2021 reste à intégrer.",
+    "constat": "Le bassin actif (15-64 ans) compte 12 797 personnes, mais le vieillissement réduit la relève : seulement 2 120 jeunes de 15-24 ans, contre 6 849 personnes de 65 ans et plus (ISQ 2024). Une scolarisation plus faible qu'en Estrie (≈ 40 % des 25-64 ans sans diplôme postsecondaire) et un taux d'emploi de 54 % accentuent la pression sur le recrutement - enjeu central pour les manufacturiers du territoire. Le taux de chômage atteignait 6,2 % au Recensement de 2021; l'ISQ ne le publie pas à l'échelle des MRC et diffuse plutôt le « taux de travailleurs ».",
     "source": "ISQ - Estimations et projections de population par RLS (série 2025, base Recensement 2021), 2024; ISQ - Principaux indicateurs MRC du Granit (2024); DSP de l'Estrie - Faits saillants RLS du Granit (avril 2025); Recensement 2021 (Statistique Canada).",
     "dashboardLink": "https://www.santeestrie.qc.ca/medias-publications/sante-publique/tableau-de-bord-sante-publique-estrie"
   },

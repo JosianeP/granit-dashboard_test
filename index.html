@@ -865,7 +865,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
     <div class="pb-brand-text">
       <div class="org">Estrie</div>
       <div class="name">Tableau de bord territorial</div>
-      <div class="ver" id="verLabel">v4.15</div>
+      <div class="ver" id="verLabel">v4.16</div>
     </div>
   </div>
   <nav class="pillar-tabs">
@@ -1134,10 +1134,10 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
       <div class="view" id="view-eco-trends">
         <div class="section-header"><div class="sh-left"><h2>Tendances économiques</h2><p>Évolution 2019–2024</p></div><span class="pillar-badge pb-eco">Économie</span></div>
         <div class="two-col">
-          <div class="card"><div class="ct">Emplois totaux estimés</div><div style="position:relative;height:210px"><canvas id="lineChart"></canvas></div></div>
+          <div class="card"><div class="ct">Emplois totaux estimés <span class="prov prov-est">Estimation</span></div><div style="position:relative;height:210px"><canvas id="lineChart"></canvas></div><div class="lgd-note-emp" id="trEmpNote"></div></div>
           <div class="card"><div class="ct">Nouvelles entreprises par année</div><div style="position:relative;height:210px"><canvas id="newBizChart"></canvas></div></div>
         </div>
-        <div class="card mb18"><div class="ct">Évolution emplois par secteur clé</div><div style="position:relative;height:245px"><canvas id="multiChart"></canvas></div></div>
+        <div class="card mb18"><div class="ct">Évolution emplois par secteur clé <span class="prov prov-est">Estimation</span></div><div style="position:relative;height:245px"><canvas id="multiChart"></canvas></div></div>
         <div class="card"><div class="ct">Sources et fiabilité des données</div><div class="source-box">
           <strong>Données réelles confirmées</strong><br>
           Population 21 935 - MAMH Décret 1499-2025 - Travailleurs 7 845, taux emploi 77,6 % - ISQ 2024<br>
@@ -1182,6 +1182,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
         <div class="section-header"><div class="sh-left"><h2>Main-d'œuvre disponible</h2><p>Bassin de main-d'œuvre, scolarité et relève - MRC / RLS du Granit, 2024</p></div><span class="pillar-badge pb-eco">Économie</span></div>
         <div class="card" style="margin-bottom:14px"><div class="source-box" id="moIntro"></div></div>
         <div class="kpi-grid" id="moKpis"></div>
+        <div id="gxEmploiRec"></div>
         <div class="two-col">
           <div class="card"><div class="ct">Scolarité - population de 25-64 ans <span class="prov prov-reel">Réel - DSP</span></div><div id="moEdu"></div></div>
           <div class="card"><div class="ct">Relève &amp; formation</div><div id="moReleve"></div></div>
@@ -1364,7 +1365,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
             <dt>Emplois estimés</dt><dd>Emplois inscrits dans le répertoire local de la MRC. Ce sont les seuls qui décrivent l'emploi sur le territoire.</dd>
             <dt>Ce qui échappe au registre</dt><dd>Les adresses des personnes physiques sont exclues du jeu de données; plusieurs travailleurs autonomes n'y figurent donc pas.</dd>
           </dl>
-          <div class="lgd-h" id="lgd-emplois" style="scroll-margin-top:calc(var(--hh) + 14px)">Quatre mesures de l'emploi, à ne pas confondre</div>
+          <div class="lgd-h" id="lgd-emplois" style="scroll-margin-top:calc(var(--hh) + 14px)">Cinq mesures de l'emploi, à ne pas confondre</div>
           <dl class="lgd-dl" id="lgdEmplois"></dl>
           <div class="lgd-h">Mentions sur une entreprise</div>
           <dl class="lgd-dl">
@@ -1680,7 +1681,7 @@ function renderAll(){
     var majTxt=majDate(D.meta.updatedDate);
     document.getElementById('sbQ').textContent=majTxt||D.meta.quarter||'-';
     document.getElementById('sbBy').textContent=D.meta.quarter?'Chiffrier de la MRC : '+D.meta.quarter:(D.meta.updatedBy||'');
-    document.getElementById('verLabel').textContent='v4.15';
+    document.getElementById('verLabel').textContent='v4.16';
     var ovq=document.getElementById('ovQuarter'); if(ovq)ovq.textContent='Portrait économique du territoire - MRC du Granit'+(majTxt?', mis à jour le '+majTxt:'');
   }
   allMLPairs=getMLSuggestions();
@@ -3692,11 +3693,11 @@ init();
 </div>
 <script src="./xlsx-populate.min.js"></script>
 <script src="./exceljs.min.js"></script>
-<script src="./granit-excel.js?v=4.15"></script>
-<script src="./granit-import.js?v=4.15"></script>
+<script src="./granit-excel.js?v=4.16"></script>
+<script src="./granit-import.js?v=4.16"></script>
 <!-- Le suffixe ?v= force le navigateur à recharger ces scripts à chaque version : le changer ici quand un des fichiers granit-*.js change. -->
-<script src="./granit-req.js?v=4.15"></script>
-<script src="./granit-croise.js?v=4.15"></script>
-<script src="./granit-carte.js?v=4.15"></script>
+<script src="./granit-req.js?v=4.16"></script>
+<script src="./granit-croise.js?v=4.16"></script>
+<script src="./granit-carte.js?v=4.16"></script>
 </body>
 </html>

@@ -1,0 +1,33 @@
+name: Milieu de vie - Granit (services de garde, logements)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 10 6 1,4,7,10 *"   # le 6 janvier, avril, juillet et octobre (quatre fois par an)
+
+permissions:
+  contents: write
+
+jobs:
+  extraire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Services de garde (ministère de la Famille, Données Québec)
+        continue-on-error: true
+        run: python tools/garde_granit.py --out data/garde
+      - name: Parc de logements (Recensement 2021, Statistique Canada)
+        continue-on-error: true
+        run: python tools/recensement_granit.py --out data/logement
+      - name: Publier les résultats
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/garde data/logement
+          git diff --cached --quiet || git commit -m "Milieu de vie : extraction du $(date +%F) pour la MRC du Granit"
+          git pull --rebase
+          git push

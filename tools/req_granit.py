@@ -11,7 +11,6 @@ Ce script ne modifie PAS data.json. Il écrit dans data/req/ :
   - resume.json          décomptes par municipalité, secteur, forme juridique, année d'immatriculation
   - snapshots/AAAA-MM-JJ.csv   instantané compact (toutes les entreprises, actives ou non)
   - mouvements.json      apparitions, radiations et réactivations depuis l'instantané précédent
-  - historique.json      série chronologique, une ligne par extraction
   - diagnostic.txt       en-têtes lus, colonnes retenues, rejets, pour valider la qualité
 
 Usage : python tools/req_granit.py [--zip chemin.zip] [--out data/req]

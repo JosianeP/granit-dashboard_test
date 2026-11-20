@@ -723,6 +723,12 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
 .prov-calc,.lg-tag-calc{background:#e0f2fe;color:#075985;border-color:#bae0f7}
 .prov-calc::before,.lg-tag-calc::before{border-radius:1px;transform:rotate(45deg);width:6px;height:6px}
 .lg-legend-i .prov,.prov:first-child{margin-left:0}
+/* Légende commune, au bas de chaque vue */
+.prov-legend{display:flex;flex-wrap:wrap;gap:9px 24px;align-items:center;margin-top:28px;padding-top:15px;border-top:1px solid var(--border);font-size:13px;color:var(--muted);line-height:1.4}
+.prov-legend-t{font-weight:700;color:var(--text2);flex-basis:100%}
+.prov-legend-i{display:inline-flex;align-items:center;gap:7px}
+.prov-legend .prov{margin-left:0;flex-shrink:0}
+@media print{.prov-legend{display:none}}
 
 /* ─── Cartes : une seule famille ─── */
 .card,.kpi,.ss,.sc,.mu,.cl-card,.det-card,.lev-card,.link-card,.vuln-card,.cl-sc,.cl-cap,.cl-lim,.cl-cst,.tr-cap,.lg-cap,.tr-macc,.ml-pair,.tr-partners,.lg-legend{border-radius:var(--r);box-shadow:var(--sh-sm)}
@@ -759,6 +765,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
 .hm-cell{width:44px;height:34px}
 .main-aside{grid-template-columns:1fr 320px}
 .link-from{padding-right:66px}
+@media(max-width:1400px){.rv-table th,.rv-table td{padding:9px 7px;font-size:13px}.rv-table th{font-size:12px}.rv-table td:first-child{min-width:170px}}
 /* La pastille de code SCIAN héritait par collision du style des cartes de secteur (.sc) */
 .lgp-tbl .sc,.lgp-tbl .sc:hover{display:inline-block;min-width:40px;margin-right:9px;padding:2px 8px;border:none;border-radius:5px;background:var(--g100);color:var(--g700);box-shadow:none;transform:none;cursor:inherit;text-align:center;position:static;overflow:visible}
 .mg{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
@@ -1264,6 +1271,14 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
         <div class="vuln-grid" id="vulnGrid"></div>
       </div>
 
+      <div class="prov-legend" aria-label="Légende des pastilles de provenance">
+        <span class="prov-legend-t">Lire les pastilles</span>
+        <span class="prov-legend-i"><span class="prov prov-reel">Réel</span>donnée officielle sourcée</span>
+        <span class="prov-legend-i"><span class="prov prov-est">Estimation</span>estimation analytique à valider</span>
+        <span class="prov-legend-i"><span class="prov prov-reg">Registraire</span>Registre des entreprises du Québec, déclaré par les entreprises, à la date d'extraction affichée</span>
+        <span class="prov-legend-i"><span class="prov prov-todo">À compléter</span>donnée non encore renseignée</span>
+        <span class="prov-legend-i"><span class="prov prov-calc">Calcul</span>ratio calculé par la plateforme</span>
+      </div>
     </div>
   </main>
 </div>
@@ -3237,7 +3252,7 @@ function renderVulnGrid(){
     return '<div class="vuln-card '+vC(v)+'">'+
       '<div class="vuln-name">'+m.name+'</div>'+
       '<div style="display:flex;align-items:center;gap:7px;margin-bottom:4px">'+
-        '<div style="font-size:18px;font-weight:700;color:'+vF(v)+'">'+v+'</div>'+
+        '<div style="font-size:19px;font-weight:700;color:'+vF(v)+'">'+v+'</div>'+
         '<div class="vuln-score-bar" style="flex:1"><div class="vuln-score-fill" style="width:'+v+'%;background:'+vF(v)+'"></div></div>'+
       '</div>'+
       '<div class="vuln-tags">'+tags.map(function(t){return'<span class="vuln-tag">'+t+'</span>';}).join('')+'</div>'+

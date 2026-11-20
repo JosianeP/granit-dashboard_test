@@ -790,6 +790,18 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
   .pb-right{order:3;flex-basis:100%;height:45px;justify-content:flex-end;border-left:none;border-top:1px solid var(--border);background:var(--bg)}
 }
 @media(max-width:760px){.pb-right{overflow-x:auto;justify-content:flex-start}}
+/* ═══ NAVIGATION PAR GROUPES (livraison 2) ═══
+   Le pilier Économie passe à 6 entrées. Les anciens boutons restent dans #sbnEco, masqués :
+   ils servent d'ancrage à granit-req.js et de cible à V(id, btn). */
+#sbnEco .ni:not(.ni-grp){display:none}
+.subnav{display:none;gap:2px;border-bottom:1px solid var(--border);margin:-8px 0 22px;overflow-x:auto;scrollbar-width:none}
+.subnav::-webkit-scrollbar{display:none}
+.subnav.on{display:flex}
+.sn{flex-shrink:0;padding:11px 16px;font-family:'DM Sans',system-ui,sans-serif;font-size:15px;font-weight:600;color:var(--muted);background:none;border:none;border-bottom:3px solid transparent;margin-bottom:-1px;cursor:pointer;white-space:nowrap;transition:color .12s,border-color .12s}
+.sn:hover{color:var(--text)}
+.sn.active{color:var(--pillar-color);border-bottom-color:var(--pillar-color)}
+.sn:focus-visible,.ni:focus-visible{outline:2px solid var(--g400);outline-offset:-2px}
+@media print{.subnav{display:none!important}}
 </style>
 </head>
 <body>
@@ -903,6 +915,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
 
   <main class="main">
     <div class="content">
+      <div class="subnav" id="ecoSub" role="tablist" aria-label="Sous-sections"></div>
 
       <!-- ECONOMIE -->
       <div class="view active" id="view-eco-overview">
@@ -1476,6 +1489,43 @@ function V(id,btn){
   if(id==='sa-links')renderLinksView();
   if(id==='sa-vuln'){renderVulnStats();renderVulnGrid();setTimeout(renderVulnChart,80);}
 }
+// ─── NAVIGATION PAR GROUPES (livraison 2) ───
+// Le pilier Économie passe de 12 entrées (13 avec le registre) à 6. Les vues, leurs identifiants et
+// V(id,btn) ne changent pas : les anciens boutons restent dans #sbnEco, masqués par le CSS.
+var ECO_GROUPS=[
+  {k:'vue',l:'Vue d\'ensemble',ic:'eco-overview',v:[['eco-overview','Aperçu'],['eco-trends','Tendances']]},
+  {k:'ent',l:'Entreprises',ic:'eco-companies',v:[['eco-registre','Registre'],['eco-companies','Répertoire local'],['eco-tourisme','Tourisme'],['eco-sectors','Secteurs']]},
+  {k:'muni',l:'Municipalités',ic:'eco-muni',v:[['eco-muni','Municipalités'],['eco-demo','Portrait démographique']]},
+  {k:'vie',l:'Milieu de vie',ic:'eco-housing',v:[['eco-housing','Logements et garderies']]},
+  {k:'emploi',l:'Emploi',ic:'eco-mainoeuvre',v:[['eco-mainoeuvre','Main-d\'œuvre'],['eco-lgp','Portrait industriel']]},
+  {k:'ml',l:'Maillages',ic:'eco-ml',v:[['eco-ml','Maillages']]}
+];
+function niOf(id){var r=null;document.querySelectorAll('#sbnEco .ni:not(.ni-grp)').forEach(function(b){if((b.getAttribute('onclick')||'').indexOf("'"+id+"'")>-1)r=b;});return r;}
+function grpOf(id){for(var i=0;i<ECO_GROUPS.length;i++)for(var j=0;j<ECO_GROUPS[i].v.length;j++)if(ECO_GROUPS[i].v[j][0]===id)return ECO_GROUPS[i];return null;}
+function grpViews(g){return g.v.filter(function(x){return !!document.getElementById('view-'+x[0]);});}
+function G(k){var g=ECO_GROUPS.filter(function(x){return x.k===k;})[0];if(!g)return;var vs=grpViews(g);if(!vs.length)return;V(vs[0][0],niOf(vs[0][0]));}
+function syncGroup(id){
+  var sub=document.getElementById('ecoSub');if(!sub)return;
+  var g=grpOf(id);
+  document.querySelectorAll('.ni-grp').forEach(function(b){b.classList.toggle('active',!!g&&b.getAttribute('data-grp')===g.k);});
+  var vs=g?grpViews(g):[];
+  if(vs.length<2){sub.classList.remove('on');sub.innerHTML='';return;}
+  sub.innerHTML=vs.map(function(x){return '<button class="sn'+(x[0]===id?' active':'')+'" role="tab" aria-selected="'+(x[0]===id)+'" onclick="V(\''+x[0]+'\',niOf(\''+x[0]+'\'))">'+x[1]+'</button>';}).join('');
+  sub.classList.add('on');
+}
+(function(){
+  var nav=document.getElementById('sbnEco');if(!nav)return;
+  var first=nav.querySelector('.ni');
+  ECO_GROUPS.forEach(function(g){
+    var b=document.createElement('button');b.className='ni ni-grp';b.setAttribute('data-grp',g.k);b.setAttribute('onclick',"G('"+g.k+"')");
+    var src=niOf(g.ic);var ic=src?src.querySelector('.ni-icon'):null;
+    b.innerHTML=(ic?ic.outerHTML:'<div class="ni-icon"></div>')+g.l;
+    nav.insertBefore(b,first);
+  });
+  var V_base=V;
+  V=function(id,btn){V_base(id,btn);syncGroup(id);};
+  syncGroup('eco-overview');
+})();
 
 // ─── RENDER ALL ───
 function renderAll(){

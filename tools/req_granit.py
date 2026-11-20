@@ -247,7 +247,9 @@ def main():
     # Libellés et statut actif
     for e in ent.values():
         e["statut_lib"] = lib(e["statut"], "STAT_IMMAT", "COD_STAT_IMMAT")
-        e["forme_lib"] = lib(e["forme"], "FORME_JURI", "COD_FORME_JURI")
+        e["forme_lib"] = lib(e["forme"], "FORM_JURI", "FORME_JURI", "COD_FORME_JURI")
+        e["cae_lib"] = (lib(e["cae"], "ACT_ECON") or lib(e["cae"].lstrip("0"), "ACT_ECON")
+                        or lib(e["cae"].zfill(4), "ACT_ECON"))
         e["emp_lib"] = lib(e["emp"], "INTVAL_EMPLO", "COD_INTVAL_EMPLO_QUE", "INTVAL_EMPLO_QUE")
         e["actif"] = e["statut"].upper() == "IM"
         if "etablissements" in e:
@@ -263,7 +265,7 @@ def main():
                    "Données Québec, extraction du %s. Licence CC BY-NC-SA 4.0. Renseignements déclarés "
                    "par les entreprises; adresses des personnes physiques absentes du jeu de données." % jour)
     actifs = sorted((e for e in ent.values() if e["actif"]), key=lambda e: (e["muni"], e.get("nom", "")))
-    champs = ["neq", "nom", "muni", "cp", "rattachement", "forme", "forme_lib", "cae", "cae_desc",
+    champs = ["neq", "nom", "muni", "cp", "rattachement", "forme", "forme_lib", "cae", "cae_lib", "cae_desc",
               "emp", "emp_lib", "immat", "etablissements", "autres_noms"]
     json.dump({"_source": attribution, "extraction": jour, "n": len(actifs),
                "entreprises": [{k: e[k] for k in champs if e.get(k)} for e in actifs]},
@@ -275,8 +277,8 @@ def main():
               "par_municipalite": {m: sum(1 for e in actifs if e["muni"] == m) for m in MUNIS},
               "par_rattachement": dict(Counter(e["rattachement"] for e in actifs)),
               "par_forme_juridique": dict(Counter(e["forme_lib"] or e["forme"] for e in actifs).most_common()),
-              "par_tranche_employes": dict(Counter(e["emp_lib"] or e["emp"] or "non déclaré" for e in actifs).most_common()),
-              "par_activite_cae": dict(Counter((e["cae_desc"] or e["cae"] or "non déclaré") for e in actifs).most_common(60)),
+              "par_tranche_employes": dict(Counter(e["emp_lib"] or e["emp"] or "Non déclaré" for e in actifs).most_common()),
+              "par_activite_cae": dict(Counter((e["cae_lib"] or e["cae"] or "Non déclaré") for e in actifs).most_common(60)),
               "immatriculations_par_annee": dict(sorted(Counter(e["immat"][:4] for e in actifs if e["immat"][:4] >= "2000").items()))}
     json.dump(resume, open(os.path.join(out, "resume.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
@@ -305,6 +307,8 @@ def main():
     diag.append("Actives par municipalité : %s" % resume["par_municipalite"])
     sans_nom = sum(1 for e in actifs if not e.get("nom"))
     diag.append("Actives sans nom apparié : %d sur %d" % (sans_nom, len(actifs)))
+    diag.append("Actives sans code CAE : %d ; avec code mais sans libellé : %d" % (
+        sum(1 for e in actifs if not e["cae"]), sum(1 for e in actifs if e["cae"] and not e["cae_lib"])))
     open(os.path.join(out, "diagnostic.txt"), "w", encoding="utf-8").write("\n".join(diag) + "\n")
     print("\n".join(diag))
     if not ent:

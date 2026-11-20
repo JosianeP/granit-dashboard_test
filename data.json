@@ -1,5 +1,5 @@
 {
-  "_sources": "Population et superficie : Décret de population 1499-2025 (MAMH, fév. 2026) · Revenus : Recensement de la population 2021 (Statistique Canada, division de recensement Le Granit) · Marché du travail (benchmarks QC) : ISQ, Marché du travail dans les MRC, bilan 2024 · Indice de vitalité économique : ISQ/MAMH, édition 2025 · Affectation et zone agricole : PDZA et schéma d'aménagement, MRC du Granit · Entreprises : SDE du Granit, L'Écho de Frontenac, Affaires Mégantic, registres publics. Les emplois par secteur, les valeurs de permis, les conversions et les scores de déterminants de santé sont des ESTIMATIONS analytiques à valider auprès des sources primaires (ISQ table MRC, services d'urbanisme, CIUSSS de l'Estrie-CHUS, INSPQ). · Portrait industriel (656 établissements, 5 245 emplois, 733 M$ PIB, 2 G$ ventes) : LGP, « Portrait économique sectoriel et pistes de collaboration inter-MRC », Table des MRC de l'Estrie, avril 2026. · Tourisme et commerces : Tourisme Région de Mégantic, Cantons-de-l'Est, Destination Lac-Mégantic, L'Écho de Frontenac, Les Affaires (2021-2026). · Santé : DSP de l'Estrie — Faits saillants RLS du Granit (avril 2025) et Tableau de bord – Santé publique Estrie (santeestrie.qc.ca). Projections de population : ISQ, série 2025 (base Recensement 2021). Portrait municipal : Tableau de bord du développement des municipalités de l'Estrie (rec. 2021). · Portrait démographique municipal (structure par âge, projections) : ISQ — Estimations série 2026 et projections série 2025 (scénario Référence A2025, base Recensement 2021), tableaux par groupe d'âge, MRC/RLS du Granit.. · Plan climat : MRC du Granit, Inventaire collectif des émissions de gaz à effet de serre, version préliminaire v2, année de référence 2024 (préparé par Daria Gouzou et Victor Lours, révisé par Antoine Chenail, 20 février 2026), appuyé sur le Guide méthodologique du MELCCFP 2025, le Rapport d'inventaire national d'ECCC, les données Hydro-Québec par MRC et municipalité, la SAAQ, l'ISQ et les chiffriers de collecte remplis par les 19 municipalités.",
+  "_sources": "Population et superficie : Décret de population 1499-2025 (MAMH, fév. 2026) · Revenus : Recensement de la population 2021 (Statistique Canada, division de recensement Le Granit) · Marché du travail (benchmarks QC) : ISQ, Marché du travail dans les MRC, bilan 2024 · Indice de vitalité économique : ISQ/MAMH, édition 2025 · Affectation et zone agricole : PDZA et schéma d'aménagement, MRC du Granit · Entreprises : SDE du Granit, L'Écho de Frontenac, Affaires Mégantic, registres publics. Les emplois par secteur, les valeurs de permis, les conversions et les scores de déterminants de santé sont des ESTIMATIONS analytiques à valider auprès des sources primaires (ISQ table MRC, services d'urbanisme, CIUSSS de l'Estrie-CHUS, INSPQ). · Portrait industriel (656 établissements, 5 245 emplois, 733 M$ PIB, 2 G$ ventes) : LGP, « Portrait économique sectoriel et pistes de collaboration inter-MRC », Table des MRC de l'Estrie, avril 2026. · Tourisme et commerces : Tourisme Région de Mégantic, Cantons-de-l'Est, Destination Lac-Mégantic, L'Écho de Frontenac, Les Affaires (2021-2026). · Santé : DSP de l'Estrie - Faits saillants RLS du Granit (avril 2025) et Tableau de bord – Santé publique Estrie (santeestrie.qc.ca). Projections de population : ISQ, série 2025 (base Recensement 2021). Portrait municipal : Tableau de bord du développement des municipalités de l'Estrie (rec. 2021). · Portrait démographique municipal (structure par âge, projections) : ISQ - Estimations série 2026 et projections série 2025 (scénario Référence A2025, base Recensement 2021), tableaux par groupe d'âge, MRC/RLS du Granit.. · Plan climat : MRC du Granit, Inventaire collectif des émissions de gaz à effet de serre, version préliminaire v2, année de référence 2024 (préparé par Daria Gouzou et Victor Lours, révisé par Antoine Chenail, 20 février 2026), appuyé sur le Guide méthodologique du MELCCFP 2025, le Rapport d'inventaire national d'ECCC, les données Hydro-Québec par MRC et municipalité, la SAAQ, l'ISQ et les chiffriers de collecte remplis par les 19 municipalités.",
   "meta": {
     "quarter": "T2 2026",
     "updatedBy": "MRC du Granit - Conseil scientifique & Développement économique",
@@ -24,7 +24,7 @@
       "valeur_fonciere_moy_unifamiliale_2026": 293135,
       "permis_batir_2024_kdollars": 54806,
       "superficie_terrestre_km2_2026": 2640.2,
-      "source": "ISQ - Principaux indicateurs MRC du Granit; Recensement 2021; Decret 1499-2025"
+      "source": "ISQ - Principaux indicateurs MRC du Granit; Recensement 2021; Décret 1499-2025"
     }
   },
   "kpis": [
@@ -100,7 +100,7 @@
       "dir": "up",
       "cat": "primaire",
       "icon": "s4",
-      "desc": "Energex : plus grande usine de granules en Amerique du Nord (120 000 t/an). Energie du Granit (EDG) : parc éolien Le Granit, 24,5 MW, 1,75 M$ redevances 2026 a 16 municipalités."
+      "desc": "Energex : plus grande usine de granules en Amérique du Nord (120 000 t/an). Énergie du Granit (EDG) : parc éolien Le Granit, 24,5 MW, 1,75 M$ redevances 2026 à 16 municipalités."
     },
     {
       "id": "s5",
@@ -110,7 +110,7 @@
       "dir": "up",
       "cat": "primaire",
       "icon": "s5",
-      "desc": "2e au QC en erablières (19 455 ha, 62,3 % de l'Estrie). Érablière-école Saint-Romain (15 000 entailles bio), CFP Le Granit, L'Erable a son meilleur, Marché Ruisseau d'Or (Piopolis)."
+      "desc": "2e au QC en erablières (19 455 ha, 62,3 % de l'Estrie). Érablière-école Saint-Romain (15 000 entailles bio), CFP Le Granit, L'Érable a son meilleur, Marché Ruisseau d'Or (Piopolis)."
     },
     {
       "id": "s6",
@@ -120,7 +120,7 @@
       "dir": "up",
       "cat": "primaire",
       "icon": "s6",
-      "desc": "Fromagerie La Chaudière (Lac-Mégantic), La Meunerie Milanaise (Milan, leader farine bio canadienne), Coop agricole Lac-Mégantic-Lambton. Production laitiere dominante, 145 078 ha de zone agricole."
+      "desc": "Fromagerie La Chaudière (Lac-Mégantic), La Meunerie Milanaise (Milan, leader farine bio canadienne), Coop agricole Lac-Mégantic-Lambton. Production laitière dominante, 145 078 ha de zone agricole."
     },
     {
       "id": "s7",
@@ -130,7 +130,7 @@
       "dir": "up",
       "cat": "manufacturier",
       "icon": "s7",
-      "desc": "ULC (pieces mecano-soudees, 15 000 pi², equipements forestiers/agricoles). Royer (chaussures de sécurité, marché nord-americain)."
+      "desc": "ULC (pièces mécano-soudees, 15 000 pi², équipements forestiers/agricoles). Royer (chaussures de sécurité, marché nord-americain)."
     },
     {
       "id": "s8",
@@ -201,7 +201,7 @@
       "sector": "Bois, panneaux & meubles",
       "jobs": 400,
       "status": "actif",
-      "desc": "Filiale de Sonae Industria (Portugal). Plus grande usine de panneaux de particules en Amerique du Nord. Certifiée ISO 9001 et 14001. Fournisseur principal de Bestar. Fibres 100 % recyclees.",
+      "desc": "Filiale de Sonae Industria (Portugal). Plus grande usine de panneaux de particules en Amérique du Nord. Certifiée ISO 9001 et 14001. Fournisseur principal de Bestar. Fibres 100 % recyclées.",
       "src": "eco"
     },
     {
@@ -211,7 +211,7 @@
       "sector": "Bois, panneaux & meubles",
       "jobs": 222,
       "status": "reprise",
-      "desc": "Reprise confirmee 13 mai 2026 (Cour superieure). Nouveaux propriétaires : Mario Aube, MB Capital, Cozey. 157 emp. syndigues rappeles. Conv. coll. prolongee jusqu'en juillet 2031. Fondee en 1948.",
+      "desc": "Reprise confirmée 13 mai 2026 (Cour supérieure). Nouveaux propriétaires : Mario Aube, MB Capital, Cozey. 157 emp. syndiqués rappelés. Conv. coll. prolongée jusqu'en juillet 2031. Fondée en 1948.",
       "src": "eco"
     },
     {
@@ -221,7 +221,7 @@
       "sector": "Bois, panneaux & meubles",
       "jobs": 150,
       "status": "actif",
-      "desc": "Fondee en 1913. Membre Masonite International. Panneaux contre-plaque et portes architecturales. 85 % exportes aux USA. Recycle l'eau du Lac-Mégantic.",
+      "desc": "Fondée en 1913. Membre Masonite International. Panneaux contre-plaqué et portes architecturales. 85 % exportés aux USA. Recycle l'eau du Lac-Mégantic.",
       "src": "eco"
     },
     {
@@ -231,7 +231,7 @@
       "sector": "Bois, panneaux & meubles",
       "jobs": 100,
       "status": "actif",
-      "desc": "Division Masonite. Portes préhangées résidentielles et commerciales. Complémentaire a IMM dans la filiere bois de Lac-Mégantic.",
+      "desc": "Division Masonite. Portes préhangées résidentielles et commerciales. Complémentaire à IMM dans la filière bois de Lac-Mégantic.",
       "src": "eco"
     },
     {
@@ -241,7 +241,7 @@
       "sector": "Bois, panneaux & meubles",
       "jobs": 120,
       "status": "actif",
-      "desc": "Groupe intégré : sciage, tournage du bois et Panolite (premier manufacturier canadien de panneaux legers industriels). Produits exportes en Amerique du Nord.",
+      "desc": "Groupe intégré : sciage, tournage du bois et Panolite (premier manufacturier canadien de panneaux légers industriels). Produits exportés en Amérique du Nord.",
       "src": "eco"
     },
     {
@@ -251,7 +251,7 @@
       "sector": "Bois, panneaux & meubles",
       "jobs": 80,
       "status": "actif",
-      "desc": "Fabrication de placages de bois franc (merisier, bouleau, erable). Fournisseur de l'industrie du meuble et de la construction.",
+      "desc": "Fabrication de placages de bois franc (merisier, bouleau, érable). Fournisseur de l'industrie du meuble et de la construction.",
       "src": "eco"
     },
     {
@@ -271,7 +271,7 @@
       "sector": "Énergie & granules",
       "jobs": 33,
       "status": "actif",
-      "desc": "Plus grande usine de granules de bois en Amerique du Nord (120 000 tonnes/an). Valorise les residus forestiers des scieries régionales.",
+      "desc": "Plus grande usine de granules de bois en Amérique du Nord (120 000 tonnes/an). Valorise les résidus forestiers des scieries régionales.",
       "src": "eco"
     },
     {
@@ -281,7 +281,7 @@
       "sector": "Produits métalliques",
       "jobs": 45,
       "status": "actif",
-      "desc": "Pieces mecano-soudees pour industriels. Usine 15 000 pi². Machinerie forestière et agricole. Depositaire produits Hakmet. ~200 remorques/an.",
+      "desc": "Pièces mécano-soudees pour industriels. Usine 15 000 pi². Machinerie forestière et agricole. Dépositaire produits Hakmet. ~200 remorques/an.",
       "src": "eco"
     },
     {
@@ -311,7 +311,7 @@
       "sector": "Acéricole",
       "jobs": 18,
       "status": "actif",
-      "desc": "Production de boissons alcoolisees à l'erable. Exporte en Chine. Valorisation innovante du sirop d'erable québécois.",
+      "desc": "Production de boissons alcoolisées à l'érable. Exporte en Chine. Valorisation innovante du sirop d'érable québécois.",
       "src": "eco"
     },
     {
@@ -331,7 +331,7 @@
       "sector": "Services publics & éducation",
       "jobs": 420,
       "status": "actif",
-      "desc": "Plus grand employeur public de la MRC. Hopital, soins à domicile, CLSC, soins longue durée. Premier maillon des services de proximité en santé.",
+      "desc": "Plus grand employeur public de la MRC. Hôpital, soins à domicile, CLSC, soins longue durée. Premier maillon des services de proximité en santé.",
       "src": "eco"
     },
     {
@@ -351,7 +351,7 @@
       "sector": "Services publics & éducation",
       "jobs": 85,
       "status": "actif",
-      "desc": "Centre formation professionnelle. Acériculture, soudure, mecanique. Entente Cégep de Sherbrooke. Formation alternance travail-etudes. Partenaire Érablière-école Saint-Romain.",
+      "desc": "Centre formation professionnelle. Acériculture, soudure, mécanique. Entente Cégep de Sherbrooke. Formation alternance travail-etudes. Partenaire Érablière-école Saint-Romain.",
       "src": "eco"
     },
     {
@@ -361,7 +361,7 @@
       "sector": "Services publics & éducation",
       "jobs": 140,
       "status": "actif",
-      "desc": "Administration municipale. Parc industriel (21 industries + 22 services). Voie contournement 2023. Projet microreseau electrique. 1re ville francophone certifiée Cittaslow en Ameriques.",
+      "desc": "Administration municipale. Parc industriel (21 industries + 22 services). Voie contournement 2023. Projet microreseau électrique. 1re ville francophone certifiée Cittaslow en Amériques.",
       "src": "eco"
     },
     {
@@ -371,7 +371,7 @@
       "sector": "Services publics & éducation",
       "jobs": 95,
       "status": "actif",
-      "desc": "Administration régionale. Développement économique, aménagement, forêt, environnement, culture, Plan climat, MADA. Accès Entreprise Québec. 5 parcs industriels geres.",
+      "desc": "Administration régionale. Développement économique, aménagement, forêt, environnement, culture, Plan climat, MADA. Accès Entreprise Québec. 5 parcs industriels gérés.",
       "src": "eco"
     },
     {
@@ -381,7 +381,7 @@
       "sector": "Services publics & éducation",
       "jobs": 90,
       "status": "actif",
-      "desc": "OSBL desservant toutes les 19 municipalités. 70+ préposés d'aide à domicile sillonnent la région. Maintien à domicile des aînés et personnes vulnerables. Acteur cle de la santé communautaire — sadgranit.com",
+      "desc": "OSBL desservant toutes les 19 municipalités. 70+ préposés d'aide à domicile sillonnent la région. Maintien à domicile des aînés et personnes vulnérables. Acteur clé de la santé communautaire - sadgranit.com",
       "src": "eco"
     },
     {
@@ -401,7 +401,7 @@
       "sector": "Commerce de détail & services",
       "jobs": 18,
       "status": "actif",
-      "desc": "Societe d'aide développement des collectivites. FLI, FLS, mentorat, virage numérique, innovation. Partenaire Place de l'industrie inc.",
+      "desc": "Société d'aide développement des collectivités. FLI, FLS, mentorat, virage numérique, innovation. Partenaire Place de l'industrie inc.",
       "src": "eco"
     },
     {
@@ -461,7 +461,7 @@
       "sector": "Granit & minéraux",
       "jobs": 55,
       "status": "expansion",
-      "desc": "Comptoirs et surfaces haut de gamme (granit, marbre, quartz, porcelaine). Pret IQ 1,5 M$ en 2017. Laser guidage, scie jet d'eau 5 axes.",
+      "desc": "Comptoirs et surfaces haut de gamme (granit, marbre, quartz, porcelaine). Prêt IQ 1,5 M$ en 2017. Laser guidage, scie jet d'eau 5 axes.",
       "src": "eco"
     },
     {
@@ -511,7 +511,7 @@
       "sector": "Services publics & éducation",
       "jobs": 5,
       "status": "actif",
-      "desc": "Comité de développement local gérant le parc industriel de Lac-Drolet. Superficie totale 750 000 m². Conge de taxes foncieres. Cite comme modele.",
+      "desc": "Comité de développement local gérant le parc industriel de Lac-Drolet. Superficie totale 750 000 m². Congé de taxes foncières. Cite comme modèle.",
       "src": "eco"
     },
     {
@@ -521,7 +521,7 @@
       "sector": "Textile & vêtements",
       "jobs": 105,
       "status": "actif",
-      "desc": "Fondée en 1980, manufacturier intégré et syndiqué de vêtements (design, taillage, couture, décoration, expédition). Principal employeur de Lac-Drolet (~110-130 emp.). Marques Ethica (coton bio, polyester recyclé), Initial, Jameo. Marchés promotionnel et récréotouristique (Canada/USA). Repris en 2017 par Julia Gagnon et Sébastien Jacques. Grand employeur industriel — Fil/Textile/Habillement, 100-249 (LGP 2026). 672, rue du Parc.",
+      "desc": "Fondée en 1980, manufacturier intégré et syndiqué de vêtements (design, taillage, couture, décoration, expédition). Principal employeur de Lac-Drolet (~110-130 emp.). Marques Ethica (coton bio, polyester recyclé), Initial, Jameo. Marchés promotionnel et récréotouristique (Canada/USA). Repris en 2017 par Julia Gagnon et Sébastien Jacques. Grand employeur industriel - Fil/Textile/Habillement, 100-249 (LGP 2026). 672, rue du Parc.",
       "src": "eco"
     },
     {
@@ -531,7 +531,7 @@
       "sector": "Forêt & scierie",
       "jobs": 75,
       "status": "actif",
-      "desc": "Scierie et bois d'œuvre depuis plus de 50 ans. Vallee frontaliere Maine. Valorisation des forêts de la zone frontaliere. fontaine-lumber.com",
+      "desc": "Scierie et bois d'œuvre depuis plus de 50 ans. Vallée frontalière Maine. Valorisation des forêts de la zone frontalière. fontaine-lumber.com",
       "src": "eco"
     },
     {
@@ -551,7 +551,7 @@
       "sector": "Agroalimentaire",
       "jobs": 40,
       "status": "actif",
-      "desc": "Fondee 1982. Chef de file farine biologique au Canada. Cereales biologiques, produits a valeur ajoutee. Client Premiere Moisson. Export QC/ON/Maritime/France/Italie. ~10 000 t cereales/an.",
+      "desc": "Fondée 1982. Chef de file farine biologique au Canada. Céréales biologiques, produits à valeur ajoutée. Client Première Moisson. Export QC/ON/Maritime/France/Italie. ~10 000 t céréales/an.",
       "src": "eco"
     },
     {
@@ -561,7 +561,7 @@
       "sector": "Tourisme & plein air",
       "jobs": 45,
       "status": "actif",
-      "desc": "Parc national (SEPAQ) + observatoire astronomique. 1re Reserve internationale de ciel etoile en Amerique du Nord. Tourisme astral de renommee mondiale.",
+      "desc": "Parc national (SEPAQ) + observatoire astronomique. 1re Réserve internationale de ciel étoilé en Amérique du Nord. Tourisme astral de renommée mondiale.",
       "src": "eco"
     },
     {
@@ -571,7 +571,7 @@
       "sector": "Énergie & granules",
       "jobs": 8,
       "status": "actif",
-      "desc": "Organisme communautaire propriétaire du Parc éolien Le Granit. 12 eoliennes, 24,5 MW. Redevances 1,75 M$ a 16 municipalités partenaires en 2026 (11e exercice financier).",
+      "desc": "Organisme communautaire propriétaire du Parc éolien Le Granit. 12 éoliennes, 24,5 MW. Redevances 1,75 M$ à 16 municipalités partenaires en 2026 (11e exercice financier).",
       "src": "eco"
     },
     {
@@ -581,7 +581,7 @@
       "sector": "Acéricole",
       "jobs": 15,
       "status": "actif",
-      "desc": "15 000 entailles certifiées biologiques. Comité développement Saint-Romain. Formation pratique CFP Le Granit (alternance travail-etudes). Modele provincial acériculture durable.",
+      "desc": "15 000 entailles certifiées biologiques. Comité développement Saint-Romain. Formation pratique CFP Le Granit (alternance travail-etudes). Modèle provincial acériculture durable.",
       "src": "eco"
     },
     {
@@ -591,7 +591,7 @@
       "sector": "Acéricole",
       "jobs": 6,
       "status": "actif",
-      "desc": "Productrice Melissa Nadeau. Acériculture biologique certifiée, marché public, bistro gastronomique. Rive du Lac Mégantic. Modele de diversification économique rurale.",
+      "desc": "Productrice Melissa Nadeau. Acériculture biologique certifiée, marché public, bistro gastronomique. Rive du Lac Mégantic. Modèle de diversification économique rurale.",
       "src": "eco"
     },
     {
@@ -611,7 +611,7 @@
       "sector": "Services publics & éducation",
       "jobs": 4,
       "status": "actif",
-      "desc": "Parc industriel ~112 000 m². Aqueduc, egout, electricite, internet haute-vitesse. Rabais fiscaux + programmes financement. A 52 km de la frontiere US.",
+      "desc": "Parc industriel ~112 000 m². Aqueduc, égout, électricité, internet haute-vitesse. Rabais fiscaux + programmes financement. A 52 km de la frontière US.",
       "src": "eco"
     },
     {
@@ -621,7 +621,7 @@
       "sector": "Forêt & scierie",
       "jobs": 25,
       "status": "actif",
-      "desc": "Scierie bois franc fondee en 1934 par Adjutor Bernier. 3e generation. Specialiste chene rouge, frene, erable shipping dry. Exporte localement et internationalement. Maintenant sous Kennebec Lumber CO (famille Carrier, Maine). 229, 2e avenue, Lambton. — bernierboisfranc.com (confirme L'Echo de Frontenac)",
+      "desc": "Scierie bois franc fondée en 1934 par Adjutor Bernier. 3e génération. Specialiste chêne rouge, frêne, érable shipping dry. Exporte localement et internationalement. Maintenant sous Kennebec Lumber CO (famille Carrier, Maine). 229, 2e avenue, Lambton. - bernierboisfranc.com (confirme L'Écho de Frontenac)",
       "src": "eco"
     },
     {
@@ -631,7 +631,7 @@
       "sector": "Bois, panneaux & meubles",
       "jobs": 15,
       "status": "actif",
-      "desc": "Manufacturier de portes et fenetres établi a Frontenac. Recrutement actif confirme (L'Echo de Frontenac 2024). 2e municipalité en population de la MRC (1 857 hab.). Emplois estimes — à valider.",
+      "desc": "Manufacturier de portes et fenêtres établi a Frontenac. Recrutement actif confirme (L'Écho de Frontenac 2024). 2e municipalité en population de la MRC (1 857 hab.). Emplois estimés - à valider.",
       "src": "eco"
     },
     {
@@ -641,7 +641,7 @@
       "sector": "Services publics & éducation",
       "jobs": 15,
       "status": "actif",
-      "desc": "Administration et voirie municipale. Comité de développement actif (sondage planification strategique 2026). Lac Whitton, McKenzie et Orignal — potentiel ecotourisme. 1 415 hab. Partenaire Bains de Nature MRC.",
+      "desc": "Administration et voirie municipale. Comité de développement actif (sondage planification stratégique 2026). Lac Whitton, McKenzie et Orignal - potentiel écotourisme. 1 415 hab. Partenaire Bains de Nature MRC.",
       "src": "eco"
     },
     {
@@ -671,7 +671,7 @@
       "sector": "Acéricole",
       "jobs": 10,
       "status": "actif",
-      "desc": "910 hab. Fondee 1870. Territoire riche en terres fertiles, forestières et carrieres de granit historiques (MRC confirme). Acériculture, forêt. Partenaire éolien EDG. A documenter.",
+      "desc": "910 hab. Fondée 1870. Territoire riche en terres fertiles, forestières et carrières de granit historiques (MRC confirme). Acériculture, forêt. Partenaire éolien EDG. A documenter.",
       "src": "eco"
     },
     {
@@ -691,7 +691,7 @@
       "sector": "Agroalimentaire",
       "jobs": 8,
       "status": "actif",
-      "desc": "1 063 hab. Canton a tradition anglophone. Projet de vitalisation FRR-V4 (MAMH 492 000$, avec Val-Racine et Piopolis — MRC confirme 2025). Agriculture. A documenter.",
+      "desc": "1 063 hab. Canton a tradition anglophone. Projet de vitalisation FRR-V4 (MAMH 492 000$, avec Val-Racine et Piopolis - MRC confirme 2025). Agriculture. A documenter.",
       "src": "eco"
     },
     {
@@ -701,7 +701,7 @@
       "sector": "Énergie & granules",
       "jobs": 6,
       "status": "actif",
-      "desc": "522 hab. Siège du parc éolien Le Granit (EDG). Économie : forêt, acériculture (1 million d'erables a sucre sur le territoire — MRC confirme), chasse. Beaucoup de Bellarminois travaillent a Saint-Gedeon-de-Beauce.",
+      "desc": "522 hab. Siège du parc éolien Le Granit (EDG). Économie : forêt, acériculture (1 million d'érables a sucre sur le territoire - MRC confirme), chasse. Beaucoup de Bellarminois travaillent a Saint-Gedeon-de-Beauce.",
       "src": "eco"
     },
     {
@@ -761,7 +761,7 @@
       "sector": "Agroalimentaire",
       "jobs": 8,
       "status": "actif",
-      "desc": "Producteur agroalimentaire local. Membre «Produit étoile du Granit» — programme MRC du Granit et Créateurs de saveurs Cantons-de-l'Est. 347, Rte 161 S, Stornoway. (L'Écho de Frontenac 2020)",
+      "desc": "Producteur agroalimentaire local. Membre «Produit étoile du Granit» - programme MRC du Granit et Créateurs de saveurs Cantons-de-l'Est. 347, Rte 161 S, Stornoway. (L'Écho de Frontenac 2020)",
       "src": "eco"
     },
     {
@@ -781,7 +781,7 @@
       "sector": "Acéricole",
       "jobs": 8,
       "status": "actif",
-      "desc": "Production acéricole. Producteur «Produit étoile du Granit» — programme MRC du Granit. Vente directe, circuits courts. Marston. (L'Écho de Frontenac 2020)",
+      "desc": "Production acéricole. Producteur «Produit étoile du Granit» - programme MRC du Granit. Vente directe, circuits courts. Marston. (L'Écho de Frontenac 2020)",
       "src": "eco"
     },
     {
@@ -821,7 +821,7 @@
       "sector": "Produits métalliques",
       "jobs": 150,
       "status": "actif",
-      "desc": "Fondée en 1978 par Donald Lapierre. Chef de file nord-américain des équipements acéricoles : évaporateurs (Ouragan Force-5, Turbo 3), concentrateurs, extracteurs de sève, réservoirs inox, tubulures. 200+ employés sur 3 usines (St-Ludger + Waterloo). Découpe laser, pliage numérique, soudure inox. Réseau de vente QC/Canada/USA. Grand employeur industriel — Fab. de machines, 100-249 (LGP 2026). 99, rue de l'Escale.",
+      "desc": "Fondée en 1978 par Donald Lapierre. Chef de file nord-américain des équipements acéricoles : évaporateurs (Ouragan Force-5, Turbo 3), concentrateurs, extracteurs de sève, réservoirs inox, tubulures. 200+ employés sur 3 usines (St-Ludger + Waterloo). Découpe laser, pliage numérique, soudure inox. Réseau de vente QC/Canada/USA. Grand employeur industriel - Fab. de machines, 100-249 (LGP 2026). 99, rue de l'Escale.",
       "src": "eco"
     },
     {
@@ -1642,7 +1642,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Entreprise de service — Commerces et services. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Entreprise de service - Commerces et services. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t002",
@@ -1652,7 +1652,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Plein air été. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Plein air été. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t003",
@@ -1662,7 +1662,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Artisanat et métier d'art. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Artisanat et métier d'art. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t004",
@@ -1672,7 +1672,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Commerces et services. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Commerces et services. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t005",
@@ -1682,7 +1682,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Hôtel et auberge — Hôtel, motel et auberge. Membre Tourisme Région de Mégantic 2026 · 5 chambres."
+      "desc": "Hôtel et auberge - Hôtel, motel et auberge. Membre Tourisme Région de Mégantic 2026 · 5 chambres."
     },
     {
       "id": "t006",
@@ -1692,7 +1692,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Commerces et services. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Commerces et services. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t007",
@@ -1702,7 +1702,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t008",
@@ -1712,7 +1712,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t009",
@@ -1722,7 +1722,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Commerces et services. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Commerces et services. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t010",
@@ -1732,7 +1732,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Entreprise de service — Commerces et services. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Entreprise de service - Commerces et services. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t011",
@@ -1742,7 +1742,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Épicerie et magasin général. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Épicerie et magasin général. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t012",
@@ -1752,7 +1752,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Centre d'interprétation, musée, exposition. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Centre d'interprétation, musée, exposition. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t013",
@@ -1762,7 +1762,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Restauration — Restaurant. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Restauration - Restaurant. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t014",
@@ -1772,7 +1772,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Événements. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Événements. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t015",
@@ -1782,7 +1782,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Artisanat et métier d'art. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Artisanat et métier d'art. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t016",
@@ -1792,7 +1792,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Commerces et services. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Commerces et services. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t017",
@@ -1802,7 +1802,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t018",
@@ -1812,7 +1812,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Hôtel et auberge — Hôtel, motel et auberge. Membre Tourisme Région de Mégantic 2026 · 16 chambres."
+      "desc": "Hôtel et auberge - Hôtel, motel et auberge. Membre Tourisme Région de Mégantic 2026 · 16 chambres."
     },
     {
       "id": "t019",
@@ -1822,7 +1822,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Commerces et services. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Commerces et services. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t020",
@@ -1832,7 +1832,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Événements. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Événements. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t021",
@@ -1842,7 +1842,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Gîte et B&B — Chalet et résidence de tourisme. Membre Tourisme Région de Mégantic 2026 · 4 ch. (gîte)."
+      "desc": "Gîte et B&B - Chalet et résidence de tourisme. Membre Tourisme Région de Mégantic 2026 · 4 ch. (gîte)."
     },
     {
       "id": "t022",
@@ -1852,7 +1852,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Artisanat et métier d'art. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Artisanat et métier d'art. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t023",
@@ -1882,7 +1882,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Restauration — Restaurant. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Restauration - Restaurant. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t026",
@@ -1892,7 +1892,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Artisanat et métier d'art. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Artisanat et métier d'art. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t027",
@@ -1902,7 +1902,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Gîte et B&B — Gîte / B&B. Membre Tourisme Région de Mégantic 2026 · 3 ch. (gîte)."
+      "desc": "Gîte et B&B - Gîte / B&B. Membre Tourisme Région de Mégantic 2026 · 3 ch. (gîte)."
     },
     {
       "id": "t028",
@@ -1922,7 +1922,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Hôtel et auberge — Hôtel, motel et auberge. Membre Tourisme Région de Mégantic 2026 · 12 chambres."
+      "desc": "Hôtel et auberge - Hôtel, motel et auberge. Membre Tourisme Région de Mégantic 2026 · 12 chambres."
     },
     {
       "id": "t030",
@@ -1932,7 +1932,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t031",
@@ -1942,7 +1942,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Événements. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Événements. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t032",
@@ -1952,7 +1952,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Commerces et services. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Commerces et services. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t033",
@@ -1962,7 +1962,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Restauration — Restaurant. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Restauration - Restaurant. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t034",
@@ -1972,7 +1972,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Restauration — Restaurant. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Restauration - Restaurant. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t035",
@@ -1982,7 +1982,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Hôtel et auberge — Hôtel, motel et auberge. Membre Tourisme Région de Mégantic 2026 · 70 chambres."
+      "desc": "Hôtel et auberge - Hôtel, motel et auberge. Membre Tourisme Région de Mégantic 2026 · 70 chambres."
     },
     {
       "id": "t036",
@@ -1992,7 +1992,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Hôtel et auberge — Hôtel, motel et auberge. Membre Tourisme Région de Mégantic 2026 · 47 chambres."
+      "desc": "Hôtel et auberge - Hôtel, motel et auberge. Membre Tourisme Région de Mégantic 2026 · 47 chambres."
     },
     {
       "id": "t037",
@@ -2002,7 +2002,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Commerces et services. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Commerces et services. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t038",
@@ -2012,7 +2012,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Restauration — Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
+      "desc": "Restauration - Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t039",
@@ -2022,7 +2022,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Restauration — Restaurant. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Restauration - Restaurant. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t040",
@@ -2032,7 +2032,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Artisanat et métier d'art. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Artisanat et métier d'art. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t041",
@@ -2042,7 +2042,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Événements. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Événements. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t042",
@@ -2052,7 +2052,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Commerces et services. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Commerces et services. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t043",
@@ -2062,7 +2062,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Restauration — Restaurant. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Restauration - Restaurant. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t044",
@@ -2072,7 +2072,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Restauration — Restaurant. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Restauration - Restaurant. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t045",
@@ -2082,7 +2082,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Restauration — Restaurant. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Restauration - Restaurant. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t046",
@@ -2092,7 +2092,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Entreprise de service — Commerces et services. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Entreprise de service - Commerces et services. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t047",
@@ -2102,7 +2102,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Entreprise de service — Commerces et services. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Entreprise de service - Commerces et services. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t048",
@@ -2112,7 +2112,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Événements. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Événements. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t049",
@@ -2122,7 +2122,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Commerces et services. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Commerces et services. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t050",
@@ -2132,7 +2132,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Plein air été. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Plein air été. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t051",
@@ -2142,7 +2142,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Hôtel et auberge — Hôtel, motel et auberge. Membre Tourisme Région de Mégantic 2026 · 26 chambres."
+      "desc": "Hôtel et auberge - Hôtel, motel et auberge. Membre Tourisme Région de Mégantic 2026 · 26 chambres."
     },
     {
       "id": "t052",
@@ -2152,7 +2152,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Camping — Camping et hébergement insolite. Membre Tourisme Région de Mégantic 2026 · 270 empl. camping."
+      "desc": "Camping - Camping et hébergement insolite. Membre Tourisme Région de Mégantic 2026 · 270 empl. camping."
     },
     {
       "id": "t053",
@@ -2162,7 +2162,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Événements. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Événements. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t054",
@@ -2172,7 +2172,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Plein air été. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Plein air été. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t055",
@@ -2182,7 +2182,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Hôtel et auberge — Hôtel, motel et auberge. Membre Tourisme Région de Mégantic 2026 · 11 chambres."
+      "desc": "Hôtel et auberge - Hôtel, motel et auberge. Membre Tourisme Région de Mégantic 2026 · 11 chambres."
     },
     {
       "id": "t056",
@@ -2192,7 +2192,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Plein air été. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Plein air été. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t057",
@@ -2202,7 +2202,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Municipalité — Plein air été. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Municipalité - Plein air été. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t058",
@@ -2212,7 +2212,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Restauration — Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
+      "desc": "Restauration - Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t059",
@@ -2222,7 +2222,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t060",
@@ -2232,7 +2232,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Centre d'interprétation, musée, exposition. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Centre d'interprétation, musée, exposition. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t061",
@@ -2242,7 +2242,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Artisanat et métier d'art. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Artisanat et métier d'art. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t062",
@@ -2252,7 +2252,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Épicerie et magasin général. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Épicerie et magasin général. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t063",
@@ -2262,7 +2262,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Camping — Camping et hébergement insolite. Membre Tourisme Région de Mégantic 2026 · 30 empl. camping."
+      "desc": "Camping - Camping et hébergement insolite. Membre Tourisme Région de Mégantic 2026 · 30 empl. camping."
     },
     {
       "id": "t064",
@@ -2272,7 +2272,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Circuit et visite guidée. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Circuit et visite guidée. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t065",
@@ -2282,7 +2282,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Restauration — Restaurant. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Restauration - Restaurant. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t066",
@@ -2292,7 +2292,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Restauration — Restaurant. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Restauration - Restaurant. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t067",
@@ -2302,7 +2302,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Restauration — Restaurant. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Restauration - Restaurant. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t068",
@@ -2312,7 +2312,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Commerces et services. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Commerces et services. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t069",
@@ -2322,7 +2322,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Artisanat et métier d'art. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Artisanat et métier d'art. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t070",
@@ -2332,7 +2332,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Épicerie et magasin général. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Épicerie et magasin général. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t071",
@@ -2342,7 +2342,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Restauration — Restaurant. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Restauration - Restaurant. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t072",
@@ -2352,7 +2352,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Gîte et B&B — Gîte / B&B. Membre Tourisme Région de Mégantic 2026 · 5 ch. (gîte)."
+      "desc": "Gîte et B&B - Gîte / B&B. Membre Tourisme Région de Mégantic 2026 · 5 ch. (gîte)."
     },
     {
       "id": "t073",
@@ -2362,7 +2362,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Camping — Camping et hébergement insolite. Membre Tourisme Région de Mégantic 2026 · 14 empl. camping."
+      "desc": "Camping - Camping et hébergement insolite. Membre Tourisme Région de Mégantic 2026 · 14 empl. camping."
     },
     {
       "id": "t074",
@@ -2372,7 +2372,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Gîte et B&B — Gîte / B&B. Membre Tourisme Région de Mégantic 2026 · 4 ch. (gîte)."
+      "desc": "Gîte et B&B - Gîte / B&B. Membre Tourisme Région de Mégantic 2026 · 4 ch. (gîte)."
     },
     {
       "id": "t075",
@@ -2382,7 +2382,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t076",
@@ -2392,7 +2392,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Entreprise de service — Artisanat et métier d'art. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Entreprise de service - Artisanat et métier d'art. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t077",
@@ -2402,7 +2402,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Chalet et résidence de tourisme — Camping et hébergement insolite. Membre Tourisme Région de Mégantic 2026 · 2 chalets."
+      "desc": "Chalet et résidence de tourisme - Camping et hébergement insolite. Membre Tourisme Région de Mégantic 2026 · 2 chalets."
     },
     {
       "id": "t078",
@@ -2412,7 +2412,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Événements. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Événements. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t079",
@@ -2432,7 +2432,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Commerces et services. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Commerces et services. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t081",
@@ -2452,7 +2452,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Plein air été. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Plein air été. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t083",
@@ -2462,7 +2462,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t084",
@@ -2482,7 +2482,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Plein air été. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Plein air été. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t086",
@@ -2492,7 +2492,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t087",
@@ -2502,7 +2502,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Restauration — Restaurant. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Restauration - Restaurant. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t088",
@@ -2512,7 +2512,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Événements. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Événements. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t089",
@@ -2522,7 +2522,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Camping — Camping et hébergement insolite. Membre Tourisme Région de Mégantic 2026 · 55 empl. camping."
+      "desc": "Camping - Camping et hébergement insolite. Membre Tourisme Région de Mégantic 2026 · 55 empl. camping."
     },
     {
       "id": "t090",
@@ -2532,7 +2532,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Camping — Camping et hébergement insolite. Membre Tourisme Région de Mégantic 2026 · 55 empl. camping."
+      "desc": "Camping - Camping et hébergement insolite. Membre Tourisme Région de Mégantic 2026 · 55 empl. camping."
     },
     {
       "id": "t091",
@@ -2542,7 +2542,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Municipalité — Plein air été. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Municipalité - Plein air été. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t092",
@@ -2552,7 +2552,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Artisanat et métier d'art. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Artisanat et métier d'art. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t093",
@@ -2562,7 +2562,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Entreprise de service — Épicerie et magasin général. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Entreprise de service - Épicerie et magasin général. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t094",
@@ -2572,7 +2572,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t095",
@@ -2582,7 +2582,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Restauration — Restaurant. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Restauration - Restaurant. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t096",
@@ -2592,7 +2592,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t097",
@@ -2602,7 +2602,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Commerces et services. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Commerces et services. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t098",
@@ -2612,7 +2612,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Municipalité — Plein air hiver. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Municipalité - Plein air hiver. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t099",
@@ -2622,7 +2622,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t100",
@@ -2632,7 +2632,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Plein air été. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Plein air été. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t101",
@@ -2642,7 +2642,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Plein air hiver. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Plein air hiver. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t102",
@@ -2652,7 +2652,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Restauration — Casse-croûte et restauration rapide. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Restauration - Casse-croûte et restauration rapide. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t103",
@@ -2662,7 +2662,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Circuit et visite guidée. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Circuit et visite guidée. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t104",
@@ -2672,7 +2672,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Camping — Camping et hébergement insolite. Membre Tourisme Région de Mégantic 2026 · 47 empl. camping."
+      "desc": "Camping - Camping et hébergement insolite. Membre Tourisme Région de Mégantic 2026 · 47 empl. camping."
     },
     {
       "id": "t105",
@@ -2682,7 +2682,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Camping — Camping et hébergement insolite. Membre Tourisme Région de Mégantic 2026 · 35 empl. camping."
+      "desc": "Camping - Camping et hébergement insolite. Membre Tourisme Région de Mégantic 2026 · 35 empl. camping."
     },
     {
       "id": "t106",
@@ -2692,7 +2692,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t107",
@@ -2702,7 +2702,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t108",
@@ -2712,7 +2712,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Événements. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Événements. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t109",
@@ -2742,7 +2742,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t112",
@@ -2752,7 +2752,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Restauration — Restaurant. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Restauration - Restaurant. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t113",
@@ -2762,7 +2762,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Restauration — Restaurant. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Restauration - Restaurant. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t114",
@@ -2772,7 +2772,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Entreprise de service — Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
+      "desc": "Entreprise de service - Saveur locale (Boulangerie, pâtisserie, boucherie, distillerie, érablière, agrotourisme, etc.). Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t115",
@@ -2782,7 +2782,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Municipalité — Détente et bien-être. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Municipalité - Détente et bien-être. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t116",
@@ -2792,7 +2792,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Gîte et B&B — Gîte / B&B. Membre Tourisme Région de Mégantic 2026 · 6 ch. (gîte)."
+      "desc": "Gîte et B&B - Gîte / B&B. Membre Tourisme Région de Mégantic 2026 · 6 ch. (gîte)."
     },
     {
       "id": "t117",
@@ -2802,7 +2802,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Événements. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Événements. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t118",
@@ -2822,7 +2822,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Gîte et B&B — Gîte / B&B. Membre Tourisme Région de Mégantic 2026 · 2 ch. (gîte)."
+      "desc": "Gîte et B&B - Gîte / B&B. Membre Tourisme Région de Mégantic 2026 · 2 ch. (gîte)."
     },
     {
       "id": "t120",
@@ -2832,7 +2832,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Plein air été. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Plein air été. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t121",
@@ -2842,7 +2842,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Plein air été. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Plein air été. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t122",
@@ -2852,7 +2852,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Plein air hiver. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Plein air hiver. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t123",
@@ -2862,7 +2862,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Restauration — Restaurant. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Restauration - Restaurant. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t124",
@@ -2872,7 +2872,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Camping — Plein air été. Membre Tourisme Région de Mégantic 2026 · 14 empl. camping."
+      "desc": "Camping - Plein air été. Membre Tourisme Région de Mégantic 2026 · 14 empl. camping."
     },
     {
       "id": "t125",
@@ -2882,7 +2882,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Commerce — Épicerie et magasin général. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Commerce - Épicerie et magasin général. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t126",
@@ -2892,7 +2892,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Événements. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Événements. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t127",
@@ -2902,7 +2902,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Entreprise de service — Artisanat et métier d'art. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Entreprise de service - Artisanat et métier d'art. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t128",
@@ -2912,7 +2912,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Hôtel et auberge — Hôtel, motel et auberge. Membre Tourisme Région de Mégantic 2026 · 4 chambres."
+      "desc": "Hôtel et auberge - Hôtel, motel et auberge. Membre Tourisme Région de Mégantic 2026 · 4 chambres."
     },
     {
       "id": "t129",
@@ -2922,7 +2922,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Événements. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Événements. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t130",
@@ -2932,7 +2932,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Artisanat et métier d'art. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Artisanat et métier d'art. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t131",
@@ -2942,7 +2942,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Plein air été. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Plein air été. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t132",
@@ -2952,7 +2952,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Camping — Camping et hébergement insolite. Membre Tourisme Région de Mégantic 2026 · 12 empl. camping."
+      "desc": "Camping - Camping et hébergement insolite. Membre Tourisme Région de Mégantic 2026 · 12 empl. camping."
     },
     {
       "id": "t133",
@@ -2962,7 +2962,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Restauration — Casse-croûte et restauration rapide. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Restauration - Casse-croûte et restauration rapide. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t134",
@@ -2972,7 +2972,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Municipalité — Centre d'interprétation, musée, exposition. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Municipalité - Centre d'interprétation, musée, exposition. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t135",
@@ -2982,7 +2982,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Camping — Camping et hébergement insolite. Membre Tourisme Région de Mégantic 2026 · 50 empl. camping."
+      "desc": "Camping - Camping et hébergement insolite. Membre Tourisme Région de Mégantic 2026 · 50 empl. camping."
     },
     {
       "id": "t136",
@@ -2992,7 +2992,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Camping — Camping et hébergement insolite. Membre Tourisme Région de Mégantic 2026 · 9 empl. camping."
+      "desc": "Camping - Camping et hébergement insolite. Membre Tourisme Région de Mégantic 2026 · 9 empl. camping."
     },
     {
       "id": "t137",
@@ -3002,7 +3002,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Attrait, activité, événement — Plein air hiver. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Attrait, activité, événement - Plein air hiver. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t138",
@@ -3012,7 +3012,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Municipalité — Plein air été. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Municipalité - Plein air été. Membre Tourisme Région de Mégantic 2026."
     },
     {
       "id": "t139",
@@ -3022,7 +3022,7 @@
       "jobs": 0,
       "status": "tourisme",
       "src": "tourisme",
-      "desc": "Entreprise de service — Plein air été. Membre Tourisme Région de Mégantic 2026."
+      "desc": "Entreprise de service - Plein air été. Membre Tourisme Région de Mégantic 2026."
     }
   ],
   "collaborations": [
@@ -3048,7 +3048,7 @@
         "Saint-Augustin-de-Woburn",
         "Lambton"
       ],
-      "desc": "Filiere bois complete et unique au Canada : recolte, scierie (dont Bernier Bois Franc, Lambton, 90 ans d'experience), panneaux, placages, portes, meubles, granules. Fournisseurs, residus valorises et bassin de main-d'œuvre partages.",
+      "desc": "Filière bois complete et unique au Canada : recolte, scierie (dont Bernier Bois Franc, Lambton, 90 ans d'expérience), panneaux, placages, portes, meubles, granules. Fournisseurs, résidus valorisés et bassin de main-d'œuvre partages.",
       "impact": "~1 300 emplois directs. Principal moteur économique. Reprise Bestar 2026 = resilience demontre.",
       "status": "Actif — Place de l'industrie inc. (2024). Creneau d'excellence Estrie."
     },
@@ -3068,7 +3068,7 @@
         "Saint-Sébastien",
         "Lac-Drolet"
       ],
-      "desc": "Cluster mondial unique : extraction + finition (ABRESSA, leader espagnol implante localement) + transformation haut de gamme + reference mondiale (Lacroix, monuments de Washington). 300+ emplois dans 707 hab.",
+      "desc": "Cluster mondial unique : extraction + finition (ABRESSA, leader espagnol implante localement) + transformation haut de gamme + référence mondiale (Lacroix, monuments de Washington). 300+ emplois dans 707 hab.",
       "impact": "300+ emplois locaux. Rayonnement international.",
       "status": "Actif — Secteur d'excellence affairesmegantic.com"
     },
@@ -3079,7 +3079,7 @@
       "emoji": "",
       "inference_score": 96,
       "companies": [
-        "Energie du Granit (EDG)",
+        "Énergie du Granit (EDG)",
         "Energex",
         "Ville de Lac-Mégantic"
       ],
@@ -3101,8 +3101,8 @@
         "Lac-Drolet",
         "Marston"
       ],
-      "desc": "Parc éolien Le Granit (12 eoliennes, 24,5 MW) + Energex (granules) + microreseau de Lac-Mégantic. Modele rare de gouvernance energetique municipale au Québec.",
-      "impact": "1,75 M$/an de redevances (16 municipalités) — ressource communautaire reinvestie localement.",
+      "desc": "Parc éolien Le Granit (12 éoliennes, 24,5 MW) + Energex (granules) + microreseau de Lac-Mégantic. Modèle rare de gouvernance énergétique municipale au Québec.",
+      "impact": "1,75 M$/an de redevances (16 municipalités) - ressource communautaire réinvestie localement.",
       "status": "Actif — 11e exercice financier EDG (2026)"
     },
     {
@@ -3126,7 +3126,7 @@
       "municipalities": [
         "Lac-Mégantic"
       ],
-      "desc": "Table de concertation industrielle relancee juillet 2024. Sous-comités : économie traditionnelle + transition energetique. Objectif 2025 : nouveau secteur industriel nord de la voie de contournement.",
+      "desc": "Table de concertation industrielle relancée juillet 2024. Sous-comités : économie traditionnelle + transition énergétique. Objectif 2025 : nouveau secteur industriel nord de la voie de contournement.",
       "impact": "Gouvernance industrielle locale renforcée. Nouveau terrain industriel en développement.",
       "status": "Actif — Relance juillet 2024"
     },
@@ -3140,15 +3140,15 @@
         "Érablière-école de Saint-Romain",
         "CFP Le Granit",
         "Marché du Ruisseau d'Or",
-        "L'Erable a son meilleur"
+        "L'Érable a son meilleur"
       ],
       "municipalities": [
         "Saint-Romain",
         "Piopolis",
         "Lac-Mégantic"
       ],
-      "desc": "Modele provincial : érablière-école bio (15 000 entailles) + alternance travail-etudes (CFP Le Granit) + mise en marché agrotouristique + transformation innovante (boissons à l'erable, marché chinois).",
-      "impact": "Releve acéricole assuree. Certification biologique. Modele exportable.",
+      "desc": "Modèle provincial : érablière-école bio (15 000 entailles) + alternance travail-etudes (CFP Le Granit) + mise en marché agrotouristique + transformation innovante (boissons à l'érable, marché chinois).",
+      "impact": "Relève acéricole assurée. Certification biologique. Modèle exportable.",
       "status": "Actif — Comité Saint-Romain + CFP Le Granit"
     },
     {
@@ -3172,7 +3172,7 @@
         "Lambton"
       ],
       "desc": "Inférence flux exports : Lac-Mégantic = un des seuls points de transit ferroviaire/routier vers le Maine en Estrie. Voie de contournement 2023 debloque un potentiel logistique.",
-      "impact": "Économies estimees 2-3 M$/an pour les exportateurs.",
+      "impact": "Économies estimées 2-3 M$/an pour les exportateurs.",
       "status": "Potentiel — Voie de contournement inaugurée 2023"
     },
     {
@@ -3193,8 +3193,8 @@
         "Saint-Romain",
         "Lambton"
       ],
-      "desc": "Inférence maillons manquants : residus de 2e transformation valorises en granules. Un hub de 3e transformation (composites bois-polymere, bois modifie) capterait 3-4x plus de valeur par m³.",
-      "impact": "Estime +80 a +150 emplois qualifies, +30 % valeur ajoutee par m³.",
+      "desc": "Inférence maillons manquants : résidus de 2e transformation valorisés en granules. Un hub de 3e transformation (composites bois-polymere, bois modifie) capterait 3-4x plus de valeur par m³.",
+      "impact": "Estime +80 a +150 emplois qualifies, +30 % valeur ajoutée par m³.",
       "status": "Concept innovant — A developper avec MEIE, CRIQ et industriels"
     },
     {
@@ -3208,7 +3208,7 @@
         "Marché du Ruisseau d'Or",
         "Parc national Mont-Mégantic / ASTROLab",
         "La Meunerie Milanaise",
-        "L'Erable a son meilleur"
+        "L'Érable a son meilleur"
       ],
       "municipalities": [
         "Lac-Mégantic",
@@ -3216,7 +3216,7 @@
         "Notre-Dame-des-Bois",
         "Milan"
       ],
-      "desc": "Inférence clustering touristique : visiteurs du Parc Mont-Mégantic + villegiateurs partagent un profil compatible avec l'offre gastronomique bio (fromagerie, farine bio, erable, bistro).",
+      "desc": "Inférence clustering touristique : visiteurs du Parc Mont-Mégantic + villegiateurs partagent un profil compatible avec l'offre gastronomique bio (fromagerie, farine bio, érable, bistro).",
       "impact": "Estime +50 a +120 emplois indirects.",
       "status": "Potentiel — A initier via MRC Tourisme + Tourisme Estrie"
     }
@@ -3232,7 +3232,7 @@
       "cat": "urbain",
       "code": "30030",
       "role": "Chef-lieu · Ville-centre",
-      "note": "Centre économique. Parc industriel (21 industries + 22 services). Voie contournement 2023. 1re ville francophone certifiée Cittaslow en Ameriques.",
+      "note": "Centre économique. Parc industriel (21 industries + 22 services). Voie contournement 2023. 1re ville francophone certifiée Cittaslow en Amériques.",
       "demo": {
         "pyr": [
           193,
@@ -3311,7 +3311,7 @@
       "cat": "rural",
       "code": "30025",
       "role": "2e pop. MRC · Rural actif",
-      "note": "Portes & fenetres Vallee. Agriculture, forêt. ZEC Louise-Gosford (chasse/peche). Forte identite communautaire.",
+      "note": "Portes & fenêtres Vallée. Agriculture, forêt. ZEC Louise-Gosford (chasse et pêche). Forte identité communautaire.",
       "demo": {
         "pyr": [
           60,
@@ -3548,7 +3548,7 @@
       "cat": "rural",
       "code": "30010",
       "role": "Tourisme astral mondial",
-      "note": "Parc national Mont-Mégantic + ASTROLab. 1re Reserve ciel etoile Ameriques.",
+      "note": "Parc national Mont-Mégantic + ASTROLab. 1re Réserve ciel étoilé Amériques.",
       "demo": {
         "pyr": [
           37,
@@ -3705,8 +3705,8 @@
       "density": 8.7,
       "cat": "rural",
       "code": "30080",
-      "role": "Parc ind. · Modele local",
-      "note": "Carrefour industriel Lac-Drolet (750 000 m²). Pôle granit secondaire. Cite en modele.",
+      "role": "Parc ind. · Modèle local",
+      "note": "Carrefour industriel Lac-Drolet (750 000 m²). Pôle granit secondaire. Cite en modèle.",
       "demo": {
         "pyr": [
           45,
@@ -3785,7 +3785,7 @@
       "cat": "rural",
       "code": "30072",
       "role": "Parc industriel actif",
-      "note": "Parc industriel ~112 000 m². Agriculture, acéricole. A 52 km de la frontiere US.",
+      "note": "Parc industriel ~112 000 m². Agriculture, acéricole. A 52 km de la frontière US.",
       "demo": {
         "pyr": [
           45,
@@ -3943,7 +3943,7 @@
       "cat": "rural",
       "code": "30050",
       "role": "Forêt, granit & acéricole",
-      "note": "Fondee 1870. Carrieres de granit historiques. Terres fertiles et forestières. Acériculture. Partenaire éolien EDG.",
+      "note": "Fondée 1870. Carrières de granit historiques. Terres fertiles et forestières. Acériculture. Partenaire éolien EDG.",
       "demo": {
         "pyr": [
           43,
@@ -4022,7 +4022,7 @@
       "cat": "rural",
       "code": "30100",
       "role": "Acériculture durable",
-      "note": "Érablière-école bio (15 000 entailles). Parc industriel Saint-Romain. Modele provincial.",
+      "note": "Érablière-école bio (15 000 entailles). Parc industriel Saint-Romain. Modèle provincial.",
       "demo": {
         "pyr": [
           36,
@@ -4417,7 +4417,7 @@
       "cat": "rural_eloigne",
       "code": "30070",
       "role": "Éolien · Forêt · Acéricole",
-      "note": "Siège du parc éolien Le Granit (EDG). 1 million d'erables a sucre sur le territoire. Économie : forêt, acériculture, chasse.",
+      "note": "Siège du parc éolien Le Granit (EDG). 1 million d'érables a sucre sur le territoire. Économie : forêt, acériculture, chasse.",
       "demo": {
         "pyr": [
           13,
@@ -4653,7 +4653,7 @@
       "density": 1.6,
       "cat": "rural_eloigne",
       "code": "30015",
-      "role": "Ruralite profonde · Nature",
+      "role": "Ruralité profonde · Nature",
       "note": "Plus petite muni de la MRC. Bains de Nature MRC. ZEC Louise-Gosford. FRR-V4 vitalisation (492 000$ MAMH, 2025). Territoire naturel exceptionnel.",
       "demo": {
         "pyr": [
@@ -4819,7 +4819,7 @@
         49.8,
         54.8
       ],
-      "source": "Valeur totale réelle — ISQ 2024.",
+      "source": "Valeur totale réelle - ISQ 2024.",
       "byType": [
         {
           "type": "Résidentiel neuf",
@@ -4828,7 +4828,7 @@
           "est": true
         },
         {
-          "type": "Renovation / agrandissement",
+          "type": "Rénovation / agrandissement",
           "mk": 10.4,
           "pct": 19,
           "est": true
@@ -4861,13 +4861,13 @@
         {
           "label": "Zone agricole (LPTAA)",
           "ha": 145078,
-          "note": "Donnée réelle — PDZA MRC du Granit",
+          "note": "Donnée réelle - PDZA MRC du Granit",
           "real": true
         },
         {
           "label": "Couvert forestier",
           "ha": 249696,
-          "note": "Donnée réelle — dont 16 % en érablière. Recoupe la zone agricole et la zone blanche.",
+          "note": "Donnée réelle - dont 16 % en érablière. Recoupe la zone agricole et la zone blanche.",
           "real": true
         }
       ],
@@ -4909,7 +4909,7 @@
           "color": "#6b7280"
         }
       ],
-      "affectationSource": "Repartition schematique estimee pour fins de visualisation — à valider avec le SAD de la MRC."
+      "affectationSource": "Répartition schématique estimée pour fins de visualisation - à valider avec le SAD de la MRC."
     },
     "conversion": {
       "intro": "Dynamique de conversion des usages.",
@@ -4937,7 +4937,7 @@
         11,
         14
       ],
-      "source": "Estimations directionnelles — à remplacer par les données réelles des services d'urbanisme.",
+      "source": "Estimations directionnelles - à remplacer par les données réelles des services d'urbanisme.",
       "byMuni": [
         {
           "name": "Piopolis",
@@ -4980,7 +4980,7 @@
     }
   },
   "sante": {
-    "intro": "Ce pilier ne mesure pas le système de soins : il lit la santé des populations à travers ses déterminants sociaux, alimentés par les données des piliers Développement économique et Aménagement. L'approche est celle de la Santé dans toutes les politiques (SdTP) : à l'échelle d'une MRC, les décisions économiques et territoriales SONT des décisions de santé. Les données de référence proviennent de la Direction de santé publique de l'Estrie : Faits saillants — RLS du Granit (mise à jour avril 2025) et Tableau de bord – Santé publique Estrie (14 thématiques). Le RLS du Granit compte 21 886 habitants (4,3 % de l'Estrie) et une population sensiblement plus âgée : âge médian de 52 ans, contre 46 ans en Estrie.",
+    "intro": "Ce pilier ne mesure pas le système de soins : il lit la santé des populations à travers ses déterminants sociaux, alimentés par les données des piliers Développement économique et Aménagement. L'approche est celle de la Santé dans toutes les politiques (SdTP) : à l'échelle d'une MRC, les décisions économiques et territoriales SONT des décisions de santé. Les données de référence proviennent de la Direction de santé publique de l'Estrie : Faits saillants - RLS du Granit (mise à jour avril 2025) et Tableau de bord – Santé publique Estrie (14 thématiques). Le RLS du Granit compte 21 886 habitants (4,3 % de l'Estrie) et une population sensiblement plus âgée : âge médian de 52 ans, contre 46 ans en Estrie.",
     "compositeNote": "Indice territorial composite = moyenne pondérée des 8 déterminants. Indicateurs désormais ancrés sur les données de la DSP de l'Estrie (Faits saillants RLS du Granit, avril 2025) et sur le <a href=\"https://www.santeestrie.qc.ca/medias-publications/sante-publique/tableau-de-bord-sante-publique-estrie\" target=\"_blank\" rel=\"noopener\" style=\"color:#0e7490;font-weight:600\">Tableau de bord – Santé publique Estrie</a> (Population, Environnement social et physique, Habitudes de vie, Maladies chroniques, Santé mentale, Santé au travail, etc.), complétés par l'ISQ et le Recensement 2021. Les scores 0-100 demeurent un construit analytique; le RLS du Granit est quasi coextensif à la MRC mais les périmètres diffèrent légèrement.",
     "determinants": [
       {
@@ -4990,7 +4990,7 @@
         "score": 62,
         "source": "Développement économique",
         "level": "Vigilance",
-        "indicator": "Revenu d'emploi médian 50 800 $ (ISQ 2024, -14 % vs Québec). DSP Estrie — Faits saillants RLS du Granit, avril 2025 : revenu médian après impôt 35 600 $ (hommes) et 29 600 $ (femmes), sous l'Estrie (37 600 $ / 31 800 $); 54 % de la population occupe un emploi (58,1 % en Estrie); les 4 communautés du RLS (Rivière-Chaudière, Lac-Mégantic, Parc de Frontenac, Monts Mégantic et Gosford) sont en forte défavorisation matérielle.",
+        "indicator": "Revenu d'emploi médian 50 800 $ (ISQ 2024, -14 % vs Québec). DSP Estrie - Faits saillants RLS du Granit, avril 2025 : revenu médian après impôt 35 600 $ (hommes) et 29 600 $ (femmes), sous l'Estrie (37 600 $ / 31 800 $); 54 % de la population occupe un emploi (58,1 % en Estrie); les 4 communautés du RLS (Rivière-Chaudière, Lac-Mégantic, Parc de Frontenac, Monts Mégantic et Gosford) sont en forte défavorisation matérielle.",
         "link": "Un revenu sous la moyenne et la défavorisation matérielle fragilisent l'accès au logement et à l'alimentation, et se traduisent par une prévalence de maladies chroniques plus élevée (37,5 % des adultes c. 32,9 % en Estrie).",
         "real": true
       },
@@ -5001,7 +5001,7 @@
         "score": 74,
         "source": "Développement économique",
         "level": "Favorable",
-        "indicator": "Taux d'emploi 77,6 %, 7 845 travailleurs (ISQ 2024). Manufacturier = 37 % des emplois (SDEG) c. 19 % au QC. DSP Estrie — Faits saillants RLS du Granit, avril 2025 : 37,1 % des travailleurs exposés à un niveau élevé de contraintes physiques (25,8 % en Estrie) et 7,8 % de surdité attribuable au travail (4,5 % au QC).",
+        "indicator": "Taux d'emploi 77,6 %, 7 845 travailleurs (ISQ 2024). Manufacturier = 37 % des emplois (SDEG) c. 19 % au QC. DSP Estrie - Faits saillants RLS du Granit, avril 2025 : 37,1 % des travailleurs exposés à un niveau élevé de contraintes physiques (25,8 % en Estrie) et 7,8 % de surdité attribuable au travail (4,5 % au QC).",
         "link": "La vitalité de la grappe bois-forêt et du pôle granit soutient l'emploi, mais la concentration manufacturière crée une vulnérabilité aux chocs sectoriels.",
         "real": true
       },
@@ -5012,7 +5012,7 @@
         "score": 54,
         "source": "Aménagement du territoire",
         "level": "A surveiller",
-        "indicator": "Valeur foncière moyenne des unifamiliales 293 135 $ (ISQ 2026). Permis 54,8 M$ (2024), conversion villégiature → résidence principale. DSP Estrie — Faits saillants RLS du Granit, avril 2025 : 144 logements sociaux (HLM) en 2021, soit 6 % du parc (léger recul vs 7 % en 2016).",
+        "indicator": "Valeur foncière moyenne des unifamiliales 293 135 $ (ISQ 2026). Permis 54,8 M$ (2024), conversion villégiature → résidence principale. DSP Estrie - Faits saillants RLS du Granit, avril 2025 : 144 logements sociaux (HLM) en 2021, soit 6 % du parc (léger recul vs 7 % en 2016).",
         "link": "La rareté de logements abordables affecte l'attraction de main-d'œuvre, dont les infirmières et le personnel de soins.",
         "real": true
       },
@@ -5023,7 +5023,7 @@
         "score": 60,
         "source": "Développement économique",
         "level": "Favorable",
-        "indicator": "Deux adultes de 25-64 ans sur cinq (≈40 %) sont faiblement scolarisés (diplôme d'études secondaires ou moins), contre environ le tiers en Estrie (DSP Estrie — Faits saillants RLS du Granit, avril 2025). CFP Le Granit (alternance travail-études), entente Cégep de Sherbrooke, érablière-école.",
+        "indicator": "Deux adultes de 25-64 ans sur cinq (≈40 %) sont faiblement scolarisés (diplôme d'études secondaires ou moins), contre environ le tiers en Estrie (DSP Estrie - Faits saillants RLS du Granit, avril 2025). CFP Le Granit (alternance travail-études), entente Cégep de Sherbrooke, érablière-école.",
         "link": "Le déficit de scolarisation, conjugué à la vulnérabilité au développement chez les tout-petits (34,9 % des enfants de maternelle 5 ans, c. 28,7 % au QC), pèse en amont sur la santé et le revenu futurs.",
         "real": true
       },
@@ -5034,7 +5034,7 @@
         "score": 86,
         "source": "Aménagement du territoire",
         "level": "Atout fort",
-        "indicator": "249 696 ha de couvert forestier, 1re Réserve internationale de ciel étoilé des Amériques, Cittaslow, qualité de l'air. DSP Estrie — Faits saillants RLS du Granit, avril 2025 : 58,6 % des adultes n'atteignent pas les recommandations d'activité physique — un peu mieux que l'Estrie (64,9 %), un atout d'accès à la nature.",
+        "indicator": "249 696 ha de couvert forestier, 1re Réserve internationale de ciel étoilé des Amériques, Cittaslow, qualité de l'air. DSP Estrie - Faits saillants RLS du Granit, avril 2025 : 58,6 % des adultes n'atteignent pas les recommandations d'activité physique - un peu mieux que l'Estrie (64,9 %), un atout d'accès à la nature.",
         "link": "Accès à la nature, air pur et espaces verts = atout majeur pour la santé physique et mentale.",
         "real": true
       },
@@ -5045,8 +5045,8 @@
         "score": 81,
         "source": "Gouvernance territoriale",
         "level": "Atout fort",
-        "indicator": "Densité coopérative (Desjardins, coop agricole, EDG communautaire), économie sociale (Coup de Pouce, SAD Granit), sentinelles aînés, CDC du Granit, MADA. DSP Estrie — Faits saillants RLS du Granit, avril 2025 : familles monoparentales 12 % (parmi les plus faibles de l'Estrie); participation sociale des aînés en hausse (44,5 % → 54,7 % entre 2018 et 2022).",
-        "link": "La gouvernance energetique communautaire (EDG, 1,75 M$ redevances) et les instances de concertation renforcent le soutien social.",
+        "indicator": "Densité coopérative (Desjardins, coop agricole, EDG communautaire), économie sociale (Coup de Pouce, SAD Granit), sentinelles aînés, CDC du Granit, MADA. DSP Estrie - Faits saillants RLS du Granit, avril 2025 : familles monoparentales 12 % (parmi les plus faibles de l'Estrie); participation sociale des aînés en hausse (44,5 % → 54,7 % entre 2018 et 2022).",
+        "link": "La gouvernance énergétique communautaire (EDG, 1,75 M$ redevances) et les instances de concertation renforcent le soutien social.",
         "real": true
       },
       {
@@ -5056,8 +5056,8 @@
         "score": 64,
         "source": "Économie + Aménagement",
         "level": "Favorable",
-        "indicator": "145 078 ha de zone agricole, Fromagerie La Chaudière, Meunerie Milanaise (farine bio), marchés de proximité, PDZA et L'ARTERRE. Mais DSP Estrie — Faits saillants RLS du Granit, avril 2025 : indice élevé de risque d'insécurité alimentaire (Monts Mégantic-Gosford, Rivière-Chaudière, Lac-Mégantic); seulement 1 adulte sur 5 consomme 5 portions de fruits et légumes (27,3 % en Estrie, en baisse).",
-        "link": "Systèmes alimentaires locaux robustes = sécurité alimentaire, sauf enjeux d'accès en milieu rural eloigne.",
+        "indicator": "145 078 ha de zone agricole, Fromagerie La Chaudière, Meunerie Milanaise (farine bio), marchés de proximité, PDZA et L'ARTERRE. Mais DSP Estrie - Faits saillants RLS du Granit, avril 2025 : indice élevé de risque d'insécurité alimentaire (Monts Mégantic-Gosford, Rivière-Chaudière, Lac-Mégantic); seulement 1 adulte sur 5 consomme 5 portions de fruits et légumes (27,3 % en Estrie, en baisse).",
+        "link": "Systèmes alimentaires locaux robustes = sécurité alimentaire, sauf enjeux d'accès en milieu rural éloigné.",
         "real": true
       },
       {
@@ -5066,9 +5066,9 @@
         "icon": "d8",
         "score": 49,
         "source": "Aménagement + Gouvernance",
-        "level": "Priorite",
-        "indicator": "DSP Estrie — Faits saillants RLS du Granit, avril 2025 : 27 % de la population a 65 ans ou plus (5 991 personnes), proportion projetée à 36 % (8 021) en 2031; âge médian 52 ans (46 en Estrie). Dispersion sur 2 640 km² et 19 municipalités. (ISQ — périmètre MRC : 31,3 % de 65 ans et plus en 2025.)",
-        "link": "La dispersion territoriale et la penurie de personnel soignant limitent la proximité des services — enjeu central de gouvernance.",
+        "level": "Priorité",
+        "indicator": "DSP Estrie - Faits saillants RLS du Granit, avril 2025 : 27 % de la population a 65 ans ou plus (5 991 personnes), proportion projetée à 36 % (8 021) en 2031; âge médian 52 ans (46 en Estrie). Dispersion sur 2 640 km² et 19 municipalités. (ISQ - périmètre MRC : 31,3 % de 65 ans et plus en 2025.)",
+        "link": "La dispersion territoriale et la pénurie de personnel soignant limitent la proximité des services - enjeu central de gouvernance.",
         "real": true
       }
     ],
@@ -5087,7 +5087,7 @@
         "name": "Redevances eoliennes EDG (1,75 M$/an)",
         "emoji": "",
         "scope": "16 municipalités",
-        "desc": "Ressource communautaire reinvestie localement (projets, services de proximité). Lien direct entre développement energetique et capacite d'agir sur les déterminants.",
+        "desc": "Ressource communautaire réinvestie localement (projets, services de proximité). Lien direct entre développement énergétique et capacité d'agir sur les déterminants.",
         "determinants": [
           "d6",
           "d8",
@@ -5107,7 +5107,7 @@
         "name": "PDZA & L'ARTERRE (maillage agricole)",
         "emoji": "",
         "scope": "MRC",
-        "desc": "Plan de développement de la zone agricole + jumelage releve/propriétaires. Soutient les systèmes alimentaires locaux et l'occupation du territoire.",
+        "desc": "Plan de développement de la zone agricole + jumelage relève/propriétaires. Soutient les systèmes alimentaires locaux et l'occupation du territoire.",
         "determinants": [
           "d7",
           "d2"
@@ -5127,7 +5127,7 @@
         "name": "Zonage & logement (Loi 67)",
         "emoji": "",
         "scope": "Municipalités",
-        "desc": "Encadrement de l'hébergement touristique pour protéger le parc de logements de longue durée — agit sur le déterminant logement et l'attraction de main-d'œuvre soignante.",
+        "desc": "Encadrement de l'hébergement touristique pour protéger le parc de logements de longue durée - agit sur le déterminant logement et l'attraction de main-d'œuvre soignante.",
         "determinants": [
           "d3",
           "d8"
@@ -5137,7 +5137,7 @@
         "name": "Concertation : CDC du Granit & Place de l'industrie",
         "emoji": "",
         "scope": "Territoire",
-        "desc": "Tables intersectorielles reunissant municipal, communautaire et industriel — l'infrastructure de gouvernance qui rend la SdTP operationnelle.",
+        "desc": "Tables intersectorielles réunissant municipal, communautaire et industriel - l'infrastructure de gouvernance qui rend la SdTP opérationnelle.",
         "determinants": [
           "d6",
           "d2"
@@ -5162,15 +5162,15 @@
         "to": "Revenu & emploi",
         "det": "d2",
         "strength": "Fort",
-        "desc": "Le principal moteur d'emplois stabilise les revenus des menages — premier déterminant de la santé."
+        "desc": "Le principal moteur d'emplois stabilise les revenus des ménages - premier déterminant de la santé."
       },
       {
-        "from": "Redevances eoliennes EDG (1,75 M$)",
-        "pillar": "Économie / Energie",
+        "from": "Redevances éoliennes EDG (1,75 M$)",
+        "pillar": "Économie / Énergie",
         "to": "Capital communautaire & services",
         "det": "d6",
         "strength": "Fort",
-        "desc": "Une ressource financiere communautaire qui finance la capacite d'agir sur les autres déterminants."
+        "desc": "Une ressource financière communautaire qui finance la capacité d'agir sur les autres déterminants."
       },
       {
         "from": "Permis de bâtir & conversion chalet",
@@ -5178,7 +5178,7 @@
         "to": "Logement",
         "det": "d3",
         "strength": "Fort",
-        "desc": "La dynamique du logement conditionne l'attraction de main-d'œuvre, dont le personnel de soins, et la stabilite résidentielle."
+        "desc": "La dynamique du logement conditionne l'attraction de main-d'œuvre, dont le personnel de soins, et la stabilité résidentielle."
       },
       {
         "from": "Zone agricole 145 078 ha & PDZA",
@@ -5189,12 +5189,12 @@
         "desc": "Le maintien de la zone agricole soutient les systèmes alimentaires locaux et l'accès a des aliments de qualité."
       },
       {
-        "from": "Couvert forestier & ciel etoile",
+        "from": "Couvert forestier & ciel étoilé",
         "pillar": "Aménagement du territoire",
         "to": "Environnement physique",
         "det": "d5",
         "strength": "Fort",
-        "desc": "Les milieux naturels proteges sont un atout de santé physique et mentale rare et differenciateur."
+        "desc": "Les milieux naturels protégés sont un atout de santé physique et mentale rare et différenciateur."
       },
       {
         "from": "CFP Le Granit & alternance",
@@ -5205,15 +5205,15 @@
         "desc": "La formation locale retient les jeunes et alimenté l'emploi qualifié, déterminant amont du revenu."
       },
       {
-        "from": "Ruralite & distances (19 municipalités)",
+        "from": "Ruralité & distances (19 municipalités)",
         "pillar": "Aménagement du territoire",
         "to": "Accès aux services",
         "det": "d8",
         "strength": "Fort",
-        "desc": "La dispersion territoriale est le principal frein de proximité — cible prioritaire de la gouvernance intersectorielle."
+        "desc": "La dispersion territoriale est le principal frein de proximité - cible prioritaire de la gouvernance intersectorielle."
       },
       {
-        "from": "Aide à domicile du Granit (SAD — 70+ préposés)",
+        "from": "Aide à domicile du Granit (SAD - 70+ préposés)",
         "pillar": "Économie / Gouvernance",
         "to": "Cohésion & autonomie",
         "det": "d6",
@@ -5223,7 +5223,7 @@
     ]
   },
   "portraitLGP": {
-    "source": "LGP — Table des MRC de l'Estrie, « Portrait économique sectoriel et pistes de collaboration inter-MRC » (avril 2026). Données : Statistique Canada (36-10-0711-01, 36-10-0489-01, 33-10-0551-01, 16-10-0117-01), Registraire des entreprises du Québec (Civision), base Scott's, validations des MRC. PIB 2022 (dollars courants), ratios de ventes 2024.",
+    "source": "LGP - Table des MRC de l'Estrie, « Portrait économique sectoriel et pistes de collaboration inter-MRC » (avril 2026). Données : Statistique Canada (36-10-0711-01, 36-10-0489-01, 33-10-0551-01, 16-10-0117-01), Registraire des entreprises du Québec (Civision), base Scott's, validations des MRC. PIB 2022 (dollars courants), ratios de ventes 2024.",
     "perimetre": "« Industriel » = périmètre de codes SCIAN couvrant production et transformation (primaire et secondaire) + certaines activités de soutien (logistique, services techniques). Limité aux établissements AVEC employés (exclut travailleurs autonomes). PIB et ventes = ordres de grandeur estimés.",
     "note": "Cet univers (≈5 245 emplois industriels) diffère de l'estimation « tous secteurs » du tableau de bord (≈6 905 emplois 2024, qui inclut services publics, commerce et services). Les deux lectures sont complémentaires : LGP = base factuelle officielle harmonisée à l'échelle de l'Estrie; la taxonomie des 13 secteurs = lecture locale enrichie alimentant le moteur de maillage.",
     "agregats": {
@@ -5621,7 +5621,7 @@
         "venP": 1
       }
     ],
-    "distinctifsNote": "Indice de spécialisation (≈ quotient de localisation, combinant emplois 30 %, établissements 30 %, PIB 20 %, ventes 20 %). Indice > 1 = surreprésenté; ≥ 1,25 distinctif; ≥ 1,50 très distinctif. Valeurs ci-dessous lues approximativement sur les graphiques LGP — le classement est fiable, la valeur est indicative.",
+    "distinctifsNote": "Indice de spécialisation (≈ quotient de localisation, combinant emplois 30 %, établissements 30 %, PIB 20 %, ventes 20 %). Indice > 1 = surreprésenté; ≥ 1,25 distinctif; ≥ 1,50 très distinctif. Valeurs ci-dessous lues approximativement sur les graphiques LGP - le classement est fiable, la valeur est indicative.",
     "distinctifsEstrie": [
       {
         "nom": "Extraction minière et exploitation en carrière",
@@ -5793,13 +5793,13 @@
       }
     ],
     "education": {
-      "note": "Plus haut diplôme — population de 25-64 ans (DSP de l'Estrie, RLS du Granit, avril 2025).",
+      "note": "Plus haut diplôme - population de 25-64 ans (DSP de l'Estrie, RLS du Granit, avril 2025).",
       "items": [
         {
           "label": "Faiblement scolarisés (diplôme d'études secondaires ou moins)",
           "granit": 40,
           "estrie": 33,
-          "comment": "≈ 2 adultes sur 5 au Granit, contre environ 1 sur 3 en Estrie — déficit de scolarisation marqué."
+          "comment": "≈ 2 adultes sur 5 au Granit, contre environ 1 sur 3 en Estrie - déficit de scolarisation marqué."
         }
       ]
     },
@@ -5821,13 +5821,13 @@
         }
       ]
     },
-    "constat": "Le bassin actif (15-64 ans) compte 12 797 personnes, mais le vieillissement réduit la relève : seulement 2 120 jeunes de 15-24 ans, contre 6 849 personnes de 65 ans et plus (ISQ 2024). Une scolarisation plus faible qu'en Estrie (≈ 40 % des 25-64 ans sans diplôme postsecondaire) et un taux d'emploi de 54 % accentuent la pression sur le recrutement — enjeu central pour les manufacturiers du territoire. Le taux de chômage à l'échelle MRC n'est pas publié par l'ISQ (qui diffuse le « taux de travailleurs »); la valeur du Recensement 2021 reste à intégrer.",
-    "source": "ISQ — Estimations et projections de population par RLS (série 2025, base Recensement 2021), 2024; ISQ — Principaux indicateurs MRC du Granit (2024); DSP de l'Estrie — Faits saillants RLS du Granit (avril 2025); Recensement 2021 (Statistique Canada).",
+    "constat": "Le bassin actif (15-64 ans) compte 12 797 personnes, mais le vieillissement réduit la relève : seulement 2 120 jeunes de 15-24 ans, contre 6 849 personnes de 65 ans et plus (ISQ 2024). Une scolarisation plus faible qu'en Estrie (≈ 40 % des 25-64 ans sans diplôme postsecondaire) et un taux d'emploi de 54 % accentuent la pression sur le recrutement - enjeu central pour les manufacturiers du territoire. Le taux de chômage à l'échelle MRC n'est pas publié par l'ISQ (qui diffuse le « taux de travailleurs »); la valeur du Recensement 2021 reste à intégrer.",
+    "source": "ISQ - Estimations et projections de population par RLS (série 2025, base Recensement 2021), 2024; ISQ - Principaux indicateurs MRC du Granit (2024); DSP de l'Estrie - Faits saillants RLS du Granit (avril 2025); Recensement 2021 (Statistique Canada).",
     "dashboardLink": "https://www.santeestrie.qc.ca/medias-publications/sante-publique/tableau-de-bord-sante-publique-estrie"
   },
   "demographie": {
-    "source": "ISQ — Estimations de population (série 2026) et projections (série 2025, scénario Référence A2025, base Recensement 2021), MRC du Granit / RLS du Granit. Effectifs par groupe d'âge quinquennal, total des sexes. Estimations 2025; projections 2026-2041.",
-    "note": "Réinterprétation du portrait démographique municipal historique (« Tableau de classification de la population ») à l'aide des données officielles courantes de l'ISQ. Là où le document d'origine répartissait la population en sous-groupes d'activité (étudiants, retraités, travailleurs, sans travail), ce portrait s'appuie sur la structure par âge — la donnée infra-municipale validée et comparable dans le temps. Les totaux ISQ (estimation 2025) peuvent différer légèrement de la population du Décret, base de calcul des transferts gouvernementaux.",
+    "source": "ISQ - Estimations de population (série 2026) et projections (série 2025, scénario Référence A2025, base Recensement 2021), MRC du Granit / RLS du Granit. Effectifs par groupe d'âge quinquennal, total des sexes. Estimations 2025; projections 2026-2041.",
+    "note": "Réinterprétation du portrait démographique municipal historique (« Tableau de classification de la population ») à l'aide des données officielles courantes de l'ISQ. Là où le document d'origine répartissait la population en sous-groupes d'activité (étudiants, retraités, travailleurs, sans travail), ce portrait s'appuie sur la structure par âge - la donnée infra-municipale validée et comparable dans le temps. Les totaux ISQ (estimation 2025) peuvent différer légèrement de la population du Décret, base de calcul des transferts gouvernementaux.",
     "bands": [
       "0-4",
       "5-9",
@@ -5929,7 +5929,7 @@
   },
   "tourisme": {
     "intro": "Portrait de l'offre touristique du territoire à partir du répertoire des membres de Tourisme Région de Mégantic (adhésions et guide touristique 2026). Les entreprises sont réparties par municipalité et par catégorie d'expérience (où dormir, où manger, quoi faire, commerces et services).",
-    "source": "Tourisme Région de Mégantic — Adhésions membres et guide touristique 2026 · Compilation MRC du Granit",
+    "source": "Tourisme Région de Mégantic - Adhésions membres et guide touristique 2026 · Compilation MRC du Granit",
     "annee": "2026",
     "note": "L'organisme regroupe des membres répartis dans 18 des 19 municipalités de la MRC du Granit, ainsi que quelques partenaires limitrophes (hors MRC). Saint-Sébastien, seule municipalité sans membre inscrit au guide 2026, figure tout de même dans la répartition afin de représenter l'ensemble du territoire. Les capacités d'hébergement (chambres, emplacements de camping, chalets) proviennent des déclarations d'adhésion.",
     "agregats": {
@@ -9489,7 +9489,7 @@
       "Hydro-Québec, 2024. Historique de consommation d'électricité par secteur d'activité, MRC et municipalité, mensuel",
       "Institut de la statistique du Québec. Estimations de la population des municipalités, 1er juillet 2024, et population totale projetée, scénario 2025, 2021-2041",
       "MELCCFP. Données d'élimination des matières résiduelles",
-      "USEPA, 2020. Landfill Gas Emissions Model (LandGEM) version 3.03",
+      "USEPA, 2020. Landfill Gas Émissions Model (LandGEM) version 3.03",
       "Chiffriers de collecte de données 2024 remplis par chacune des 19 municipalités"
     ],
     "agregats": {

@@ -67,6 +67,11 @@
       '.gx-reg{font-size:12.5px;color:var(--muted);margin-top:3px}' +
       '.gx-tb{width:100%;border-collapse:collapse;font-size:14px}.gx-tb td,.gx-tb th{padding:7px 8px;border-bottom:1px solid var(--border);text-align:left}' +
       '.gx-tb th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}.gx-tb td.n,.gx-tb th.n{text-align:right;font-variant-numeric:tabular-nums}' +
+      '.gx-frais{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:-6px 0 16px}' +
+      '.gx-frais-t{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-right:4px}' +
+      '.gx-frais-i{display:inline-flex;align-items:center;gap:7px;padding:5px 12px;border-radius:999px;border:1px solid var(--border);background:var(--white);font:inherit;font-size:13px;color:var(--text2);cursor:pointer}' +
+      '.gx-frais-i:hover{border-color:var(--g400)}.gx-frais-i b{font-weight:700;color:var(--text)}' +
+      '.gx-frais-i i{width:8px;height:8px;border-radius:50%;background:var(--muted2)}.gx-frais-i i.auto{background:#2d8a52;box-shadow:0 0 0 3px rgba(45,138,82,.18)}' +
       '.sc-reg{font-size:12.5px;color:var(--muted);margin-top:7px;line-height:1.35}.sc-reg b{color:var(--text);font-weight:700}';
     document.head.appendChild(c);
   }
@@ -102,9 +107,9 @@
     var tous = duSecteur(sid).sort(tri);
     var nReg = tous.filter(function (r) { return !r.hors; }).length, nLoc = tous.filter(function (r) { return r.local || r.tour; }).length;
     var emplois = tous.reduce(function (a, r) { return a + (r.jobs || 0); }, 0);
-    document.getElementById('spIcon').textContent = sec.icon;
+    document.getElementById('spIcon').innerHTML = window.secIcon ? window.secIcon(sec) : esc(sec.icon);
     document.getElementById('spTitle').textContent = sec.name;
-    document.getElementById('spMeta').textContent = fmt(sec.jobs) + ' emplois estimés · ' + pl(tous.length, 'entreprise');
+    document.getElementById('spMeta').textContent = fmt(sec.jobs) + ' emplois estimés - ' + pl(tous.length, 'entreprise');
     var munis = {}; tous.forEach(function (r) { munis[r.muni] = (munis[r.muni] || 0) + 1; });
     var h = '<div class="sp-total"><span>' + pl(nReg, 'inscription') + ' au Registraire</span><span>' + pl(nLoc, 'fiche locale', 'fiches locales') + '</span></div>' +
       '<div class="gx-outils"><input id="gxSpQ" placeholder="Rechercher dans ce secteur..." value="' + esc(X.sp.q) + '" oninput="GranitCroise.sp(\'q\',this.value)">' +
@@ -290,13 +295,27 @@
     if (X.garde) t.push('Services de garde : ministère de la Famille, Données Québec, extraction automatique du ' + X.garde.resume.extraction +
       (X.garde.resume.rsg_reconnues ? ' (' + X.garde.resume.rsg_reconnues + ' responsables en milieu familial reconnues, ' + fmt(X.garde.resume.places_milieu_familial) + ' places)' : ''));
     t.push('Logement social : DSP de l\'Estrie et SHQ, saisie manuelle');
-    el.textContent = 'Sources : ' + t.join(' · ') + '.';
+    el.textContent = 'Sources : ' + t.join(' - ') + '.';
     var a = (window.D.logements || {}).agregats || {}, cg = document.getElementById('lgCapGrid');
     if (cg && a.logementsPrives && !document.getElementById('gxCapPriv')) {
       var c = document.createElement('div'); c.className = 'lg-cap'; c.id = 'gxCapPriv';
       c.innerHTML = '<div class="lg-cap-v">' + fmt(a.logementsPrives) + '</div><div class="lg-cap-l">Logements privés</div><div class="lg-cap-s">au total, chalets et résidences secondaires compris</div>';
       cg.insertBefore(c, cg.children[1] || null);
     }
+  }
+
+  /* ════════ APERÇU : fraîcheur des données ════════ */
+  function fraicheur() {
+    var el = document.getElementById('gxFrais'); if (!el || !window.D) return;
+    var L = pret() ? R().libelles : null, t = [];
+    function d(iso) { return L ? L.dateFr(iso) : iso; }
+    if (pret()) t.push(['Entreprises', 'Registraire, ' + d(R().extraction()), 'auto']);
+    if (X.garde) t.push(['Services de garde', 'ministère de la Famille, ' + d(X.garde.resume.extraction), 'auto']);
+    if (X.rec) t.push(['Logements', 'Recensement de 2021', 'auto']);
+    t.push(['Autres données', 'chiffrier de la MRC, ' + ((window.D.meta && window.D.meta.quarter) || ''), 'man']);
+    el.innerHTML = '<div class="gx-frais"><span class="gx-frais-t">Données à jour</span>' + t.map(function (x) {
+      return '<button class="gx-frais-i" onclick="voirLegende(\'lgd-maj\')" title="Voir les sources et le calendrier des mises à jour"><i class="' + x[2] + '"></i><b>' + esc(x[0]) + '</b> ' + esc(x[1]) + '</button>';
+    }).join('') + '</div>';
   }
 
   /* ════════ LÉGENDE : table des 13 secteurs ════════ */
@@ -349,7 +368,7 @@
       apresRendu();
     } catch (e) { if (w.console) console.warn('granit-croise', e); }
   }
-  function apresRendu() { try { noteMilieu(); carteEmployeurs(); legendeSecteurs(); } catch (e) {} }
+  function apresRendu() { try { noteMilieu(); carteEmployeurs(); legendeSecteurs(); fraicheur(); } catch (e) {} }
   function json(u) { return fetch(u + '?t=' + Date.now()).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); }
   function demarrer() {
     styles();

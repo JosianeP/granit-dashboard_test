@@ -1,4 +1,4 @@
-# Tableau de bord territorial - MRC du Granit (v4.11)
+# Tableau de bord territorial - MRC du Granit (v4.12)
 
 Outil interne de développement territorial à trois piliers (économie, aménagement, santé). Hébergé sur GitHub Pages.
 
@@ -20,6 +20,13 @@ Outil interne de développement territorial à trois piliers (économie, aménag
 | `data/appariement.json` | Liens entre les fiches locales et le Registraire (par NEQ) |
 
 Ces fichiers doivent se trouver dans le même dossier du dépôt.
+
+## Nouveautés de la version 4.12 (revue complète avant démonstration)
+
+- Corrections. Les pyramides des âges s'affichaient en noir (un graphique ne lit pas les variables CSS). Les graphiques par municipalité masquaient une étiquette sur deux. Les nombres suivent maintenant l'usage français partout (virgule décimale, espace avant %, espace des milliers dans les graphiques).
+- Lisibilité. Le répertoire local et le répertoire touristique sont paginés (25 lignes par page). Les indicateurs de l'aperçu, de l'emploi et des logements tiennent sur des grilles régulières, et le bandeau qui doublait les cartes de la vue Logements est retiré.
+- Finitions. Icônes pour les 13 secteurs, bandeau « Données à jour » dans l'aperçu, matrice des maillages avec les noms complets, tirets simples à la place des tirets longs et des points médians dans l'interface.
+- Textes. 143 accents manquants corrigés dans les descriptions de `data.json` (les noms d'entreprises ne sont pas touchés).
 
 ## Nouveautés de la version 4.11
 

@@ -92,7 +92,11 @@ def lire_csv(octets, diag, nom):
 
 
 def trouver(entetes, *motifs, exclure=()):
-    """Première colonne dont le nom normalisé contient l'un des motifs (dans l'ordre des motifs)."""
+    """Colonne dont le nom normalisé égale l'un des motifs, sinon première colonne qui en contient un."""
+    for m in motifs:
+        for h in entetes:
+            if norm(h) == m:
+                return h
     for m in motifs:
         for h in entetes:
             k = norm(h)
@@ -125,14 +129,15 @@ def municipalite(ligne, col_muni, col_cp, rejets):
     return muni
 
 
-def classer(type_brut, nom):
-    t = norm(type_brut) + " | " + norm(nom)
-    if "cpe" in t or "centre de la petite enfance" in t:
+def classer(type_brut, subv):
+    """TYPE vaut CPE ou GARD; SUBV vaut CR (places à contribution réduite, donc subventionnées) ou autre chose."""
+    t, s = norm(type_brut), norm(subv)
+    if t == "cpe" or "centre de la petite enfance" in t:
         return "cpe"
-    if "non subv" in t or "gns" in t.split():
-        return "garderie_non_subventionnee"
-    if "garderie" in t or "gs" in t.split():
-        return "garderie_subventionnee" if ("subv" in t or "gs" in t.split()) else "garderie"
+    if t.startswith("gard"):
+        if s == "cr":
+            return "garderie_subventionnee"
+        return "garderie_non_subventionnee" if s else "garderie"
     return "autre"
 
 
@@ -153,26 +158,33 @@ def main():
         url, maj_inst = ressource_csv(JEU_INST, diag)
         octets = lire_url(url or URL_INST_SECOURS)
     ent, lignes = lire_csv(octets, diag, "Installations")
-    c_muni = trouver(ent, "municipalite", "ville", "localite", exclure=("region", "mrc"))
+    c_muni = trouver(ent, "nom mun compo", "nom mun", "municipalite", "ville", "localite", exclure=("region", "mrc"))
     c_cp = trouver(ent, "code postal", "postal")
-    c_nom = trouver(ent, "nom installation", "nom de l installation", "installation", "nom", exclure=("numero", "no ", "municip", "region", "mrc", "bureau"))
+    c_nom = trouver(ent, "nom", "nom installation", "nom de l installation", "installation", exclure=("numero", "no ", "mun", "region", "mrc", "bureau", "terr"))
     c_ent = trouver(ent, "nom entreprise", "nom de l entreprise", "titulaire", "raison sociale", "entreprise", exclure=("numero", "no "))
     c_type = trouver(ent, "type", "categorie", "sous type")
     c_adr = trouver(ent, "adresse", "rue")
-    c_tel = trouver(ent, "telephone", "tel")
+    c_tel = trouver(ent, "telephone1", "telephone", "tel")
+    c_subv = trouver(ent, "subv")
+    c_web = trouver(ent, "internet", "courriel")
     c_mrc = trouver(ent, "mrc")
     c_no = trouver(ent, "numero installation", "no installation", "numero", "no ")
     cols_places = [h for h in ent if "place" in norm(h)]
-    c_tot = trouver(cols_places, "total", "permis") or (cols_places[0] if cols_places else None)
+    c_tot = trouver(cols_places, "place total", "places total", "total", "permis") or (cols_places[0] if cols_places else None)
     c_poup = trouver(cols_places, "poupon", "0 17", "moins de 18")
     diag.append("Colonnes retenues : %s" % {"municipalité": c_muni, "code postal": c_cp, "nom": c_nom, "entreprise": c_ent, "type": c_type,
-                                             "adresse": c_adr, "MRC": c_mrc, "numéro": c_no, "places (toutes)": cols_places,
+                                             "adresse": c_adr, "subvention": c_subv, "MRC": c_mrc, "numéro": c_no, "places (toutes)": cols_places,
                                              "places totales": c_tot, "poupons": c_poup})
     if c_type:
         types = {}
         for l in lignes:
             types[l.get(c_type, "")] = types.get(l.get(c_type, ""), 0) + 1
         diag.append("Valeurs de « %s » (tout le Québec) : %s" % (c_type, sorted(types.items(), key=lambda x: -x[1])[:25]))
+    if c_subv:
+        sv = {}
+        for l in lignes:
+            sv[(l.get(c_type, ""), l.get(c_subv, ""))] = sv.get((l.get(c_type, ""), l.get(c_subv, "")), 0) + 1
+        diag.append("Valeurs de (type, « %s ») : %s" % (c_subv, sorted(sv.items(), key=lambda x: -x[1])[:25]))
 
     rejets, inst = [], []
     for l in lignes:
@@ -189,10 +201,11 @@ def main():
         nom = l.get(c_nom, "") if c_nom else ""
         inst.append({
             "numero": l.get(c_no, "") if c_no else "", "nom": nom, "entreprise": l.get(c_ent, "") if c_ent else "",
-            "type": classer(l.get(c_type, "") if c_type else "", nom + " " + (l.get(c_ent, "") if c_ent else "")),
-            "type_source": l.get(c_type, "") if c_type else "",
+            "type": classer(l.get(c_type, "") if c_type else "", l.get(c_subv, "") if c_subv else ""),
+            "type_source": l.get(c_type, "") if c_type else "", "subvention_source": l.get(c_subv, "") if c_subv else "",
             "muni": muni, "adresse": l.get(c_adr, "") if c_adr else "", "telephone": l.get(c_tel, "") if c_tel else "",
-            "places": tot, "poupons": entier(l.get(c_poup)) if c_poup else None, "places_detail": places,
+            "courriel": l.get(c_web, "") if c_web else "",
+            "places": tot, "poupons": entier(l.get(c_poup)) if c_poup else None,
         })
     inst.sort(key=lambda x: (MUNIS.index(x["muni"]), x["nom"]))
     diag.append("Installations retenues : %d ; rejets par code postal (homonymes) : %s" % (len(inst), rejets[:40]))
@@ -209,10 +222,11 @@ def main():
             octets_bc = lire_url(url_bc) if url_bc else None
         if octets_bc:
             ent_b, lignes_b = lire_csv(octets_bc, diag, "Bureaux coordonnateurs")
-            b_muni = trouver(ent_b, "municipalite", "ville", exclure=("region", "mrc", "territoire"))
+            b_muni = trouver(ent_b, "nom mun compo", "nom mun", "municipalite", "ville", exclure=("region", "mrc", "territoire"))
             b_cp = trouver(ent_b, "code postal", "postal")
-            b_nom = trouver(ent_b, "nom", exclure=("numero", "municip", "region", "territoire"))
-            b_terr = trouver(ent_b, "territoire")
+            b_nom = trouver(ent_b, "nom", exclure=("numero", "mun", "region", "terr", "nombre"))
+            b_terr = trouver(ent_b, "nom terr", "territoire", "terr")
+            b_rsg = trouver(ent_b, "nombre de rsg reconnues", "rsg")
             b_places = [h for h in ent_b if "place" in norm(h)]
             diag.append("BC, colonnes retenues : %s" % {"municipalité": b_muni, "nom": b_nom, "territoire": b_terr, "places": b_places})
             rej_b = []
@@ -223,7 +237,7 @@ def main():
                     continue
                 pl = {h: entier(l.get(h)) for h in b_places if entier(l.get(h)) is not None}
                 bcs.append({"nom": l.get(b_nom, "") if b_nom else "", "muni": muni or "", "territoire": terr,
-                            "places": max(pl.values()) if pl else None, "places_detail": pl, "brut": l})
+                            "places": max(pl.values()) if pl else None, "rsg_reconnues": entier(l.get(b_rsg)) if b_rsg else None, "brut": l})
             diag.append("Bureaux coordonnateurs retenus : %d" % len(bcs))
             for b in bcs:
                 diag.append("  - %s" % b["brut"])
@@ -238,7 +252,9 @@ def main():
             "installations": len(l),
             "cpe": sum(1 for i in l if i["type"] == "cpe"),
             "garderies": sum(1 for i in l if i["type"].startswith("garderie")),
+            "garderies_subventionnees": sum(1 for i in l if i["type"] == "garderie_subventionnee"),
             "places": sum(i["places"] or 0 for i in l) if l else 0,
+            "poupons": sum(i["poupons"] or 0 for i in l) if l else 0,
         }
     places_inst = sum(i["places"] or 0 for i in inst)
     places_mf = sum(b["places"] or 0 for b in bcs) if bcs else None
@@ -249,6 +265,8 @@ def main():
               "installations": len(inst), "cpe": sum(1 for i in inst if i["type"] == "cpe"),
               "garderies": sum(1 for i in inst if i["type"].startswith("garderie")),
               "places_installation": places_inst, "places_milieu_familial": places_mf,
+              "rsg_reconnues": (sum(b["rsg_reconnues"] or 0 for b in bcs) or None) if bcs else None,
+              "places_poupons": sum(i["poupons"] or 0 for i in inst),
               "places_total": places_inst + (places_mf or 0), "par_municipalite": par_muni}
     for b in bcs:
         b.pop("brut", None)

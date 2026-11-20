@@ -1,0 +1,28 @@
+name: Carte - Granit (limites municipales)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  extraire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Limites des 19 municipalités
+        continue-on-error: true
+        run: python tools/carte_granit.py --out data/carte
+      - name: Publier les résultats
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/carte
+          git diff --cached --quiet || git commit -m "Carte : limites municipales de la MRC du Granit ($(date +%F))"
+          git pull --rebase
+          git push

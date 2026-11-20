@@ -30,6 +30,7 @@ MUNIS = ["Lac-Mégantic", "Frontenac", "Lambton", "Nantes", "Notre-Dame-des-Bois
 # (Stratford en Ontario, Saint-Sébastien en Montérégie, etc.). À ajuster au besoin après
 # lecture de diagnostic.txt (section « rejets par code postal »).
 RTA_OK = {"G6B", "G0Y", "G0M"}
+RTA_PAR_MUNI = {"Notre-Dame-des-Bois": {"J0B"}}
 ALIAS = {"woburn": "Saint-Augustin-de-Woburn", "megantic": "Lac-Mégantic",
          "sainte cecile": "Sainte-Cécile-de-Whitton", "saint robert": "Saint-Robert-Bellarmin",
          "saint sebastien de frontenac": "Saint-Sébastien", "saint romain de winslow": "Saint-Romain"}
@@ -120,7 +121,7 @@ def localiser(ligne, idx_adr, rejets):
         if i < len(ligne) and ligne[i]:
             muni = MUNI_KEY.get(norm(ligne[i]))
             if muni:
-                if cp and cp[:3] not in RTA_OK:
+                if cp and cp[:3] not in (RTA_OK | RTA_PAR_MUNI.get(muni, set())):
                     rejets[(muni, cp[:3])] += 1
                     return None, None
                 return muni, cp

@@ -1,0 +1,31 @@
+{
+ "serie": [
+  {
+   "date": "2026-11-20",
+   "installations": 0,
+   "places_installation": 0,
+   "places_milieu_familial": 381,
+   "par_municipalite": {
+    "Lac-Mégantic": 0,
+    "Frontenac": 0,
+    "Lambton": 0,
+    "Nantes": 0,
+    "Notre-Dame-des-Bois": 0,
+    "Stratford": 0,
+    "Lac-Drolet": 0,
+    "Saint-Ludger": 0,
+    "Marston": 0,
+    "Sainte-Cécile-de-Whitton": 0,
+    "Saint-Romain": 0,
+    "Audet": 0,
+    "Saint-Sébastien": 0,
+    "Saint-Augustin-de-Woburn": 0,
+    "Stornoway": 0,
+    "Saint-Robert-Bellarmin": 0,
+    "Piopolis": 0,
+    "Milan": 0,
+    "Val-Racine": 0
+   }
+  }
+ ]
+}

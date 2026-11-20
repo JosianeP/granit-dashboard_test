@@ -1,0 +1,128 @@
+{
+ "_source": "Ministère de la Famille, Liste des centres de la petite enfance (CPE) et des garderies en fonction (fichier du 2026-11-03) et Liste des bureaux coordonnateurs de la garde éducative en milieu familial (fichier du 2026-11-03), Données Québec, extraction du 2026-11-20. Licence CC-BY 4.0.",
+ "extraction": "2026-11-20",
+ "fichier_installations": "2026-11-03",
+ "fichier_bc": "2026-11-03",
+ "installations": 0,
+ "cpe": 0,
+ "garderies": 0,
+ "places_installation": 0,
+ "places_milieu_familial": 381,
+ "places_total": 381,
+ "par_municipalite": {
+  "Lac-Mégantic": {
+   "installations": 0,
+   "cpe": 0,
+   "garderies": 0,
+   "places": 0
+  },
+  "Frontenac": {
+   "installations": 0,
+   "cpe": 0,
+   "garderies": 0,
+   "places": 0
+  },
+  "Lambton": {
+   "installations": 0,
+   "cpe": 0,
+   "garderies": 0,
+   "places": 0
+  },
+  "Nantes": {
+   "installations": 0,
+   "cpe": 0,
+   "garderies": 0,
+   "places": 0
+  },
+  "Notre-Dame-des-Bois": {
+   "installations": 0,
+   "cpe": 0,
+   "garderies": 0,
+   "places": 0
+  },
+  "Stratford": {
+   "installations": 0,
+   "cpe": 0,
+   "garderies": 0,
+   "places": 0
+  },
+  "Lac-Drolet": {
+   "installations": 0,
+   "cpe": 0,
+   "garderies": 0,
+   "places": 0
+  },
+  "Saint-Ludger": {
+   "installations": 0,
+   "cpe": 0,
+   "garderies": 0,
+   "places": 0
+  },
+  "Marston": {
+   "installations": 0,
+   "cpe": 0,
+   "garderies": 0,
+   "places": 0
+  },
+  "Sainte-Cécile-de-Whitton": {
+   "installations": 0,
+   "cpe": 0,
+   "garderies": 0,
+   "places": 0
+  },
+  "Saint-Romain": {
+   "installations": 0,
+   "cpe": 0,
+   "garderies": 0,
+   "places": 0
+  },
+  "Audet": {
+   "installations": 0,
+   "cpe": 0,
+   "garderies": 0,
+   "places": 0
+  },
+  "Saint-Sébastien": {
+   "installations": 0,
+   "cpe": 0,
+   "garderies": 0,
+   "places": 0
+  },
+  "Saint-Augustin-de-Woburn": {
+   "installations": 0,
+   "cpe": 0,
+   "garderies": 0,
+   "places": 0
+  },
+  "Stornoway": {
+   "installations": 0,
+   "cpe": 0,
+   "garderies": 0,
+   "places": 0
+  },
+  "Saint-Robert-Bellarmin": {
+   "installations": 0,
+   "cpe": 0,
+   "garderies": 0,
+   "places": 0
+  },
+  "Piopolis": {
+   "installations": 0,
+   "cpe": 0,
+   "garderies": 0,
+   "places": 0
+  },
+  "Milan": {
+   "installations": 0,
+   "cpe": 0,
+   "garderies": 0,
+   "places": 0
+  },
+  "Val-Racine": {
+   "installations": 0,
+   "cpe": 0,
+   "garderies": 0,
+   "places": 0
+  }
+ }
+}

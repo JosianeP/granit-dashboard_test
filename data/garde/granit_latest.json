@@ -1,0 +1,16 @@
+{
+ "_source": "Ministère de la Famille, Liste des centres de la petite enfance (CPE) et des garderies en fonction (fichier du 2026-11-03) et Liste des bureaux coordonnateurs de la garde éducative en milieu familial (fichier du 2026-11-03), Données Québec, extraction du 2026-11-20. Licence CC-BY 4.0.",
+ "extraction": "2026-11-20",
+ "installations": [],
+ "bureaux_coordonnateurs": [
+  {
+   "nom": "Lac-Mégantic",
+   "muni": "",
+   "territoire": "",
+   "places": 381,
+   "places_detail": {
+    "PLACE_TOTAL": 381
+   }
+  }
+ ]
+}

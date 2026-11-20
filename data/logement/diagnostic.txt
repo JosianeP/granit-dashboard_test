@@ -1,0 +1,3 @@
+Extraction du 2026-11-20
+Échec https://www12.statcan.gc.ca/census-recensement/2021/dp-pd/prof/details/download-telecharger/comp/GetFile.cfm?Lang=F&FILETYPE=CSV&GEONO=006_Quebec : HTTP Error 403: Forbidden
+Échec https://www12.statcan.gc.ca/census-recensement/2021/dp-pd/prof/details/download-telecharger/comp/GetFile.cfm?Lang=E&FILETYPE=CSV&GEONO=006_Quebec : HTTP Error 403: Forbidden

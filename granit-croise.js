@@ -349,6 +349,21 @@
       '<p class="gx-note">Les entreprises comprennent les inscriptions du Registraire et les fiches locales sans inscription rattachée. Les emplois estimés par secteur viennent du portrait de la MRC et non du Registraire.' + (ok ? ' ' + dateSrc() + '.' : '') + '</p>';
   }
 
+  /* ════════ LÉGENDE : les quatre mesures de l'emploi, avec leurs valeurs ════════ */
+  function legendeEmplois() {
+    var el = document.getElementById('lgdEmplois'); if (!el || !window.D) return;
+    var D = window.D, vi = (D.meta && D.meta.validatedIndicators) || {}, L = D.portraitLGP && D.portraitLGP.agregats, t = D.trends || {};
+    var sj = (D.sectors || []).reduce(function (a, b) { return a + (b.jobs || 0); }, 0);
+    var fj = (D.companies || []).filter(function (c) { return c.src !== 'tourisme' && c.status !== 'a_completer'; }).reduce(function (a, b) { return a + (b.jobs || 0); }, 0);
+    var h = '';
+    function l(titre, texte) { h += '<dt>' + titre + '</dt><dd>' + texte + '</dd>'; }
+    if (vi.travailleurs_25_64_2024) l('Travailleurs de 25 à 64 ans <span class="prov prov-reel">Réel</span>', '<b>' + fmt(vi.travailleurs_25_64_2024) + '</b> résidents du Granit qui occupent un emploi, peu importe où ils travaillent (ISQ, 2024). C\'est une mesure des personnes, pas des postes situés sur le territoire.');
+    if (L && L.emplois) l('Emplois industriels <span class="prov prov-reel">Réel</span>', '<b>' + fmt(L.emplois) + '</b> emplois dans les ' + fmt(L.etablissements) + ' établissements industriels avec employés (portrait LGP, avril 2026). Les services publics, le commerce et les travailleurs autonomes n\'y sont pas.');
+    l('Emplois estimés par secteur <span class="prov prov-est">Estimation</span>', 'Estimations analytiques de la MRC pour chacun des 13 secteurs. Leur somme (<b>' + fmt(sj) + '</b>)' + (t.totalJobs && t.totalJobs.length ? ' dépasse le total estimé de ' + t.years[t.years.length - 1] + ' (<b>' + fmt(t.totalJobs[t.totalJobs.length - 1]) + '</b>)' : '') + ', parce que les deux séries n\'ont pas été conciliées. Elles servent à comparer les secteurs entre eux, pas à établir un total.');
+    l('Emplois des fiches <span class="prov prov-est">Estimation</span>', '<b>' + fmt(fj) + '</b> emplois inscrits sur les fiches du répertoire local. C\'est un plancher documenté, puisque le répertoire ne couvre pas toutes les entreprises.');
+    el.innerHTML = h;
+  }
+
   /* ════════ Rafraîchissement des vues déjà affichées ════════ */
   function filtreActif(sel) {
     var b = document.querySelector(sel + ' .ft.active'), m = b && (b.getAttribute('onclick') || '').match(/\('([^']+)'/);
@@ -368,7 +383,7 @@
       apresRendu();
     } catch (e) { if (w.console) console.warn('granit-croise', e); }
   }
-  function apresRendu() { try { noteMilieu(); carteEmployeurs(); legendeSecteurs(); fraicheur(); } catch (e) {} try { if (window.GranitCarte) window.GranitCarte.rendre(); } catch (e) {} }
+  function apresRendu() { try { noteMilieu(); carteEmployeurs(); legendeSecteurs(); legendeEmplois(); fraicheur(); } catch (e) {} try { if (window.GranitCarte) window.GranitCarte.rendre(); } catch (e) {} }
   function json(u) { return fetch(u + '?t=' + Date.now()).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); }
   function demarrer() {
     styles();

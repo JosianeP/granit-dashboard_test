@@ -3,8 +3,8 @@
   "meta": {
     "quarter": "T2 2026",
     "updatedBy": "MRC du Granit - Conseil scientifique & Développement économique",
-    "updatedDate": "2026-06-17",
-    "note": "Données démographiques et de revenu validées aux sources officielles (Décret 1499-2025, Recensement 2021). Portrait industriel officiel intégré (LGP / Table des MRC de l'Estrie, avril 2026). Liste d'entreprises triangulée : liste manufacturière SDEG 2025 + infolettre avril 2026 + registre « Le Granit ». Ajouts tourisme et commerce par recherche documentaire (juin 2026). Effectifs non confirmés marqués « à compléter » et exclus des totaux. Estimations clairement identifiées. Pilier Santé enrichi des données réelles de la DSP de l'Estrie (RLS du Granit, avril 2025) et du Tableau de bord – Santé publique Estrie. Section Plan climat ajoutée au pilier Aménagement (v4.6) à partir de l'Inventaire collectif des émissions de GES de la MRC du Granit, version préliminaire v2, année de référence 2024. Toutes les valeurs de cette section proviennent de ce chiffrier; la classification des sources selon la portée des instruments d'aménagement est une lecture analytique, signalée comme telle. Section Culture retirée du tableau de bord (v4.7). Mise à jour trimestrielle par chiffrier Excel chiffré, une feuille par municipalité, importé directement dans la plateforme (v4.7). Repères de revenu des ménages (aperçu), enfants en attente d'une place en service de garde et vignette de la MRC dans la vue Municipalités ajoutés (v4.8). Registre des entreprises croisé avec toutes les vues, services de garde extraits automatiquement du ministère de la Famille et parc de logements du Recensement de 2021 pour les 19 municipalités (v4.10).",
+    "updatedDate": "2026-11-20",
+    "note": "Données démographiques et de revenu validées aux sources officielles (Décret 1499-2025, Recensement 2021). Portrait industriel officiel intégré (LGP / Table des MRC de l'Estrie, avril 2026). Liste d'entreprises triangulée : liste manufacturière SDEG 2025 + infolettre avril 2026 + registre « Le Granit ». Ajouts tourisme et commerce par recherche documentaire (juin 2026). Effectifs non confirmés marqués « à compléter » et exclus des totaux. Estimations clairement identifiées. Pilier Santé enrichi des données réelles de la DSP de l'Estrie (RLS du Granit, avril 2025) et du Tableau de bord – Santé publique Estrie. Section Plan climat ajoutée au pilier Aménagement (v4.6) à partir de l'Inventaire collectif des émissions de GES de la MRC du Granit, version préliminaire v2, année de référence 2024. Toutes les valeurs de cette section proviennent de ce chiffrier; la classification des sources selon la portée des instruments d'aménagement est une lecture analytique, signalée comme telle. Section Culture retirée du tableau de bord (v4.7). Mise à jour trimestrielle par chiffrier Excel chiffré, une feuille par municipalité, importé directement dans la plateforme (v4.7). Repères de revenu des ménages (aperçu), enfants en attente d'une place en service de garde et vignette de la MRC dans la vue Municipalités ajoutés (v4.8). Registre des entreprises croisé avec toutes les vues, services de garde extraits automatiquement du ministère de la Famille et parc de logements du Recensement de 2021 pour les 19 municipalités (v4.10). Royer reclassé dans Textile & vêtements; emplois de ce secteur alignés sur le portrait LGP (270) et ceux de Produits métalliques sur la somme des fiches documentées (355). Noms d'organismes mis à jour (v4.15).",
     "password": "granit2025",
     "validation": "Courcelles transférée vers Beauce-Sartigan le 1er janvier 2024 (19 municipalités, total 21 935 hab.).",
     "validatedIndicators": {
@@ -125,22 +125,22 @@
     {
       "id": "s7",
       "name": "Produits métalliques",
-      "jobs": 160,
+      "jobs": 355,
       "trend": "+1,0 %",
       "dir": "up",
       "cat": "manufacturier",
       "icon": "s7",
-      "desc": "ULC (pièces mécano-soudees, 15 000 pi², équipements forestiers/agricoles). Royer (chaussures de sécurité, marché nord-americain)."
+      "desc": "ULC (pièces mécano-soudées, 15 000 pi², équipements forestiers et agricoles), Les Équipements Lapierre (équipements acéricoles), Acier Fastech, Fabrication du Lac. Emplois : somme des fiches documentées (liste manufacturière MRC du Granit 2025)."
     },
     {
       "id": "s8",
       "name": "Textile & vêtements",
-      "jobs": 190,
+      "jobs": 270,
       "trend": "-1,8 %",
       "dir": "down",
       "cat": "manufacturier",
       "icon": "s8",
-      "desc": "Attraction (Lac-Drolet, marques Ethica/Initial/Jameo), Perfection, Confection NF Denim (Stornoway), Groupe CSR (Saint-Romain). Filière confection répartie sur le territoire."
+      "desc": "Attraction (Lac-Drolet, marques Ethica/Initial/Jameo), Perfection, Confection NF Denim (Stornoway), Groupe CSR (Saint-Romain), Royer (chaussures de sécurité). Emplois : 270 dans 5 établissements selon le portrait LGP (Fil / Textile / Habillement, avril 2026)."
     },
     {
       "id": "s9",
@@ -170,7 +170,7 @@
       "dir": "up",
       "cat": "commerce",
       "icon": "s11",
-      "desc": "CSSS du Granit (~420 emp), Commission scolaire (~220), Ville Lac-Mégantic (~140), MRC du Granit (~95), CFP Le Granit (~85), Aide à domicile du Granit (70+ préposés), Caisse Desjardins (~60)."
+      "desc": "CSSS du Granit (~420 emp), Centre de services scolaire (~220), Ville Lac-Mégantic (~140), MRC du Granit (~95), CFP Le Granit (~85), Aide à domicile du Granit (70+ préposés), Caisse Desjardins (~60)."
     },
     {
       "id": "s12",
@@ -288,10 +288,10 @@
       "id": "c10",
       "name": "Royer (chaussures de sécurité)",
       "muni": "Lac-Mégantic",
-      "sector": "Produits métalliques",
+      "sector": "Textile & vêtements",
       "jobs": 45,
       "status": "actif",
-      "desc": "Fabricant de chaussures de sécurité. Marché nord-americain. Parc industriel de Lac-Mégantic.",
+      "desc": "Fabricant de chaussures de sécurité. Marché nord-américain. Parc industriel de Lac-Mégantic.",
       "src": "eco"
     },
     {
@@ -326,7 +326,7 @@
     },
     {
       "id": "c14",
-      "name": "CSSS du Granit (CIUSSS Estrie-CHUS)",
+      "name": "CSSS du Granit (Santé Québec Estrie - CHUS)",
       "muni": "Lac-Mégantic",
       "sector": "Services publics & éducation",
       "jobs": 420,
@@ -336,7 +336,7 @@
     },
     {
       "id": "c15",
-      "name": "Commission scolaire des Hauts-Cantons",
+      "name": "Centre de services scolaire des Hauts-Cantons",
       "muni": "Lac-Mégantic",
       "sector": "Services publics & éducation",
       "jobs": 220,
@@ -5273,12 +5273,12 @@
       {
         "label": "Secteur primaire",
         "pct": 20,
-        "color": "#4aaa72"
+        "color": "#8fb26a"
       },
       {
         "label": "Secteur secondaire",
         "pct": 64,
-        "color": "#1a4d2e"
+        "color": "#004159"
       },
       {
         "label": "Secteur tertiaire",

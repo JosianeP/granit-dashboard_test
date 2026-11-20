@@ -1,4 +1,4 @@
-# Tableau de bord territorial - MRC du Granit (v4.14)
+# Tableau de bord territorial - MRC du Granit (v4.15)
 
 Outil interne de développement territorial à trois piliers (économie, aménagement, santé). Hébergé sur GitHub Pages.
 
@@ -21,6 +21,13 @@ Outil interne de développement territorial à trois piliers (économie, aménag
 | `data/appariement.json` | Liens entre les fiches locales et le Registraire (par NEQ) |
 
 Ces fichiers doivent se trouver dans le même dossier du dépôt.
+
+## Nouveautés de la version 4.15 (cohérence des données)
+
+- Emplois. Les estimations par secteur et le total estimé ne sont pas conciliés (leur somme dépasse le total). Plutôt que de modifier des chiffres sans source, l'aperçu le dit sous le graphique et la légende décrit les quatre mesures de l'emploi (travailleurs de l'ISQ, emplois industriels du portrait LGP, estimations par secteur, emplois des fiches).
+- Secteurs. Royer (chaussures de sécurité) passe de Produits métalliques à Textile & vêtements. Ce secteur affiche 270 emplois, soit le chiffre du portrait LGP (Fil / Textile / Habillement, 5 établissements). Produits métalliques affiche 355 emplois, soit la somme de ses fiches documentées.
+- Date. L'en-tête et le menu affichent la date de la dernière mise à jour des données (`meta.updatedDate`); le trimestre reste celui du chiffrier saisi par la MRC.
+- Noms. « Centre de services scolaire des Hauts-Cantons » remplace « Commission scolaire », et le CSSS du Granit est rattaché à Santé Québec Estrie - CHUS.
 
 ## Nouveautés de la version 4.14
 

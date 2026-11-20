@@ -27,10 +27,44 @@ UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chr
 ENTETES = {"User-Agent": UA, "Accept": "*/*", "Accept-Language": "fr-CA,fr;q=0.9,en;q=0.8"}
 # Service Web de données du Profil du recensement de 2021 (SDMX). Clé : fréquence.région.genre.caractéristique.statistique
 API = "https://api.statcan.gc.ca/census-recensement/profile/sdmx/rest/data/STC_CP,DF_CSD/A5.%s.1.%s.1"
-# 1 population 2021; 4 total des logements privés; 5 logements privés occupés par des résidents habituels;
-# 1414 total des ménages privés selon le mode d'occupation; 1415 propriétaire; 1416 locataire
-API_CARACS = {"1": "population_2021", "4": "logements_prives", "5": "logements_occupes",
-              "1414": "menages", "1415": "proprietaires", "1416": "locataires"}
+STRUCTURE = "https://api.statcan.gc.ca/census-recensement/profile/sdmx/rest/dataflow/STC_CP/DF_CSD/latest?references=all"
+# 1 population 2021; 4 total des logements privés; 5 logements privés occupés par des résidents habituels.
+# Les identifiants du mode d'occupation (propriétaire, locataire) sont lus dans la liste de codes du service,
+# par leur libellé, plutôt que supposés.
+API_CARACS = {"1": "population_2021", "4": "logements_prives", "5": "logements_occupes"}
+
+
+def codes_mode_occupation(diag):
+    """Cherche dans la liste de codes les identifiants de « Total - Ménages privés selon le mode d'occupation »,
+    « Propriétaire » et « Locataire » (les deux derniers suivent immédiatement le total)."""
+    try:
+        req = urllib.request.Request(STRUCTURE, headers=dict(ENTETES, Accept="application/vnd.sdmx.structure+xml;version=2.1"))
+        with urllib.request.urlopen(req, timeout=300) as r:
+            xml = r.read().decode("utf-8", "replace")
+    except Exception as e:  # noqa
+        diag.append("Liste de codes : échec %s" % e)
+        return {}
+    diag.append("Liste de codes : %d octets" % len(xml))
+    noms = {}
+    for bloc in re.findall(r"<(?:structure:|str:)?Codelist\b[^>]*\bid=\"([^\"]+)\"[^>]*>(.*?)</(?:structure:|str:)?Codelist>", xml, re.S):
+        if "CHARACTERISTIC" not in bloc[0].upper():
+            continue
+        for cid, corps in re.findall(r"<(?:structure:|str:)?Code\b[^>]*\bid=\"([^\"]+)\"[^>]*>(.*?)</(?:structure:|str:)?Code>", bloc[1], re.S):
+            noms[cid] = [re.sub(r"\s+", " ", n).strip() for n in re.findall(r"<common:Name[^>]*>(.*?)</common:Name>", corps, re.S)]
+    diag.append("Liste de codes : %d caractéristiques lues" % len(noms))
+    total = [c for c, n in noms.items() if any(norm(x).startswith(("total private households by tenure", "total menages prives selon le mode d occupation")) for x in n)]
+    diag.append("Total selon le mode d'occupation : %s" % [(c, noms[c]) for c in total])
+    if len(total) != 1 or not total[0].isdigit():
+        return {}
+    t = int(total[0]); res = {str(t): "menages"}
+    for c in (t + 1, t + 2, t + 3):
+        n = [norm(x) for x in noms.get(str(c), [])]
+        if any(x in ("owner", "proprietaire") for x in n):
+            res[str(c)] = "proprietaires"
+        if any(x in ("renter", "locataire") for x in n):
+            res[str(c)] = "locataires"
+    diag.append("Codes retenus : %s" % {c: (k, noms.get(c)) for c, k in res.items()})
+    return res if len(res) == 3 else {}
 CODES = {"30030": "Lac-Mégantic", "30025": "Frontenac", "30095": "Lambton", "30045": "Nantes", "30010": "Notre-Dame-des-Bois",
          "30110": "Stratford", "30080": "Lac-Drolet", "30072": "Saint-Ludger", "30035": "Marston", "30050": "Sainte-Cécile-de-Whitton",
          "30100": "Saint-Romain", "30055": "Audet", "30085": "Saint-Sébastien", "30005": "Saint-Augustin-de-Woburn",
@@ -80,17 +114,19 @@ def telecharger(dest, diag):
 def par_api(out, diag, finir):
     """Solution de rechange : interroger le service Web de données, une requête pour les 19 municipalités."""
     regions = "+".join("2021A0005" + c for c in SDR)
-    url = API % (regions, "+".join(API_CARACS))
+    caracs = dict(API_CARACS)
+    caracs.update(codes_mode_occupation(diag))
+    url = API % (regions, "+".join(caracs))
     texte = None
-    for accept in ("application/vnd.sdmx.data+csv;version=1.0.0", "text/csv", "application/vnd.sdmx.data+json;version=1.0.0", "*/*"):
+    for accept in ("application/vnd.sdmx.data+csv;version=1.0.0", "text/csv"):
         try:
             req = urllib.request.Request(url, headers=dict(ENTETES, Accept=accept))
             with urllib.request.urlopen(req, timeout=300) as r:
                 octets = r.read()
                 diag.append("API (%s) : HTTP %s, %s, %d octets" % (accept, r.status, r.headers.get("Content-Type"), len(octets)))
                 texte = octets.decode("utf-8-sig", "replace")
-                diag.append("API, début de la réponse : %r" % texte[:1200])
-                if texte.lstrip()[:1] not in ("<", "{") and "," in texte.split("\n", 1)[0]:
+                diag.append("API, début de la réponse : %r" % texte[:400])
+                if texte.lstrip()[:1] not in ("<", "{") and "OBS_VALUE" in texte.split("\n", 1)[0]:
                     break
                 texte = None
         except Exception as e:  # noqa
@@ -103,22 +139,23 @@ def par_api(out, diag, finir):
     if not texte:
         diag.append("URL interrogée : " + url)
         finir(1)
-    lignes = list(csv.DictReader(io.StringIO(texte)))
+    entete = texte.split("\n", 1)[0]
+    lignes = list(csv.DictReader(io.StringIO(texte), delimiter=max(";,\t", key=entete.count)))
     diag.append("API : %d observations, colonnes %s" % (len(lignes), list(lignes[0].keys()) if lignes else []))
     par_muni = {m: {"code": c} for c, m in CODES.items()}
     for l in lignes:
         zone = (l.get("REF_AREA") or l.get("GEO") or "")[-7:]
         car = l.get("CHARACTERISTIC") or l.get("CHARACTERISTICS") or ""
-        if zone not in SDR or car not in API_CARACS:
+        if zone not in SDR or car not in caracs:
             continue
         try:
             v = float(l.get("OBS_VALUE", ""))
             v = int(v) if v == int(v) else v
         except ValueError:
             v = None
-        par_muni[SDR[zone]][API_CARACS[car]] = v
+        par_muni[SDR[zone]][caracs[car]] = v
     for m, v in par_muni.items():
-        for k in API_CARACS.values():
+        for k in ("population_2021", "logements_prives", "logements_occupes", "menages", "proprietaires", "locataires"):
             v.setdefault(k, None)
         # Garde-fou : propriétaires + locataires doit égaler le total des ménages (échantillon de 25 %, arrondi à 5 près).
         if None not in (v["menages"], v["proprietaires"], v["locataires"], v["logements_occupes"]):
@@ -133,7 +170,7 @@ def par_api(out, diag, finir):
     json.dump({"_source": "Statistique Canada, Profil du recensement, Recensement de la population de 2021, subdivisions de recensement "
                           "(service Web de données). Les ménages selon le mode d'occupation proviennent de l'échantillon de 25 % et sont arrondis.",
                "extraction": datetime.date.today().isoformat(), "methode": "api",
-               "caracteristiques": {v: {"id": k} for k, v in API_CARACS.items()}, "par_municipalite": par_muni},
+               "caracteristiques": {v: {"id": k} for k, v in caracs.items()}, "par_municipalite": par_muni},
               open(os.path.join(out, "recensement2021.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     finir(1 if len(manquants) == len(CODES) else 0)
 

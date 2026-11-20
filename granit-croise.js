@@ -13,7 +13,14 @@
   var X = { garde: null, rec: null, sp: { sid: '', q: '', muni: '', n: PAS } };
 
   function R() { return window.GranitREQ; }
-  function pret() { return !!(R() && R().pret()); }
+  /* Le registre n'est « prêt » que si granit-req.js est à la bonne version : un navigateur peut garder en cache
+     une copie plus ancienne, sans les fonctions de partage. Dans ce cas, les vues gardent leur comportement d'origine. */
+  function compatible() { var r = R(); return !!(r && typeof r.pret === 'function' && typeof r.charger === 'function' && typeof r.lignes === 'function' && typeof r.voir === 'function'); }
+  function pret() { return compatible() && !!R().pret(); }
+  /* Aucune erreur de ce module ne doit empêcher une carte de s'ouvrir : en cas d'échec, on rend la valeur de repli. */
+  function sur(f, repli) {
+    return function () { try { return f.apply(null, arguments); } catch (e) { if (window.console) console.warn('granit-croise', e); return repli; } };
+  }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function fmt(n) { return Number(n).toLocaleString('fr-CA'); }
   function pl(n, s, p) { return fmt(n) + ' ' + (n > 1 ? (p || s + 's') : s); }
@@ -358,14 +365,15 @@
       if (r[2] && r[2].par_municipalite) X.rec = r[2];
       rafraichir();
     });
-    if (R()) R().charger().then(rafraichir).catch(function () {});
+    if (compatible()) R().charger().then(rafraichir).catch(function () {});
   }
 
   window.GranitCroise = {
-    pret: pret, carteSecteur: carteSecteur, panneauSecteur: panneauSecteur, compteMuni: compteMuni, blocMuni: blocMuni,
-    statsRegistre: statsRegistre, ligneRepertoire: ligneRepertoire, blocTourisme: blocTourisme, blocLogement: blocLogement,
-    appliquerMilieu: appliquerMilieu, rafraichir: rafraichir, apresRendu: apresRendu, _etat: X,
-    sp: function (k, v) { X.sp[k] = v; if (k !== 'n') X.sp.n = PAS; listeSecteur(); }
+    pret: sur(pret, false), carteSecteur: sur(carteSecteur, ''), panneauSecteur: sur(panneauSecteur, false), compteMuni: sur(compteMuni, null), blocMuni: sur(blocMuni, ''),
+    statsRegistre: sur(statsRegistre, ''), ligneRepertoire: sur(ligneRepertoire, ''), blocTourisme: sur(blocTourisme, ''), blocLogement: sur(blocLogement, ''),
+    appliquerMilieu: sur(appliquerMilieu), rafraichir: rafraichir, apresRendu: apresRendu, _etat: X,
+    sp: sur(function (k, v) { X.sp[k] = v; if (k !== 'n') X.sp.n = PAS; listeSecteur(); })
   };
+
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', demarrer); else demarrer();
 })();

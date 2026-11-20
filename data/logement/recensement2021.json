@@ -1,0 +1,217 @@
+{
+ "_source": "Statistique Canada, Profil du recensement, Recensement de la population de 2021, subdivisions de recensement (service Web de données). Les ménages selon le mode d'occupation proviennent de l'échantillon de 25 % et sont arrondis.",
+ "extraction": "2026-11-20",
+ "methode": "api",
+ "caracteristiques": {
+  "population_2021": {
+   "id": "1"
+  },
+  "logements_prives": {
+   "id": "4"
+  },
+  "logements_occupes": {
+   "id": "5"
+  },
+  "menages": {
+   "id": "1400"
+  },
+  "proprietaires": {
+   "id": "1401"
+  },
+  "locataires": {
+   "id": "1402"
+  }
+ },
+ "par_municipalite": {
+  "Lac-Mégantic": {
+   "code": "30030",
+   "population_2021": 5747,
+   "menages": 2940,
+   "logements_occupes": 2938,
+   "logements_prives": 3143,
+   "locataires": 1355,
+   "proprietaires": 1580,
+   "controle_mode_occupation": true
+  },
+  "Frontenac": {
+   "code": "30025",
+   "logements_prives": 922,
+   "proprietaires": 670,
+   "logements_occupes": 769,
+   "population_2021": 1811,
+   "menages": 770,
+   "locataires": 100,
+   "controle_mode_occupation": true
+  },
+  "Lambton": {
+   "code": "30095",
+   "menages": 755,
+   "logements_occupes": 755,
+   "proprietaires": 605,
+   "locataires": 150,
+   "population_2021": 1630,
+   "logements_prives": 1143,
+   "controle_mode_occupation": true
+  },
+  "Nantes": {
+   "code": "30045",
+   "population_2021": 1388,
+   "logements_occupes": 609,
+   "menages": 605,
+   "logements_prives": 668,
+   "proprietaires": 490,
+   "locataires": 120,
+   "controle_mode_occupation": true
+  },
+  "Notre-Dame-des-Bois": {
+   "code": "30010",
+   "proprietaires": 405,
+   "logements_occupes": 470,
+   "locataires": 65,
+   "logements_prives": 817,
+   "menages": 470,
+   "population_2021": 1028,
+   "controle_mode_occupation": true
+  },
+  "Stratford": {
+   "code": "30110",
+   "population_2021": 1036,
+   "logements_occupes": 533,
+   "logements_prives": 946,
+   "menages": 530,
+   "locataires": 50,
+   "proprietaires": 480,
+   "controle_mode_occupation": true
+  },
+  "Lac-Drolet": {
+   "code": "30080",
+   "logements_occupes": 492,
+   "proprietaires": 380,
+   "logements_prives": 600,
+   "population_2021": 1067,
+   "locataires": 110,
+   "menages": 490,
+   "controle_mode_occupation": true
+  },
+  "Saint-Ludger": {
+   "code": "30072",
+   "menages": 445,
+   "population_2021": 1074,
+   "logements_prives": 507,
+   "locataires": 65,
+   "logements_occupes": 449,
+   "proprietaires": 380,
+   "controle_mode_occupation": true
+  },
+  "Marston": {
+   "code": "30035",
+   "logements_occupes": 341,
+   "population_2021": 777,
+   "proprietaires": 305,
+   "menages": 345,
+   "logements_prives": 419,
+   "locataires": 40,
+   "controle_mode_occupation": true
+  },
+  "Sainte-Cécile-de-Whitton": {
+   "code": "30050",
+   "logements_occupes": 359,
+   "logements_prives": 491,
+   "proprietaires": 320,
+   "menages": 335,
+   "locataires": 15,
+   "population_2021": 853,
+   "controle_mode_occupation": true
+  },
+  "Saint-Romain": {
+   "code": "30100",
+   "population_2021": 711,
+   "locataires": 50,
+   "logements_prives": 425,
+   "logements_occupes": 328,
+   "proprietaires": 265,
+   "menages": 305,
+   "controle_mode_occupation": true
+  },
+  "Audet": {
+   "code": "30055",
+   "logements_occupes": 284,
+   "menages": 295,
+   "locataires": 50,
+   "logements_prives": 317,
+   "proprietaires": 240,
+   "population_2021": 708,
+   "controle_mode_occupation": true
+  },
+  "Saint-Sébastien": {
+   "code": "30085",
+   "population_2021": 674,
+   "logements_occupes": 301,
+   "menages": 290,
+   "logements_prives": 329,
+   "locataires": 60,
+   "proprietaires": 230,
+   "controle_mode_occupation": true
+  },
+  "Saint-Augustin-de-Woburn": {
+   "code": "30005",
+   "menages": 315,
+   "logements_occupes": 309,
+   "proprietaires": 260,
+   "logements_prives": 354,
+   "locataires": 55,
+   "population_2021": 667,
+   "controle_mode_occupation": true
+  },
+  "Stornoway": {
+   "code": "30105",
+   "menages": 270,
+   "locataires": 25,
+   "proprietaires": 250,
+   "population_2021": 535,
+   "logements_prives": 272,
+   "logements_occupes": 247,
+   "controle_mode_occupation": true
+  },
+  "Saint-Robert-Bellarmin": {
+   "code": "30070",
+   "logements_occupes": 224,
+   "logements_prives": 237,
+   "proprietaires": 220,
+   "population_2021": 529,
+   "locataires": 20,
+   "menages": 240,
+   "controle_mode_occupation": true
+  },
+  "Piopolis": {
+   "code": "30020",
+   "population_2021": 398,
+   "proprietaires": 180,
+   "menages": 210,
+   "logements_occupes": 208,
+   "logements_prives": 315,
+   "locataires": 30,
+   "controle_mode_occupation": true
+  },
+  "Milan": {
+   "code": "30040",
+   "population_2021": 318,
+   "menages": 135,
+   "locataires": 10,
+   "logements_occupes": 156,
+   "proprietaires": 120,
+   "logements_prives": 212,
+   "controle_mode_occupation": true
+  },
+  "Val-Racine": {
+   "code": "30015",
+   "population_2021": 183,
+   "logements_occupes": 91,
+   "proprietaires": 90,
+   "logements_prives": 132,
+   "locataires": 0,
+   "menages": 95,
+   "controle_mode_occupation": true
+  }
+ }
+}

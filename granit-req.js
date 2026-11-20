@@ -16,9 +16,9 @@
 
   /* Grands secteurs : regroupement des divisions de la Classification des activités économiques (CAE) */
   var SECTEURS = [
-    ['agri', 'Agriculture et services agricoles', 1, 2, '#2d8a52'],
+    ['agri', 'Agriculture et services agricoles', 1, 2, '#668e3c'],
     ['peche', 'Pêche et piégeage', 3, 3, '#0e7490'],
-    ['foret', 'Exploitation et services forestiers', 4, 5, '#14532d'],
+    ['foret', 'Exploitation et services forestiers', 4, 5, '#004159'],
     ['mines', 'Mines et carrières', 6, 9, '#64748b'],
     ['manuf', 'Fabrication', 10, 39, '#b45309'],
     ['constr', 'Construction', 40, 44, '#d97706'],
@@ -33,7 +33,7 @@
     ['ens', 'Enseignement', 85, 85, '#854d0e'],
     ['sante', 'Santé et services sociaux', 86, 86, '#22b8cf'],
     ['hebrest', 'Hébergement et restauration', 91, 92, '#f59e0b'],
-    ['autres', 'Autres services', 96, 99, '#52a878']
+    ['autres', 'Autres services', 96, 99, '#5a97b0']
   ];
   var SECT_NC = ['nc', 'Non classé', 0, 0, '#94a3b8'];
   var SECT_BY = {}; SECTEURS.concat([SECT_NC]).forEach(function (s) { SECT_BY[s[0]] = s; });
@@ -367,7 +367,7 @@
     var el = document.getElementById('rqMuni'); if (!el) return;
     tuer('muni');
     charts.muni = new Chart(el.getContext('2d'), { type: 'bar',
-      data: { labels: lm.map(function (x) { return x[0]; }), datasets: [{ data: lm.map(function (x) { return x[1]; }), backgroundColor: '#1a6e3c', borderRadius: 4 }] },
+      data: { labels: lm.map(function (x) { return x[0]; }), datasets: [{ data: lm.map(function (x) { return x[1]; }), backgroundColor: '#0b5673', borderRadius: 4 }] },
       options: opt(S.parHab ? ' entreprises par 1 000 habitants' : ' entreprises') });
     var cs = compter(b, function (r) { return r.sect; });
     var ls = Object.keys(cs).map(function (k) { return [SECT_BY[k], cs[k]]; }).sort(function (a, c) { return c[1] - a[1]; });
@@ -379,14 +379,14 @@
     var la = Object.keys(ca).sort();
     tuer('an');
     charts.an = new Chart(document.getElementById('rqAn').getContext('2d'), { type: 'bar',
-      data: { labels: la, datasets: [{ data: la.map(function (a) { return ca[a]; }), backgroundColor: '#86c9a3', borderRadius: 3 }] },
+      data: { labels: la, datasets: [{ data: la.map(function (a) { return ca[a]; }), backgroundColor: '#93bccd', borderRadius: 3 }] },
       options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
         scales: { x: { grid: { display: false }, ticks: { font: { size: 11 } } }, y: { grid: { color: 'rgba(0,0,0,.04)' }, ticks: { font: { size: 12 } } } } } });
     var eh = document.getElementById('rqHist');
     if (eh && S.hist) {
       var s = S.hist.serie; tuer('hist');
       charts.hist = new Chart(eh.getContext('2d'), { type: 'line',
-        data: { labels: s.map(function (x) { return x.date; }), datasets: [{ data: s.map(function (x) { return S.muni ? (x.par_municipalite[S.muni] || 0) : x.total_actives; }), borderColor: '#1a6e3c', backgroundColor: 'rgba(26,110,60,.08)', fill: true, tension: .25, pointRadius: 3 }] },
+        data: { labels: s.map(function (x) { return x.date; }), datasets: [{ data: s.map(function (x) { return S.muni ? (x.par_municipalite[S.muni] || 0) : x.total_actives; }), borderColor: '#0b5673', backgroundColor: 'rgba(11,86,115,.08)', fill: true, tension: .25, pointRadius: 3 }] },
         options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false }, ticks: { font: { size: 11 } } }, y: { ticks: { font: { size: 12 } } } } } });
     }
   }

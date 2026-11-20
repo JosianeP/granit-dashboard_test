@@ -8,7 +8,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --g900:#0b2818;--g800:#123524;--g700:#14532d;--g600:#1a6e3c;--g500:#2d8a52;--g400:#52a878;--g300:#86c9a3;--g100:#dcf0e4;--g50:#f0faf4;
+  /* Identité de la MRC du Granit (logo 2023) : bleu marine #004159, vert #668e3c, gris #969491.
+     La gamme --g porte la couleur principale (bleu marine); --v porte le vert du logo, réservé aux accents
+     et aux mentions favorables (Réel, hausse, actif). */
+  --g900:#00222f;--g800:#003347;--g700:#004159;--g600:#0b5673;--g500:#2b7391;--g400:#5a97b0;--g300:#93bccd;--g100:#dbe9ef;--g50:#f0f6f9;
+  --v800:#3d5a22;--v700:#4d6f2a;--v600:#668e3c;--v500:#7fa653;--v300:#b5cf97;--v100:#e6efdc;--v50:#f3f7ee;--gris:#969491;
   --am800:#713f12;--am700:#854d0e;--am600:#b45309;--am500:#d97706;--am400:#f59e0b;--am100:#fef3c7;--am50:#fffbeb;
   --sa800:#155e63;--sa700:#0e7490;--sa600:#0891b2;--sa500:#22b8cf;--sa100:#cff5f9;--sa50:#ecfdff;
   --red:#c81e1e;--red2:#fef2f2;--purple:#7c3aed;--purple2:#f5f3ff;
@@ -25,7 +29,7 @@
 body{background:var(--bg);color:var(--text);display:flex;flex-direction:column;min-height:100vh;font-size:15px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
 
-#ls{position:fixed;inset:0;background:linear-gradient(160deg,#123524,#0b2818);display:flex;align-items:center;justify-content:center;z-index:999;flex-direction:column;gap:18px}
+#ls{position:fixed;inset:0;background:linear-gradient(160deg,#003347,#00222f);display:flex;align-items:center;justify-content:center;z-index:999;flex-direction:column;gap:18px}
 #ls .ls-brand{color:#fff;font-size:25px;font-weight:600;font-family:'Fraunces',serif;letter-spacing:-.5px}
 #ls .su{color:rgba(255,255,255,.5);font-size:14px;letter-spacing:.2px}
 .sp{width:26px;height:26px;border:2.5px solid rgba(255,255,255,.16);border-top-color:#fff;border-radius:50%;animation:spin .75s linear infinite}
@@ -64,7 +68,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
 .btn-p:hover{filter:brightness(1.08)}
 
 .app{display:flex;flex:1}
-.sidebar{width:var(--sw);background:linear-gradient(180deg,#123524,#0e2c1e);flex-shrink:0;display:flex;flex-direction:column;min-height:calc(100vh - 56px);position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto}
+.sidebar{width:var(--sw);background:linear-gradient(180deg,#003347,#002a3a);flex-shrink:0;display:flex;flex-direction:column;min-height:calc(100vh - 56px);position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto}
 .sb-context{margin:16px 14px 8px;padding:7px 12px;border-radius:7px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.85);font-weight:600;font-size:13px;letter-spacing:.2px;line-height:1.3}
 .sbn{padding:4px 9px;flex:1}
 .ngl{font-size:12px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,255,255,.28);padding:10px 8px 5px}
@@ -241,7 +245,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
 .mu-lg-b span{color:var(--muted2);font-weight:500}
 
 .ml-engine-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:var(--g300);font-size:12px;font-weight:700;padding:5px 11px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:15px}
-.ml-intro{background:linear-gradient(135deg,#0b2818,#14532d);border-radius:var(--r);padding:22px 24px;margin-bottom:22px;color:#fff;box-shadow:var(--sh)}
+.ml-intro{background:linear-gradient(135deg,#00222f,#004159);border-radius:var(--r);padding:22px 24px;margin-bottom:22px;color:#fff;box-shadow:var(--sh)}
 .ml-intro h3{font-size:17px;font-weight:600;margin-bottom:8px;color:#fff}
 .ml-intro p{font-size:14px;line-height:1.7;color:rgba(255,255,255,.72)}
 .ml-intro strong{color:var(--g300);font-weight:600}
@@ -343,11 +347,11 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
 .lever-note{background:linear-gradient(135deg,var(--am50),var(--am100));border-left:4px solid var(--am500);border-radius:var(--r2);padding:14px 17px;font-size:14px;color:var(--am800);line-height:1.65;margin-top:16px}
 
 /* ═══ PLAN CLIMAT ═══ */
-.cl-hero{background:linear-gradient(135deg,#0b2818 0%,#123524 48%,#14532d 100%);border-radius:var(--r);padding:24px 28px;margin-bottom:20px;color:#fff;position:relative;overflow:hidden}
-.cl-hero::after{content:'';position:absolute;right:-60px;top:-70px;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle,rgba(134,201,163,.22),transparent 68%)}
+.cl-hero{background:linear-gradient(135deg,#00222f 0%,#003347 48%,#004159 100%);border-radius:var(--r);padding:24px 28px;margin-bottom:20px;color:#fff;position:relative;overflow:hidden}
+.cl-hero::after{content:'';position:absolute;right:-60px;top:-70px;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle,rgba(147,188,205,.22),transparent 68%)}
 .cl-hero h3{font-family:'Fraunces',serif;font-size:19px;font-weight:600;margin:0 0 10px;display:flex;align-items:center;gap:9px;position:relative;z-index:1}
 .cl-hero p{font-size:14px;line-height:1.75;color:rgba(255,255,255,.84);max-width:82ch;margin:0;position:relative;z-index:1}
-.cl-hero-tag{display:inline-block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.1px;background:rgba(134,201,163,.2);color:#a8dcc0;border:1px solid rgba(134,201,163,.3);border-radius:20px;padding:4px 11px;margin-bottom:13px;position:relative;z-index:1}
+.cl-hero-tag{display:inline-block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.1px;background:rgba(147,188,205,.2);color:#b9d6e2;border:1px solid rgba(147,188,205,.3);border-radius:20px;padding:4px 11px;margin-bottom:13px;position:relative;z-index:1}
 .cl-src{margin-top:15px;padding-top:13px;border-top:1px solid rgba(255,255,255,.14);font-size:12.5px;color:rgba(255,255,255,.58);line-height:1.65;position:relative;z-index:1}
 
 .cl-scope{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:10px}
@@ -550,9 +554,9 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
 .demo-table-foot,.demo-th-hint{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.5}
 .demo-th-hint{margin-top:0;font-weight:400;text-transform:none;letter-spacing:0}
 /* Modal */
-.demo-modal{display:none;position:fixed;inset:0;background:rgba(11,40,24,.55);z-index:200;align-items:flex-start;justify-content:center;padding:40px 18px;overflow-y:auto;backdrop-filter:blur(2px)}
+.demo-modal{display:none;position:fixed;inset:0;background:rgba(0,34,47,.55);z-index:200;align-items:flex-start;justify-content:center;padding:40px 18px;overflow-y:auto;backdrop-filter:blur(2px)}
 .demo-modal.open{display:flex}
-.demo-modal-box{background:var(--white);border-radius:16px;max-width:880px;width:100%;box-shadow:0 24px 60px rgba(11,40,24,.3);position:relative;animation:dmIn .22s cubic-bezier(.2,.7,.3,1)}
+.demo-modal-box{background:var(--white);border-radius:16px;max-width:880px;width:100%;box-shadow:0 24px 60px rgba(0,34,47,.3);position:relative;animation:dmIn .22s cubic-bezier(.2,.7,.3,1)}
 @keyframes dmIn{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
 .demo-modal-close{position:absolute;top:14px;right:16px;background:var(--bg);border:1px solid var(--border);width:32px;height:32px;border-radius:50%;font-size:20px;line-height:1;color:var(--muted);cursor:pointer;z-index:2;transition:all .12s}
 .demo-modal-close:hover{background:var(--g100);color:var(--g700)}
@@ -602,7 +606,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
 .rpt-toolbar-left{font-size:12.5px;font-weight:600;letter-spacing:.2px;opacity:.92}
 .rpt-toolbar-right{display:flex;gap:9px}
 .rpt-scroll{flex:1;overflow-y:auto;padding:30px 18px 60px;display:flex;justify-content:center}
-.rpt-page{background:#fff;width:210mm;max-width:100%;min-height:297mm;padding:17mm 15mm 20mm;box-shadow:0 8px 40px rgba(0,0,0,.4);color:#15291d;font-size:11.5px;line-height:1.5;height:max-content;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.rpt-page{background:#fff;width:210mm;max-width:100%;min-height:297mm;padding:17mm 15mm 20mm;box-shadow:0 8px 40px rgba(0,0,0,.4);color:#002f41;font-size:11.5px;line-height:1.5;height:max-content;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 /* Gabarit : couverture & en-tête */
 .rpt-cover{border-bottom:2px solid var(--g800);padding-bottom:18px;margin-bottom:24px;position:relative}
 .rpt-brand{display:flex;align-items:center;gap:11px;margin-bottom:26px}
@@ -610,7 +614,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
 .rpt-org{font-size:13px;font-weight:800;letter-spacing:2px;color:var(--g800)}
 .rpt-unit{font-size:11px;color:#5b6b62;margin-top:2px;letter-spacing:.3px}
 .rpt-tag{position:absolute;top:0;right:0;font-size:8.5px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#9a5a16;background:#fdf3e6;border:1px solid #f3ddc0;border-radius:20px;padding:4px 11px}
-.rpt-title{font-family:'Fraunces',serif;font-size:30px;font-weight:600;color:#0d2417;line-height:1.12;letter-spacing:-.01em;margin:0}
+.rpt-title{font-family:'Fraunces',serif;font-size:30px;font-weight:600;color:#002f41;line-height:1.12;letter-spacing:-.01em;margin:0}
 .rpt-cover-compact .rpt-title{font-size:22px}
 .rpt-sub{font-size:14px;color:#3c574a;margin-top:8px;font-weight:500}
 .rpt-meta{font-size:11px;color:#6a7b71;margin-top:14px;letter-spacing:.2px}
@@ -618,7 +622,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
 /* Blocs */
 .rpt-block{margin-bottom:26px}
 .rpt-break{break-before:page;page-break-before:always}
-.rpt-h2{font-family:'Fraunces',serif;font-size:17px;font-weight:600;color:#103823;margin:0 0 14px;padding-bottom:7px;border-bottom:1.5px solid #d9e6dd;display:flex;align-items:center;gap:9px}
+.rpt-h2{font-family:'Fraunces',serif;font-size:17px;font-weight:600;color:#002f41;margin:0 0 14px;padding-bottom:7px;border-bottom:1.5px solid #d9e6dd;display:flex;align-items:center;gap:9px}
 .rpt-h2::before{content:'';width:5px;height:17px;background:var(--g600);border-radius:2px;flex-shrink:0}
 .rpt-narr{font-size:12px;color:#2c3f35;line-height:1.7;margin:0 0 15px;max-width:70ch}
 .rpt-narr b{color:var(--g700)}
@@ -626,7 +630,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
 .rpt-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:16px}
 .rpt-kpi{border:1px solid #dde7e1;border-radius:8px;padding:12px 13px;position:relative;overflow:hidden;background:#fbfdfc}
 .rpt-kpi::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--g600)}
-.rpt-kpi-v{font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:#103823;line-height:1.05;letter-spacing:-.01em}
+.rpt-kpi-v{font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:#002f41;line-height:1.05;letter-spacing:-.01em}
 .rpt-kpi-l{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:#6a7b71;margin-top:6px;line-height:1.25}
 .rpt-kpi-u{font-size:10px;color:#8a9a90;margin-top:3px;line-height:1.3}
 /* Tables */
@@ -636,7 +640,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
 .rpt-table td{text-align:right;padding:6px 8px;border-bottom:1px solid #eef3f0;color:#27382f}
 .rpt-table tr:nth-child(even) td{background:#fafcfb}
 .rpt-table .rsub{font-size:9px;color:#8a9a90}
-.rpt-table tr.rpt-total td{font-weight:700;background:#eef5f0;border-top:1.5px solid #c9d8cf}
+.rpt-table tr.rpt-total td{font-weight:700;background:#eaf1f4;border-top:1.5px solid #c9d8cf}
 /* Figures */
 .rpt-fig{margin:6px 0 16px;text-align:center;break-inside:avoid;page-break-inside:avoid}
 .rpt-fig img{max-width:100%;height:auto;border:1px solid #e6ede9;border-radius:6px}
@@ -669,7 +673,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
 /* ─── IMPORT EXCEL (v4.7) ─── */
 .btn-xl{border-color:var(--g500);color:var(--g700);background:var(--g100)}
 .btn-xl:hover{background:var(--g100);filter:brightness(.97)}
-.drop-ov{position:fixed;inset:0;z-index:400;display:none;align-items:center;justify-content:center;background:rgba(26,77,46,.82);color:#fff;pointer-events:none}
+.drop-ov{position:fixed;inset:0;z-index:400;display:none;align-items:center;justify-content:center;background:rgba(0,65,89,.82);color:#fff;pointer-events:none}
 .drop-ov.open{display:flex}
 .drop-box{border:2px dashed rgba(255,255,255,.7);border-radius:18px;padding:40px 60px;text-align:center;font-family:'Sora',sans-serif}
 .drop-box b{display:block;font-size:22px;margin-bottom:6px}.drop-box span{font-size:14.5px;opacity:.85}
@@ -729,6 +733,15 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
 .prov-legend-i{display:inline-flex;align-items:center;gap:7px}
 .prov-legend .prov{margin-left:0;flex-shrink:0}
 @media print{.prov-legend{display:none}}
+/* ═══ IDENTITÉ MRC DU GRANIT (v4.14) ═══ */
+.pb-brand-logo{height:46px;width:auto;display:block;margin-right:13px;flex-shrink:0}
+.pb-brand-mark{display:none}
+.up,.sc-tr.up{color:var(--v700)}
+.d-up,.st-actif{background:var(--v100);color:var(--v700)}
+.prov-reel,.src-ok,.real-badge,.lg-tag-real{background:var(--v100);color:var(--v700);border-color:var(--v300)}
+.sidebar{border-right:none}
+.ni.active{box-shadow:inset 3px 0 0 var(--v500)}
+.sc-bf{background:var(--v600)}
 /* ═══ FINITIONS (v4.12) ═══ */
 #statsStrip{grid-template-columns:repeat(6,1fr)}
 #moKpis{grid-template-columns:repeat(3,1fr)}
@@ -847,11 +860,11 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
 
 <header class="pillar-bar">
   <div class="pb-brand">
-    <div class="pb-brand-mark"></div>
+    <img class="pb-brand-logo" src="./assets/logo-mrc-granit.png" alt="MRC du Granit">
     <div class="pb-brand-text">
-      <div class="org">MRC du Granit - Estrie</div>
+      <div class="org">Estrie</div>
       <div class="name">Tableau de bord territorial</div>
-      <div class="ver" id="verLabel">v4.13</div>
+      <div class="ver" id="verLabel">v4.14</div>
     </div>
   </div>
   <nav class="pillar-tabs">
@@ -961,7 +974,6 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
         <div class="section-header"><div class="sh-left"><h2>Aperçu général</h2><p id="ovQuarter">Portrait économique du territoire</p></div><span class="pillar-badge pb-eco">Économie</span></div>
         <div id="gxFrais"></div>
         <div id="gcApercu"></div>
-        <div id="gxConstats"></div>
         <div class="ss-row" id="statsStrip"></div>
         <div class="kpi-grid" id="kpiGrid"></div>
         <div style="display:grid;grid-template-columns:1fr 280px;gap:12px;margin-bottom:18px">
@@ -1657,7 +1669,7 @@ function renderAll(){
   if(D.meta){
     document.getElementById('sbQ').textContent=D.meta.quarter||'—';
     document.getElementById('sbBy').textContent=(D.meta.updatedBy||'').split('—')[0].trim();
-    document.getElementById('verLabel').textContent='v4.13 - '+(D.meta.quarter||'');
+    document.getElementById('verLabel').textContent='v4.14 - '+(D.meta.quarter||'');
     var ovq=document.getElementById('ovQuarter'); if(ovq)ovq.textContent='Portrait économique du territoire - MRC du Granit, '+(D.meta.quarter||'');
   }
   allMLPairs=getMLSuggestions();
@@ -1686,8 +1698,8 @@ function frn(v){return (typeof v==='number'&&isFinite(v))?v.toLocaleString('fr-C
 // Graphiques : nombres à la française et toutes les étiquettes de catégories visibles.
 if(window.Chart){Chart.defaults.locale='fr-CA';try{Chart.defaults.scales.category.ticks.autoSkip=false;}catch(e){}}
 // ─── PALETTE ───
-var C=['#1a4d2e','#2d7a4f','#285f40','#1d6b4f','#d97706','#b45309','#1d7a8a','#374151','#4b5563','#7c3aed','#be185d','#b45309','#0e7490'];
-var TC=['#1a4d2e','#d97706','#1d7a8a','#7c3aed','#b45309'];
+var C=['#004159','#668e3c','#969491','#2b7391','#d97706','#b45309','#8fb26a','#374151','#5a97b0','#7c3aed','#be185d','#c58a1b','#0e7490'];
+var TC=['#004159','#d97706','#1d7a8a','#7c3aed','#b45309'];
 
 // ─── OVERVIEW ───
 function viFmt(v,d,fallback){if(v==null||v==='')return fallback;return Number(v).toLocaleString('fr-CA',{minimumFractionDigits:d,maximumFractionDigits:d});}
@@ -1743,7 +1755,7 @@ function renderRevReperes(){
   el.style.display='';
   var vi=(D.meta&&D.meta.validatedIndicators)||{};
   var sizes=R.tailles||[1,2,3,4];
-  var cols={faible:'#b91c1c',modeste:'#d97706',moyen:'#2d8a52',eleve:'#0e7490'};
+  var cols={faible:'#b91c1c',modeste:'#d97706',moyen:'#668e3c',eleve:'#0e7490'};
   var head='<tr><th>Tranche</th>'+sizes.map(function(n){return '<th>'+n+(n>1?' personnes':' personne')+'</th>';}).join('')+'</tr>';
   var rows=R.classes.map(function(c){
     return '<tr><td><div class="rv-cl"><span class="rv-dot" style="background:'+(cols[c.id]||'var(--muted2)')+'"></span>'+c.label+'</div>'+
@@ -1888,7 +1900,7 @@ var CO_PAGE=25, coPage=0, coKey='';
 function coGo(d){coPage+=d;filterCo();var t=document.getElementById('coTotal');if(t&&t.scrollIntoView)t.scrollIntoView({block:'start'});}
 
 // ─── TOURISME ───
-var TR_GC={'Où dormir':'#0e7490','Où manger':'#d97706','Quoi faire':'#2d8a52','Autres commerces et services':'#7c3aed','Municipalité':'#374151'};
+var TR_GC={'Où dormir':'#0e7490','Où manger':'#d97706','Quoi faire':'#668e3c','Autres commerces et services':'#7c3aed','Municipalité':'#374151'};
 function trIcon(g){return g==='Où dormir'?'🛏️':g==='Où manger'?'🍽️':g==='Quoi faire'?'🎿':g==='Municipalité'?'🏛️':'🛍️';}
 function trGabbr(g){return g==='Autres commerces et services'?'Commerces & services':g;}
 function trShort(g){return g==='Où dormir'?'Hébergement':g==='Où manger'?'Restauration':g==='Quoi faire'?'Activités':g==='Municipalité'?'Municipalité':'Commerces';}
@@ -2050,7 +2062,7 @@ function renderTrMuniChart(){
 function renderTrCatChart(){
   kc('trCat');var el=document.getElementById('trCatChart');if(!el||!D.tourisme)return;
   var pc=(D.tourisme.parCategorie||[]);
-  var pal=['#0e7490','#d97706','#2d8a52','#7c3aed','#0369a1','#b45309','#1a6e3c','#be185d','#374151','#0891b2'];
+  var pal=['#0e7490','#d97706','#668e3c','#7c3aed','#0369a1','#b45309','#0b5673','#be185d','#374151','#0891b2'];
   charts.trCat=new Chart(el.getContext('2d'),{type:'bar',
     data:{labels:pc.map(function(x){return x.label;}),datasets:[{data:pc.map(function(x){return x.count;}),backgroundColor:pc.map(function(x,i){return pal[i%pal.length];}),borderRadius:5}]},
     options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
@@ -2224,14 +2236,14 @@ function fML(f,btn){mlFilter=f;document.querySelectorAll('#mlStrTabs .ft').forEa
 
 function renderHeatmap(){
   var s=D.sectors, mat=getSectorMatrix();
-  function hC(v){if(v===0)return'#f9fafb';if(v>=80)return'#1a4d2e';if(v>=60)return'#2d7a4f';if(v>=45)return'#4aaa72';if(v>=30)return'#a7f3d0';return'#d1fae5';}
+  function hC(v){if(v===0)return'#f9fafb';if(v>=80)return'#004159';if(v>=60)return'#1f6482';if(v>=45)return'#5a97b0';if(v>=30)return'#b9d6e2';return'#dbe9ef';}
   var html='<table class="heatmap-table"><thead><tr><th style="background:var(--white);border:none"></th>';
   s.forEach(function(sec){html+='<th title="'+sec.name+'">'+sec.icon+'</th>';});
   html+='</tr></thead><tbody>';
   s.forEach(function(sA,i){
     html+='<tr><th style="text-align:right;white-space:nowrap;font-size:12px;background:var(--bg);border:1px solid var(--border);padding:3px 6px">'+sA.name+' <span style="color:var(--muted);font-weight:500">'+sA.icon+'</span></th>';
     s.forEach(function(sB,j){
-      var v=mat[i][j];var tc=v>=60?'#fff':v>=30?'#0b2818':'#526079';
+      var v=mat[i][j];var tc=v>=60?'#fff':v>=30?'#00222f':'#526079';
       html+='<td class="hm-cell" style="background:'+hC(v)+';color:'+tc+'" title="'+sA.name+' ↔ '+sB.name+' : '+v+'">'+(v>0?v:'')+'</td>';
     });
     html+='</tr>';
@@ -2260,7 +2272,7 @@ function renderMLSuggestions(){
 function renderCollabGrid(filter){
   var list=(D.collaborations||[]).filter(function(c){return c.type!=='methodologie'&&(filter==='all'||c.type===filter);});
   var tM={confirmee:'✅ Confirmée',possible:'💡 Possible',innovante:'🚀 Innovante'};
-  function sc(s){return s>=85?'#1a4d2e':s>=70?'#d97706':'#7c3aed';}
+  function sc(s){return s>=85?'#004159':s>=70?'#d97706':'#7c3aed';}
   document.getElementById('collabGrid').innerHTML=list.map(function(c){
     var si=c.inference_score;
     return '<div class="cl-card '+c.type+'"><div class="cl-head"><div class="cl-emoji">'+c.emoji+'</div><div>'+
@@ -2306,7 +2318,7 @@ function renderMLChart(){
   var bins=[0,0,0,0,0];
   allMLPairs.forEach(function(p){bins[p.score<=60?0:p.score<=70?1:p.score<=80?2:p.score<=90?3:4]++;});
   charts.mlScore=new Chart(ctx,{type:'bar',
-    data:{labels:['52–60','61–70','71–80','81–90','91+'],datasets:[{data:bins,backgroundColor:['#d1fae5','#a7f3d0','#4aaa72','#2d7a4f','#1a4d2e'],borderRadius:6}]},
+    data:{labels:['52–60','61–70','71–80','81–90','91+'],datasets:[{data:bins,backgroundColor:['#dbe9ef','#b9d6e2','#5a97b0','#1f6482','#004159'],borderRadius:6}]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+c.raw+' paires';}}}},
       scales:{x:{grid:{display:false},ticks:{font:{size:12}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{stepSize:1,font:{size:12}}}}}});
 }
@@ -2316,11 +2328,11 @@ function renderTrends(){
   var t=D.trends;
   var lc=document.getElementById('lineChart');
   if(lc){
-    charts.line=new Chart(lc.getContext('2d'),{type:'line',data:{labels:t.years,datasets:[{data:t.totalJobs,borderColor:'#1a4d2e',backgroundColor:'rgba(26,77,46,.08)',fill:true,tension:.4,pointRadius:4,pointBackgroundColor:'#1a4d2e'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:12}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:function(v){return v.toLocaleString('fr-CA');},font:{size:12}}}}}});
+    charts.line=new Chart(lc.getContext('2d'),{type:'line',data:{labels:t.years,datasets:[{data:t.totalJobs,borderColor:'#004159',backgroundColor:'rgba(0,65,89,.08)',fill:true,tension:.4,pointRadius:4,pointBackgroundColor:'#004159'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:12}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:function(v){return v.toLocaleString('fr-CA');},font:{size:12}}}}}});
   }
   var nc=document.getElementById('newBizChart');
   if(nc){
-    charts.newbiz=new Chart(nc.getContext('2d'),{type:'bar',data:{labels:t.years,datasets:[{data:t.newBiz,backgroundColor:t.newBiz.map(function(_,i,a){return i===a.length-1?'#1a4d2e':'#4aaa72';}),borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:12}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:12}}}}}});
+    charts.newbiz=new Chart(nc.getContext('2d'),{type:'bar',data:{labels:t.years,datasets:[{data:t.newBiz,backgroundColor:t.newBiz.map(function(_,i,a){return i===a.length-1?'#004159':'#5a97b0';}),borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:12}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:12}}}}}});
   }
   var mc=document.getElementById('multiChart');
   if(mc&&t.bySector){
@@ -2383,7 +2395,7 @@ function renderLGP(){
     var mx=Math.max.apply(null,arr.map(function(x){return x.indice;}));
     document.getElementById(el).innerHTML=arr.map(function(x){
       var w=Math.round(x.indice/mx*100);
-      var col=x.indice>=1.5?'#1a4d2e':x.indice>=1.25?'#2d7a4f':'#d97706';
+      var col=x.indice>=1.5?'#004159':x.indice>=1.25?'#1f6482':'#d97706';
       return '<div class="dist-row"><div class="dist-label">'+x.nom+'</div>'+
         '<div class="dist-bar"><div class="dist-fill" style="width:'+w+'%;background:'+col+'"></div></div>'+
         '<div class="dist-val">'+x.indice.toLocaleString('fr-CA',{minimumFractionDigits:1,maximumFractionDigits:1})+'</div></div>';
@@ -2419,8 +2431,8 @@ function renderLGPCharts(){
     var labs=L.tailleEtab.map(function(t){return t.label;});
     charts.lgpSize=new Chart(sz.getContext('2d'),{type:'bar',
       data:{labels:labs,datasets:[
-        {label:'Établissements',data:L.tailleEtab.map(function(t){return t.pct;}),backgroundColor:'#4aaa72',borderRadius:4},
-        {label:'Emplois',data:L.tailleEmplois.map(function(t){return t.pct;}),backgroundColor:'#1a4d2e',borderRadius:4}]},
+        {label:'Établissements',data:L.tailleEtab.map(function(t){return t.pct;}),backgroundColor:'#5a97b0',borderRadius:4},
+        {label:'Emplois',data:L.tailleEmplois.map(function(t){return t.pct;}),backgroundColor:'#004159',borderRadius:4}]},
       options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:12},boxWidth:10}},tooltip:{callbacks:{label:function(c){return ' '+c.dataset.label+' : '+c.raw+' %';}}}},
         scales:{x:{grid:{display:false},ticks:{font:{size:11},maxRotation:20}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:function(v){return v+' %';},font:{size:12}}}}}});
   }
@@ -2536,8 +2548,8 @@ function pyramidColors(bands){
   // bands order: 0-4..90+ ; <20 -> jeunes, 20-64 -> actifs, 65+ -> aînés
   return bands.map(function(b){
     var lo=parseInt(b,10);
-    if(lo<20)return '#52a878';
-    if(lo<65)return '#14532d';
+    if(lo<20)return '#5a97b0';
+    if(lo<65)return '#004159';
     return '#d97706';
   });
 }
@@ -2597,7 +2609,7 @@ function renderDemoView(){
     var split=ty.length;
     charts.demoMrcTraj=new Chart(document.getElementById('demoMrcTraj').getContext('2d'),{
       data:{labels:labels,datasets:[
-        {type:'line',label:'Population totale',data:totSerie,borderColor:'#1a4d2e',backgroundColor:'rgba(26,77,46,.06)',fill:true,tension:.35,pointRadius:3,yAxisID:'y',segment:{borderDash:function(c){return c.p0DataIndex>=split-1?[5,3]:undefined;}}},
+        {type:'line',label:'Population totale',data:totSerie,borderColor:'#004159',backgroundColor:'rgba(0,65,89,.06)',fill:true,tension:.35,pointRadius:3,yAxisID:'y',segment:{borderDash:function(c){return c.p0DataIndex>=split-1?[5,3]:undefined;}}},
         {type:'line',label:'Part des 65 ans +  (%)',data:share65,borderColor:'#d97706',backgroundColor:'transparent',borderDash:[5,3],tension:.35,pointRadius:3,spanGaps:true,yAxisID:'y1'}
       ]},
       options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
@@ -2720,7 +2732,7 @@ function openDemoModal(code){
     var a65=[g.a65].concat(py.map(function(y){return d.proj[String(y)].a65;}));
     charts.dmProj=new Chart(document.getElementById('dmProj').getContext('2d'),{
       data:{labels:labels,datasets:[
-        {type:'line',label:'Population totale',data:tot,borderColor:'#1a4d2e',backgroundColor:'rgba(26,77,46,.07)',fill:true,tension:.35,pointRadius:3},
+        {type:'line',label:'Population totale',data:tot,borderColor:'#004159',backgroundColor:'rgba(0,65,89,.07)',fill:true,tension:.35,pointRadius:3},
         {type:'line',label:'65 ans et plus',data:a65,borderColor:'#d97706',backgroundColor:'rgba(217,119,6,.08)',fill:true,tension:.35,pointRadius:3}
       ]},
       options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
@@ -2938,13 +2950,13 @@ var REPORT_CHART={
   sectorJobs:function(){
     var s=D.sectors.slice().sort(function(a,b){return a.jobs-b.jobs;});
     return {w:680,h:380,config:{type:'bar',
-      data:{labels:s.map(function(x){return x.name;}),datasets:[{data:s.map(function(x){return x.jobs;}),backgroundColor:'#2d7a4f',borderRadius:3}]},
+      data:{labels:s.map(function(x){return x.name;}),datasets:[{data:s.map(function(x){return x.jobs;}),backgroundColor:'#1f6482',borderRadius:3}]},
       options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(0,0,0,.06)'},ticks:{font:{size:10}}},y:{grid:{display:false},ticks:{font:{size:9.5}}}}}}};
   },
   trendsJobs:function(){
     var t=D.trends;
     return {w:680,h:300,config:{type:'line',
-      data:{labels:t.years,datasets:[{data:t.totalJobs,borderColor:'#1a4d2e',backgroundColor:'rgba(26,77,46,.08)',fill:true,tension:.35,pointRadius:3}]},
+      data:{labels:t.years,datasets:[{data:t.totalJobs,borderColor:'#004159',backgroundColor:'rgba(0,65,89,.08)',fill:true,tension:.35,pointRadius:3}]},
       options:{plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:10}}},y:{grid:{color:'rgba(0,0,0,.06)'},ticks:{font:{size:10},callback:function(v){return v.toLocaleString('fr-CA');}}}}}}};
   },
   landUse:function(){
@@ -2968,13 +2980,13 @@ var REPORT_CHART={
   vuln:function(){
     var v=D.municipalities.map(function(m){return {m:m,v:computeVulnerability(m)};}).sort(function(a,b){return b.v-a.v;});
     return {w:680,h:420,config:{type:'bar',
-      data:{labels:v.map(function(x){return x.m.name;}),datasets:[{data:v.map(function(x){return x.v;}),backgroundColor:v.map(function(x){return x.v>=70?'#dc2626':(x.v>=45?'#d97706':'#2d7a4f');}),borderRadius:4}]},
+      data:{labels:v.map(function(x){return x.m.name;}),datasets:[{data:v.map(function(x){return x.v;}),backgroundColor:v.map(function(x){return x.v>=70?'#dc2626':(x.v>=45?'#d97706':'#1f6482');}),borderRadius:4}]},
       options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{max:100,grid:{color:'rgba(0,0,0,.06)'},ticks:{font:{size:10}}},y:{grid:{display:false},ticks:{font:{size:9}}}}}}};
   },
   demoPyr:function(){
     var dm=D.demographie,bands=dm.bands,vals=dm.mrc.pyr;
     var lbl=bands.slice().reverse(),val=vals.slice().reverse();
-    var col=bands.map(function(b){var lo=parseInt(b,10);return lo<20?'#52a878':(lo<65?'#14532d':'#d97706');}).reverse();
+    var col=bands.map(function(b){var lo=parseInt(b,10);return lo<20?'#5a97b0':(lo<65?'#004159':'#d97706');}).reverse();
     return {w:520,h:420,config:{type:'bar',
       data:{labels:lbl,datasets:[{data:val,backgroundColor:col,borderRadius:3}]},
       options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(0,0,0,.06)'},ticks:{font:{size:9}}},y:{grid:{display:false},ticks:{font:{size:8.5}}}}}}};
@@ -2986,7 +2998,7 @@ var REPORT_CHART={
     var sh=ty.map(function(y){return y===2025?dPctR(g.a65,g.tot):null;}).concat(py.map(function(y){return dPctR(mrc.proj[String(y)].a65,mrc.proj[String(y)].tot);}));
     return {w:560,h:420,config:{
       data:{labels:labels,datasets:[
-        {type:'line',label:'Population',data:tot,borderColor:'#1a4d2e',backgroundColor:'rgba(26,77,46,.07)',fill:true,tension:.35,pointRadius:2,yAxisID:'y'},
+        {type:'line',label:'Population',data:tot,borderColor:'#004159',backgroundColor:'rgba(0,65,89,.07)',fill:true,tension:.35,pointRadius:2,yAxisID:'y'},
         {type:'line',label:'65 ans + (%)',data:sh,borderColor:'#d97706',borderDash:[5,3],tension:.35,pointRadius:2,spanGaps:true,yAxisID:'y1'}
       ]},
       options:{plugins:{legend:{labels:{font:{size:9},boxWidth:10}}},scales:{x:{grid:{display:false},ticks:{font:{size:9}}},y:{position:'left',grid:{color:'rgba(0,0,0,.06)'},ticks:{font:{size:9},callback:function(v){return v.toLocaleString('fr-CA');}}},y1:{position:'right',min:0,max:50,grid:{display:false},ticks:{font:{size:9},callback:function(v){return v+' %';}}}}}}};
@@ -3096,7 +3108,7 @@ function renderPermitCharts(){
   }
   var ptel2=document.getElementById('permitTypeDonut');
   if(ptel2&&am.permits.byType){
-    var cols=['#b45309','#d97706','#fbbf24','#6b7280','#4aaa72'];
+    var cols=['#b45309','#d97706','#fbbf24','#6b7280','#5a97b0'];
     charts.permitType=new Chart(ptel2.getContext('2d'),{type:'doughnut',data:{labels:am.permits.byType.map(function(t){return t.type;}),datasets:[{data:am.permits.byType.map(function(t){return t.mk;}),backgroundColor:cols,borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,cutout:'58%',plugins:{legend:{display:false}}}});
     document.getElementById('permitTypeLegend').innerHTML=am.permits.byType.map(function(t,i){return '<div class="dl-i"><div style="display:flex;align-items:center"><div class="dl-d" style="background:'+cols[i]+'"></div>'+t.type+(t.est?'<span class="prov prov-est">Estimation</span>':'')+'</div><div class="dl-p">'+t.mk.toLocaleString('fr-CA',{minimumFractionDigits:1,maximumFractionDigits:1})+' M$</div></div>';}).join('');
   }
@@ -3135,7 +3147,7 @@ function renderMuniSurfChart(){
   var sorted=[].concat(D.municipalities).sort(function(a,b){return b.surface-a.surface;});
   charts.muniSurf=new Chart(ctx,{type:'bar',
     data:{labels:sorted.map(function(m){return m.name;}),
-      datasets:[{data:sorted.map(function(m){return m.surface;}),backgroundColor:sorted.map(function(m){return m.cat==='urbain'?'#1a4d2e':m.cat==='rural_eloigne'?'#9ca3af':'#4aaa72';}),borderRadius:4}]},
+      datasets:[{data:sorted.map(function(m){return m.surface;}),backgroundColor:sorted.map(function(m){return m.cat==='urbain'?'#004159':m.cat==='rural_eloigne'?'#9ca3af':'#5a97b0';}),borderRadius:4}]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+c.raw+' km²';}}}},scales:{x:{grid:{display:false},ticks:{font:{size:11},maxRotation:35}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:function(v){return v+' km²';},font:{size:12}}}}}});
 }
 
@@ -3286,7 +3298,7 @@ function renderClimat(){
 function renderClMuniTable(){
   var K=D.climat; if(!K)return;
   var rows=[].concat(K.parMuni).sort(function(a,b){return b.total-a.total;});
-  var cols=[['transp','#b45309'],['agri','#2d7a4f'],['ind','#374151'],['mr','#0e7490'],['res','#d97706'],['ci','#7c3aed']];
+  var cols=[['transp','#b45309'],['agri','#1f6482'],['ind','#374151'],['mr','#0e7490'],['res','#d97706'],['ci','#7c3aed']];
   document.getElementById('clMuniBody').innerHTML=rows.map(function(m){
     var mix=cols.map(function(c){return '<div style="width:'+(m[c[0]]/m.total*100)+'%;background:'+c[1]+'"></div>';}).join('');
     var dc=m.dom==='Agriculture'?'cl-dom-ag':'cl-dom-tr';
@@ -3349,7 +3361,7 @@ function renderClPerCap(){
   var mrc=D.climat.agregats.perCapGlobal;
   charts.clPerCap=new Chart(el.getContext('2d'),{type:'bar',
     data:{labels:M.map(function(x){return x.muni;}),datasets:[
-      {label:'Agriculture',data:M.map(function(x){return +(x.agri/x.pop).toFixed(2);}),backgroundColor:'#2d7a4f',borderRadius:2,stack:'s'},
+      {label:'Agriculture',data:M.map(function(x){return +(x.agri/x.pop).toFixed(2);}),backgroundColor:'#1f6482',borderRadius:2,stack:'s'},
       {label:'Transport',data:M.map(function(x){return +(x.transp/x.pop).toFixed(2);}),backgroundColor:'#b45309',borderRadius:2,stack:'s'},
       {label:'Industriel',data:M.map(function(x){return +(x.ind/x.pop).toFixed(2);}),backgroundColor:'#374151',borderRadius:2,stack:'s'},
       {label:'Bâti résidentiel, commercial et institutionnel',data:M.map(function(x){return +((x.res+x.ci)/x.pop).toFixed(2);}),backgroundColor:'#d97706',borderRadius:2,stack:'s'},
@@ -3364,7 +3376,7 @@ function renderClPerCap(){
 
 // ═══════════════ SANTÉ ═══════════════
 function sdohLvl(lv){return lv==='Atout fort'?'lv-fort':lv==='Favorable'?'lv-fav':lv==='À surveiller'?'lv-watch':lv==='Priorité'?'lv-prio':'lv-vigi';}
-function sdohCol(s){return s>=80?'#166534':s>=70?'#1a4d2e':s>=60?'#d97706':s>=50?'#b45309':'#dc2626';}
+function sdohCol(s){return s>=80?'#166534':s>=70?'#004159':s>=60?'#d97706':s>=50?'#b45309':'#dc2626';}
 function srcClass(src){return src.includes('conomie')?'src-eco':src.includes('m')?'src-am':src.includes('ouv')?'src-gov':'src-mix';}
 
 function renderSdohIntro(){
@@ -3489,7 +3501,7 @@ function renderVulnChart(){
   charts.vulnChart=new Chart(ctx,{type:'bar',
     data:{labels:vulns.map(function(x){return x.m.name;}),
       datasets:[{data:vulns.map(function(x){return x.v;}),
-        backgroundColor:vulns.map(function(x){return x.v>=70?'#dc2626':x.v>=45?'#d97706':'#2d7a4f';}),borderRadius:4}]},
+        backgroundColor:vulns.map(function(x){return x.v>=70?'#dc2626':x.v>=45?'#d97706':'#668e3c';}),borderRadius:4}]},
     options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' Indice : '+c.raw+'/100';}}}},
       scales:{x:{max:100,grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:12}}},y:{grid:{display:false},ticks:{font:{size:11}}}}}});
@@ -3664,11 +3676,11 @@ init();
 </div>
 <script src="./xlsx-populate.min.js"></script>
 <script src="./exceljs.min.js"></script>
-<script src="./granit-excel.js?v=4.13"></script>
-<script src="./granit-import.js?v=4.13"></script>
+<script src="./granit-excel.js?v=4.14"></script>
+<script src="./granit-import.js?v=4.14"></script>
 <!-- Le suffixe ?v= force le navigateur à recharger ces scripts à chaque version : le changer ici quand un des fichiers granit-*.js change. -->
-<script src="./granit-req.js?v=4.13"></script>
-<script src="./granit-croise.js?v=4.13"></script>
-<script src="./granit-carte.js?v=4.13"></script>
+<script src="./granit-req.js?v=4.14"></script>
+<script src="./granit-croise.js?v=4.14"></script>
+<script src="./granit-carte.js?v=4.14"></script>
 </body>
 </html>

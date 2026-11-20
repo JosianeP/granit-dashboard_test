@@ -5,7 +5,7 @@
 (function () {
   'use strict';
   var G = null, etat = {}, W = 760, H = 560, MARGE = 14;
-  var RAMPE = ['#e3f3ea', '#b4dcc4', '#7cc09a', '#3f9566', '#14532d'];
+  var RAMPE = ['#eef3e6', '#c5d8ac', '#8db069', '#2f7a78', '#004159'];  /* du vert au bleu marine du logo */
 
   function fmt(n, d) { return Number(n).toLocaleString('fr-CA', { minimumFractionDigits: d || 0, maximumFractionDigits: d || 0 }); }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -90,12 +90,12 @@
     var c = document.createElement('style'); c.id = 'gcCss';
     c.textContent =
       '.gc{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(260px,1fr);gap:0;margin-bottom:18px;padding:0;overflow:hidden}' +
-      '.gc-carte{position:relative;background:linear-gradient(180deg,#f6faf7,#eef5f0);padding:8px}' +
+      '.gc-carte{position:relative;background:linear-gradient(180deg,#f4f8fa,#eaf1f4);padding:8px}' +
       '.gc-carte svg{display:block;width:100%;height:auto;max-height:560px}' +
       '.gc-m{stroke:#fff;stroke-width:1.4;cursor:pointer;transition:filter .12s,stroke .12s;outline:none}' +
-      '.gc-m:hover,.gc-m:focus-visible,.gc-m.on{stroke:#0b2818;stroke-width:2.2;filter:brightness(1.04) drop-shadow(0 2px 5px rgba(11,40,24,.28))}' +
-      '.gc-n{font:600 11px "DM Sans",system-ui,sans-serif;fill:#0b2818;text-anchor:middle;pointer-events:none;paint-order:stroke;stroke:rgba(255,255,255,.85);stroke-width:3px;stroke-linejoin:round}' +
-      '.gc-n.inv{fill:#fff;stroke:rgba(11,40,24,.55)}' +
+      '.gc-m:hover,.gc-m:focus-visible,.gc-m.on{stroke:#00222f;stroke-width:2.2;filter:brightness(1.04) drop-shadow(0 2px 5px rgba(0,34,47,.28))}' +
+      '.gc-n{font:600 11px "DM Sans",system-ui,sans-serif;fill:#00222f;text-anchor:middle;pointer-events:none;paint-order:stroke;stroke:rgba(255,255,255,.85);stroke-width:3px;stroke-linejoin:round}' +
+      '.gc-n.inv{fill:#fff;stroke:rgba(0,34,47,.55)}' +
       '.gc-n.chef{font-size:12.5px;font-weight:700}' +
       '.gc-cote{padding:20px 22px;display:flex;flex-direction:column;gap:14px;border-left:1px solid var(--border);min-width:0}' +
       '.gc-t{font-family:"Fraunces",serif;font-size:20px;font-weight:600;color:var(--text);line-height:1.2;margin:0}' +

@@ -1,4 +1,4 @@
-# Tableau de bord territorial - MRC du Granit (v4.13)
+# Tableau de bord territorial - MRC du Granit (v4.14)
 
 Outil interne de développement territorial à trois piliers (économie, aménagement, santé). Hébergé sur GitHub Pages.
 
@@ -22,11 +22,15 @@ Outil interne de développement territorial à trois piliers (économie, aménag
 
 Ces fichiers doivent se trouver dans le même dossier du dépôt.
 
+## Nouveautés de la version 4.14
+
+- Identité de la MRC du Granit. Le logo (version 2023) remplace le bandeau de titre, et la palette reprend ses trois couleurs : bleu marine `#004159` (couleur principale), vert `#668e3c` (accents et mentions favorables) et gris `#969491`. La gamme `--g` de `index.html` porte le bleu marine et la gamme `--v` le vert.
+- Le logo se trouve dans `assets/logo-mrc-granit.png`. Les polices n'ont pas changé, faute de norme graphique publiée.
+
 ## Nouveautés de la version 4.13
 
 - Carte des 19 municipalités en tête de l'aperçu et de la vue Municipalités (`granit-carte.js`). Un menu choisit l'indicateur qui colore la carte (population, 65 ans et plus, entreprises par 1 000 habitants, logements non occupés à l'année, ménages locataires, places de garde, vulnérabilité). Le survol affiche les chiffres de la municipalité et le clic ouvre son portrait.
 - Les contours viennent du Système sur les découpages administratifs (SDA) du gouvernement du Québec, extraits par `tools/carte_granit.py` dans `data/carte/`. Le flux « Carte - Granit » se lance à la main si une limite municipale change.
-- Trois constats en phrases sous la carte (vieillissement, logements non habités à l'année, places de garde), calculés à partir des données affichées; ils se mettent donc à jour d'eux-mêmes.
 
 ## Nouveautés de la version 4.12 (revue complète avant démonstration)
 

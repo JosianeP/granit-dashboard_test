@@ -183,7 +183,7 @@ def main():
     os.makedirs(a.out, exist_ok=True)
     diag = ["Extraction du %s" % datetime.date.today().isoformat()]
     chemin = a.zip or "/tmp/recensement2021_qc.zip"
-    url = "fichier local" if a.zip else telecharger(chemin, diag)
+    url = "fichier local" if a.zip else None  # le téléchargement du fichier complet est refusé aux robots (HTTP 403)
 
     def finir(code=0):
         open(os.path.join(a.out, "diagnostic.txt"), "w", encoding="utf-8").write("\n".join(diag) + "\n")

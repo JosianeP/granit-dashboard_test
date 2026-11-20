@@ -11,7 +11,7 @@
   var BASE = './data/req/';
   var PAGE = 40;
   var S = { loaded: false, loading: false, rows: [], hist: null, mouv: null, extraction: '', source: '',
-            ap: null, portee: 'tout', q: '', muni: '', sect: '', emp: '', forme: '', sort: 'nom', dir: 1, page: 0, parHab: false };
+            ap: null, portee: 'tout', q: '', muni: '', sect: '', s13: '', emp: '', forme: '', sort: 'nom', dir: 1, page: 0, parHab: false };
   var charts = {};
 
   /* Grands secteurs : regroupement des divisions de la Classification des activités économiques (CAE) */
@@ -57,6 +57,36 @@
     var d = parseInt(cae.slice(0, 2), 10);
     for (var i = 0; i < SECTEURS.length; i++) if (d >= SECTEURS[i][2] && d <= SECTEURS[i][3]) return SECTEURS[i];
     return SECT_NC;
+  }
+  /* Secteurs du tableau de bord (s1 à s13, data.json) : correspondance à partir du code CAE.
+     Une fiche locale rattachée par le NEQ a priorité sur le code. Ce qui n'entre dans aucun des
+     13 secteurs (sociétés de gestion, exploitants immobiliers, associations, fabrication diverse)
+     est classé « autres ». Le secteur s4 (Énergie & granules) n'a pas de code CAE propre. */
+  function s13De(c) {
+    if (!c || !/^\d{4}$/.test(c)) return 'autres';
+    var d = parseInt(c.slice(0, 2), 10);
+    if (c === '0164') return 's5';
+    if (c === '2512' || c === '4565' || c === '5993' || d === 4 || d === 5) return 's2';
+    if ((d >= 1 && d <= 3) || d === 10 || d === 11 || c === '4711' || d === 50 || d === 52 || c === '5931') return 's6';
+    if (d === 25 || d === 26) return 's1';
+    if ((d >= 6 && d <= 9) || d === 35 || c === '6595') return 's3';
+    if (d >= 17 && d <= 24) return 's8';
+    if ((d >= 29 && d <= 33) || c === '9941' || c === '9942') return 's7';
+    if (d >= 40 && d <= 44) return 's13';
+    if (d >= 45 && d <= 47) return 's9';
+    if (d === 91 || d === 92 || (d === 96 && !/^961/.test(c)) || c === '9961' || c === '8551') return 's10';
+    if ((d >= 81 && d <= 86) || d === 49) return 's11';
+    if ((d >= 50 && d <= 69) || d === 48 || d === 70 || d === 71 || d === 73 || d === 74 || d === 76 || d === 77 || d === 97 || d === 99) return 's12';
+    return 'autres';
+  }
+  function s13Noms() {
+    var o = {}; try { (window.D.sectors || []).forEach(function (x) { o[x.name] = x.id; }); } catch (e) {}
+    return o;
+  }
+  function s13Libelle(id) {
+    if (id === 'autres') return 'Autres activités';
+    var r = id; try { (window.D.sectors || []).forEach(function (x) { if (x.id === id) r = x.name; }); } catch (e) {}
+    return r;
   }
   function dateFr(iso) {
     if (!iso) return '';
@@ -121,11 +151,20 @@
     window.V = function (id, b) { V0(id, b); if (id === 'eco-registre') ouvrir(); };
   }
 
+  var attente = null;
   function ouvrir() {
-    if (S.loaded) { rendre(); return; }
-    if (S.loading) return;
+    charger().then(rendre).catch(function (err) {
+      var el = document.getElementById('rqBody'); if (!el) return;
+      el.innerHTML = '<div class="card"><div class="ct">Registre non disponible</div><div style="font-size:14.5px;color:var(--text2);line-height:1.6">' +
+        'Les fichiers de <code>data/req/</code> n\'ont pas pu être lus (' + esc(err.message) + '). Ils sont produits par le flux de travail « Registre des entreprises - Granit » dans l\'onglet Actions du dépôt.</div></div>';
+    });
+  }
+  /* Charge le registre une seule fois; les autres vues du tableau de bord s'y abonnent par GranitREQ.charger(). */
+  function charger() {
+    if (S.loaded) return Promise.resolve(S);
+    if (attente) return attente;
     S.loading = true;
-    Promise.all([getJSON('granit_latest.json'), getJSON('historique.json', true), getJSON('mouvements.json', true),
+    attente = Promise.all([getJSON('granit_latest.json'), getJSON('historique.json', true), getJSON('mouvements.json', true),
                  fetch('./data/appariement.json?t=' + Date.now()).then(function (x) { return x.ok ? x.json() : null; }).catch(function () { return null; })])
       .then(function (r) {
         var g = r[0]; S.hist = r[1]; S.mouv = r[2];
@@ -134,6 +173,7 @@
         try { (window.D.companies || []).forEach(function (c) { if (c.src === 'eco') { var k = norm(c.name); if (k.length >= 4) local.push(k); } }); } catch (e) {}
         /* Appariement par NEQ : fiches locales et membres touristiques rattachés au registre */
         var liens = (r[3] && r[3].liens) || null, parNeq = {}, statutDe = {}, fiches = {}, actifs = {};
+        var nomS13 = s13Noms(); S.parFiche = {};
         try { (window.D.companies || []).forEach(function (c) { fiches[c.id] = c; }); } catch (e) {}
         (g.entreprises || []).forEach(function (e) { actifs[e.neq] = 1; });
         if (liens) liens.forEach(function (l) {
@@ -151,7 +191,10 @@
           var fl = parNeq[e.neq] || [];
           var fe = fl.filter(function (c) { return c.src === 'eco'; })[0] || null;
           var ft = fl.filter(function (c) { return c.src === 'tourisme'; })[0] || null;
-          return {
+          var s13 = (fe && nomS13[fe.sector]) || s13De(e.cae);
+          if (s13 === 'autres' && ft) s13 = 's10';
+          var ligne = {
+            s13: s13, fiches: fl.map(function (c) { return c.id; }), statut: fe ? fe.status : '',
             usage: ((fe || ft) && norm((fe || ft).name) !== norm(e.nom || '')) ? (fe || ft).name : '',
             hors: false, propose: false, tour: !!ft, desc: (fe && fe.desc) || '', jobs: (fe && fe.jobs > 0) ? fe.jobs : 0,
             sectLoc: fe ? fe.sector : (ft ? ft.sector : ''),
@@ -163,6 +206,8 @@
             local: liens ? !!fe : keys.some(function (k) { return local.some(function (l) { return k === l || (l.length >= 7 && k.indexOf(l) > -1) || (k.length >= 7 && l.indexOf(k) > -1); }); }),
             cherche: norm(noms.join(' ') + ' ' + act + ' ' + (e.cae_lib || '') + ' ' + e.muni + ' ' + fl.map(function (c) { return c.name + ' ' + c.sector; }).join(' ')) + ' ' + e.neq
           };
+          fl.forEach(function (c) { S.parFiche[c.id] = ligne; });
+          return ligne;
         });
         S.nLocal = local.length;
         S.ap = null;
@@ -175,6 +220,7 @@
             if (st === 'a_valider') cpt.propose++;
             cpt.hors++;
             S.rows.push({
+              s13: nomS13[c.sector] || (eco ? 'autres' : 's10'), fiches: [c.id], statut: eco ? c.status : '',
               neq: '', nom: c.name, autres: [], muni: c.muni, eta: false, sect: 'nc', cae: '', caeLib: '', act: '',
               emp: 'N', forme: '', formeLib: '', immat: '', recent: false, gestion: false,
               hors: true, propose: st === 'a_valider', local: eco, tour: !eco, desc: c.desc || '', jobs: c.jobs > 0 ? c.jobs : 0, sectLoc: c.sector || '',
@@ -183,13 +229,11 @@
           });
           S.ap = cpt;
         }
-        S.loaded = true; S.loading = false; rendre();
+        S.loaded = true; S.loading = false;
+        return S;
       })
-      .catch(function (err) {
-        S.loading = false;
-        document.getElementById('rqBody').innerHTML = '<div class="card"><div class="ct">Registre non disponible</div><div style="font-size:14.5px;color:var(--text2);line-height:1.6">' +
-          'Les fichiers de <code>data/req/</code> n\'ont pas pu être lus (' + esc(err.message) + '). Ils sont produits par le flux de travail « Registre des entreprises - Granit » dans l\'onglet Actions du dépôt.</div></div>';
-      });
+      .catch(function (err) { S.loading = false; attente = null; throw err; });
+    return attente;
   }
 
   /* ── Filtres ── */
@@ -208,7 +252,7 @@
   function filtrees() {
     var q = norm(S.q), qn = S.q.replace(/\D/g, '');
     return base().filter(function (r) {
-      return (!S.muni || r.muni === S.muni) && (!S.sect || r.sect === S.sect) && (!S.emp || r.emp === S.emp) && (!S.forme || r.forme === S.forme) &&
+      return (!S.muni || r.muni === S.muni) && (!S.sect || r.sect === S.sect) && (!S.s13 || r.s13 === S.s13) && (!S.emp || r.emp === S.emp) && (!S.forme || r.forme === S.forme) &&
         (!q || r.cherche.indexOf(q) > -1 || (qn.length >= 6 && r.neq.indexOf(qn) > -1));
     });
   }
@@ -241,7 +285,7 @@
       'Les adresses des personnes physiques sont exclues du jeu de données, de sorte que plusieurs travailleurs autonomes n\'y figurent pas.</div>';
     h += '<div class="kpi-grid">' +
       kpi('Entreprises actives', fmt(all.length), 'immatriculées dans les ' + munis.length + ' municipalités', 'Registraire') +
-      kpi('Tissu opérant', fmt(nOper), 'sans les ' + fmt(all.length - nOper) + ' sociétés de gestion et de portefeuille', 'Repérage') +
+      kpi('Entreprises en exploitation', fmt(nOper), 'sans les ' + fmt(all.length - nOper) + ' sociétés de gestion, qui détiennent des placements sans activité commerciale', 'Repérage') +
       kpi('Avec employés déclarés', fmt(nEmp), 'au moins un employé au Québec, hors sociétés de gestion', 'Registraire') +
       kpi('Immatriculées depuis 12 mois', fmt(nRec), 'encore actives à la date d\'extraction', 'Registraire') + '</div>';
     h += '<div class="ftabs" style="margin-bottom:14px">' + portees.map(function (p) {
@@ -269,7 +313,8 @@
       '<div class="co-toolbar">' +
       '<input class="co-search" id="rqQ" placeholder="Rechercher par nom, activité, municipalité ou NEQ..." value="' + esc(S.q) + '" oninput="GranitREQ.set(\'q\',this.value)">' +
       sel('muni', 'Toutes les municipalités', munis.map(function (m) { return [m, m]; })) +
-      sel('sect', 'Tous les secteurs', SECTEURS.concat([SECT_NC]).map(function (s) { return [s[0], s[1]]; })) +
+      sel('s13', 'Tous les secteurs du tableau de bord', ((window.D && window.D.sectors) || []).map(function (s) { return [s.id, s.name]; }).concat([['autres', 'Autres activités']])) +
+      sel('sect', 'Toutes les activités (classification CAE)', SECTEURS.concat([SECT_NC]).map(function (s) { return [s[0], s[1]]; })) +
       sel('emp', 'Toutes les tailles', EMP_ORDRE.split('').map(function (c) { return [c, 'Employés - ' + EMP[c]]; })) +
       sel('forme', 'Toutes les formes juridiques', formes.map(function (f) { return [f, FORME[f] || f]; })) +
       '<button class="rq-btn" onclick="GranitREQ.csv()">Exporter (CSV)</button></div>' +
@@ -383,9 +428,9 @@
   }
   function csv() {
     var l = triees(), q = function (v) { return '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"'; };
-    var out = [['NEQ', 'Nom', 'Autres noms', 'Municipalité', 'Rattachement', 'Grand secteur', 'Code CAE', 'Activité (CAE)', 'Activité déclarée', 'Employés au Québec', 'Forme juridique', 'Date d\'immatriculation', 'Société de gestion (repérage)', 'Répertoire local', 'Tourisme', 'Hors registre', 'Nom d\'usage (répertoire local)', 'Emplois (répertoire local)', 'Secteur (répertoire local)', 'Description (répertoire local)', 'Source'].map(q).join(',')];
+    var out = [['NEQ', 'Nom', 'Autres noms', 'Municipalité', 'Rattachement', 'Secteur du tableau de bord', 'Grand secteur (CAE)', 'Code CAE', 'Activité (CAE)', 'Activité déclarée', 'Employés au Québec', 'Forme juridique', 'Date d\'immatriculation', 'Société de gestion (repérage)', 'Répertoire local', 'Tourisme', 'Hors registre', 'Nom d\'usage (répertoire local)', 'Emplois (répertoire local)', 'Secteur (répertoire local)', 'Description (répertoire local)', 'Source'].map(q).join(',')];
     l.forEach(function (r) {
-      out.push([r.neq, r.nom, r.autres.join(' | '), r.muni, r.hors ? '' : (r.eta ? 'Établissement (siège hors territoire)' : 'Domicile'), SECT_BY[r.sect][1], r.cae, r.caeLib, r.act, EMP[r.emp] || r.emp, r.formeLib, r.immat, r.gestion ? 'oui' : 'non',
+      out.push([r.neq, r.nom, r.autres.join(' | '), r.muni, r.hors ? '' : (r.eta ? 'Établissement (siège hors territoire)' : 'Domicile'), s13Libelle(r.s13), SECT_BY[r.sect][1], r.cae, r.caeLib, r.act, EMP[r.emp] || r.emp, r.formeLib, r.immat, r.gestion ? 'oui' : 'non',
         r.local ? 'oui' : 'non', r.tour ? 'oui' : 'non', r.hors ? 'oui' : 'non', r.usage || '', r.jobs || '', r.sectLoc, r.desc,
         r.hors ? 'Répertoire local de la MRC du Granit (data.json)' : 'Registraire des entreprises du Québec, données ouvertes, extraction du ' + S.extraction + ', CC BY-NC-SA 4.0'].map(q).join(','));
     });
@@ -401,7 +446,26 @@
     set: function (k, v) { S[k] = v; S.page = 0; tableau(); if (k === 'muni') graphiques(); },
     tri: function (k) { if (S.sort === k) S.dir = -S.dir; else { S.sort = k; S.dir = (k === 'immat' || k === 'emp') ? -1 : 1; } S.page = 0; tableau(); },
     page: function (d) { S.page += d; tableau(); var t = document.getElementById('rqTotal'); if (t && t.scrollIntoView) t.scrollIntoView({ block: 'start' }); },
-    csv: csv, _etat: S
+    csv: csv, _etat: S,
+    /* Pont avec les autres vues (granit-croise.js) */
+    charger: charger,
+    pret: function () { return S.loaded; },
+    lignes: function () { return S.rows; },
+    registre: registre,
+    ficheLiee: function (id) { return (S.parFiche || {})[id] || null; },
+    extraction: function () { return S.extraction; },
+    libelles: { emp: EMP, empOrdre: EMP_ORDRE, secteurs: SECT_BY, s13: s13Libelle, dateFr: dateFr },
+    /* Ouvre le registre avec des filtres déjà posés, p. ex. GranitREQ.voir({ muni: 'Nantes', s13: 's5' }) */
+    voir: function (f) {
+      f = f || {};
+      S.portee = f.portee || 'tout'; S.q = f.q || ''; S.muni = f.muni || ''; S.sect = f.sect || ''; S.s13 = f.s13 || ''; S.emp = f.emp || ''; S.forme = ''; S.page = 0;
+      if (window.closeSectorPanel) window.closeSectorPanel();
+      if (window.closeDemoModal) window.closeDemoModal();
+      var b = null; document.querySelectorAll('#sbnEco .ni').forEach(function (x) { if ((x.getAttribute('onclick') || '').indexOf("'eco-registre'") > -1) b = x; });
+      if (window.switchPillar && document.getElementById('sbnEco').style.display === 'none') { var pt = document.getElementById('pt-eco'); if (pt) window.switchPillar('eco', pt); }
+      window.V('eco-registre', b);
+      window.scrollTo(0, 0);
+    }
   };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', monter); else monter();
 })();

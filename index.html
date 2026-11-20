@@ -817,7 +817,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
     <div class="pb-brand-text">
       <div class="org">MRC du Granit &middot; Estrie</div>
       <div class="name">Tableau de bord territorial</div>
-      <div class="ver" id="verLabel">v4.9</div>
+      <div class="ver" id="verLabel">v4.10</div>
     </div>
   </div>
   <nav class="pillar-tabs">
@@ -1529,10 +1529,12 @@ function syncGroup(id){
 
 // ─── RENDER ALL ───
 function renderAll(){
+  // Les extractions automatiques (services de garde, Recensement 2021) priment sur les valeurs saisies.
+  if(window.GranitCroise)GranitCroise.appliquerMilieu();
   if(D.meta){
     document.getElementById('sbQ').textContent=D.meta.quarter||'—';
     document.getElementById('sbBy').textContent=(D.meta.updatedBy||'').split('—')[0].trim();
-    document.getElementById('verLabel').textContent='v4.9 · '+(D.meta.quarter||'');
+    document.getElementById('verLabel').textContent='v4.10 · '+(D.meta.quarter||'');
     var ovq=document.getElementById('ovQuarter'); if(ovq)ovq.textContent='Portrait économique du territoire — MRC du Granit, '+(D.meta.quarter||'');
   }
   allMLPairs=getMLSuggestions();
@@ -1551,6 +1553,7 @@ function renderAll(){
   if(D.climat)renderClimat();
   setTimeout(function(){renderBarChart();renderDonutChart();},300);
   setTimeout(function(){renderAmOverviewCharts();},350);
+  if(window.GranitCroise)GranitCroise.apresRendu();
 }
 
 // ─── PALETTE ───
@@ -1571,7 +1574,8 @@ function renderStatsStrip(){
     ss(viFmt(vi.superficie_terrestre_km2_2026,0,'2 640')+' km²','Superficie terrestre')+
     ss(viFmt(vi.part_65plus_pct,1,'31,3')+' %','65 ans et + (ISQ)')+
     ss(viFmt(vi.taux_faible_revenu_familles_2023_pct,1,'7,8')+' %','Faible revenu familles')+
-    ss(realCo.length,'Entreprises répertoriées')+
+    (window.GranitCroise?GranitCroise.statsRegistre():'')+
+    ss(realCo.length,(window.GranitCroise&&GranitCroise.pret())?'Fiches du répertoire local':'Entreprises répertoriées')+
     ss(totalJ.toLocaleString('fr-CA'),'Emplois répertoriés (est.)')+
     ss(nbTour,'Membres touristiques')+
     ss(lgVal((D.logements&&D.logements.agregats)?D.logements.agregats.logementsTotal:null),'Logements (parc)')+
@@ -1651,7 +1655,8 @@ function renderSectorCards(id,filter){
       '<div class="sc-tr '+(s.dir==='up'?'up':'down')+'">'+(s.dir==='up'?'↑':'↓')+' '+s.trend+'</div>'+
       '<div class="sc-ds">'+s.desc+'</div>'+
       '<div class="sc-bar"><div class="sc-bf" style="width:'+pct+'%"></div></div>'+
-      (coCount>0?'<div class="sc-hint">'+coCount+' entr. →</div>':'')+
+      (window.GranitCroise?GranitCroise.carteSecteur(s):'')+
+      (window.GranitCroise&&GranitCroise.pret()?'<div class="sc-hint">Voir la liste →</div>':(coCount>0?'<div class="sc-hint">'+coCount+' entr. →</div>':''))+
       '</div>';
   }).join('');
 }
@@ -1662,6 +1667,8 @@ function fSect(f,btn){
 
 // ─── SECTOR PANEL ───
 function openSectorPanel(sid){
+  // Registre chargé : le panneau réunit les fiches locales et les entreprises du Registraire (granit-croise.js).
+  if(window.GranitCroise&&GranitCroise.panneauSecteur(sid))return;
   var sec=D.sectors.find(function(s){return s.id===sid;});if(!sec)return;
   var cos=D.companies.filter(function(c){return c.sector===sec.name&&c.status!=='a_completer';});
   var tj=cos.reduce(function(a,b){return a+b.jobs;},0);
@@ -1716,7 +1723,7 @@ function filterCo(){
   var stM={actif:'st-actif',reprise:'st-reprise',nouveau:'st-nouveau',expansion:'st-expansion',a_completer:'st-a_completer',tourisme:'st-tourisme'};
   var stL={actif:'✅ Actif',reprise:'🔄 Reprise',nouveau:'🆕 Nouveau',expansion:'📈 Expansion',a_completer:'📝 À compléter',tourisme:'🧭 Membre tourisme'};
   document.getElementById('coBody').innerHTML=list.map(function(c){
-    return '<tr><td><div style="font-weight:600">'+c.name+'</div><div style="font-size:13px;color:var(--muted);margin-top:2px;line-height:1.3">'+c.desc+'</div></td>'+
+    return '<tr><td><div style="font-weight:600">'+c.name+'</div><div style="font-size:13px;color:var(--muted);margin-top:2px;line-height:1.3">'+c.desc+'</div>'+(window.GranitCroise?GranitCroise.ligneRepertoire(c):'')+'</td>'+
       '<td><div style="font-size:13px">📍 '+c.muni+'</div></td>'+
       '<td><div style="font-size:13px">'+c.sector+'</div></td>'+
       '<td style="text-align:right"><div class="co-jobs-cell">'+(c.status==='a_completer'||c.status==='tourisme'?'—':c.jobs.toLocaleString('fr-CA'))+'</div></td>'+
@@ -1792,6 +1799,7 @@ function renderTrMuniAcc(){
       '<div class="tr-macc-body" id="traccb-'+i+'">'+
         (capBits.length?'<div style="font-size:13px;color:var(--muted);padding:8px 0 2px;font-weight:600">Capacité d\'accueil : '+capBits.join(' · ')+'</div>':'')+
         trBizList(pm.muni)+
+        (window.GranitCroise?GranitCroise.blocTourisme(pm.muni):'')+
       '</div></div>';
   }).join('');
 }
@@ -1993,7 +2001,8 @@ function renderLgMuniAcc(){
         lgMetricBlock(gd,'milieuFamilial','Milieu familial (RSG)')+
         lgMetricBlock(gd,'placesTotal','Places totales')+
       '</div>'+
-      (!lg&&!gd?'<div class="lg-empty">Données à compléter en phase 2.</div>':'');
+      (!lg&&!gd?'<div class="lg-empty">Données à compléter en phase 2.</div>':'')+
+      (window.GranitCroise?GranitCroise.blocLogement(name):'');
     return '<div class="tr-macc lg-macc" id="lgacc-'+i+'">'+
       '<div class="tr-macc-head" onclick="toggleLgAcc('+i+')">'+
         '<div class="lg-macc-rank">'+(i+1)+'</div>'+
@@ -2295,6 +2304,7 @@ function renderMuniGrid(filter){
   var muniNames={}; D.municipalities.forEach(function(x){muniNames[x.name]=1;});
   document.getElementById('muniGrid').innerHTML=list.map(function(m){
     var coCount=D.companies.filter(function(c){return (m.isMrc?muniNames[c.muni]:c.muni===m.name)&&c.status!=='a_completer';}).length;
+    var coReg=window.GranitCroise?GranitCroise.compteMuni(m):null; if(coReg!=null)coCount=coReg.toLocaleString('fr-CA');
     var dem='';
     if(m.demo){var g=m.demo.agg,tt=g.tot;
       function pc(x){return Math.round(x/tt*100);}
@@ -2534,7 +2544,8 @@ function openDemoModal(code){
       '<div class="dm-panel"><div class="ct">Structure par âge (2025)</div><div style="position:relative;height:300px"><canvas id="dmPyr"></canvas></div><div class="pyr-legend"><span><i style="background:var(--g400)"></i>0–19</span><span><i style="background:var(--g700)"></i>20–64</span><span><i style="background:#d97706"></i>65+</span></div></div>'+
       '<div class="dm-panel"><div class="ct">Population et aînés — projection à 2041</div><div style="position:relative;height:300px"><canvas id="dmProj"></canvas></div><div class="lever-note">Scénario Référence A2025 (ISQ). La courbe ambrée suit les 65 ans et plus.</div></div>'+
     '</div>'+
-    (m.isMrc?mrcLgPanel():muniLgPanel(m.name));
+    (m.isMrc?mrcLgPanel():muniLgPanel(m.name))+
+    (window.GranitCroise?GranitCroise.blocMuni(m):'');
   var modal=document.getElementById('demoModal');modal.classList.add('open');document.body.style.overflow='hidden';
   setTimeout(function(){
     if(charts.dmPyr)charts.dmPyr.destroy();
@@ -3493,5 +3504,6 @@ init();
 <script src="./granit-excel.js"></script>
 <script src="./granit-import.js"></script>
 <script src="./granit-req.js"></script>
+<script src="./granit-croise.js"></script>
 </body>
 </html>

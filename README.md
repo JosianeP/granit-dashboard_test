@@ -1,4 +1,4 @@
-# Tableau de bord territorial - MRC du Granit (v4.8)
+# Tableau de bord territorial - MRC du Granit (v4.10)
 
 Outil interne de développement territorial à trois piliers (économie, aménagement, santé). Hébergé sur GitHub Pages.
 
@@ -14,7 +14,31 @@ Outil interne de développement territorial à trois piliers (économie, aménag
 | `xlsx-populate.min.js` | Déchiffrement et lecture du chiffrier dans le navigateur |
 | `exceljs.min.js` | Régénération du gabarit Excel depuis la plateforme |
 
-Les sept fichiers doivent se trouver dans le même dossier du dépôt.
+| `granit-req.js` | Vue « Registre des entreprises » et chargement du registre pour les autres vues |
+| `granit-croise.js` | Croisements entre les vues : le registre, les services de garde et le recensement s'affichent partout où il y a une fiche ou un bloc cliquable |
+| `data/req/`, `data/garde/`, `data/logement/` | Extractions automatiques produites par GitHub Actions. Ne pas modifier à la main |
+| `data/appariement.json` | Liens entre les fiches locales et le Registraire (par NEQ) |
+
+Ces fichiers doivent se trouver dans le même dossier du dépôt.
+
+## Nouveautés de la version 4.10
+
+- Le Registre des entreprises apparaît dans toutes les vues. Le panneau d'un secteur réunit les fiches locales et les entreprises du Registraire classées dans ce secteur, avec recherche et filtre par municipalité. Le portrait d'une municipalité (et celui de la MRC) affiche ses entreprises actives, leur répartition par secteur et ses principaux employeurs. La vue d'ensemble, le répertoire local, le tourisme, l'emploi et les logements reprennent aussi les inscriptions pertinentes. Chaque liste renvoie au Registre déjà filtré.
+- Classement dans les 13 secteurs. Il se fait à partir du code d'activité (CAE) déclaré au Registraire; la table de correspondance se trouve dans `s13De` de `granit-req.js`. Une fiche locale rattachée par le NEQ garde le secteur que la MRC lui a donné. Les sociétés de gestion, les exploitants immobiliers, les associations et la fabrication diverse vont dans « Autres activités ». Le secteur Énergie & granules n'a pas de code propre.
+- « Tissu opérant » devient « Entreprises en exploitation », soit les entreprises actives sans les sociétés de gestion.
+- Services de garde. Les CPE, les garderies et le bureau coordonnateur proviennent de la liste du ministère de la Famille (Données Québec), extraite par `tools/garde_granit.py`.
+- Parc de logements. Les 19 municipalités ont leurs valeurs du Recensement de 2021 (logements privés, logements occupés, ménages locataires), lues par `tools/recensement_granit.py` dans le service Web de Statistique Canada. Les estimations fondées sur la population sont retirées.
+
+## Mises à jour automatiques
+
+| Flux GitHub Actions | Fréquence | Ce qu'il met à jour |
+|---|---|---|
+| Registre des entreprises - Granit | le 3 et le 18 de chaque mois | `data/req/` |
+| Milieu de vie - Granit | le 6 janvier, avril, juillet et octobre | `data/garde/` et `data/logement/` |
+
+Les deux flux se lancent aussi à la main, dans l'onglet Actions du dépôt. À l'affichage, ces extractions priment sur les valeurs saisies dans le chiffrier pour les mêmes champs (installations de garde, places, parc de logements, ménages locataires). Chaque dossier contient un `diagnostic.txt` qui décrit ce qui a été lu et retenu.
+
+Ce qui reste à saisir à la main : le logement social par municipalité (aucune source ouverte, à obtenir de l'Office d'habitation), le taux d'inoccupation et le nombre d'enfants en attente d'une place pour le Granit (le ministère ne publie que par région).
 
 ## Nouveautés de la version 4.8
 

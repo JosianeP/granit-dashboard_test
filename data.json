@@ -4,7 +4,7 @@
     "quarter": "T2 2026",
     "updatedBy": "MRC du Granit - Conseil scientifique & Développement économique",
     "updatedDate": "2026-06-17",
-    "note": "Données démographiques et de revenu validées aux sources officielles (Décret 1499-2025, Recensement 2021). Portrait industriel officiel intégré (LGP / Table des MRC de l'Estrie, avril 2026). Liste d'entreprises triangulée : liste manufacturière SDEG 2025 + infolettre avril 2026 + registre « Le Granit ». Ajouts tourisme et commerce par recherche documentaire (juin 2026). Effectifs non confirmés marqués « à compléter » et exclus des totaux. Estimations clairement identifiées. Pilier Santé enrichi des données réelles de la DSP de l'Estrie (RLS du Granit, avril 2025) et du Tableau de bord – Santé publique Estrie. Section Plan climat ajoutée au pilier Aménagement (v4.6) à partir de l'Inventaire collectif des émissions de GES de la MRC du Granit, version préliminaire v2, année de référence 2024. Toutes les valeurs de cette section proviennent de ce chiffrier; la classification des sources selon la portée des instruments d'aménagement est une lecture analytique, signalée comme telle. Section Culture retirée du tableau de bord (v4.7). Mise à jour trimestrielle par chiffrier Excel chiffré, une feuille par municipalité, importé directement dans la plateforme (v4.7). Repères de revenu des ménages (aperçu), enfants en attente d'une place en service de garde et vignette de la MRC dans la vue Municipalités ajoutés (v4.8).",
+    "note": "Données démographiques et de revenu validées aux sources officielles (Décret 1499-2025, Recensement 2021). Portrait industriel officiel intégré (LGP / Table des MRC de l'Estrie, avril 2026). Liste d'entreprises triangulée : liste manufacturière SDEG 2025 + infolettre avril 2026 + registre « Le Granit ». Ajouts tourisme et commerce par recherche documentaire (juin 2026). Effectifs non confirmés marqués « à compléter » et exclus des totaux. Estimations clairement identifiées. Pilier Santé enrichi des données réelles de la DSP de l'Estrie (RLS du Granit, avril 2025) et du Tableau de bord – Santé publique Estrie. Section Plan climat ajoutée au pilier Aménagement (v4.6) à partir de l'Inventaire collectif des émissions de GES de la MRC du Granit, version préliminaire v2, année de référence 2024. Toutes les valeurs de cette section proviennent de ce chiffrier; la classification des sources selon la portée des instruments d'aménagement est une lecture analytique, signalée comme telle. Section Culture retirée du tableau de bord (v4.7). Mise à jour trimestrielle par chiffrier Excel chiffré, une feuille par municipalité, importé directement dans la plateforme (v4.7). Repères de revenu des ménages (aperçu), enfants en attente d'une place en service de garde et vignette de la MRC dans la vue Municipalités ajoutés (v4.8). Registre des entreprises croisé avec toutes les vues, services de garde extraits automatiquement du ministère de la Famille et parc de logements du Recensement de 2021 pour les 19 municipalités (v4.10).",
     "password": "granit2025",
     "validation": "Courcelles transférée vers Beauce-Sartigan le 1er janvier 2024 (19 municipalités, total 21 935 hab.).",
     "validatedIndicators": {
@@ -8988,24 +8988,25 @@
     "statut": "peuple",
     "annee": "2026",
     "intro": "Portrait de l'offre résidentielle et des services de garde à la petite enfance, municipalité par municipalité. Cette section relie deux leviers d'attraction et de rétention de la main-d'œuvre en milieu rural : la disponibilité de logements (dont le logement social et abordable) et l'accès à des places en service de garde. Le tag de fiabilité indique la source de chaque donnée : « Réel » (recensement ou registre officiel) ou « Estimé » (à valider).",
-    "source": "Recensement 2021 (Statistique Canada) — logements privés occupés · Ministère de la Famille / La Place 0-5 et CPE-BC Sous les Étoiles (2025) — services de garde · SHQ / DSP de l'Estrie, Faits saillants RLS du Granit (avril 2025) — logement social. Parc de logements réel pour Lac-Mégantic (2 938) et Nantes (609); autres municipalités estimées (population ISQ 2025 ÷ 2,2), à valider avec le Recensement 2021.",
-    "note": "Volet peuplé (v4.4). Parc de logements : valeurs réelles du Recensement 2021 pour Lac-Mégantic et Nantes; estimations analytiques pour les 17 autres municipalités (population ISQ 2025 ÷ 2,2 personnes par logement), à remplacer par l'extraction municipale du Recensement 2021. Services de garde en installation : données réelles du réseau CPE-BC Sous les Étoiles et du Ministère de la Famille (2025). Le milieu familial (381 places RSG) est géré à l'échelle du territoire par le bureau coordonnateur; sa répartition municipale reste à documenter. Logement social : 144 HLM à l'échelle de la MRC (DSP Estrie/SHQ, 2021); répartition municipale à documenter.",
-    "sourcesPistes": "<strong>Sources</strong><br><strong>Logements</strong> — Recensement 2021 (Statistique Canada), logements privés occupés par des résidents habituels : réel pour Lac-Mégantic (2 938) et Nantes (609). Pour les 17 autres municipalités, estimation = population (ISQ 2025) ÷ 2,2 personnes par logement, en attendant l'extraction municipale du Recensement 2021 (tableau 98-401-X2021, mode d'occupation propriétaire/locataire). Logement social : 144 HLM à l'échelle de la MRC (DSP de l'Estrie — Faits saillants RLS du Granit, avril 2025; SHQ). Les ménages locataires par municipalité sont estimés (Lac-Mégantic ~38 %, milieu rural ~15 %) et à valider.<br><strong>Services de garde</strong> — Ministère de la Famille (répertoire / La Place 0-5) et CPE-BC Sous les Étoiles (2025). Le CPE Sous les Étoiles exploite 5 installations (~218 places) à Lac-Mégantic, Lac-Drolet, Saint-Romain et Saint-Sébastien (installation Monts et Merveilles, inaugurée en janvier 2025), plus la garderie Jardin d'enfants Cassiopée à Lac-Mégantic (~34 places). Le volet milieu familial du bureau coordonnateur (territoire 501 — MRC Le Granit) gère 381 places réparties entre les responsables (RSG) sur l'ensemble du territoire.<br><strong>Dénominateur utile</strong> — enfants de 0-4 ans par municipalité (portrait démographique ISQ) pour calculer un taux de couverture en places de garde.",
+    "source": "Parc de logements : Recensement de 2021 (Statistique Canada), les 19 municipalités · Services de garde : ministère de la Famille, Données Québec, extraction du 2026-11-20 · Logement social : SHQ et DSP de l'Estrie, Faits saillants RLS du Granit (avril 2025).",
+    "note": "Volet mis à jour (v4.10). Parc de logements et ménages locataires : valeurs du Recensement de 2021 pour les 19 municipalités, lues dans le service Web de Statistique Canada. Le territoire compte 12 249 logements privés, dont 9 863 occupés par des résidents habituels; l'écart correspond aux chalets, aux résidences secondaires et aux logements vacants. Services de garde en installation : liste officielle du ministère de la Famille, extraite automatiquement quatre fois par an (8 installations, 273 places). Milieu familial : 381 places au permis du bureau coordonnateur et 48 responsables reconnues, à l'échelle de la MRC; la répartition municipale n'est pas publiée. Logement social : 144 HLM à l'échelle de la MRC (DSP de l'Estrie et SHQ, 2021); répartition municipale à documenter.",
+    "sourcesPistes": "<strong>Sources</strong><br><strong>Logements</strong> - Recensement de 2021 (Statistique Canada, Profil du recensement, subdivisions de recensement), pour les 19 municipalités. Le parc affiché correspond aux logements privés occupés par des résidents habituels (9 863). Le total des logements privés (12 249) inclut les chalets, les résidences secondaires et les logements vacants. Les ménages locataires (2 370) proviennent de l'échantillon de 25 % et sont arrondis; dans les petites municipalités, ils portent une marge d'erreur appréciable. Logement social : 144 HLM à l'échelle de la MRC (DSP de l'Estrie, Faits saillants RLS du Granit, avril 2025; SHQ). Aucune source ouverte ne donne les unités par municipalité; ce chiffre reste à obtenir de l'Office d'habitation.<br><strong>Services de garde</strong> - Ministère de la Famille, « Liste des centres de la petite enfance (CPE) et des garderies en fonction » et « Liste des bureaux coordonnateurs de la garde éducative en milieu familial » (Données Québec, licence CC-BY 4.0), extraction automatique du 2026-11-20. 8 installations totalisent 273 places, dont 45 pour les poupons. Le bureau coordonnateur du territoire (CPE Sous les Étoiles, MRC Le Granit) détient 381 places en milieu familial et reconnaît 48 responsables.<br><strong>Mise à jour</strong> - Ces données se rafraîchissent d'elles-mêmes par le flux « Milieu de vie - Granit » du dépôt (janvier, avril, juillet, octobre). Elles priment sur les valeurs saisies dans le chiffrier.<br><strong>Dénominateur utile</strong> - enfants de 0 à 4 ans par municipalité (portrait démographique ISQ) pour calculer un ratio de places.",
     "legende": {
       "real": "Donnée officielle sourcée (recensement / registre)",
       "est": "Estimation analytique à valider",
       "todo": "Donnée non encore renseignée"
     },
     "agregats": {
-      "logementsTotal": 10148,
-      "menagesLocataires": 2195,
+      "logementsTotal": 9863,
+      "menagesLocataires": 2370,
       "logementsSociaux": 144,
       "tauxInoccupation": null,
-      "garderiesInstallations": 6,
-      "placesGardeTotal": 633,
+      "garderiesInstallations": 8,
+      "placesGardeTotal": 654,
       "placesMilieuFamilial": 381,
       "enfantsEnAttente": null,
-      "enfantsEnAttenteDate": null
+      "enfantsEnAttenteDate": null,
+      "logementsPrives": 12249
     },
     "parMuni": [
       {
@@ -9013,19 +9014,20 @@
         "code": "30030",
         "logements": {
           "total": 2938,
-          "locatifs": 1116,
+          "locatifs": 1355,
           "sociaux": null,
           "coop": null,
-          "source": "Parc : Recensement 2021 (StatCan), logements privés occupés (réel). Locatifs : estimation (mode d'occupation à valider).",
+          "source": "Recensement de 2021 (Statistique Canada). Parc : logements privés occupés par des résidents habituels. Locatifs : ménages locataires, échantillon de 25 %, arrondi.",
           "real": true,
-          "est": false
+          "est": false,
+          "prives": 3143
         },
         "garderies": {
           "cpe": 2,
           "garderies": 1,
           "milieuFamilial": null,
           "placesTotal": 156,
-          "source": "CPE Sous les Étoiles (2 installations, ~122 pl.) + garderie Jardin d'enfants Cassiopée (~34 pl.). Min. Famille / La Place 0-5, 2025.",
+          "source": "Ministère de la Famille, liste des CPE et garderies en fonction (Données Québec), extraction du 2026-11-20.",
           "real": true
         }
       },
@@ -9033,42 +9035,44 @@
         "muni": "Frontenac",
         "code": "30025",
         "logements": {
-          "total": 843,
-          "locatifs": 126,
+          "total": 769,
+          "locatifs": 100,
           "sociaux": null,
           "coop": null,
-          "source": "Estimation : population ISQ 2025 ÷ 2,2 pers./logement. À valider avec le Recensement 2021 (logements privés occupés).",
-          "real": false,
-          "est": true
+          "source": "Recensement de 2021 (Statistique Canada). Parc : logements privés occupés par des résidents habituels. Locatifs : ménages locataires, échantillon de 25 %, arrondi.",
+          "real": true,
+          "est": false,
+          "prives": 922
         },
         "garderies": {
-          "cpe": null,
-          "garderies": null,
+          "cpe": 0,
+          "garderies": 0,
           "milieuFamilial": null,
           "placesTotal": null,
-          "source": "Aucune installation CPE/garderie. Desserte par le milieu familial (RSG) — bureau coordonnateur MRC Le Granit (381 pl. réparties sur le territoire). Répartition municipale à documenter.",
-          "real": false
+          "source": "Aucune installation selon le ministère de la Famille (extraction du 2026-11-20). Desserte par le milieu familial, coordonnée à l'échelle de la MRC.",
+          "real": true
         }
       },
       {
         "muni": "Lambton",
         "code": "30095",
         "logements": {
-          "total": 779,
-          "locatifs": 117,
+          "total": 755,
+          "locatifs": 150,
           "sociaux": null,
           "coop": null,
-          "source": "Estimation : population ISQ 2025 ÷ 2,2 pers./logement. À valider avec le Recensement 2021 (logements privés occupés).",
-          "real": false,
-          "est": true
+          "source": "Recensement de 2021 (Statistique Canada). Parc : logements privés occupés par des résidents habituels. Locatifs : ménages locataires, échantillon de 25 %, arrondi.",
+          "real": true,
+          "est": false,
+          "prives": 1143
         },
         "garderies": {
-          "cpe": null,
-          "garderies": null,
+          "cpe": 0,
+          "garderies": 0,
           "milieuFamilial": null,
           "placesTotal": null,
-          "source": "Aucune installation CPE/garderie. Desserte par le milieu familial (RSG) — bureau coordonnateur MRC Le Granit (381 pl. réparties sur le territoire). Répartition municipale à documenter.",
-          "real": false
+          "source": "Aucune installation selon le ministère de la Famille (extraction du 2026-11-20). Desserte par le milieu familial, coordonnée à l'échelle de la MRC.",
+          "real": true
         }
       },
       {
@@ -9076,82 +9080,86 @@
         "code": "30045",
         "logements": {
           "total": 609,
-          "locatifs": 91,
+          "locatifs": 120,
           "sociaux": null,
           "coop": null,
-          "source": "Parc : Recensement 2021 (StatCan), logements privés occupés (réel). Locatifs : estimation (mode d'occupation à valider).",
+          "source": "Recensement de 2021 (Statistique Canada). Parc : logements privés occupés par des résidents habituels. Locatifs : ménages locataires, échantillon de 25 %, arrondi.",
           "real": true,
-          "est": false
+          "est": false,
+          "prives": 668
         },
         "garderies": {
-          "cpe": null,
-          "garderies": null,
+          "cpe": 0,
+          "garderies": 0,
           "milieuFamilial": null,
           "placesTotal": null,
-          "source": "Aucune installation CPE/garderie. Desserte par le milieu familial (RSG) — bureau coordonnateur MRC Le Granit (381 pl. réparties sur le territoire). Répartition municipale à documenter.",
-          "real": false
+          "source": "Aucune installation selon le ministère de la Famille (extraction du 2026-11-20). Desserte par le milieu familial, coordonnée à l'échelle de la MRC.",
+          "real": true
         }
       },
       {
         "muni": "Notre-Dame-des-Bois",
         "code": "30010",
         "logements": {
-          "total": 550,
-          "locatifs": 82,
+          "total": 470,
+          "locatifs": 65,
           "sociaux": null,
           "coop": null,
-          "source": "Estimation : population ISQ 2025 ÷ 2,2 pers./logement. À valider avec le Recensement 2021 (logements privés occupés).",
-          "real": false,
-          "est": true
+          "source": "Recensement de 2021 (Statistique Canada). Parc : logements privés occupés par des résidents habituels. Locatifs : ménages locataires, échantillon de 25 %, arrondi.",
+          "real": true,
+          "est": false,
+          "prives": 817
         },
         "garderies": {
-          "cpe": null,
-          "garderies": null,
+          "cpe": 0,
+          "garderies": 0,
           "milieuFamilial": null,
           "placesTotal": null,
-          "source": "Aucune installation CPE/garderie. Desserte par le milieu familial (RSG) — bureau coordonnateur MRC Le Granit (381 pl. réparties sur le territoire). Répartition municipale à documenter.",
-          "real": false
+          "source": "Aucune installation selon le ministère de la Famille (extraction du 2026-11-20). Desserte par le milieu familial, coordonnée à l'échelle de la MRC.",
+          "real": true
         }
       },
       {
         "muni": "Stratford",
         "code": "30110",
         "logements": {
-          "total": 483,
-          "locatifs": 72,
+          "total": 533,
+          "locatifs": 50,
           "sociaux": null,
           "coop": null,
-          "source": "Estimation : population ISQ 2025 ÷ 2,2 pers./logement. À valider avec le Recensement 2021 (logements privés occupés).",
-          "real": false,
-          "est": true
+          "source": "Recensement de 2021 (Statistique Canada). Parc : logements privés occupés par des résidents habituels. Locatifs : ménages locataires, échantillon de 25 %, arrondi.",
+          "real": true,
+          "est": false,
+          "prives": 946
         },
         "garderies": {
-          "cpe": null,
-          "garderies": null,
+          "cpe": 0,
+          "garderies": 0,
           "milieuFamilial": null,
           "placesTotal": null,
-          "source": "Aucune installation CPE/garderie. Desserte par le milieu familial (RSG) — bureau coordonnateur MRC Le Granit (381 pl. réparties sur le territoire). Répartition municipale à documenter.",
-          "real": false
+          "source": "Aucune installation selon le ministère de la Famille (extraction du 2026-11-20). Desserte par le milieu familial, coordonnée à l'échelle de la MRC.",
+          "real": true
         }
       },
       {
         "muni": "Lac-Drolet",
         "code": "30080",
         "logements": {
-          "total": 485,
-          "locatifs": 73,
+          "total": 492,
+          "locatifs": 110,
           "sociaux": null,
           "coop": null,
-          "source": "Estimation : population ISQ 2025 ÷ 2,2 pers./logement. À valider avec le Recensement 2021 (logements privés occupés).",
-          "real": false,
-          "est": true
+          "source": "Recensement de 2021 (Statistique Canada). Parc : logements privés occupés par des résidents habituels. Locatifs : ménages locataires, échantillon de 25 %, arrondi.",
+          "real": true,
+          "est": false,
+          "prives": 600
         },
         "garderies": {
-          "cpe": 1,
+          "cpe": 2,
           "garderies": 0,
           "milieuFamilial": null,
-          "placesTotal": 29,
-          "source": "CPE Sous les Étoiles — installation La Petite Bottine (~29 pl.). Min. Famille, 2025.",
+          "placesTotal": 39,
+          "source": "Ministère de la Famille, liste des CPE et garderies en fonction (Données Québec), extraction du 2026-11-20.",
           "real": true
         }
       },
@@ -9159,83 +9167,87 @@
         "muni": "Saint-Ludger",
         "code": "30072",
         "logements": {
-          "total": 496,
-          "locatifs": 74,
+          "total": 449,
+          "locatifs": 65,
           "sociaux": null,
           "coop": null,
-          "source": "Estimation : population ISQ 2025 ÷ 2,2 pers./logement. À valider avec le Recensement 2021 (logements privés occupés).",
-          "real": false,
-          "est": true
+          "source": "Recensement de 2021 (Statistique Canada). Parc : logements privés occupés par des résidents habituels. Locatifs : ménages locataires, échantillon de 25 %, arrondi.",
+          "real": true,
+          "est": false,
+          "prives": 507
         },
         "garderies": {
-          "cpe": null,
-          "garderies": null,
+          "cpe": 1,
+          "garderies": 0,
           "milieuFamilial": null,
-          "placesTotal": null,
-          "source": "Aucune installation CPE/garderie. Desserte par le milieu familial (RSG) — bureau coordonnateur MRC Le Granit (381 pl. réparties sur le territoire). Répartition municipale à documenter.",
-          "real": false
+          "placesTotal": 21,
+          "source": "Ministère de la Famille, liste des CPE et garderies en fonction (Données Québec), extraction du 2026-11-20.",
+          "real": true
         }
       },
       {
         "muni": "Marston",
         "code": "30035",
         "logements": {
-          "total": 365,
-          "locatifs": 55,
+          "total": 341,
+          "locatifs": 40,
           "sociaux": null,
           "coop": null,
-          "source": "Estimation : population ISQ 2025 ÷ 2,2 pers./logement. À valider avec le Recensement 2021 (logements privés occupés).",
-          "real": false,
-          "est": true
+          "source": "Recensement de 2021 (Statistique Canada). Parc : logements privés occupés par des résidents habituels. Locatifs : ménages locataires, échantillon de 25 %, arrondi.",
+          "real": true,
+          "est": false,
+          "prives": 419
         },
         "garderies": {
-          "cpe": null,
-          "garderies": null,
+          "cpe": 0,
+          "garderies": 0,
           "milieuFamilial": null,
           "placesTotal": null,
-          "source": "Aucune installation CPE/garderie. Desserte par le milieu familial (RSG) — bureau coordonnateur MRC Le Granit (381 pl. réparties sur le territoire). Répartition municipale à documenter.",
-          "real": false
+          "source": "Aucune installation selon le ministère de la Famille (extraction du 2026-11-20). Desserte par le milieu familial, coordonnée à l'échelle de la MRC.",
+          "real": true
         }
       },
       {
         "muni": "Sainte-Cécile-de-Whitton",
         "code": "30050",
         "logements": {
-          "total": 414,
-          "locatifs": 62,
+          "total": 359,
+          "locatifs": 15,
           "sociaux": null,
           "coop": null,
-          "source": "Estimation : population ISQ 2025 ÷ 2,2 pers./logement. À valider avec le Recensement 2021 (logements privés occupés).",
-          "real": false,
-          "est": true
+          "source": "Recensement de 2021 (Statistique Canada). Parc : logements privés occupés par des résidents habituels. Locatifs : ménages locataires, échantillon de 25 %, arrondi.",
+          "real": true,
+          "est": false,
+          "prives": 491
         },
         "garderies": {
-          "cpe": null,
-          "garderies": null,
+          "cpe": 0,
+          "garderies": 0,
           "milieuFamilial": null,
           "placesTotal": null,
-          "source": "Aucune installation CPE/garderie. Desserte par le milieu familial (RSG) — bureau coordonnateur MRC Le Granit (381 pl. réparties sur le territoire). Répartition municipale à documenter.",
-          "real": false
+          "source": "Aucune installation selon le ministère de la Famille (extraction du 2026-11-20). Desserte par le milieu familial, coordonnée à l'échelle de la MRC.",
+          "real": true
         }
       },
       {
         "muni": "Saint-Romain",
         "code": "30100",
         "logements": {
-          "total": 325,
-          "locatifs": 49,
+          "total": 328,
+          "locatifs": 50,
           "sociaux": null,
           "coop": null,
-          "source": "Estimation : population ISQ 2025 ÷ 2,2 pers./logement. À valider avec le Recensement 2021 (logements privés occupés).",
-          "real": false,
-          "est": true
+          "source": "Recensement de 2021 (Statistique Canada). Parc : logements privés occupés par des résidents habituels. Locatifs : ménages locataires, échantillon de 25 %, arrondi.",
+          "real": true,
+          "est": false,
+          "prives": 425
         },
         "garderies": {
           "cpe": 1,
           "garderies": 0,
           "milieuFamilial": null,
           "placesTotal": 29,
-          "source": "CPE Sous les Étoiles — installation Saint-Romain (~29 pl.). Min. Famille, 2025.",
+          "source": "Ministère de la Famille, liste des CPE et garderies en fonction (Données Québec), extraction du 2026-11-20.",
           "real": true
         }
       },
@@ -9243,41 +9255,43 @@
         "muni": "Audet",
         "code": "30055",
         "logements": {
-          "total": 321,
-          "locatifs": 48,
+          "total": 284,
+          "locatifs": 50,
           "sociaux": null,
           "coop": null,
-          "source": "Estimation : population ISQ 2025 ÷ 2,2 pers./logement. À valider avec le Recensement 2021 (logements privés occupés).",
-          "real": false,
-          "est": true
+          "source": "Recensement de 2021 (Statistique Canada). Parc : logements privés occupés par des résidents habituels. Locatifs : ménages locataires, échantillon de 25 %, arrondi.",
+          "real": true,
+          "est": false,
+          "prives": 317
         },
         "garderies": {
-          "cpe": null,
-          "garderies": null,
+          "cpe": 0,
+          "garderies": 0,
           "milieuFamilial": null,
           "placesTotal": null,
-          "source": "Aucune installation CPE/garderie. Desserte par le milieu familial (RSG) — bureau coordonnateur MRC Le Granit (381 pl. réparties sur le territoire). Répartition municipale à documenter.",
-          "real": false
+          "source": "Aucune installation selon le ministère de la Famille (extraction du 2026-11-20). Desserte par le milieu familial, coordonnée à l'échelle de la MRC.",
+          "real": true
         }
       },
       {
         "muni": "Saint-Sébastien",
         "code": "30085",
         "logements": {
-          "total": 320,
-          "locatifs": 48,
+          "total": 301,
+          "locatifs": 60,
           "sociaux": null,
           "coop": null,
-          "source": "Estimation : population ISQ 2025 ÷ 2,2 pers./logement. À valider avec le Recensement 2021 (logements privés occupés).",
-          "real": false,
-          "est": true
+          "source": "Recensement de 2021 (Statistique Canada). Parc : logements privés occupés par des résidents habituels. Locatifs : ménages locataires, échantillon de 25 %, arrondi.",
+          "real": true,
+          "est": false,
+          "prives": 329
         },
         "garderies": {
           "cpe": 1,
           "garderies": 0,
           "milieuFamilial": null,
           "placesTotal": 28,
-          "source": "CPE Sous les Étoiles — installation Monts et Merveilles (28 pl., inaug. janv. 2025). Min. Famille.",
+          "source": "Ministère de la Famille, liste des CPE et garderies en fonction (Données Québec), extraction du 2026-11-20.",
           "real": true
         }
       },
@@ -9285,126 +9299,132 @@
         "muni": "Saint-Augustin-de-Woburn",
         "code": "30005",
         "logements": {
-          "total": 308,
-          "locatifs": 46,
+          "total": 309,
+          "locatifs": 55,
           "sociaux": null,
           "coop": null,
-          "source": "Estimation : population ISQ 2025 ÷ 2,2 pers./logement. À valider avec le Recensement 2021 (logements privés occupés).",
-          "real": false,
-          "est": true
+          "source": "Recensement de 2021 (Statistique Canada). Parc : logements privés occupés par des résidents habituels. Locatifs : ménages locataires, échantillon de 25 %, arrondi.",
+          "real": true,
+          "est": false,
+          "prives": 354
         },
         "garderies": {
-          "cpe": null,
-          "garderies": null,
+          "cpe": 0,
+          "garderies": 0,
           "milieuFamilial": null,
           "placesTotal": null,
-          "source": "Aucune installation CPE/garderie. Desserte par le milieu familial (RSG) — bureau coordonnateur MRC Le Granit (381 pl. réparties sur le territoire). Répartition municipale à documenter.",
-          "real": false
+          "source": "Aucune installation selon le ministère de la Famille (extraction du 2026-11-20). Desserte par le milieu familial, coordonnée à l'échelle de la MRC.",
+          "real": true
         }
       },
       {
         "muni": "Stornoway",
         "code": "30105",
         "logements": {
-          "total": 248,
-          "locatifs": 37,
+          "total": 247,
+          "locatifs": 25,
           "sociaux": null,
           "coop": null,
-          "source": "Estimation : population ISQ 2025 ÷ 2,2 pers./logement. À valider avec le Recensement 2021 (logements privés occupés).",
-          "real": false,
-          "est": true
+          "source": "Recensement de 2021 (Statistique Canada). Parc : logements privés occupés par des résidents habituels. Locatifs : ménages locataires, échantillon de 25 %, arrondi.",
+          "real": true,
+          "est": false,
+          "prives": 272
         },
         "garderies": {
-          "cpe": null,
-          "garderies": null,
+          "cpe": 0,
+          "garderies": 0,
           "milieuFamilial": null,
           "placesTotal": null,
-          "source": "Aucune installation CPE/garderie. Desserte par le milieu familial (RSG) — bureau coordonnateur MRC Le Granit (381 pl. réparties sur le territoire). Répartition municipale à documenter.",
-          "real": false
+          "source": "Aucune installation selon le ministère de la Famille (extraction du 2026-11-20). Desserte par le milieu familial, coordonnée à l'échelle de la MRC.",
+          "real": true
         }
       },
       {
         "muni": "Saint-Robert-Bellarmin",
         "code": "30070",
         "logements": {
-          "total": 238,
-          "locatifs": 36,
+          "total": 224,
+          "locatifs": 20,
           "sociaux": null,
           "coop": null,
-          "source": "Estimation : population ISQ 2025 ÷ 2,2 pers./logement. À valider avec le Recensement 2021 (logements privés occupés).",
-          "real": false,
-          "est": true
+          "source": "Recensement de 2021 (Statistique Canada). Parc : logements privés occupés par des résidents habituels. Locatifs : ménages locataires, échantillon de 25 %, arrondi.",
+          "real": true,
+          "est": false,
+          "prives": 237
         },
         "garderies": {
-          "cpe": null,
-          "garderies": null,
+          "cpe": 0,
+          "garderies": 0,
           "milieuFamilial": null,
           "placesTotal": null,
-          "source": "Aucune installation CPE/garderie. Desserte par le milieu familial (RSG) — bureau coordonnateur MRC Le Granit (381 pl. réparties sur le territoire). Répartition municipale à documenter.",
-          "real": false
+          "source": "Aucune installation selon le ministère de la Famille (extraction du 2026-11-20). Desserte par le milieu familial, coordonnée à l'échelle de la MRC.",
+          "real": true
         }
       },
       {
         "muni": "Piopolis",
         "code": "30020",
         "logements": {
-          "total": 190,
-          "locatifs": 28,
+          "total": 208,
+          "locatifs": 30,
           "sociaux": null,
           "coop": null,
-          "source": "Estimation : population ISQ 2025 ÷ 2,2 pers./logement. À valider avec le Recensement 2021 (logements privés occupés).",
-          "real": false,
-          "est": true
+          "source": "Recensement de 2021 (Statistique Canada). Parc : logements privés occupés par des résidents habituels. Locatifs : ménages locataires, échantillon de 25 %, arrondi.",
+          "real": true,
+          "est": false,
+          "prives": 315
         },
         "garderies": {
-          "cpe": null,
-          "garderies": null,
+          "cpe": 0,
+          "garderies": 0,
           "milieuFamilial": null,
           "placesTotal": null,
-          "source": "Aucune installation CPE/garderie. Desserte par le milieu familial (RSG) — bureau coordonnateur MRC Le Granit (381 pl. réparties sur le territoire). Répartition municipale à documenter.",
-          "real": false
+          "source": "Aucune installation selon le ministère de la Famille (extraction du 2026-11-20). Desserte par le milieu familial, coordonnée à l'échelle de la MRC.",
+          "real": true
         }
       },
       {
         "muni": "Milan",
         "code": "30040",
         "logements": {
-          "total": 149,
-          "locatifs": 22,
+          "total": 156,
+          "locatifs": 10,
           "sociaux": null,
           "coop": null,
-          "source": "Estimation : population ISQ 2025 ÷ 2,2 pers./logement. À valider avec le Recensement 2021 (logements privés occupés).",
-          "real": false,
-          "est": true
+          "source": "Recensement de 2021 (Statistique Canada). Parc : logements privés occupés par des résidents habituels. Locatifs : ménages locataires, échantillon de 25 %, arrondi.",
+          "real": true,
+          "est": false,
+          "prives": 212
         },
         "garderies": {
-          "cpe": null,
-          "garderies": null,
+          "cpe": 0,
+          "garderies": 0,
           "milieuFamilial": null,
           "placesTotal": null,
-          "source": "Aucune installation CPE/garderie. Desserte par le milieu familial (RSG) — bureau coordonnateur MRC Le Granit (381 pl. réparties sur le territoire). Répartition municipale à documenter.",
-          "real": false
+          "source": "Aucune installation selon le ministère de la Famille (extraction du 2026-11-20). Desserte par le milieu familial, coordonnée à l'échelle de la MRC.",
+          "real": true
         }
       },
       {
         "muni": "Val-Racine",
         "code": "30015",
         "logements": {
-          "total": 87,
-          "locatifs": 13,
+          "total": 91,
+          "locatifs": 0,
           "sociaux": null,
           "coop": null,
-          "source": "Estimation : population ISQ 2025 ÷ 2,2 pers./logement. À valider avec le Recensement 2021 (logements privés occupés).",
-          "real": false,
-          "est": true
+          "source": "Recensement de 2021 (Statistique Canada). Parc : logements privés occupés par des résidents habituels. Locatifs : ménages locataires, échantillon de 25 %, arrondi.",
+          "real": true,
+          "est": false,
+          "prives": 132
         },
         "garderies": {
-          "cpe": null,
-          "garderies": null,
+          "cpe": 0,
+          "garderies": 0,
           "milieuFamilial": null,
           "placesTotal": null,
-          "source": "Aucune installation CPE/garderie. Desserte par le milieu familial (RSG) — bureau coordonnateur MRC Le Granit (381 pl. réparties sur le territoire). Répartition municipale à documenter.",
-          "real": false
+          "source": "Aucune installation selon le ministère de la Famille (extraction du 2026-11-20). Desserte par le milieu familial, coordonnée à l'échelle de la MRC.",
+          "real": true
         }
       }
     ],

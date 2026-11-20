@@ -34,8 +34,9 @@
    "nom_registre": "INDUSTRIES MANUFACTURIÈRES MÉGANTIC",
    "muni_registre": "Lac-Mégantic",
    "methode": "nom du registre contenu dans le nom local",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "c04",
@@ -68,8 +69,9 @@
    "nom_registre": "Compagnie de Placage Mégantic Inc.",
    "muni_registre": "Lac-Mégantic",
    "methode": "nom local contenu dans le nom du registre",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "c07",
@@ -209,14 +211,15 @@
    "nom_registre": "CENTRE DES FEMMES DE LA M.R.C. DU GRANIT",
    "muni_registre": "Lac-Mégantic",
    "methode": "nom local contenu dans le nom du registre",
-   "statut": "a_valider",
+   "statut": "rejete",
    "autres_candidats": [
     {
      "neq": "1165264384",
      "nom": "L'ASSOCIATION POUR L'HÉBERGEMENT DES PERSONNES HANDICAPÉES DE LA M.R.C. DU GRANIT",
      "muni": "Lac-Mégantic"
     }
-   ]
+   ],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "c19",
@@ -260,8 +263,9 @@
    "nom_registre": "Coup de Pouce Mégantic inc.",
    "muni_registre": "Lac-Mégantic",
    "methode": "nom local contenu dans le nom du registre",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "c23",
@@ -703,8 +707,9 @@
    "nom_registre": "Vive les Épices 22",
    "muni_registre": "Saint-Ludger",
    "methode": "nom local contenu dans le nom du registre",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "c63",
@@ -910,14 +915,15 @@
    "nom_registre": "MENUISERIE LUC RICHARD",
    "muni_registre": "Lambton",
    "methode": "nom identique",
-   "statut": "a_valider",
+   "statut": "valide",
    "autres_candidats": [
     {
      "neq": "3362735162",
      "nom": "MENUISERIE LUC RICHARD, SENC",
      "muni": "Lambton"
     }
-   ]
+   ],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "c81",
@@ -950,8 +956,9 @@
    "nom_registre": "CHAMPEAU MÉGANTIC INC.",
    "muni_registre": "Frontenac",
    "methode": "nom du registre contenu dans le nom local",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "c84",
@@ -962,8 +969,9 @@
    "nom_registre": "MULTIBOIS F.L. INC.",
    "muni_registre": "Saint-Augustin-de-Woburn",
    "methode": "nom du registre contenu dans le nom local",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "c85",
@@ -1029,8 +1037,9 @@
    "nom_registre": "LES BILLOTS SÉLECT MÉGANTIC INC.",
    "muni_registre": "Lac-Mégantic",
    "methode": "nom local contenu dans le nom du registre",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "c91",
@@ -1052,8 +1061,9 @@
    "nom_registre": "Atelier Inter Ligna inc.",
    "muni_registre": "Lac-Mégantic",
    "methode": "nom local contenu dans le nom du registre",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "c93",
@@ -1185,8 +1195,9 @@
    "nom_registre": "MÉCANIQUE INDUSTRIELLE M. FREDETTE INC.",
    "muni_registre": "Lac-Mégantic",
    "methode": "noms voisins",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "c105",
@@ -1259,8 +1270,9 @@
    "nom_registre": "BILO-FORGE INC.",
    "muni_registre": "Stratford",
    "methode": "noms voisins",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "c111",
@@ -1293,8 +1305,9 @@
    "nom_registre": "USINAGE ET FABRICATION DULAC INC.",
    "muni_registre": "Saint-Ludger",
    "methode": "nom local contenu dans le nom du registre",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "c114",
@@ -1349,8 +1362,9 @@
    "nom_registre": "TECHNOLOGIES BRYOPHYTA INC.",
    "muni_registre": "Lambton",
    "methode": "nom local contenu dans le nom du registre",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "c119",
@@ -1372,14 +1386,15 @@
    "nom_registre": "La Noix d'Érable Inc.",
    "muni_registre": "Saint-Ludger",
    "methode": "nom identique",
-   "statut": "a_valider",
+   "statut": "valide",
    "autres_candidats": [
     {
      "neq": "3372359854",
      "nom": "La Noix d'Érable",
      "muni": "Saint-Ludger"
     }
-   ]
+   ],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "c121",
@@ -1467,8 +1482,9 @@
    "nom_registre": "PHILIPPE MERCIER (1994) INC.",
    "muni_registre": "Lac-Mégantic",
    "methode": "nom du registre contenu dans le nom local",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "c129",
@@ -1501,8 +1517,9 @@
    "nom_registre": "SOUVENIR PRÉCIEUX INC.",
    "muni_registre": "Lac-Drolet",
    "methode": "noms voisins",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "c132",
@@ -1524,8 +1541,9 @@
    "nom_registre": "IMPRIMERIE MULTI-COPIE",
    "muni_registre": "Lac-Mégantic",
    "methode": "nom local contenu dans le nom du registre",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "c134",
@@ -1547,8 +1565,9 @@
    "nom_registre": "PREMIER JET INC.",
    "muni_registre": "Lac-Drolet",
    "methode": "nom du registre contenu dans le nom local",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "c136",
@@ -1625,8 +1644,9 @@
    "nom_registre": "Microtel Lac-Mégantic",
    "muni_registre": "Lac-Mégantic",
    "methode": "nom du registre contenu dans le nom local",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "c143",
@@ -1648,8 +1668,9 @@
    "nom_registre": "MARCHÉ ALAIN ET VALIQUETTE LTÉE",
    "muni_registre": "Lac-Mégantic",
    "methode": "nom du registre contenu dans le nom local",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "t001",
@@ -1737,8 +1758,9 @@
    "nom_registre": "Le Fournil du Lac",
    "muni_registre": "Lac-Mégantic",
    "methode": "nom du registre contenu dans le nom local",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "t009",
@@ -1749,8 +1771,9 @@
    "nom_registre": "CARRIER - LAC-MÉGANTIC",
    "muni_registre": "Nantes",
    "methode": "noms voisins",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "rejete",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "t010",
@@ -1882,8 +1905,9 @@
    "nom_registre": "Déneigement Lac-Mégantic",
    "muni_registre": "Lac-Mégantic",
    "methode": "noms voisins",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "rejete",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "t022",
@@ -1956,18 +1980,19 @@
    "nom_local": "Maison Dudley SENC",
    "muni": "Lac-Mégantic",
    "src": "tourisme",
-   "neq": "1170872445",
-   "nom_registre": "Maison Dudley",
+   "neq": "3377349058",
+   "nom_registre": "Maison Dudley S.E.N.C.",
    "muni_registre": "Lac-Mégantic",
    "methode": "nom identique",
-   "statut": "a_valider",
+   "statut": "valide",
    "autres_candidats": [
     {
-     "neq": "3377349058",
-     "nom": "Maison Dudley S.E.N.C.",
+     "neq": "1170872445",
+     "nom": "Maison Dudley",
      "muni": "Lac-Mégantic"
     }
-   ]
+   ],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "t029",
@@ -2044,8 +2069,9 @@
    "nom_registre": "Microtel Lac-Mégantic",
    "muni_registre": "Lac-Mégantic",
    "methode": "nom du registre contenu dans le nom local",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "t036",
@@ -2100,8 +2126,9 @@
    "nom_registre": "Quartier artisan de Lac-Mégantic",
    "muni_registre": "Lac-Mégantic",
    "methode": "nom local contenu dans le nom du registre",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "t041",
@@ -2134,8 +2161,9 @@
    "nom_registre": "LE CITRON VERT",
    "muni_registre": "Lac-Mégantic",
    "methode": "nom du registre contenu dans le nom local",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "t044",
@@ -2168,8 +2196,9 @@
    "nom_registre": "RUES PRINCIPALES LAC-MEGANTIC INC.",
    "muni_registre": "Lac-Mégantic",
    "methode": "nom du registre contenu dans le nom local",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "t047",
@@ -2180,8 +2209,9 @@
    "nom_registre": "RUES PRINCIPALES LAC-MEGANTIC INC.",
    "muni_registre": "Lac-Mégantic",
    "methode": "nom du registre contenu dans le nom local",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "t048",
@@ -2243,18 +2273,19 @@
    "nom_local": "Cinéma Mégantic",
    "muni": "Frontenac",
    "src": "tourisme",
-   "neq": "2245942752",
-   "nom_registre": "CINÉMA MEGANTIC",
+   "neq": "1176146521",
+   "nom_registre": "Cinéma Mégantic Inc.",
    "muni_registre": "Frontenac",
    "methode": "nom identique",
-   "statut": "a_valider",
+   "statut": "valide",
    "autres_candidats": [
     {
-     "neq": "1176146521",
-     "nom": "Cinéma Mégantic Inc.",
+     "neq": "2245942752",
+     "nom": "CINÉMA MEGANTIC",
      "muni": "Frontenac"
     }
-   ]
+   ],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "t054",
@@ -2397,8 +2428,9 @@
    "nom_registre": "PLACE DU VIEUX THÉÂTRE INC.",
    "muni_registre": "Lambton",
    "methode": "nom du registre contenu dans le nom local",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "t067",
@@ -2409,14 +2441,15 @@
    "nom_registre": "RESTAURANT CÔTÉ COUR INC.",
    "muni_registre": "Lambton",
    "methode": "nom identique",
-   "statut": "a_valider",
+   "statut": "valide",
    "autres_candidats": [
     {
      "neq": "2273146110",
      "nom": "Restaurant Côté Cour",
      "muni": "Lambton"
     }
-   ]
+   ],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "t068",
@@ -2615,8 +2648,9 @@
    "nom_registre": "Le Camp Claret du lac Elgin",
    "muni_registre": "Stratford",
    "methode": "nom local contenu dans le nom du registre",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "t086",
@@ -2715,14 +2749,15 @@
    "nom_registre": "La Noix d'Érable Inc.",
    "muni_registre": "Saint-Ludger",
    "methode": "nom identique",
-   "statut": "a_valider",
+   "statut": "valide",
    "autres_candidats": [
     {
      "neq": "3372359854",
      "nom": "La Noix d'Érable",
      "muni": "Saint-Ludger"
     }
-   ]
+   ],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "t095",
@@ -2856,8 +2891,9 @@
    "nom_registre": "Produits LA MARTINE",
    "muni_registre": "Saint-Romain",
    "methode": "nom du registre contenu dans le nom local",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "t107",
@@ -3066,14 +3102,15 @@
    "nom_registre": "VERT LE DÉTOUR LOCAL INC.",
    "muni_registre": "Saint-Robert-Bellarmin",
    "methode": "nom identique",
-   "statut": "a_valider",
+   "statut": "valide",
    "autres_candidats": [
     {
      "neq": "3378171253",
      "nom": "Vert le détour local s.e.n.c.",
      "muni": "Saint-Robert-Bellarmin"
     }
-   ]
+   ],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "t126",
@@ -3117,8 +3154,9 @@
    "nom_registre": "COMITÉ CULTUREL DE PIOPOLIS INC.",
    "muni_registre": "Piopolis",
    "methode": "nom du registre contenu dans le nom local",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "t130",
@@ -3173,8 +3211,9 @@
    "nom_registre": "Comité de développement de la Municipalité de Milan",
    "muni_registre": "Milan",
    "methode": "nom local contenu dans le nom du registre",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "rejete",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "t135",
@@ -3185,8 +3224,9 @@
    "nom_registre": "Camping Mont-Mégantic",
    "muni_registre": "Val-Racine",
    "methode": "nom du registre contenu dans le nom local",
-   "statut": "a_valider",
-   "autres_candidats": []
+   "statut": "valide",
+   "autres_candidats": [],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "t136",
@@ -3204,18 +3244,19 @@
    "nom_local": "Mohigan Aventures",
    "muni": "Val-Racine",
    "src": "tourisme",
-   "neq": "2262109806",
-   "nom_registre": "MOHIGAN AVENTURES",
+   "neq": "1178764560",
+   "nom_registre": "Mohigan Aventures inc.",
    "muni_registre": "Val-Racine",
    "methode": "nom identique",
-   "statut": "a_valider",
+   "statut": "valide",
    "autres_candidats": [
     {
-     "neq": "1178764560",
-     "nom": "Mohigan Aventures inc.",
+     "neq": "2262109806",
+     "nom": "MOHIGAN AVENTURES",
      "muni": "Val-Racine"
     }
-   ]
+   ],
+   "decision": "Claude, 2026-11-20, par délégation de J. Provost"
   },
   {
    "id": "t138",

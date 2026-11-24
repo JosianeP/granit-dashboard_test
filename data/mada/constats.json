@@ -1,0 +1,195 @@
+{
+  "_lisezmoi": "Constats agrégés de la collecte MADA auprès des organismes. Fichier tenu à la main (aucun flux automatique, et le chiffrier trimestriel n'y touche pas). Le dépôt est public : n'inscrire ici ni nom de personne, ni propos attribué à un organisme, ni lieu d'intervention d'un organisme dont la clientèle exige la confidentialité. Le champ n compte les organismes qui ont nommé le constat, sur le total indiqué dans meta.organismesRencontres.",
+  "meta": {
+    "titre": "Constats du milieu",
+    "demarche": "Démarche MADA et Politique de la famille et des aînés - MRC du Granit",
+    "source": "Fiche de collecte MADA - organismes. Rencontres tenues du 8 octobre 2025 au 14 janvier 2026.",
+    "periode": "Octobre 2025 à janvier 2026",
+    "organismesRencontres": 10,
+    "organismesPrevus": 11,
+    "integration": "2026-11-24",
+    "lecture": "Ces constats sont des observations d'intervenantes et d'intervenants, recueillies en entrevue. Ils ne mesurent pas un phénomène : ils disent ce que le terrain voit, et combien d'organismes le disent. Un constat nommé par un seul organisme peut être tout aussi réel qu'un constat nommé par sept; il est simplement moins corroboré. Aucun constat n'est réparti par municipalité, la collecte n'ayant pas été faite à cette échelle.",
+    "organismes": [
+      "Maison de la famille du Granit",
+      "Point jeunesse du Granit",
+      "La Bouée régionale",
+      "Centre d'action bénévole du Granit",
+      "Service d'aide à domicile du Granit",
+      "Société Alzheimer de l'Estrie - point de service du Granit",
+      "Intro-Travail et Carrefour jeunesse-emploi du Granit",
+      "CPE Sous les étoiles",
+      "L'Accorderie des monts et des lacs",
+      "L'Équipe de proximité"
+    ],
+    "aCompleter": "La fiche de La Constellation du Granit est vide; la rencontre reste à tenir ou à consigner."
+  },
+  "types": {
+    "enjeu": "Enjeu",
+    "atout": "Atout",
+    "piste": "Piste proposée",
+    "divergence": "Voix divergente"
+  },
+  "axes": [
+    {
+      "id": "habitation",
+      "no": 1,
+      "nom": "Habitation",
+      "organismes": 9,
+      "constats": [
+        {"t": "enjeu", "n": 4, "texte": "Les loyers sont trop élevés et les logements abordables manquent."},
+        {"t": "enjeu", "n": 3, "texte": "L'accès au logement social est freiné par la liste d'attente, l'exigence d'un an de résidence sur le territoire et des critères d'admissibilité jugés trop rigides."},
+        {"t": "enjeu", "n": 3, "texte": "Des ménages vivent dans des logements trop petits, surpeuplés ou qu'ils doivent quitter souvent."},
+        {"t": "enjeu", "n": 3, "texte": "Faute de logement, des personnes sont relogées dans une autre municipalité ou hors du territoire, ce qui entraîne isolement et déracinement."},
+        {"t": "enjeu", "n": 2, "texte": "Les logements adaptés aux aînés manquent, en particulier au rez-de-chaussée."},
+        {"t": "enjeu", "n": 1, "texte": "L'itinérance cachée augmente, surtout chez les jeunes et les personnes isolées."},
+        {"t": "divergence", "n": 1, "texte": "Un organisme ne relève aucun problème majeur de logement dans sa clientèle."}
+      ]
+    },
+    {
+      "id": "transport",
+      "no": 2,
+      "nom": "Transport et mobilité",
+      "organismes": 9,
+      "constats": [
+        {"t": "enjeu", "n": 7, "texte": "Le transport collectif est jugé peu flexible et mal adapté aux besoins réels (horaires, fréquence, familles avec jeunes enfants)."},
+        {"t": "enjeu", "n": 4, "texte": "La desserte est absente ou réduite en périphérie; certains secteurs ne sont desservis que deux jours par semaine."},
+        {"t": "enjeu", "n": 4, "texte": "Le coût des déplacements pèse sur les ménages, que ce soit l'essence, le transport collectif ou le transport médical."},
+        {"t": "enjeu", "n": 3, "texte": "La limite de deux sacs par personne complique les courses."},
+        {"t": "enjeu", "n": 2, "texte": "Sans véhicule, ou avec un seul véhicule pour le ménage, des personnes restent isolées."},
+        {"t": "enjeu", "n": 2, "texte": "Des usagères disent ressentir de l'insécurité dans le transport."},
+        {"t": "enjeu", "n": 1, "texte": "Le préavis de 24 heures pour réserver freine les déplacements non planifiés."},
+        {"t": "enjeu", "n": 1, "texte": "Le transport médical repose sur des bénévoles souvent âgés, qui manipulent fauteuils roulants et charges lourdes."},
+        {"t": "piste", "n": 1, "texte": "Organiser un covoiturage entre membres pour se rendre aux activités."}
+      ]
+    },
+    {
+      "id": "participation",
+      "no": 3,
+      "nom": "Participation sociale",
+      "organismes": 9,
+      "constats": [
+        {"t": "atout", "n": 5, "texte": "Des activités brisent déjà l'isolement : ateliers, groupes de soutien, troc de vêtements, sorties, vie associative."},
+        {"t": "enjeu", "n": 3, "texte": "L'isolement lui-même freine la participation, et il devient difficile de remobiliser les personnes qui s'y sont installées."},
+        {"t": "enjeu", "n": 2, "texte": "Le manque de temps limite l'engagement des familles et des jeunes adultes."},
+        {"t": "enjeu", "n": 2, "texte": "L'engagement à long terme recule au profit d'un bénévolat ponctuel de quelques heures."},
+        {"t": "enjeu", "n": 1, "texte": "Les jeunes veulent siéger aux comités, mais leur engagement est peu valorisé."},
+        {"t": "piste", "n": 3, "texte": "Développer des projets intergénérationnels, où les aînés transmettent leur savoir-faire."},
+        {"t": "piste", "n": 1, "texte": "Mobiliser les jeunes retraités et créer un réseau d'appels entre aînés."}
+      ]
+    },
+    {
+      "id": "inclusion",
+      "no": 4,
+      "nom": "Respect et inclusion sociale",
+      "organismes": 9,
+      "constats": [
+        {"t": "enjeu", "n": 3, "texte": "Des groupes se sentent peu considérés dans la vie collective : les jeunes, les aînés et les familles à faible revenu."},
+        {"t": "enjeu", "n": 3, "texte": "La langue et les repères culturels freinent la participation des personnes immigrantes."},
+        {"t": "enjeu", "n": 2, "texte": "La pauvreté et les écarts de revenu tiennent des personnes à l'écart des activités et de la vie collective."},
+        {"t": "enjeu", "n": 1, "texte": "Des situations d'âgisme sont encore observées, notamment dans le réseau de la santé."},
+        {"t": "enjeu", "n": 1, "texte": "L'accès aux lieux de vie communautaires varie selon l'endroit où l'on habite."},
+        {"t": "atout", "n": 3, "texte": "Plusieurs organismes pratiquent un accueil inconditionnel, sans égard à l'âge, à l'origine ou au revenu."},
+        {"t": "atout", "n": 2, "texte": "Une culture d'entraide existe, souvent informelle : troc, mini-friperies, circuits d'entraide."}
+      ]
+    },
+    {
+      "id": "loisirs",
+      "no": 5,
+      "nom": "Loisirs",
+      "organismes": 7,
+      "constats": [
+        {"t": "enjeu", "n": 3, "texte": "Le coût des loisirs et des installations sportives est un frein; la gratuité fait la différence."},
+        {"t": "enjeu", "n": 1, "texte": "L'offre de loisirs est jugée insuffisante pour les adolescents."},
+        {"t": "enjeu", "n": 1, "texte": "L'été, les parcs sont moins accessibles aux familles lorsque les camps de jour les occupent."},
+        {"t": "atout", "n": 2, "texte": "Des partenariats donnent un accès gratuit ou à tarif réduit à des spectacles, des festivals et des installations sportives."},
+        {"t": "piste", "n": 2, "texte": "Offrir davantage d'activités sportives et hivernales."},
+        {"t": "piste", "n": 1, "texte": "Créer une carte jeunesse donnant accès aux activités culturelles et aux festivals."}
+      ]
+    },
+    {
+      "id": "communication",
+      "no": 6,
+      "nom": "Communication et information",
+      "organismes": 10,
+      "constats": [
+        {"t": "enjeu", "n": 7, "texte": "Les services, les programmes et les activités offerts sont mal connus de la population."},
+        {"t": "enjeu", "n": 3, "texte": "Plusieurs personnes ont besoin d'un accompagnement humain pour s'informer; les outils numériques ne suffisent pas, et les proches aidants servent souvent d'intermédiaires."},
+        {"t": "piste", "n": 2, "texte": "Relayer l'information des organismes dans les bulletins municipaux, les sites Web, les infolettres et les médias sociaux des municipalités et de la MRC."},
+        {"t": "atout", "n": 2, "texte": "Facebook et le bouche-à-oreille sont les canaux qui rejoignent le mieux les gens."},
+        {"t": "atout", "n": 2, "texte": "La communication avec les municipalités est jugée bonne par des organismes."}
+      ]
+    },
+    {
+      "id": "sante",
+      "no": 7,
+      "nom": "Santé et services sociaux",
+      "organismes": 10,
+      "constats": [
+        {"t": "enjeu", "n": 3, "texte": "Les services spécialisés ne sont pas offerts dans la MRC; il faut se rendre à Sherbrooke."},
+        {"t": "enjeu", "n": 2, "texte": "Les rendez-vous médicaux sont annoncés à trop court préavis pour organiser le transport et la garde des enfants."},
+        {"t": "enjeu", "n": 2, "texte": "La fragilité économique des familles s'accentue, jusque chez des ménages de la classe moyenne."},
+        {"t": "enjeu", "n": 2, "texte": "La sécurité alimentaire repose sur une aide de dernier recours et sur des repas dont le coût reste un frein."},
+        {"t": "enjeu", "n": 1, "texte": "Les ressources en santé mentale sont jugées nettement insuffisantes pour le territoire."},
+        {"t": "enjeu", "n": 1, "texte": "Le manque d'interprètes complique l'accès aux soins des personnes allophones."},
+        {"t": "enjeu", "n": 1, "texte": "L'offre s'adresse surtout aux aînés en perte d'autonomie; les aînés autonomes ont peu de services."},
+        {"t": "atout", "n": 4, "texte": "Les organismes travaillent de près avec le réseau de la santé et des services sociaux."},
+        {"t": "atout", "n": 2, "texte": "Les programmes Vie active et PIED sont très appréciés pour la prévention et le maintien de l'autonomie."}
+      ]
+    },
+    {
+      "id": "securite",
+      "no": 8,
+      "nom": "Sécurité",
+      "organismes": 7,
+      "constats": [
+        {"t": "atout", "n": 4, "texte": "Les relations avec les services policiers sont jugées bonnes."},
+        {"t": "atout", "n": 2, "texte": "Aucun problème majeur de sécurité n'est signalé dans le milieu de vie."},
+        {"t": "enjeu", "n": 2, "texte": "Les appels automatisés de vérification sont jugés impersonnels; un contact humain est souhaité."},
+        {"t": "divergence", "n": 1, "texte": "Un organisme considère au contraire ces appels quotidiens comme essentiels au maintien à domicile des personnes seules."},
+        {"t": "enjeu", "n": 1, "texte": "Des situations de détresse et d'errance sont régulièrement repérées sur le terrain."}
+      ]
+    },
+    {
+      "id": "espaces",
+      "no": 9,
+      "nom": "Espaces extérieurs et bâtiments",
+      "organismes": 8,
+      "constats": [
+        {"t": "enjeu", "n": 3, "texte": "Des organismes n'ont pas de local permanent ou accessible."},
+        {"t": "enjeu", "n": 3, "texte": "L'accessibilité universelle fait défaut par endroits : trottoirs abîmés, locaux à l'étage sans ascenseur."},
+        {"t": "enjeu", "n": 2, "texte": "L'accès aux bâtiments et aux installations est restreint en dehors des heures de bureau ou faute de plages horaires."},
+        {"t": "enjeu", "n": 1, "texte": "Plusieurs parcs n'ont ni toilettes ni abri contre le soleil."},
+        {"t": "atout", "n": 3, "texte": "Des salles municipales et des locaux partagés sont offerts gratuitement ou à faible coût aux organismes."},
+        {"t": "piste", "n": 1, "texte": "Aménager les parcs et les sentiers pour un usage partagé par les tout-petits, les familles et les aînés."}
+      ]
+    }
+  ],
+  "chiffres": {
+    "note": "Chiffres avancés de vive voix par les organismes. Ils n'ont pas été vérifiés auprès d'une source écrite et ne remplacent aucune donnée officielle du tableau de bord.",
+    "items": [
+      {"valeur": "environ 150", "libelle": "enfants en attente d'une place en service de garde, surtout en pouponnière", "axe": "sante"},
+      {"valeur": "environ 108 $", "libelle": "coût moyen d'un transport médical entre Lac-Mégantic et le CHUS, à Sherbrooke", "axe": "transport"},
+      {"valeur": "2 jours", "libelle": "de transport collectif par semaine dans les secteurs en périphérie", "axe": "transport"},
+      {"valeur": "9 municipalités", "libelle": "où le programme Vie active est offert", "axe": "participation"},
+      {"valeur": "8,25 $", "libelle": "coût moyen d'un repas chaud offert aux aînés", "axe": "sante"},
+      {"valeur": "1 an", "libelle": "de résidence sur le territoire exigé pour accéder à un HLM", "axe": "habitation"}
+    ]
+  },
+  "notesVues": {
+    "logementSocial": {
+      "titre": "Ce que disent les organismes sur le logement social et abordable",
+      "points": [
+        "Trois organismes sur dix rapportent des freins à l'accès au logement social : une liste d'attente, une exigence d'un an de résidence sur le territoire et des critères d'admissibilité jugés trop rigides.",
+        "Quatre nomment des loyers trop élevés et le manque de logements abordables.",
+        "Deux signalent le manque de logements adaptés aux aînés, surtout au rez-de-chaussée."
+      ]
+    },
+    "attenteGarde": {
+      "titre": "Ce que dit le milieu sur l'attente d'une place",
+      "points": [
+        "Environ 150 enfants seraient en attente d'une place dans le Granit, surtout en pouponnière, selon le bureau coordonnateur rencontré le 13 novembre 2025.",
+        "Ce chiffre a été donné de vive voix. Il reste à confirmer par écrit avant d'être saisi comme donnée de la MRC du Granit dans le chiffrier."
+      ]
+    }
+  }
+}

@@ -1,4 +1,4 @@
-# Tableau de bord territorial - MRC du Granit (v4.16)
+# Tableau de bord territorial - MRC du Granit (v4.17)
 
 Outil interne de développement territorial à trois piliers (économie, aménagement, santé). Hébergé sur GitHub Pages.
 
@@ -16,11 +16,22 @@ Outil interne de développement territorial à trois piliers (économie, aménag
 
 | `granit-req.js` | Vue « Registre des entreprises » et chargement du registre pour les autres vues |
 | `granit-carte.js` | Carte des municipalités, colorée selon l'indicateur choisi |
+| `granit-mada.js` | Vue « Constats du milieu » (groupe Milieu de vie) et notes terrain de la vue Logements et garderies |
+| `data/mada/constats.json` | Constats de la collecte MADA auprès des organismes, agrégés par axe. Tenu à la main |
 | `granit-croise.js` | Croisements entre les vues : le registre, les services de garde et le recensement s'affichent partout où il y a une fiche ou un bloc cliquable |
 | `data/req/`, `data/garde/`, `data/logement/` | Extractions automatiques produites par GitHub Actions. Ne pas modifier à la main |
 | `data/appariement.json` | Liens entre les fiches locales et le Registraire (par NEQ) |
 
 Ces fichiers doivent se trouver dans le même dossier du dépôt.
+
+## Nouveautés de la version 4.17 (constats du milieu)
+
+- Nouvelle vue « Constats du milieu » dans le groupe Milieu de vie. Elle présente ce que 10 organismes du territoire ont rapporté lors de la collecte MADA (octobre 2025 à janvier 2026), par axe : habitation, transport, participation sociale, inclusion, loisirs, communication, santé et services sociaux, sécurité, espaces extérieurs et bâtiments. Chaque constat indique combien d'organismes le nomment.
+- Nouvelle pastille de provenance « Terrain », décrite dans la Légende. Un constat d'entrevue n'est ni une donnée Réel ni une Estimation : il dit ce que le milieu observe, pas ce qui a été mesuré.
+- Vue Logements et garderies. Deux notes terrain s'ajoutent, l'une sous les cartes de capacité (accès au logement social et abordable), l'autre dans la carte des enfants en attente d'une place. Le chiffre d'environ 150 enfants en attente y figure comme propos d'entrevue; le champ « Enfants en attente » reste « À compléter » tant qu'il n'est pas confirmé par écrit.
+- Confidentialité. Le dépôt est public. `data/mada/constats.json` ne contient ni nom de personne, ni propos attribué à un organisme, ni lieu d'intervention; la fiche de collecte elle-même n'est pas versée au dépôt.
+- Aucune répartition par municipalité : la collecte ne nomme que 10 des 19 municipalités, et jamais de façon systématique. Les cartes ne changent pas.
+- `data/mada/constats.json` se modifie à la main. Le chiffrier trimestriel et les flux GitHub Actions n'y touchent pas. `data.json`, `granit-excel.js` et `granit-import.js` ne sont pas modifiés.
 
 ## Nouveautés de la version 4.16 (emploi revu à la source)
 

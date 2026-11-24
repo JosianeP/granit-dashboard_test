@@ -865,7 +865,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
     <div class="pb-brand-text">
       <div class="org">Estrie</div>
       <div class="name">Tableau de bord territorial</div>
-      <div class="ver" id="verLabel">v4.16</div>
+      <div class="ver" id="verLabel">v4.17</div>
     </div>
   </div>
   <nav class="pillar-tabs">
@@ -1350,6 +1350,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
             <dt><span class="prov prov-reel">Réel</span></dt><dd>Donnée officielle sourcée (recensement, registre ou publication d'un ministère).</dd>
             <dt><span class="prov prov-reg">Registraire</span></dt><dd>Registre des entreprises du Québec. Les renseignements sont déclarés par les entreprises et valent à la date d'extraction affichée.</dd>
             <dt><span class="prov prov-est">Estimation</span></dt><dd>Estimation analytique, à valider auprès de la source primaire.</dd>
+            <dt><span class="prov prov-terrain">Terrain</span></dt><dd>Constat rapporté en entrevue par des organismes du territoire (collecte MADA). Ce n'est pas une mesure; le nombre d'organismes qui le nomment est indiqué.</dd>
             <dt><span class="prov prov-calc">Calcul</span></dt><dd>Ratio calculé par la plateforme à partir de deux données affichées.</dd>
             <dt><span class="prov prov-todo">À compléter</span></dt><dd>Donnée non encore renseignée.</dd>
           </dl>
@@ -1635,7 +1636,7 @@ var ECO_GROUPS=[
   {k:'vue',l:'Vue d\'ensemble',ic:'eco-overview',v:[['eco-overview','Aperçu'],['eco-trends','Tendances']]},
   {k:'ent',l:'Entreprises',ic:'eco-companies',v:[['eco-registre','Registre'],['eco-companies','Répertoire local'],['eco-tourisme','Tourisme'],['eco-sectors','Secteurs']]},
   {k:'muni',l:'Municipalités',ic:'eco-muni',v:[['eco-muni','Municipalités'],['eco-demo','Portrait démographique']]},
-  {k:'vie',l:'Milieu de vie',ic:'eco-housing',v:[['eco-housing','Logements et garderies']]},
+  {k:'vie',l:'Milieu de vie',ic:'eco-housing',v:[['eco-housing','Logements et garderies'],['eco-mada','Constats du milieu']]},
   {k:'emploi',l:'Emploi',ic:'eco-mainoeuvre',v:[['eco-mainoeuvre','Main-d\'œuvre'],['eco-lgp','Portrait industriel']]},
   {k:'ml',l:'Maillages',ic:'eco-ml',v:[['eco-ml','Maillages']]}
 ];
@@ -1681,7 +1682,7 @@ function renderAll(){
     var majTxt=majDate(D.meta.updatedDate);
     document.getElementById('sbQ').textContent=majTxt||D.meta.quarter||'-';
     document.getElementById('sbBy').textContent=D.meta.quarter?'Chiffrier de la MRC : '+D.meta.quarter:(D.meta.updatedBy||'');
-    document.getElementById('verLabel').textContent='v4.16';
+    document.getElementById('verLabel').textContent='v4.17';
     var ovq=document.getElementById('ovQuarter'); if(ovq)ovq.textContent='Portrait économique du territoire - MRC du Granit'+(majTxt?', mis à jour le '+majTxt:'');
   }
   allMLPairs=getMLSuggestions();
@@ -3699,5 +3700,6 @@ init();
 <script src="./granit-req.js?v=4.16"></script>
 <script src="./granit-croise.js?v=4.16"></script>
 <script src="./granit-carte.js?v=4.16"></script>
+<script src="./granit-mada.js?v=4.17"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-# Tableau de bord territorial - MRC du Granit (v4.17)
+# Tableau de bord territorial - MRC du Granit (v4.18)
 
 Outil interne de développement territorial à trois piliers (économie, aménagement, santé). Hébergé sur GitHub Pages.
 
@@ -18,11 +18,26 @@ Outil interne de développement territorial à trois piliers (économie, aménag
 | `granit-carte.js` | Carte des municipalités, colorée selon l'indicateur choisi |
 | `granit-mada.js` | Vue « Constats du milieu » (groupe Milieu de vie) et notes terrain de la vue Logements et garderies |
 | `data/mada/constats.json` | Constats de la collecte MADA auprès des organismes, agrégés par axe. Tenu à la main |
+| `granit-apprenant.js` | Pilier Santé : registre « De la donnée à la décision », instances, journal des lectures révisées, « Données et gouvernance », navigation regroupée |
+| `data/sante/apprenant.json` | Enjeux suivis, décisions tracées, instances, journal et inventaire des jeux de données. Tenu à la main |
 | `granit-croise.js` | Croisements entre les vues : le registre, les services de garde et le recensement s'affichent partout où il y a une fiche ou un bloc cliquable |
 | `data/req/`, `data/garde/`, `data/logement/` | Extractions automatiques produites par GitHub Actions. Ne pas modifier à la main |
 | `data/appariement.json` | Liens entre les fiches locales et le Registraire (par NEQ) |
 
 Ces fichiers doivent se trouver dans le même dossier du dépôt.
+
+## Nouveautés de la version 4.18 (pilier Santé : de la donnée à la décision)
+
+Le pilier Santé décrivait des savoirs sans montrer ce qu'on en fait. Il suit maintenant une boucle en cinq temps (savoirs, délibération, décision, suivi des effets, ajustement), inspirée de la notion de territoire apprenant. La plateforme n'attribue ni score ni étiquette à ce titre : elle garde la trace de ce qui est su, décidé et suivi.
+
+- Navigation du pilier regroupée en trois blocs : Savoirs (portrait des déterminants, constats du milieu), Action (instances et leviers, de la donnée à la décision), Repères (éloignement territorial, données et gouvernance).
+- Nouvelle vue « De la donnée à la décision ». Un registre par enjeu (transport, accès aux soins, logement, démarche MADA, garde, information sur les services) montre pour chacune des cinq étapes ce qui est documenté, avec la date et la source. Une étape sans trace s'affiche « À documenter ». Les décisions inscrites viennent des procès-verbaux publics du conseil des maires (17 septembre 2025, 26 novembre 2025, 15 avril 2026) et du communiqué du 11 juillet 2025. Suit un journal des lectures révisées.
+- « Gouvernance territoriale » et « Liens développement - santé » sont réunies dans « Instances et leviers ». S'y ajoutent un tableau des instances de la MRC par type de membres (document public des comités, novembre 2025) et un encadré sur les frontières ouvertes du territoire.
+- Constats du milieu (Santé). Chaque déterminant se lit à trois voix : chiffres, organismes, citoyens. La troisième est vide et affichée comme telle.
+- Nouvelle vue « Données et gouvernance » : fournisseur, mode d'arrivée, fréquence et conditions de réutilisation de chaque jeu de données.
+- Corrections. Les scores de 0 à 100 portent la pastille Estimation et l'indice composite est décrit comme une moyenne simple, ce que le code calcule. « Vulnérabilité territoriale » devient « Éloignement territorial », l'indice ne reposant que sur la ruralité, la densité et la superficie. Mentions du CIUSSS remplacées, accents rétablis dans les leviers.
+- Règles de `data/sante/apprenant.json` : une décision n'y entre que si une source publique la confirme; aucun nom de personne; aucune comparaison entre municipalités; le registre est une mémoire pour la MRC, pas une évaluation du conseil.
+- `granit-excel.js` et `granit-import.js` ne sont pas modifiés. Dans `data.json`, seuls des textes du pilier Santé sont corrigés. La vue `sa-links` est retirée (son contenu passe dans `sa-governance`).
 
 ## Nouveautés de la version 4.17 (constats du milieu)
 

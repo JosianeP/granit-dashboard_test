@@ -28,7 +28,7 @@
     { k: 'gar', l: 'Places de garde en installation', u: 'places', d: 0,
       v: function (m) { var x = lg(m.name), o = x && x.garderies; return o && o.real ? (o.placesTotal || 0) : null; },
       note: 'CPE et garderies reconnus par le ministère de la Famille. Le milieu familial n\'est pas réparti par municipalité.' },
-    { k: 'vul', l: 'Indice de vulnérabilité territoriale', u: '/ 100', d: 0, besoin: 'vul',
+    { k: 'vul', l: 'Indice d\'éloignement territorial', u: '/ 100', d: 0, besoin: 'vul',
       v: function (m) { return window.computeVulnerability(m); }, note: 'Indice analytique fondé sur la ruralité, la densité et la distance. Ce n\'est pas un indice de défavorisation.' }
   ];
   function dispo() {

@@ -865,7 +865,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
     <div class="pb-brand-text">
       <div class="org">Estrie</div>
       <div class="name">Tableau de bord territorial</div>
-      <div class="ver" id="verLabel">v4.17</div>
+      <div class="ver" id="verLabel">v4.18</div>
     </div>
   </div>
   <nav class="pillar-tabs">
@@ -951,9 +951,8 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
     <div class="sbn" id="sbnSa" style="display:none">
       <div class="ngl">Navigation</div>
       <button class="ni" onclick="V('sa-portrait',this)"><div class="ni-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>Portrait des d&eacute;terminants</button>
-      <button class="ni" onclick="V('sa-governance',this)"><div class="ni-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>Gouvernance territoriale</button>
-      <button class="ni" onclick="V('sa-links',this)"><div class="ni-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>Liens d&eacute;veloppement &#8596; sant&eacute;</button>
-      <button class="ni" onclick="V('sa-vuln',this)"><div class="ni-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>Vuln&eacute;rabilit&eacute; territoriale</button>
+      <button class="ni" onclick="V('sa-governance',this)"><div class="ni-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>Instances et leviers</button>
+      <button class="ni" onclick="V('sa-vuln',this)"><div class="ni-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>Éloignement territorial</button>
     </div>
     <div class="sbn" id="sbnAide">
       <div class="ngl">Aide à la lecture</div>
@@ -1297,37 +1296,38 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
 
       <!-- SANTE -->
       <div class="view" id="view-sa-portrait">
-        <div class="section-header"><div class="sh-left"><h2>Portrait des déterminants sociaux de la santé</h2><p>8 déterminants - indicateurs ancrés sur des données validées (ISQ, Recensement 2021) et estimations - À valider avec CIUSSS et INSPQ</p></div><span class="pillar-badge pb-sa">Santé</span></div>
+        <div class="section-header"><div class="sh-left"><h2>Portrait des déterminants sociaux de la santé</h2><p>8 déterminants - les indicateurs cités sont des données sourcées; les scores de 0 à 100 sont des estimations analytiques, à valider avec la Direction de santé publique de l'Estrie</p></div><span class="pillar-badge pb-sa">Santé</span></div>
         <div class="sdoh-intro" id="sdohIntro"></div>
         <div class="two-col" style="align-items:start">
-          <div class="card"><div class="ct">Radar des déterminants (score territorial 0–100)</div><div style="position:relative;height:285px"><canvas id="sdohRadar"></canvas></div></div>
-          <div class="card"><div class="ct">Indice composite territorial</div><div id="sdohComposite"></div></div>
+          <div class="card"><div class="ct">Radar des déterminants (score de 0 à 100) <span class="prov prov-est">Estimation</span></div><div style="position:relative;height:285px"><canvas id="sdohRadar"></canvas></div></div>
+          <div class="card"><div class="ct">Indice composite territorial <span class="prov prov-est">Estimation</span></div><div id="sdohComposite"></div></div>
         </div>
         <div class="sdoh-grid" id="sdohGrid"></div>
       </div>
 
       <div class="view" id="view-sa-governance">
-        <div class="section-header"><div class="sh-left"><h2>Gouvernance territoriale en santé</h2><p>Leviers intersectoriels - Santé dans toutes les politiques (SdTP)</p></div><span class="pillar-badge pb-sa">Santé</span></div>
+        <div class="section-header"><div class="sh-left"><h2>Instances et leviers</h2><p>Qui discute de quoi, et par quels leviers le territoire agit sur les déterminants de la santé</p></div><span class="pillar-badge pb-sa">Santé</span></div>
         <div style="background:linear-gradient(135deg,#0c3d4d,#0e7490);border-radius:var(--r);padding:18px 22px;margin-bottom:18px;color:#fff">
           <div style="font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:7px">Cadre conceptuel</div>
-          <h2 style="font-family:'Sora',sans-serif;font-size:17px;margin-bottom:7px;color:#fff;font-weight:700">La Santé dans toutes les politiques (SdTP)</h2>
+          <h2 style="font-size:17px;margin-bottom:7px;color:#fff;font-weight:600">La Santé dans toutes les politiques (SdTP)</h2>
           <p style="font-size:14px;line-height:1.75;color:rgba(255,255,255,.75)">À l'échelle d'une MRC, les décisions économiques et d'aménagement <em>sont</em> des décisions de santé. La gouvernance territoriale en santé consiste à rendre ces liens explicites et à mobiliser des leviers intersectoriels existants. La MRC du Granit dispose d'une densité remarquable d'instruments de gouvernance qui agissent sur les déterminants - bien au-delà du système de soins.</p>
         </div>
+        <div id="apInstances"></div>
+        <div style="font-size:14.5px;font-weight:700;margin:6px 0 4px;color:var(--text)">Leviers du territoire</div>
+        <div style="font-size:13.5px;color:var(--muted);margin-bottom:12px">Instruments existants et déterminants sur lesquels ils agissent.</div>
         <div class="gov-grid" id="govGrid"></div>
-      </div>
-
-      <div class="view" id="view-sa-links">
-        <div class="section-header"><div class="sh-left"><h2>Liens développement ↔ santé</h2><p>Cartographie des décisions économiques et territoriales comme déterminants de santé</p></div><span class="pillar-badge pb-sa">Santé</span></div>
-        <div style="background:var(--sa50);border:1px solid var(--sa100);border-left:3px solid var(--sa700);border-radius:var(--rx);padding:12px 15px;margin-bottom:18px;font-size:14px;color:#155e75;line-height:1.7">Chaque carte montre comment une décision du pilier Économie ou Aménagement agit directement sur un déterminant social de la santé - logique SdTP appliquée au territoire de la MRC du Granit.</div>
+        <div style="font-size:14.5px;font-weight:700;margin:22px 0 4px;color:var(--text)">Ce que les autres piliers changent pour la santé</div>
+        <div style="font-size:13.5px;color:var(--muted);margin-bottom:12px">Chaque carte relie une réalité du pilier Économie ou Aménagement à un déterminant.</div>
         <div class="link-grid" id="linkGrid"></div>
+        <div id="apAncrage"></div>
       </div>
 
       <div class="view" id="view-sa-vuln">
-        <div class="section-header"><div class="sh-left"><h2>Vulnérabilité territoriale</h2><p>Indice composite par municipalité - proxy analytique (ruralité, densité, distance)</p></div><span class="pillar-badge pb-sa">Santé</span></div>
+        <div class="section-header"><div class="sh-left"><h2>Éloignement territorial</h2><p>Indice analytique par municipalité, fondé sur la ruralité, la densité et la superficie. Il ne mesure ni la défavorisation ni l'état de santé</p></div><span class="pillar-badge pb-sa">Santé</span></div>
         <div class="ss-row" id="vulnStats"></div>
         <div class="two-col">
-          <div class="card"><div class="ct">Indice de vulnérabilité par municipalité</div><div style="position:relative;height:440px"><canvas id="vulnChart"></canvas></div></div>
-          <div class="card"><div class="ct">Méthodologie</div><div style="font-size:14px;color:var(--muted);line-height:1.85"><strong style="color:var(--text)">Composantes (proxies)</strong><br>Ruralité éloignée : +40 pts - Densité : inversement proportionnel - Distance : superficie/pop × facteur<br><br><strong style="color:var(--text)">Interprétation</strong><br>Score élevé = attention prioritaire dans la logique de gouvernance territoriale de la santé. Ce n'est pas un indice de défavorisation clinique.<br><br><strong style="color:var(--text)">Limites</strong><br>À valider avec les données de santé réelles (CIUSSS de l'Estrie-CHUS, INSPQ). Ne remplace pas une analyse épidémiologique.</div></div>
+          <div class="card"><div class="ct">Indice d'éloignement par municipalité <span class="prov prov-est">Estimation</span></div><div style="position:relative;height:440px"><canvas id="vulnChart"></canvas></div></div>
+          <div class="card"><div class="ct">Méthodologie</div><div style="font-size:14px;color:var(--muted);line-height:1.85"><strong style="color:var(--text)">Composantes (proxies)</strong><br>Ruralité éloignée : +40 pts - Densité : inversement proportionnel - Distance : superficie/pop × facteur<br><br><strong style="color:var(--text)">Interprétation</strong><br>Score élevé = attention prioritaire dans la logique de gouvernance territoriale de la santé. Ce n'est pas un indice de défavorisation clinique.<br><br><strong style="color:var(--text)">Limites</strong><br>À valider avec les données de santé réelles (Direction de santé publique de l'Estrie, INSPQ). Ne remplace pas une analyse épidémiologique.</div></div>
         </div>
         <div style="font-size:14.5px;font-weight:700;margin:14px 0 11px">Profil détaillé par municipalité</div>
         <div class="vuln-grid" id="vulnGrid"></div>
@@ -1616,8 +1616,7 @@ function V(id,btn){
   if(id==='am-conv'){renderConvView();setTimeout(renderConvCharts,80);}
   if(id==='am-climat'){renderClimat();setTimeout(renderClimatCharts,80);}
   if(id==='sa-portrait'){renderSdohPortrait();setTimeout(renderSdohRadar,80);}
-  if(id==='sa-governance')renderGovView();
-  if(id==='sa-links')renderLinksView();
+  if(id==='sa-governance'){renderGovView();renderLinksView();}
   if(id==='sa-vuln'){renderVulnStats();renderVulnGrid();setTimeout(renderVulnChart,80);}
 }
 // ─── LÉGENDE ET REPÈRES (v4.11) ───
@@ -1682,7 +1681,7 @@ function renderAll(){
     var majTxt=majDate(D.meta.updatedDate);
     document.getElementById('sbQ').textContent=majTxt||D.meta.quarter||'-';
     document.getElementById('sbBy').textContent=D.meta.quarter?'Chiffrier de la MRC : '+D.meta.quarter:(D.meta.updatedBy||'');
-    document.getElementById('verLabel').textContent='v4.17';
+    document.getElementById('verLabel').textContent='v4.18';
     var ovq=document.getElementById('ovQuarter'); if(ovq)ovq.textContent='Portrait économique du territoire - MRC du Granit'+(majTxt?', mis à jour le '+majTxt:'');
   }
   allMLPairs=getMLSuggestions();
@@ -2776,7 +2775,7 @@ var REPORT_SECTIONS=[
   {id:'am-land',pillar:'am',label:'Affectation du territoire'},
   {id:'am-conv',pillar:'am',label:'Résidence ↔ Villégiature'},
   {id:'sa-portrait',pillar:'sa',label:'Déterminants de la santé'},
-  {id:'sa-vuln',pillar:'sa',label:'Vulnérabilité territoriale'}
+  {id:'sa-vuln',pillar:'sa',label:'Éloignement territorial'}
 ];
 var PILLAR_LABEL={eco:'Développement économique',am:'Aménagement du territoire',sa:'Santé des populations'};
 function secLabel(id){var s=REPORT_SECTIONS.filter(function(x){return x.id===id;})[0];return s?s.label:id;}
@@ -2931,8 +2930,8 @@ function buildSection(id,opt){
   else if(id==='sa-vuln'){
     var vs=D.municipalities.map(function(m){return {m:m,v:computeVulnerability(m)};}).sort(function(a,b){return b.v-a.v;});
     var avg=Math.round(vs.reduce(function(a,b){return a+b.v;},0)/vs.length);
-    inner+=rNarr('Indice composite de vulnérabilité territoriale (proxy analytique : ruralité, densité, distance, superficie). Indice moyen MRC : <b>'+avg+'/100</b>.');
-    if(opt.incCharts)inner+=rChart('vuln','Indice de vulnérabilité par municipalité');
+    inner+=rNarr('Indice d\'éloignement territorial (proxy analytique : ruralité, densité, distance, superficie). Indice moyen MRC : <b>'+avg+'/100</b>.');
+    if(opt.incCharts)inner+=rChart('vuln','Indice d\'éloignement par municipalité');
     inner+=rTable(['Municipalité','Indice /100','Population','Densité'],vs.map(function(x){return [x.m.name,x.v,rNum(x.m.pop),x.m.density+' hab./km²'];}),['l','','','']);
   }
   else { inner+=rNarr('Section non disponible pour le rapport.'); }
@@ -3412,7 +3411,7 @@ function renderSdohPortrait(){
   document.getElementById('sdohComposite').innerHTML=
     '<div style="text-align:center;padding:18px 8px">'+
     '<div style="font-size:56px;font-weight:700;color:'+sdohCol(comp)+';font-family:\'Fraunces\',serif;line-height:1">'+comp+'</div>'+
-    '<div style="font-size:14px;color:var(--muted);margin-bottom:16px">/ 100 - Indice territorial composite</div>'+
+    '<div style="font-size:14px;color:var(--muted);margin-bottom:16px">/ 100 - moyenne simple des 8 scores</div>'+
     '</div>'+
     dets.map(function(d){
       return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">'+
@@ -3488,8 +3487,8 @@ function renderVulnStats(){
   var v=D.municipalities.map(function(m){return computeVulnerability(m);});
   var avg=Math.round(v.reduce(function(a,b){return a+b;},0)/v.length);
   document.getElementById('vulnStats').innerHTML=
-    ss(v.filter(function(x){return x>=70;}).length,'Vulnérabilité haute (≥70)')+
-    ss(v.filter(function(x){return x>=45&&x<70;}).length,'Vulnérabilité moyenne')+
+    ss(v.filter(function(x){return x>=70;}).length,'Éloignement élevé (70 et plus)')+
+    ss(v.filter(function(x){return x>=45&&x<70;}).length,'Éloignement moyen')+
     ss(avg+'/100','Indice moyen MRC')+
     ss('D8','Déterminant prioritaire : Accès services');
 }
@@ -3700,6 +3699,7 @@ init();
 <script src="./granit-req.js?v=4.16"></script>
 <script src="./granit-croise.js?v=4.16"></script>
 <script src="./granit-carte.js?v=4.16"></script>
-<script src="./granit-mada.js?v=4.17"></script>
+<script src="./granit-mada.js?v=4.18"></script>
+<script src="./granit-apprenant.js?v=4.18"></script>
 </body>
 </html>

@@ -22,7 +22,7 @@
       "L'Équipe de proximité"
     ],
     "aCompleter": "La fiche de La Constellation du Granit est vide; la rencontre reste à tenir ou à consigner.",
-    "lectureSante": "Les mêmes constats, classés selon les déterminants de la santé du portrait territorial. Le score d'un déterminant vient des indicateurs chiffrés; les constats disent ce que les organismes observent sur le terrain. Les deux se lisent côte à côte et ne se combinent pas : aucun constat ne modifie un score. Le classement d'un constat sous un déterminant est un choix d'analyse, à valider avec la Direction de santé publique.",
+    "lectureSante": "Chaque déterminant est lu à trois voix : les chiffres des sources officielles, les constats des organismes et la parole des citoyens, qui reste à recueillir. Les trois se lisent côte à côte et ne se combinent pas : aucun constat ne modifie un score. Le classement d'un constat sous un déterminant est un choix d'analyse, à valider avec la Direction de santé publique.",
     "sansConstat": "L'emploi et l'éducation ne figurent pas parmi les neuf axes de la collecte MADA; aucun constat ne s'y rattache."
   },
   "types": {

@@ -4981,7 +4981,7 @@
   },
   "sante": {
     "intro": "Ce pilier ne mesure pas le système de soins : il lit la santé des populations à travers ses déterminants sociaux, alimentés par les données des piliers Développement économique et Aménagement. L'approche est celle de la Santé dans toutes les politiques (SdTP) : à l'échelle d'une MRC, les décisions économiques et territoriales SONT des décisions de santé. Les données de référence proviennent de la Direction de santé publique de l'Estrie : Faits saillants - RLS du Granit (mise à jour avril 2025) et Tableau de bord – Santé publique Estrie (14 thématiques). Le RLS du Granit compte 21 886 habitants (4,3 % de l'Estrie) et une population sensiblement plus âgée : âge médian de 52 ans, contre 46 ans en Estrie.",
-    "compositeNote": "Indice territorial composite = moyenne pondérée des 8 déterminants. Indicateurs désormais ancrés sur les données de la DSP de l'Estrie (Faits saillants RLS du Granit, avril 2025) et sur le <a href=\"https://www.santeestrie.qc.ca/medias-publications/sante-publique/tableau-de-bord-sante-publique-estrie\" target=\"_blank\" rel=\"noopener\" style=\"color:#0e7490;font-weight:600\">Tableau de bord – Santé publique Estrie</a> (Population, Environnement social et physique, Habitudes de vie, Maladies chroniques, Santé mentale, Santé au travail, etc.), complétés par l'ISQ et le Recensement 2021. Les scores 0-100 demeurent un construit analytique; le RLS du Granit est quasi coextensif à la MRC mais les périmètres diffèrent légèrement.",
+    "compositeNote": "Indice territorial composite = moyenne simple des scores des 8 déterminants. Indicateurs désormais ancrés sur les données de la DSP de l'Estrie (Faits saillants RLS du Granit, avril 2025) et sur le <a href=\"https://www.santeestrie.qc.ca/medias-publications/sante-publique/tableau-de-bord-sante-publique-estrie\" target=\"_blank\" rel=\"noopener\" style=\"color:#0e7490;font-weight:600\">Tableau de bord – Santé publique Estrie</a> (Population, Environnement social et physique, Habitudes de vie, Maladies chroniques, Santé mentale, Santé au travail, etc.), complétés par l'ISQ et le Recensement 2021. Les scores 0-100 demeurent un construit analytique; le RLS du Granit est quasi coextensif à la MRC mais les périmètres diffèrent légèrement.",
     "determinants": [
       {
         "id": "d1",
@@ -5074,7 +5074,7 @@
     ],
     "leviers": [
       {
-        "name": "Demarche MADA & Politique de la famille et des aînés",
+        "name": "Démarche MADA & Politique de la famille et des aînés",
         "emoji": "",
         "scope": "MRC + municipalités",
         "desc": "Municipalité amie des aînés : adapte l'aménagement, le transport et les services au vieillissement. Levier direct sur les déterminants accès et cohésion sociale.",
@@ -5084,7 +5084,7 @@
         ]
       },
       {
-        "name": "Redevances eoliennes EDG (1,75 M$/an)",
+        "name": "Redevances éoliennes EDG (1,75 M$/an)",
         "emoji": "",
         "scope": "16 municipalités",
         "desc": "Ressource communautaire réinvestie localement (projets, services de proximité). Lien direct entre développement énergétique et capacité d'agir sur les déterminants.",
@@ -5098,7 +5098,7 @@
         "name": "Plan climat MRC & adaptation",
         "emoji": "",
         "scope": "MRC",
-        "desc": "Reduction des GES et adaptation. La santé environnementale (chaleur, qualité de l'air, milieux humides) est un co-benefice direct de l'action climatique territoriale.",
+        "desc": "Réduction des GES et adaptation. La santé environnementale (chaleur, qualité de l'air, milieux humides) est un cobénéfice direct de l'action climatique territoriale.",
         "determinants": [
           "d5"
         ]
@@ -5186,7 +5186,7 @@
         "to": "Sécurité alimentaire",
         "det": "d7",
         "strength": "Moyen",
-        "desc": "Le maintien de la zone agricole soutient les systèmes alimentaires locaux et l'accès a des aliments de qualité."
+        "desc": "Le maintien de la zone agricole soutient les systèmes alimentaires locaux et l'accès à des aliments de qualité."
       },
       {
         "from": "Couvert forestier & ciel étoilé",
@@ -5202,7 +5202,7 @@
         "to": "Compétences & rétention",
         "det": "d4",
         "strength": "Moyen",
-        "desc": "La formation locale retient les jeunes et alimenté l'emploi qualifié, déterminant amont du revenu."
+        "desc": "La formation locale retient les jeunes et alimente l'emploi qualifié, déterminant amont du revenu."
       },
       {
         "from": "Ruralité & distances (19 municipalités)",

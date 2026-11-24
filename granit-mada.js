@@ -66,6 +66,10 @@
       '.md-det-h{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:3px}' +
       '.md-det-h .ct{margin:0}' +
       '.md-det-sc{font-size:12.5px;font-weight:600;color:var(--muted);border:1px solid var(--border);border-radius:10px;padding:1px 9px;white-space:nowrap}' +
+      '.md-voix{font-size:13px;font-weight:700;color:var(--text);text-transform:uppercase;letter-spacing:.5px;margin:16px 0 6px;padding-top:12px;border-top:1px solid var(--border)}' +
+      '.md-det-h + .md-voix{border-top:none;padding-top:0;margin-top:10px}' +
+      '.md-voix .prov{text-transform:none;letter-spacing:0}' +
+      '.md-voix-t{font-size:14px;line-height:1.6;color:var(--text2)}' +
       '.md-ax{display:block;font-size:12.5px;color:var(--muted);margin-top:2px}' +
       '.md-det-t{margin-top:9px;padding:9px 10px;border:1px solid #ddd6fe;border-radius:var(--r2);background:#faf8ff;font-size:13px;line-height:1.5;color:var(--text2)}' +
       '.md-det-t b{display:block;font-weight:700;color:var(--text);margin-bottom:2px}' +
@@ -255,6 +259,9 @@
     var dets = determinants().filter(function (x) { return map[x.id]; });
     var sans = determinants().filter(function (x) { return !map[x.id]; });
     var ss = window.ss;
+    var ap = window.GranitApprenant && window.GranitApprenant.donnees();
+    if (!ap && window.GranitApprenant && !S.apDemande) { S.apDemande = true; window.GranitApprenant.charger().then(rendreSante).catch(function () {}); }
+    var voix = (ap && ap.voixCitoyenne) || 'Aucune parole citoyenne n\'est encore intégrée.';
     var h = '<div class="md-lect">' + terrain().replace('class="prov', 'style="margin-left:0;margin-right:8px" class="prov') + esc(m.lectureSante || m.lecture || '') + '</div>';
 
     h += '<div class="ss-row">' + dets.map(function (x) {
@@ -270,12 +277,17 @@
       var cs = trier(map[x.id]);
       return '<div class="card md-axe"><div class="md-det-h"><div class="ct">' + esc(x.name) + '</div>' +
         '<span class="md-det-sc">Score ' + esc(x.score) + ' sur 100 - ' + esc(x.level) + '</span></div>' +
-        '<div class="md-axe-s">' + cs.length + ' constat' + (cs.length > 1 ? 's' : '') + ' du milieu rattaché' + (cs.length > 1 ? 's' : '') + ' à ce déterminant</div>' +
+        '<div class="md-voix">Ce que disent les chiffres <span class="prov prov-reel">Réel</span></div>' +
+        '<div class="md-voix-t">' + x.indicator + '</div>' +
+        '<div class="md-voix">Ce qu\'observent les organismes ' + terrain() + '</div>' +
+        '<div class="md-axe-s" style="margin-bottom:4px">' + cs.length + ' constat' + (cs.length > 1 ? 's' : '') + ' rattaché' + (cs.length > 1 ? 's' : '') + ' à ce déterminant</div>' +
         cs.map(function (c) {
           return '<div class="md-c"><div><div class="md-n">' + sur(c.n, tot) + '</div>' + points(c.n, tot) + '</div>' +
             '<div><span class="md-t md-t-' + esc(c.t) + '">' + esc(types[c.t] || c.t) + '</span>' + esc(c.texte) +
             '<span class="md-ax">Axe MADA ' + c.axe.no + ' - ' + esc(c.axe.nom) + '</span></div></div>';
-        }).join('') + '</div>';
+        }).join('') +
+        '<div class="md-voix">Ce que disent les citoyens <span class="prov prov-todo">À compléter</span></div>' +
+        '<div class="md-voix-t">' + esc(voix) + '</div></div>';
     }).join('');
     h += '<div class="md-axes"' + (S.det !== 'tous' ? ' style="grid-template-columns:1fr"' : '') + '>' + cartes + '</div>';
 

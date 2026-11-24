@@ -1,0 +1,513 @@
+{
+ "_lisezmoi": "Fichier tenu à la main. Il alimente les vues « De la donnée à la décision », « Instances et leviers » et « Données et gouvernance » du pilier Santé. Règles : n'inscrire une décision que si une source publique la confirme (procès-verbal, communiqué, règlement); aucun nom de personne; aucune comparaison entre municipalités; une étape sans trace reste vide et s'affiche « À documenter ». Le registre est une mémoire pour la MRC, pas une évaluation du conseil.",
+ "meta": {
+  "maj": "2026-11-24",
+  "cadre": "Ce pilier suit une boucle en cinq temps : des savoirs sont réunis, une instance en discute, une décision est prise, ses effets sont suivis, puis la décision est ajustée. La notion de territoire apprenant, qui inspire cette lecture, désigne ce processus porté par un collectif d'acteurs et non une qualité que posséderait un lieu. La plateforme ne mesure donc pas si le Granit « est » un territoire apprenant; elle garde la trace de ce qui est su, décidé et suivi.",
+  "limite": "Le registre part des procès-verbaux publics du conseil des maires, lus pour quelques séances seulement (septembre et novembre 2025, avril 2026). Il est incomplet. Le lien entre un savoir et une décision n'est inscrit que lorsqu'une source le dit; l'absence d'une trace ne signifie pas que l'étape n'a pas eu lieu."
+ },
+ "sources": {
+  "pv0917": {
+   "l": "Procès-verbal du conseil des maires, 17 septembre 2025",
+   "u": "https://www.mrcgranit.qc.ca/fichiersUpload/fichiers/20251210141338-2025-09-17-pv-cdm.pdf"
+  },
+  "pv1126": {
+   "l": "Procès-verbal du conseil des maires, 26 novembre 2025",
+   "u": "https://www.mrcgranit.qc.ca/fichiersUpload/fichiers/20260223152105-2025-11-26-pv-cdm-site-internet.pdf"
+  },
+  "pv0415": {
+   "l": "Procès-verbal du conseil des maires, 15 avril 2026",
+   "u": "https://www.mrcgranit.qc.ca/fichiersUpload/fichiers/20260623141920-2026-04-15-pv-cdm-site-internet.pdf"
+  },
+  "cpmada": {
+   "l": "Communiqué de la MRC du Granit, 11 juillet 2025",
+   "u": "https://www.mrcgranit.qc.ca/fichiersUpload/fichiers/20250710120924-2025-07-11-mrcgranit-cp-mada-lancementdemarche.pdf"
+  },
+  "comites": {
+   "l": "Comités de la MRC du Granit, mise à jour de novembre 2025",
+   "u": "https://www.mrcgranit.qc.ca/fichiersUpload/fichiers/20251105144758-liste-description-comites-mrc-site-internet.pdf"
+  },
+  "mada": {
+   "l": "Collecte MADA auprès des organismes, octobre 2025 à janvier 2026 (vue Constats du milieu)"
+  },
+  "plateforme": {
+   "l": "Données de la plateforme"
+  }
+ },
+ "etapes": [
+  {
+   "id": "savoirs",
+   "nom": "Savoirs",
+   "desc": "Chiffres, constats du terrain, parole citoyenne"
+  },
+  {
+   "id": "deliberation",
+   "nom": "Délibération",
+   "desc": "Instance où l'enjeu est discuté"
+  },
+  {
+   "id": "decision",
+   "nom": "Décision",
+   "desc": "Résolution, règlement, entente"
+  },
+  {
+   "id": "suivi",
+   "nom": "Suivi des effets",
+   "desc": "Ce qui a changé, mesuré ou observé"
+  },
+  {
+   "id": "ajustement",
+   "nom": "Ajustement",
+   "desc": "Décision revue à la lumière des effets"
+  }
+ ],
+ "enjeux": [
+  {
+   "id": "transport",
+   "nom": "Transport collectif et adapté",
+   "det": "d8",
+   "resume": "L'enjeu le plus souvent nommé par les organismes. Plusieurs décisions récentes portent sur le financement et l'optimisation du service.",
+   "savoirs": [
+    {
+     "date": "Octobre 2025 à janvier 2026",
+     "texte": "Neuf organismes sur dix nomment le transport comme un enjeu; sept jugent le service peu flexible et mal adapté aux besoins.",
+     "src": "mada",
+     "prov": "terrain"
+    },
+    {
+     "date": null,
+     "texte": "Aucune donnée de desserte ou d'achalandage ne figure encore sur la plateforme.",
+     "src": null,
+     "prov": "todo"
+    }
+   ],
+   "deliberation": [
+    {
+     "date": null,
+     "texte": "Comité mobilité durable, qui soutient le plan de mobilité durable (transport collectif, covoiturage, transport actif) et fait rapport au conseil des maires.",
+     "src": "comites",
+     "prov": "reel"
+    }
+   ],
+   "decision": [
+    {
+     "date": "2025-11-26",
+     "texte": "Entente intermunicipale approuvée pour l'appel d'offres commun et la coordination d'un système intelligent de gestion du transport des personnes, avec d'autres MRC.",
+     "src": "pv1126",
+     "prov": "reel"
+    },
+    {
+     "date": "2026-04-15",
+     "texte": "Mise en place de la taxe sur l'immatriculation des véhicules reportée, sur recommandation du comité mobilité durable; la recherche de solutions de financement et d'optimisation se poursuit avec Trans-Autonomie.",
+     "src": "pv0415",
+     "prov": "reel"
+    },
+    {
+     "date": "2026-04-15",
+     "texte": "Dépôt d'une demande au Fonds régions et ruralité (volet 4, coopération intermunicipale) pour un projet d'optimisation du transport adapté et collectif dans les 19 municipalités.",
+     "src": "pv0415",
+     "prov": "reel"
+    }
+   ],
+   "suivi": [],
+   "ajustement": []
+  },
+  {
+   "id": "soins",
+   "nom": "Accès aux soins et personnel du réseau local de services",
+   "det": "d8",
+   "resume": "Le conseil des maires a soutenu le recrutement infirmier au RLS du Granit et a prévu un rapport de suivi aux six mois.",
+   "savoirs": [
+    {
+     "date": "2025-09-17",
+     "texte": "Le conseil constate un manque de personnel qui touche plusieurs services du RLS du Granit et des mesures d'urgence jugées temporaires.",
+     "src": "pv0917",
+     "prov": "reel"
+    },
+    {
+     "date": "Octobre 2025 à janvier 2026",
+     "texte": "Trois organismes sur dix rappellent que les services spécialisés ne sont pas offerts dans la MRC; un organisme juge les ressources en santé mentale nettement insuffisantes.",
+     "src": "mada",
+     "prov": "terrain"
+    }
+   ],
+   "deliberation": [
+    {
+     "date": null,
+     "texte": "Comité Vigie-Santé Granit, qui discute des enjeux du RLS pour maintenir l'accessibilité, la qualité et la continuité des soins. Il réunit des élus, un représentant du comité des usagers, le réseau de la santé et un organisme communautaire.",
+     "src": "comites",
+     "prov": "reel"
+    }
+   ],
+   "decision": [
+    {
+     "date": "2025-09-17",
+     "texte": "Contribution de 10 000 $ à un fonds géré par la Fondation de l'hôpital, destiné à des incitatifs pour les infirmières recrutées au RLS du Granit, avec un rapport de suivi prévu aux six mois.",
+     "src": "pv0917",
+     "prov": "reel"
+    },
+    {
+     "date": "2025-11-26",
+     "texte": "Résolution modifiée : la source de financement change, les nouvelles modalités du Fonds régions et ruralité rendant cet appui inadmissible.",
+     "src": "pv1126",
+     "prov": "reel"
+    }
+   ],
+   "suivi": [
+    {
+     "date": null,
+     "texte": "Un rapport de suivi aux six mois est prévu par la résolution. Aucun rapport n'a encore été versé à la plateforme.",
+     "src": "pv0917",
+     "prov": "todo"
+    }
+   ],
+   "ajustement": []
+  },
+  {
+   "id": "logement",
+   "nom": "Logement abordable et social",
+   "det": "d3",
+   "resume": "Les chiffres et le terrain convergent sur la rareté du logement abordable. Une décision de soutien à la recherche de logement est tracée.",
+   "savoirs": [
+    {
+     "date": "2021",
+     "texte": "144 logements sociaux (HLM) à l'échelle de la MRC; la répartition par municipalité reste à documenter.",
+     "src": "plateforme",
+     "prov": "reel"
+    },
+    {
+     "date": "Octobre 2025 à janvier 2026",
+     "texte": "Quatre organismes sur dix nomment des loyers trop élevés; trois rapportent des freins à l'accès au logement social.",
+     "src": "mada",
+     "prov": "terrain"
+    }
+   ],
+   "deliberation": [],
+   "decision": [
+    {
+     "date": "2025-09-17",
+     "texte": "Participation au service d'aide à la recherche de logement (SARL) confirmée pour 2025-2026, sous réserve de l'acceptation du projet par la Société d'habitation du Québec.",
+     "src": "pv0917",
+     "prov": "reel"
+    }
+   ],
+   "suivi": [],
+   "ajustement": []
+  },
+  {
+   "id": "mada",
+   "nom": "Vieillir et vivre en famille dans le Granit (démarche MADA)",
+   "det": "d6",
+   "resume": "Une boucle en cours : les savoirs se constituent, la politique et les plans d'action restent à venir.",
+   "savoirs": [
+    {
+     "date": "Octobre 2025 à janvier 2026",
+     "texte": "Dix organismes rencontrés selon les neuf axes de la démarche; 61 constats retenus.",
+     "src": "mada",
+     "prov": "terrain"
+    },
+    {
+     "date": "2025-07-11",
+     "texte": "Un sondage auprès de la population et des soirées de consultation publique sont annoncés. Leurs résultats ne figurent pas encore sur la plateforme.",
+     "src": "cpmada",
+     "prov": "todo"
+    }
+   ],
+   "deliberation": [
+    {
+     "date": null,
+     "texte": "Comité de pilotage de la politique de la famille et des aînés. Il réunit des élus, un organisme de services aux aînés, deux aînés bénévoles, le réseau de la santé et la jeunesse.",
+     "src": "comites",
+     "prov": "reel"
+    }
+   ],
+   "decision": [
+    {
+     "date": "2025-07-11",
+     "texte": "Lancement de la démarche régionale menant à une Politique de la famille et des aînés et à la certification MADA, d'abord pour 14 municipalités.",
+     "src": "cpmada",
+     "prov": "reel"
+    }
+   ],
+   "suivi": [],
+   "ajustement": []
+  },
+  {
+   "id": "garde",
+   "nom": "Places en service de garde",
+   "det": "d8",
+   "resume": "Le portrait de l'offre est établi. Le nombre d'enfants en attente n'est connu que de vive voix.",
+   "savoirs": [
+    {
+     "date": "2026-11",
+     "texte": "654 places reconnues, dont 273 en installation et 381 au permis du bureau coordonnateur en milieu familial.",
+     "src": "plateforme",
+     "prov": "reel"
+    },
+    {
+     "date": "2025-11-13",
+     "texte": "Environ 150 enfants seraient en attente d'une place, surtout en pouponnière. Chiffre donné en entrevue, à confirmer par écrit.",
+     "src": "mada",
+     "prov": "terrain"
+    }
+   ],
+   "deliberation": [],
+   "decision": [],
+   "suivi": [],
+   "ajustement": []
+  },
+  {
+   "id": "information",
+   "nom": "Faire connaître les services offerts",
+   "det": "d8",
+   "resume": "Un enjeu nommé par sept organismes sur dix, pour lequel aucune décision n'est encore tracée.",
+   "savoirs": [
+    {
+     "date": "Octobre 2025 à janvier 2026",
+     "texte": "Sept organismes sur dix jugent que les services, les programmes et les activités sont mal connus de la population. Deux proposent un relais par les bulletins, les sites Web et les médias sociaux des municipalités et de la MRC.",
+     "src": "mada",
+     "prov": "terrain"
+    }
+   ],
+   "deliberation": [],
+   "decision": [],
+   "suivi": [],
+   "ajustement": []
+  }
+ ],
+ "journal": {
+  "note": "Ce journal garde la trace des lectures qui ont changé, et de ce qui les a fait changer. Les premières entrées viennent de la tenue de la plateforme; celles issues d'une discussion en comité s'y ajouteront.",
+  "entrees": [
+   {
+    "date": "2026-11-24",
+    "sujet": "Cohésion sociale",
+    "avant": "Lue comme un atout fort, à partir de la densité coopérative et de la participation sociale des aînés.",
+    "apres": "Toujours un atout, mais 11 des 21 constats du milieu qui s'y rattachent sont des enjeux : isolement, groupes qui se sentent peu considérés, organismes sans local permanent.",
+    "declencheur": "Collecte MADA auprès de dix organismes."
+   },
+   {
+    "date": "2026-11-20",
+    "sujet": "Emploi",
+    "avant": "Lu à partir des estimations d'emplois par secteur tenues par la MRC.",
+    "apres": "Le Recensement de 2021 compte des résidents, pas des postes. Les estimations dépassent le recensement pour les ressources et la fabrication, et sont nettement plus basses pour les services.",
+    "declencheur": "Lecture du recensement à la source pour la division Le Granit."
+   },
+   {
+    "date": "2026-11",
+    "sujet": "Parc de logements",
+    "avant": "Estimé à partir de la population pour la plupart des municipalités.",
+    "apres": "12 249 logements privés, dont 9 863 occupés à l'année; l'écart correspond aux chalets, aux résidences secondaires et aux logements vacants.",
+    "declencheur": "Valeurs du Recensement de 2021 pour les 19 municipalités."
+   }
+  ]
+ },
+ "statuts": [
+  "Élus",
+  "Réseau de la santé",
+  "Organismes communautaires",
+  "Citoyens et usagers",
+  "Entreprises et milieux",
+  "Gouvernement",
+  "Personnel de la MRC"
+ ],
+ "instances": {
+  "note": "Composition par type de membres, sans nom de personne, d'après le document public de la MRC. À valider par le greffe; la composition change au fil des nominations.",
+  "src": "comites",
+  "liste": [
+   {
+    "nom": "Conseil des maires",
+    "mandat": "Fixe les priorités, adopte les règlements et approuve le budget de la MRC.",
+    "statuts": [
+     "Élus"
+    ]
+   },
+   {
+    "nom": "Comité Vigie-Santé Granit",
+    "mandat": "Discute des enjeux du RLS du Granit pour maintenir et améliorer l'accessibilité, la qualité et la continuité des soins.",
+    "statuts": [
+     "Élus",
+     "Réseau de la santé",
+     "Organismes communautaires",
+     "Citoyens et usagers",
+     "Personnel de la MRC"
+    ]
+   },
+   {
+    "nom": "Comité de pilotage de la politique de la famille et des aînés (MADA)",
+    "mandat": "Élabore la politique, oriente la démarche et mobilise les parties prenantes.",
+    "statuts": [
+     "Élus",
+     "Réseau de la santé",
+     "Organismes communautaires",
+     "Citoyens et usagers",
+     "Personnel de la MRC"
+    ]
+   },
+   {
+    "nom": "Comité mobilité durable",
+    "mandat": "Soutient le plan de mobilité durable : transport collectif, covoiturage et transport actif.",
+    "statuts": [
+     "Élus",
+     "Organismes communautaires",
+     "Personnel de la MRC"
+    ],
+    "precision": "L'organisme présent est le transporteur mandataire."
+   },
+   {
+    "nom": "Comité Plan climat",
+    "mandat": "Assure l'élaboration du plan climat.",
+    "statuts": [
+     "Élus",
+     "Réseau de la santé",
+     "Organismes communautaires",
+     "Personnel de la MRC"
+    ],
+    "precision": "Le réseau de la santé y est représenté par la santé publique."
+   },
+   {
+    "nom": "Comité du plan de développement de la zone agricole (PDZA)",
+    "mandat": "Mobilise les acteurs agricoles, forestiers et agroalimentaires et assure le suivi du plan.",
+    "statuts": [
+     "Élus",
+     "Entreprises et milieux",
+     "Gouvernement",
+     "Personnel de la MRC"
+    ]
+   },
+   {
+    "nom": "Comité Région de Mégantic 100 % Attractive",
+    "mandat": "Concerte les initiatives d'attraction, de rétention et de qualité de vie.",
+    "statuts": [
+     "Élus",
+     "Réseau de la santé",
+     "Organismes communautaires",
+     "Entreprises et milieux",
+     "Gouvernement",
+     "Personnel de la MRC"
+    ]
+   }
+  ]
+ },
+ "ancrage": {
+  "titre": "Un territoire aux frontières ouvertes",
+  "note": "Les enjeux de santé ne s'arrêtent pas aux limites de la MRC. Ces repères rappellent où le territoire vécu déborde du territoire administratif.",
+  "items": [
+   {
+    "prov": "reel",
+    "texte": "Le réseau local de services du Granit compte 21 886 habitants; la MRC en compte 21 935 selon le décret de population de 2026. Les deux périmètres sont proches sans être identiques.",
+    "src": "DSP de l'Estrie, Faits saillants RLS du Granit, avril 2025; décret de population 2026"
+   },
+   {
+    "prov": "reel",
+    "texte": "Parmi les 7 630 résidents qui ont un lieu habituel de travail, 1 205 (16 %) travaillent dans une autre MRC.",
+    "src": "Statistique Canada, Recensement de 2021, division Le Granit"
+   },
+   {
+    "prov": "terrain",
+    "texte": "Les services spécialisés se trouvent à Sherbrooke; trois organismes sur dix le rappellent, et le coût du transport médical est nommé comme un frein.",
+    "src": "Collecte MADA"
+   },
+   {
+    "prov": "reel",
+    "texte": "Le système de gestion du transport des personnes fait l'objet d'un appel d'offres commun à plusieurs MRC de l'Estrie et de la région.",
+    "src": "Procès-verbal du conseil des maires, 26 novembre 2025"
+   },
+   {
+    "prov": "terrain",
+    "texte": "Pour la garde éducative, une partie du territoire relève d'un réseau voisin, selon un organisme.",
+    "src": "Collecte MADA"
+   }
+  ]
+ },
+ "voixCitoyenne": "Aucune parole citoyenne n'est encore intégrée. La démarche MADA prévoit un sondage et des soirées de consultation publique; leurs résultats s'ajouteront ici lorsqu'ils seront disponibles.",
+ "donnees": {
+  "note": "Qui fournit quoi, comment la donnée arrive sur la plateforme et à quelles conditions elle peut être réutilisée. Une case « À documenter » signale une entente à écrire ou à vérifier.",
+  "principes": [
+   "La plateforme et ses données sont hébergées dans un dépôt public. Aucune donnée personnelle ni aucun propos attribué à une personne n'y sont versés.",
+   "Chaque valeur porte une pastille de provenance : Réel, Registraire, Estimation, Terrain, Calcul ou À compléter.",
+   "Les municipalités saisissent leurs données dans un chiffrier commun; chacune modifie sa propre feuille avec son mot de passe.",
+   "Les constats d'entrevue sont agrégés avant d'être publiés."
+  ],
+  "jeux": [
+   {
+    "nom": "Registre des entreprises",
+    "fournisseur": "Registraire des entreprises du Québec (Données Québec)",
+    "mode": "Automatique",
+    "frequence": "Le 3 et le 18 de chaque mois",
+    "conditions": "Licence CC BY-NC-SA 4.0",
+    "vues": "Entreprises, Municipalités"
+   },
+   {
+    "nom": "Services de garde",
+    "fournisseur": "Ministère de la Famille (Données Québec)",
+    "mode": "Automatique",
+    "frequence": "Quatre fois par an",
+    "conditions": "Licence CC BY 4.0",
+    "vues": "Logements et garderies"
+   },
+   {
+    "nom": "Logements, emploi et navettage",
+    "fournisseur": "Statistique Canada, Recensement de 2021",
+    "mode": "Automatique",
+    "frequence": "Quatre fois par an (source quinquennale)",
+    "conditions": "Licence ouverte de Statistique Canada",
+    "vues": "Logements et garderies, Emploi"
+   },
+   {
+    "nom": "Limites municipales",
+    "fournisseur": "Gouvernement du Québec, Système sur les découpages administratifs",
+    "mode": "Manuel (flux lancé au besoin)",
+    "frequence": "Lors d'un changement de limite",
+    "conditions": null,
+    "vues": "Carte"
+   },
+   {
+    "nom": "Population et structure par âge",
+    "fournisseur": "Institut de la statistique du Québec; décret de population",
+    "mode": "Saisie",
+    "frequence": "Selon les publications",
+    "conditions": null,
+    "vues": "Portrait démographique"
+   },
+   {
+    "nom": "Indicateurs de santé",
+    "fournisseur": "Direction de santé publique de l'Estrie (Faits saillants RLS du Granit, avril 2025)",
+    "mode": "Saisie",
+    "frequence": "À chaque mise à jour publiée",
+    "conditions": "Publication publique; aucune entente de partage de données",
+    "vues": "Portrait des déterminants"
+   },
+   {
+    "nom": "Données des municipalités",
+    "fournisseur": "Les 19 municipalités",
+    "mode": "Chiffrier trimestriel",
+    "frequence": "Trimestrielle",
+    "conditions": null,
+    "vues": "Plusieurs vues"
+   },
+   {
+    "nom": "Inventaire des gaz à effet de serre",
+    "fournisseur": "MRC du Granit (version préliminaire, année de référence 2024)",
+    "mode": "Saisie",
+    "frequence": "Selon les révisions du plan climat",
+    "conditions": null,
+    "vues": "Plan climat"
+   },
+   {
+    "nom": "Constats du milieu",
+    "fournisseur": "Collecte MADA auprès de dix organismes",
+    "mode": "Manuel, constats agrégés",
+    "frequence": "Ponctuelle",
+    "conditions": "Accord des organismes pour la diffusion à confirmer",
+    "vues": "Constats du milieu, Portrait des déterminants"
+   },
+   {
+    "nom": "Décisions et suivis",
+    "fournisseur": "Procès-verbaux publics du conseil des maires",
+    "mode": "Manuel",
+    "frequence": "Après chaque séance (à mettre en place)",
+    "conditions": "Documents publics",
+    "vues": "De la donnée à la décision"
+   }
+  ]
+ }
+}

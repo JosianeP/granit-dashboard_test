@@ -1297,15 +1297,15 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
 
       <!-- SANTE -->
       <div class="view" id="view-sa-portrait">
-        <div class="section-header"><div class="sh-left"><h2>Portrait des déterminants sociaux de la santé</h2><p>Les 17 déterminants reconnus en contexte canadien - ce qui est documenté pour le Granit, et ce qui ne l'est pas encore</p></div><span class="pillar-badge pb-sa">Santé</span></div>
+        <div class="section-header"><div class="sh-left"><h2>Portrait des déterminants sociaux de la santé</h2><p>17 déterminants - ce qui est documenté pour le Granit et ce qui reste à documenter</p></div><span class="pillar-badge pb-sa">Santé</span></div>
         <div class="sdoh-intro" id="sdohIntro"></div>
-        <div id="sdohCadre"></div>
         <div class="ss-row" id="sdohCouv"></div>
         <div class="sdoh-grid" id="sdohGrid"></div>
+        <div id="sdohCadre"></div>
       </div>
 
       <div class="view" id="view-sa-governance">
-        <div class="section-header"><div class="sh-left"><h2>Instances et leviers</h2><p>Qui discute de quoi, et par quels leviers le territoire agit sur les déterminants de la santé</p></div><span class="pillar-badge pb-sa">Santé</span></div>
+        <div class="section-header"><div class="sh-left"><h2>Instances et leviers</h2><p>Qui discute de quoi, et par quels leviers agir sur les déterminants</p></div><span class="pillar-badge pb-sa">Santé</span></div>
         <div style="background:linear-gradient(135deg,#0c3d4d,#0e7490);border-radius:var(--r);padding:18px 22px;margin-bottom:18px;color:#fff">
           <div style="font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:7px">Cadre conceptuel</div>
           <h2 style="font-size:17px;margin-bottom:7px;color:#fff;font-weight:600">La Santé dans toutes les politiques (SdTP)</h2>
@@ -1322,7 +1322,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
       </div>
 
       <div class="view" id="view-sa-vuln">
-        <div class="section-header"><div class="sh-left"><h2>Éloignement territorial</h2><p>Indice analytique par municipalité, fondé sur la ruralité, la densité et la superficie. Il ne mesure ni la défavorisation ni l'état de santé</p></div><span class="pillar-badge pb-sa">Santé</span></div>
+        <div class="section-header"><div class="sh-left"><h2>Éloignement territorial</h2><p>Indice analytique fondé sur la ruralité, la densité et la superficie; il ne mesure pas l'état de santé</p></div><span class="pillar-badge pb-sa">Santé</span></div>
         <div class="ss-row" id="vulnStats"></div>
         <div class="two-col">
           <div class="card"><div class="ct">Indice d'éloignement par municipalité <span class="prov prov-est">Estimation</span></div><div style="position:relative;height:440px"><canvas id="vulnChart"></canvas></div></div>
@@ -3398,7 +3398,6 @@ function renderSdohIntro(){
   if(!D.sante)return;
   document.getElementById('sdohIntro').innerHTML=
     '<div class="sdp-badge">Santé dans toutes les politiques (SdTP)</div>'+
-    '<h3>Portrait des déterminants sociaux de la santé - MRC du Granit</h3>'+
     '<p>'+D.sante.intro+'</p>';
 }
 
@@ -3407,11 +3406,7 @@ function renderSdohPortrait(){
   if(!D.sante)return;
   var dets=D.sante.determinants||[], c=D.sante.cadre||{};
   var cad=document.getElementById('sdohCadre');
-  if(cad)cad.innerHTML=c.nom?
-    '<div class="card" style="margin-bottom:16px"><div class="ct">Cadre de lecture - '+c.nom+'</div>'+
-    '<div class="rv-p" style="margin-bottom:8px">'+(c.definition||'')+'</div>'+
-    '<div class="rv-p" style="margin-bottom:8px">'+(c.prudence||'')+'</div>'+
-    '<div class="rv-src" style="margin-top:0">'+(c.limite||'')+' Référence : '+(c.reference||'')+'.</div></div>':'';
+  if(cad)cad.innerHTML=c.reference?'<div class="rv-src" style="margin-top:0">'+c.reference+'</div>':'';
   var avec=dets.filter(function(d){return d.indicator;}).length;
   var couv=document.getElementById('sdohCouv');
   if(couv)couv.innerHTML=ss(dets.length,'Déterminants sociaux de la santé')+
@@ -3425,7 +3420,7 @@ function renderSdohPortrait(){
       '<div class="det-name">'+d.name+'</div>'+
       (a?'<span class="prov prov-reel" style="margin-left:0">Réel</span>':'<span class="prov prov-todo" style="margin-left:0">À compléter</span>')+
       (d.source?'<span class="det-source '+srcClass(d.source)+'" style="margin-left:6px">'+d.source+'</span>':'')+
-      '<div class="det-indicator">'+(a?d.indicator:(d.aDocumenter||'Aucune donnée locale sur la plateforme.'))+'</div>'+
+      '<div class="det-indicator">'+(a?d.indicator:(d.aDocumenter||'Aucune donnée locale.'))+'</div>'+
       (d.link?'<div class="det-link">'+d.link+'</div>':'')+'</div>';
   }).join('');
 }

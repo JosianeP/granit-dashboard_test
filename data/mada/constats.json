@@ -8,7 +8,7 @@
     "organismesRencontres": 10,
     "organismesPrevus": 11,
     "integration": "2026-11-24",
-    "lecture": "Ces constats sont des observations d'intervenantes et d'intervenants, recueillies en entrevue. Ils ne mesurent pas un phénomène : ils disent ce que le terrain voit, et combien d'organismes le disent. Un constat nommé par un seul organisme peut être tout aussi réel qu'un constat nommé par sept; il est simplement moins corroboré. Aucun constat n'est réparti par municipalité, la collecte n'ayant pas été faite à cette échelle.",
+    "lecture": "Observations d'intervenants recueillies en entrevue : elles disent ce que le terrain voit et combien d'organismes le disent, sans le mesurer. Aucune répartition par municipalité.",
     "organismes": [
       "Maison de la famille du Granit",
       "Point jeunesse du Granit",
@@ -22,8 +22,8 @@
       "L'Équipe de proximité"
     ],
     "aCompleter": "La fiche de La Constellation du Granit est vide; la rencontre reste à tenir ou à consigner.",
-    "lectureSante": "Chaque déterminant social de la santé est lu à trois voix : les chiffres des sources officielles, les constats des organismes et la parole des citoyens, qui reste à recueillir. Les trois se lisent côte à côte. Le rattachement d'un constat à un déterminant est un choix d'analyse, à valider avec la Direction de santé publique.",
-    "sansConstat": "La collecte MADA ne portait pas sur ces déterminants; l'absence de constat ne dit rien de leur importance."
+    "lectureSante": "Chaque déterminant se lit à trois voix : chiffres, organismes, citoyens. Le rattachement d'un constat à un déterminant est un choix d'analyse.",
+    "sansConstat": "La collecte MADA ne portait pas sur ces déterminants."
   },
   "types": {
     "enjeu": "Enjeu",
@@ -471,7 +471,7 @@
     }
   ],
   "chiffres": {
-    "note": "Chiffres avancés de vive voix par les organismes. Ils n'ont pas été vérifiés auprès d'une source écrite et ne remplacent aucune donnée officielle du tableau de bord.",
+    "note": "Chiffres donnés de vive voix, non vérifiés auprès d'une source écrite.",
     "items": [
       {
         "valeur": "environ 150",
@@ -507,7 +507,7 @@
   },
   "acces": {
     "titre": "Disponible ne veut pas dire accessible",
-    "note": "Une ressource peut exister sans être utilisée. Cinq dimensions de l'accès aident à comprendre pourquoi (Penchansky, 1981; Clary, 2017, cités par Shareck et Provost, 2026). Les constats qui portent sur l'accès à une ressource sont classés selon la dimension en jeu; ce classement est un choix d'analyse.",
+    "note": "Une ressource peut exister sans être utilisée. Cinq dimensions de l'accès aident à comprendre pourquoi (Penchansky, 1981; Clary, 2017). Le classement des constats est un choix d'analyse.",
     "dimensions": [
       {
         "id": "dispo",

@@ -2,8 +2,8 @@
  "_lisezmoi": "Fichier tenu à la main. Il alimente les vues « De la donnée à la décision », « Instances et leviers » et « Données et gouvernance » du pilier Santé. Règles : n'inscrire une décision que si une source publique la confirme (procès-verbal, communiqué, règlement); aucun nom de personne; aucune comparaison entre municipalités; une étape sans trace reste vide et s'affiche « À documenter ». Le registre est une mémoire pour la MRC, pas une évaluation du conseil.",
  "meta": {
   "maj": "2026-11-24",
-  "cadre": "Ce pilier suit une boucle en cinq temps : des savoirs sont réunis, une instance en discute, une décision est prise, ses effets sont suivis, puis la décision est ajustée. La notion de territoire apprenant, qui inspire cette lecture, désigne ce processus porté par un collectif d'acteurs et non une qualité que posséderait un lieu. La plateforme ne mesure donc pas si le Granit « est » un territoire apprenant; elle garde la trace de ce qui est su, décidé et suivi.",
-  "limite": "Le registre part des procès-verbaux publics du conseil des maires, lus pour quelques séances seulement (septembre et novembre 2025, avril 2026). Il est incomplet. Le lien entre un savoir et une décision n'est inscrit que lorsqu'une source le dit; l'absence d'une trace ne signifie pas que l'étape n'a pas eu lieu."
+  "cadre": "Chaque enjeu est suivi en cinq temps. Une étape sans trace s'affiche « À documenter ».",
+  "limite": "Registre partiel, tiré des procès-verbaux publics de trois séances du conseil des maires (septembre et novembre 2025, avril 2026)."
  },
  "sources": {
   "pv0917": {
@@ -75,7 +75,7 @@
    "id": "transport",
    "nom": "Transport collectif et adapté",
    "det": "dss17",
-   "resume": "L'enjeu le plus souvent nommé par les organismes. Plusieurs décisions récentes portent sur le financement et l'optimisation du service.",
+   "resume": "Enjeu le plus nommé par les organismes; trois décisions récentes sur le financement et l'optimisation.",
    "savoirs": [
     {
      "date": "Octobre 2025 à janvier 2026",
@@ -122,7 +122,7 @@
    "ajustement": [],
    "equite": {
     "objectif": "Favoriser la mobilité des jeunes et leur accès aux activités de la région.",
-    "note": "Exemple appliqué aux jeunes, proposé comme piste de réflexion. Il ne s'agit pas d'une décision.",
+    "note": "Exemple appliqué aux jeunes, proposé comme piste; ce n'est pas une décision.",
     "src": "table017",
     "blocs": [
      {
@@ -162,7 +162,7 @@
    "id": "soins",
    "nom": "Accès aux soins et personnel du réseau local de services",
    "det": "dss10",
-   "resume": "Le conseil des maires a soutenu le recrutement infirmier au RLS du Granit et a prévu un rapport de suivi aux six mois.",
+   "resume": "Soutien du conseil au recrutement infirmier, avec un suivi prévu aux six mois.",
    "savoirs": [
     {
      "date": "2025-09-17",
@@ -213,7 +213,7 @@
    "id": "logement",
    "nom": "Logement abordable et social",
    "det": "dss07",
-   "resume": "Les chiffres et le terrain convergent sur la rareté du logement abordable. Une décision de soutien à la recherche de logement est tracée.",
+   "resume": "Chiffres et terrain convergent sur la rareté du logement abordable.",
    "savoirs": [
     {
      "date": "2021",
@@ -244,7 +244,7 @@
    "id": "mada",
    "nom": "Vieillir et vivre en famille dans le Granit (démarche MADA)",
    "det": "dss08",
-   "resume": "Une boucle en cours : les savoirs se constituent, la politique et les plans d'action restent à venir.",
+   "resume": "Boucle en cours : la politique et les plans d'action restent à venir.",
    "savoirs": [
     {
      "date": "Octobre 2025 à janvier 2026",
@@ -282,7 +282,7 @@
    "id": "garde",
    "nom": "Places en service de garde",
    "det": "dss05",
-   "resume": "Le portrait de l'offre est établi. Le nombre d'enfants en attente n'est connu que de vive voix.",
+   "resume": "Offre connue; nombre d'enfants en attente connu de vive voix seulement.",
    "savoirs": [
     {
      "date": "2026-11",
@@ -306,7 +306,7 @@
    "id": "information",
    "nom": "Faire connaître les services offerts",
    "det": "dss09",
-   "resume": "Un enjeu nommé par sept organismes sur dix, pour lequel aucune décision n'est encore tracée.",
+   "resume": "Nommé par sept organismes sur dix; aucune décision tracée.",
    "savoirs": [
     {
      "date": "Octobre 2025 à janvier 2026",
@@ -322,7 +322,7 @@
   }
  ],
  "journal": {
-  "note": "Ce journal garde la trace des lectures qui ont changé, et de ce qui les a fait changer. Les premières entrées viennent de la tenue de la plateforme; celles issues d'une discussion en comité s'y ajouteront.",
+  "note": "Les lectures qui ont changé, et ce qui les a fait changer.",
   "entrees": [
    {
     "date": "2026-11-24",
@@ -365,7 +365,7 @@
   "Personnel de la MRC"
  ],
  "instances": {
-  "note": "Composition par type de membres, sans nom de personne, d'après le document public de la MRC. À valider par le greffe; la composition change au fil des nominations.",
+  "note": "Composition par type de membres, selon le document public de la MRC. À valider par le greffe.",
   "src": "comites",
   "liste": [
    {
@@ -445,7 +445,7 @@
  },
  "ancrage": {
   "titre": "Un territoire aux frontières ouvertes",
-  "note": "Les enjeux de santé ne s'arrêtent pas aux limites de la MRC. Ces repères rappellent où le territoire vécu déborde du territoire administratif.",
+  "note": "Là où le territoire vécu déborde du territoire administratif.",
   "items": [
    {
     "prov": "reel",
@@ -474,15 +474,15 @@
    }
   ]
  },
- "voixCitoyenne": "Aucune parole citoyenne n'est encore intégrée. La démarche MADA prévoit un sondage et des soirées de consultation publique; leurs résultats s'ajouteront ici lorsqu'ils seront disponibles.",
+ "voixCitoyenne": "Aucune parole citoyenne intégrée pour l'instant. Le sondage et les soirées de consultation de la démarche MADA s'ajouteront ici.",
  "donnees": {
-  "note": "Qui fournit quoi, comment la donnée arrive sur la plateforme et à quelles conditions elle peut être réutilisée. Une case « À documenter » signale une entente à écrire ou à vérifier.",
+  "note": "",
   "principes": [
-   "La plateforme et ses données sont hébergées dans un dépôt public. Aucune donnée personnelle ni aucun propos attribué à une personne n'y sont versés.",
-   "Chaque valeur porte une pastille de provenance : Réel, Registraire, Estimation, Terrain, Calcul ou À compléter.",
-   "Les municipalités saisissent leurs données dans un chiffrier commun; chacune modifie sa propre feuille avec son mot de passe.",
-   "Les constats d'entrevue sont agrégés avant d'être publiés.",
-   "Petits effectifs, grande prudence : un chiffre par municipalité ou par sous-groupe n'est publié que s'il est diffusable et ne risque pas de tromper."
+   "Dépôt public : aucune donnée personnelle ni propos attribué à une personne.",
+   "Chaque valeur porte une pastille de provenance.",
+   "Chaque municipalité modifie sa propre feuille du chiffrier commun, avec son mot de passe.",
+   "Les constats d'entrevue sont agrégés avant publication.",
+   "Petits effectifs, grande prudence : un chiffre n'est publié que s'il est diffusable et ne risque pas de tromper."
   ],
   "jeux": [
    {
@@ -588,63 +588,63 @@
    {
     "no": 1,
     "nom": "Tenir compte de l'équité tôt",
-    "texte": "L'équité se pense dès la réflexion, sous trois angles : procédural (qui participe aux décisions), distributif (comment les ressources et les services se répartissent) et de reconnaissance (le respect des différents groupes).",
+    "texte": "Dès la réflexion, sous trois angles : qui participe aux décisions, comment les ressources se répartissent, quels groupes sont reconnus.",
     "ou": "Regard d'équité de chaque enjeu, plus bas"
    },
    {
     "no": 2,
     "nom": "Soutenir une participation authentique",
-    "texte": "Lever les obstacles à la participation : horaires et moyens de communication inadaptés, impression que sa voix ne compte pas, absence de retour sur ce qui a été fait des avis reçus.",
+    "texte": "Lever les obstacles : horaires et canaux inadaptés, impression que sa voix ne compte pas, absence de retour sur les avis reçus.",
     "ou": "Tableau des instances; voix des citoyens dans Constats du milieu"
    },
    {
     "no": 3,
     "nom": "Miser sur la collaboration intersectorielle",
-    "texte": "Des acteurs hors du réseau de la santé agissent sur les déterminants : transport, logement, services de garde, écoles, commerce de proximité.",
+    "texte": "Transport, logement, services de garde, écoles, commerces : des acteurs hors santé agissent sur les déterminants.",
     "ou": "Instances et leviers"
    },
    {
     "no": 4,
     "nom": "Investir dans l'évaluation et l'amélioration continue",
-    "texte": "Sans données, on agit sur des impressions. Le quantitatif montre le gradient et l'évolution; le qualitatif explique pourquoi un service disponible n'est pas utilisé.",
+    "texte": "Le quantitatif montre le gradient et l'évolution; le qualitatif explique pourquoi un service disponible n'est pas utilisé.",
     "ou": "Étapes Suivi des effets et Ajustement; Données et gouvernance"
    }
   ]
  },
  "iss": {
-  "definition": "Les inégalités sociales de santé sont des écarts de santé associés à des avantages ou à des désavantages sociaux, par exemple le revenu, la scolarité, le genre ou la géographie, et jugés injustes et évitables (Organisation mondiale de la santé).",
+  "definition": "Des écarts de santé liés à des avantages ou à des désavantages sociaux (revenu, scolarité, genre, géographie), jugés injustes et évitables (OMS).",
   "reperes": [
-   "Le gradient compte autant que l'écart entre les extrêmes : la santé s'améliore à chaque échelon de l'échelle sociale.",
-   "Ces inégalités fluctuent dans le temps. On peut donc agir pour les réduire."
+   "Le gradient compte autant que l'écart entre les extrêmes.",
+   "Ces inégalités fluctuent dans le temps; on peut donc les réduire."
   ],
   "mecanismes": [
    {
     "nom": "Une distribution inégale des ressources",
-    "texte": "Les ressources favorables ou défavorables à la santé ne sont pas réparties également sur le territoire."
+    "texte": "Les ressources favorables à la santé ne sont pas réparties également sur le territoire."
    },
    {
     "nom": "Une appropriation différente de l'espace",
-    "texte": "À ressources égales, les groupes sociaux n'y accèdent pas, ne les utilisent pas et ne les vivent pas de la même façon."
+    "texte": "À ressources égales, les groupes sociaux n'y accèdent pas et ne les vivent pas de la même façon."
    }
   ],
-  "rural": "En milieu rural, les mêmes mécanismes jouent, amplifiés par la distance : l'accès se mesure en minutes d'auto, pas en minutes de marche.",
+  "rural": "En milieu rural, la distance amplifie ces mécanismes : l'accès se mesure en minutes d'auto.",
   "exemples": [
    {
     "titre": "Pas de permis, pas de transport, pas d'activité",
-    "texte": "Avant 16 ou 17 ans, l'accès d'un jeune dépend presque entièrement d'un adulte disponible et d'un véhicule. Une ressource présente dans la ville centre reste hors de portée pour le jeune d'une municipalité périphérique."
+    "texte": "Avant 16 ou 17 ans, l'accès dépend d'un adulte disponible et d'un véhicule. Une ressource de la ville centre reste hors de portée du jeune d'un village."
    },
    {
     "titre": "Travailler à 14 ans, ressource favorable ou défavorable?",
-    "texte": "Le même emploi n'a pas le même effet selon le milieu familial : autonomie et adultes significatifs pour les uns, fatigue et décrochage larvé pour les autres. La question est de savoir qui y va par choix et qui y va par nécessité."
+    "texte": "Le même emploi apporte de l'autonomie aux uns, de la fatigue et du décrochage aux autres. Qui y va par choix, qui y va par nécessité?"
    },
    {
     "titre": "Quand l'école du village ferme",
-    "texte": "L'école primaire est souvent le seul lieu public non commercial d'un village. Sa fermeture allonge les trajets et affaiblit l'appartenance. Un acteur hors santé et hors éducation, comme une MRC, peut agir sur ce déterminant en coordonnant et en soutenant."
+    "texte": "Souvent seul lieu public non commercial du village, l'école qui ferme allonge les trajets et affaiblit l'appartenance. Une MRC peut agir en coordonnant et en soutenant."
    }
   ],
   "jeunes": {
    "titre": "La santé des jeunes du secondaire du Granit",
-   "note": "Proportion d'élèves du secondaire du RLS du Granit, en pourcentage. Chaque valeur est comparée au reste du Québec : quatre indicateurs sur dix-sept s'en écartent de façon statistiquement significative, et les treize autres lui sont comparables. Ces chiffres décrivent l'ensemble des élèves du territoire; ils ne montrent pas d'écarts entre groupes sociaux.",
+   "note": "Proportion d'élèves du secondaire, en pourcentage. Quatre indicateurs sur dix-sept diffèrent du reste du Québec de façon statistiquement significative.",
    "src": "eqsjsGranit",
    "territoires": [
     "Granit (RLS)"
@@ -802,8 +802,8 @@
      ]
     }
    ],
-   "verif": "Valeurs vérifiées dans le tableau-synthèse du RLS du Granit publié par la Direction de santé publique de l'Estrie. Trois proportions sont peu précises en raison des petits effectifs et sont signalées."
+   "verif": "Trois proportions peu précises, en raison des petits effectifs, sont signalées."
   },
-  "manque": "La plateforme ne montre pas encore de gradient social à l'intérieur du Granit, c'est-à-dire des écarts de santé selon le revenu, la scolarité ou le genre. C'est la prochaine donnée à aller chercher, avec la prudence qu'imposent les petits effectifs."
+  "manque": "Aucun gradient social à l'intérieur du Granit (écarts selon le revenu, la scolarité ou le genre) n'est encore documenté."
  }
 }

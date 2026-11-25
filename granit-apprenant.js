@@ -159,11 +159,11 @@
     document.head.appendChild(css);
 
     vue('view-sa-iss', 'view-sa-portrait', 'Inégalités sociales de santé',
-      'Des écarts de santé injustes et évitables - comment ils se fabriquent et ce que l\'on en sait dans le Granit', 'apIss');
+      'Des écarts de santé injustes et évitables, et ce que l\'on en sait dans le Granit', 'apIss');
     vue('view-sa-boucle', 'view-sa-governance', 'De la donnée à la décision',
       'Ce qui est su, discuté, décidé, suivi et ajusté, enjeu par enjeu', 'apBoucle');
     vue('view-sa-donnees', 'view-sa-vuln', 'Données et gouvernance',
-      'D\'où viennent les données, comment elles arrivent ici et à quelles conditions', 'apDonnees');
+      'Provenance, mise à jour et conditions de réutilisation', 'apDonnees');
 
     /* Navigation du pilier, regroupée selon la boucle. */
     var nav = document.getElementById('sbnSa');
@@ -283,7 +283,7 @@
       h += '<div class="card" style="margin-bottom:18px"><div class="ct">' + esc(C.acces.titre) + ' ' + prov('terrain') + '</div><div class="rv-p">' + esc(C.acces.note) + '</div><div class="ap-dim">' +
         C.acces.dimensions.map(function (k) {
           return '<button onclick="GranitMADA.allerAcces(\'' + k.id + '\')" aria-label="' + esc(k.nom) + ', ' + (n[k.id] || 0) + ' constats, voir la liste"><div class="ap-dim-n">' + (n[k.id] || 0) + '</div><div class="ap-dim-t">' + esc(k.nom) + '</div><div class="ap-dim-d">' + esc(k.desc) + '</div></button>';
-        }).join('') + '</div><div class="ap-src">Nombre de constats du milieu par dimension. Un clic ouvre la liste dans Constats du milieu.</div></div>';
+        }).join('') + '</div><div class="ap-src">Nombre de constats par dimension; un clic ouvre la liste.</div></div>';
     } else if (M && M.charger && !S.madaDemande) { S.madaDemande = true; M.charger().then(rendreIss).catch(function () {}); }
 
     if (J) {
@@ -339,7 +339,7 @@
     var auto = jeux.filter(function (x) { return /^Automatique/.test(x.mode); }).length;
     var sans = jeux.filter(function (x) { return !x.conditions; }).length;
     var ss = window.ss;
-    el.innerHTML = '<div class="ap-cadre">' + esc(G.note) + '</div>' +
+    el.innerHTML = (G.note ? '<div class="ap-cadre">' + esc(G.note) + '</div>' : '') +
       '<div class="ss-row">' + ss(jeux.length, 'Jeux de données') + ss(auto, 'Mis à jour automatiquement') +
       ss(jeux.length - auto, 'Saisis ou versés à la main') + ss(sans, 'Conditions de partage à documenter') + '</div>' +
       '<div class="card" style="margin-bottom:18px"><div class="ct">Principes en vigueur</div><ul class="ap-li">' +

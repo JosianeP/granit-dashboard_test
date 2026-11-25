@@ -4980,7 +4980,7 @@
     }
   },
   "sante": {
-    "intro": "Ce pilier ne mesure pas le système de soins. Il lit la santé de la population à travers les 17 déterminants sociaux de la santé reconnus en contexte canadien, et à travers les inégalités sociales de santé qui en découlent. À l'échelle d'une MRC, les décisions économiques et territoriales sont aussi des décisions de santé. Les chiffres de référence viennent de la Direction de santé publique de l'Estrie (Faits saillants - RLS du Granit, avril 2025). Le RLS du Granit compte 21 886 habitants et une population plus âgée que celle de l'Estrie : âge médian de 52 ans, contre 46 ans.",
+    "intro": "La santé de la population se joue surtout hors du système de soins. Ce pilier la lit à travers 17 déterminants sociaux de la santé. Le RLS du Granit compte 21 886 habitants; l'âge médian y est de 52 ans, contre 46 en Estrie (DSP de l'Estrie, avril 2025).",
     "compositeNote": "Le portrait ne comporte plus de score ni d'indice composite. Chaque déterminant indique ce qui est documenté et ce qui reste à documenter.",
     "determinants": [
       {
@@ -5018,7 +5018,7 @@
         "indicator": "",
         "link": "",
         "real": false,
-        "aDocumenter": "Aucun indicateur sur le chômage, l'aide de dernier recours ou la précarité d'emploi ne figure encore sur la plateforme."
+        "aDocumenter": "Aucun indicateur sur le chômage ou la précarité d'emploi."
       },
       {
         "id": "dss05",
@@ -5052,7 +5052,7 @@
         "no": 8,
         "name": "Exclusion sociale",
         "source": "Gouvernance territoriale",
-        "indicator": "Ce déterminant se lit ici par son envers, la cohésion et la participation sociales. Densité coopérative (Desjardins, coop agricole, EDG communautaire), économie sociale (Coup de Pouce, SAD Granit), sentinelles aînés, CDC du Granit, MADA. DSP Estrie - Faits saillants RLS du Granit, avril 2025 : familles monoparentales 12 % (parmi les plus faibles de l'Estrie); participation sociale des aînés en hausse (44,5 % → 54,7 % entre 2018 et 2022).",
+        "indicator": "Lu ici par son envers, la cohésion sociale. Densité coopérative (Desjardins, coop agricole, EDG communautaire), économie sociale (Coup de Pouce, SAD Granit), sentinelles aînés, CDC du Granit, MADA. DSP Estrie - Faits saillants RLS du Granit, avril 2025 : familles monoparentales 12 % (parmi les plus faibles de l'Estrie); participation sociale des aînés en hausse (44,5 % → 54,7 % entre 2018 et 2022).",
         "link": "La gouvernance énergétique communautaire (EDG, 1,75 M$ redevances) et les instances de concertation renforcent le soutien social.",
         "real": true
       },
@@ -5064,7 +5064,7 @@
         "indicator": "",
         "link": "",
         "real": false,
-        "aDocumenter": "Aucun indicateur chiffré (prestations, couverture des programmes, recours à l'aide alimentaire) ne figure encore sur la plateforme. Les organismes communautaires du territoire en sont un maillon; voir les constats du milieu."
+        "aDocumenter": "Aucun indicateur chiffré. Voir les constats du milieu."
       },
       {
         "id": "dss10",
@@ -5083,7 +5083,7 @@
         "indicator": "",
         "link": "",
         "real": false,
-        "aDocumenter": "Aucune donnée locale sur la plateforme."
+        "aDocumenter": "Aucune donnée locale."
       },
       {
         "id": "dss12",
@@ -5093,7 +5093,7 @@
         "indicator": "",
         "link": "",
         "real": false,
-        "aDocumenter": "Seule donnée ventilée selon le sexe sur la plateforme : le revenu médian après impôt, de 35 600 $ chez les hommes et de 29 600 $ chez les femmes (voir Revenu). Aucun autre indicateur n'est ventilé."
+        "aDocumenter": "Seule donnée ventilée selon le sexe : le revenu médian après impôt, 35 600 $ chez les hommes et 29 600 $ chez les femmes."
       },
       {
         "id": "dss13",
@@ -5103,7 +5103,7 @@
         "indicator": "",
         "link": "",
         "real": false,
-        "aDocumenter": "Aucune donnée locale sur la plateforme."
+        "aDocumenter": "Aucune donnée locale."
       },
       {
         "id": "dss14",
@@ -5113,7 +5113,7 @@
         "indicator": "",
         "link": "",
         "real": false,
-        "aDocumenter": "Aucun indicateur chiffré sur la plateforme. Les organismes rapportent des barrières de langue et de repères culturels; voir les constats du milieu."
+        "aDocumenter": "Aucun indicateur chiffré. Les organismes rapportent des barrières de langue et de repères culturels."
       },
       {
         "id": "dss15",
@@ -5123,7 +5123,7 @@
         "indicator": "",
         "link": "",
         "real": false,
-        "aDocumenter": "Aucune donnée locale sur la plateforme."
+        "aDocumenter": "Aucune donnée locale."
       },
       {
         "id": "dss16",
@@ -5133,7 +5133,7 @@
         "indicator": "",
         "link": "",
         "real": false,
-        "aDocumenter": "Aucun indicateur chiffré sur la plateforme. Les organismes signalent des lacunes d'accessibilité universelle; voir les constats du milieu."
+        "aDocumenter": "Aucun indicateur chiffré. Les organismes signalent des lacunes d'accessibilité universelle."
       },
       {
         "id": "dss17",
@@ -5296,10 +5296,7 @@
     ],
     "cadre": {
       "nom": "Déterminants sociaux de la santé en contexte canadien",
-      "reference": "liste adaptée de Raphael, Bryant, Mikkonen et Raphael (2020), Social Determinants of Health: The Canadian Facts, 2e édition, telle que présentée par Shareck et Provost le 9 novembre 2026",
-      "definition": "Les déterminants sociaux de la santé sont les circonstances dans lesquelles les personnes naissent, grandissent, vivent, travaillent et vieillissent, ainsi que les systèmes mis en place pour faire face à la maladie (Organisation mondiale de la santé). Ces circonstances découlent de choix politiques et de la répartition du pouvoir, de l'argent et des ressources.",
-      "prudence": "Petits effectifs, grande prudence. En milieu rural, un chiffre par municipalité ou par sous-groupe devient vite non diffusable ou trompeur. Plusieurs déterminants restent donc sans donnée locale, et c'est indiqué.",
-      "limite": "La liste d'origine compte aussi 17 déterminants, dont la mondialisation; celle retenue ici, reprise de la présentation, comprend plutôt l'orientation sexuelle. Aucune des deux ne comporte de déterminant propre à l'environnement physique : les éléments du milieu naturel et bâti sont rattachés ici à la géographie."
+      "reference": "Liste des déterminants adaptée de Raphael, Bryant, Mikkonen et Raphael (2020), Social Determinants of Health: The Canadian Facts, 2e édition."
     }
   },
   "portraitLGP": {

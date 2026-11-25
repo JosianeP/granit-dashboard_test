@@ -32,7 +32,7 @@
       '.prov-terrain::before{border-radius:1px;transform:rotate(45deg)}' +
       '.md-lect{background:#f5f3ff;border:1px solid #ddd6fe;border-radius:var(--r2);padding:13px 16px;font-size:14px;line-height:1.6;color:#3b1d82;margin-bottom:18px;max-width:1040px}' +
       '.md-top{display:grid;gap:9px}' +
-      '.md-top-r{display:grid;grid-template-columns:minmax(0,1fr) 190px 74px;gap:14px;align-items:center;font-size:14px;line-height:1.45;color:var(--text2)}' +
+      '.md-top-r{display:grid;grid-template-columns:minmax(0,1fr) 190px 150px;gap:14px;align-items:center;font-size:14px;line-height:1.45;color:var(--text2)}' +
       '.md-top-r small{display:block;font-size:12.5px;color:var(--muted)}' +
       '.md-bar{height:10px;border-radius:5px;background:var(--border2);overflow:hidden}' +
       '.md-bar i{display:block;height:100%;border-radius:5px;background:var(--pillar-color)}' +
@@ -42,7 +42,7 @@
       '.md-axes{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0 20px}' +
       '.md-axe .ct{margin-bottom:3px}' +
       '.md-axe-s{font-size:13px;color:var(--muted);margin-bottom:12px}' +
-      '.md-c{display:grid;grid-template-columns:86px minmax(0,1fr);gap:12px;padding:10px 0;border-top:1px solid var(--border2);font-size:14px;line-height:1.5;color:var(--text2)}' +
+      '.md-c{display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px;padding:10px 0;border-top:1px solid var(--border2);font-size:14px;line-height:1.5;color:var(--text2)}' +
       '.md-c:first-of-type{border-top:none}' +
       '.md-pts{display:grid;grid-template-columns:repeat(5,9px);gap:3px;margin-top:5px}' +
       '.md-pts i{width:9px;height:9px;border-radius:2px;background:var(--border)}' +
@@ -74,7 +74,7 @@
       '.md-det-t{margin-top:9px;padding:9px 10px;border:1px solid #ddd6fe;border-radius:var(--r2);background:#faf8ff;font-size:13px;line-height:1.5;color:var(--text2)}' +
       '.md-det-t b{display:block;font-weight:700;color:var(--text);margin-bottom:2px}' +
       '.md-det-t .md-note-l{margin-top:5px;font-size:13px}' +
-      '@media(max-width:1000px){.md-axes{grid-template-columns:1fr}.md-top-r{grid-template-columns:minmax(0,1fr) 74px}.md-top-r .md-bar{display:none}.md-org{columns:1}}';
+      '@media(max-width:1000px){.md-axes{grid-template-columns:1fr}.md-top-r{grid-template-columns:minmax(0,1fr) 150px}.md-top-r .md-bar{display:none}.md-org{columns:1}}';
     document.head.appendChild(css);
 
     var view = document.createElement('div');
@@ -155,6 +155,7 @@
 
   /* ── Rendu de la vue ── */
   function sur(n, tot) { return n + ' sur ' + tot; }
+  function surOrg(n, tot) { return n + ' organisme' + (n > 1 ? 's' : '') + ' sur ' + tot; }
   function points(n, tot) {
     var h = '';
     for (var i = 0; i < tot; i++) h += '<i' + (i < n ? ' class="on"' : '') + '></i>';
@@ -193,7 +194,7 @@
       top.map(function (x) {
         return '<div class="md-top-r"><div>' + esc(x.c.texte) + '<small>' + x.a.no + '. ' + esc(x.a.nom) + '</small></div>' +
           '<div class="md-bar" aria-hidden="true"><i style="width:' + Math.round(x.c.n / tot * 100) + '%"></i></div>' +
-          '<div class="md-n">' + sur(x.c.n, tot) + '</div></div>';
+          '<div class="md-n">' + surOrg(x.c.n, tot) + '</div></div>';
       }).join('') + '</div></div>';
 
     h += '<div class="md-filtres" role="group" aria-label="Filtrer par axe"><span class="md-fl">Axe</span>' +
@@ -210,11 +211,11 @@
     var cartes = axes.filter(function (a) { return S.axe === 'tous' || S.axe === a.id; }).map(function (a) {
       var cs = trier(a.constats || []).filter(function (c) { return (S.type === 'tous' || S.type === c.t) && (S.acces === 'tous' || S.acces === c.acces); });
       var corps = cs.length ? cs.map(function (c) {
-        return '<div class="md-c"><div><div class="md-n">' + sur(c.n, tot) + '</div>' + points(c.n, tot) + '</div>' +
+        return '<div class="md-c"><div><div class="md-n">' + surOrg(c.n, tot) + '</div>' + points(c.n, tot) + '</div>' +
           '<div><span class="md-t md-t-' + esc(c.t) + '">' + esc(types[c.t] || c.t) + '</span>' + esc(c.texte) + dimAcces(c) + '</div></div>';
       }).join('') : '<div class="md-vide">Aucun constat ne correspond à ces filtres pour cet axe.</div>';
       return '<div class="card md-axe"><div class="ct">' + a.no + '. ' + esc(a.nom) + '</div>' +
-        '<div class="md-axe-s">Axe abordé par ' + sur(a.organismes, tot) + ' organismes</div>' + corps + '</div>';
+        '<div class="md-axe-s">Axe abordé par ' + surOrg(a.organismes, tot) + '</div>' + corps + '</div>';
     }).join('');
     h += '<div class="md-axes"' + (S.axe !== 'tous' ? ' style="grid-template-columns:1fr"' : '') + '>' + cartes + '</div>';
 
@@ -291,7 +292,7 @@
         '<div class="md-voix">Ce qu\'observent les organismes ' + terrain() + '</div>' +
         '<div class="md-axe-s" style="margin-bottom:4px">' + cs.length + ' constat' + (cs.length > 1 ? 's' : '') + ' rattaché' + (cs.length > 1 ? 's' : '') + ' à ce déterminant</div>' +
         cs.map(function (c) {
-          return '<div class="md-c"><div><div class="md-n">' + sur(c.n, tot) + '</div>' + points(c.n, tot) + '</div>' +
+          return '<div class="md-c"><div><div class="md-n">' + surOrg(c.n, tot) + '</div>' + points(c.n, tot) + '</div>' +
             '<div><span class="md-t md-t-' + esc(c.t) + '">' + esc(types[c.t] || c.t) + '</span>' + esc(c.texte) +
             '<span class="md-ax">Axe MADA ' + c.axe.no + ' - ' + esc(c.axe.nom) + '</span>' + dimAcces(c) + '</div></div>';
         }).join('') +
@@ -317,7 +318,7 @@
       var enj = cs.filter(function (c) { return c.t === 'enjeu'; }).sort(function (a, b) { return b.n - a.n; });
       var box = document.createElement('div'); box.className = 'md-det-t';
       box.innerHTML = '<b>Ce que dit le milieu ' + terrain() + '</b>' +
-        (enj.length ? esc(enj[0].texte) + ' (' + sur(enj[0].n, tot) + ' organismes)' : esc(trier(cs)[0].texte)) +
+        (enj.length ? esc(enj[0].texte) + ' (' + surOrg(enj[0].n, tot) + ')' : esc(trier(cs)[0].texte)) +
         '<br><button class="md-note-l" onclick="GranitMADA.allerSante(\'' + x.id + '\')">' + (cs.length > 1 ? 'Voir les ' + cs.length + ' constats liés' : 'Voir le constat lié') + '</button>';
       card.appendChild(box);
     });

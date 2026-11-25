@@ -37,7 +37,8 @@ Le cadre maison de huit déterminants avec scores est remplacé par les 17 déte
 - Leviers, liens entre piliers et enjeux du registre pointent vers les nouveaux déterminants.
 - Limite du cadre. La liste ne comporte pas de déterminant propre à l'environnement physique; le milieu naturel et bâti est rattaché à la géographie.
 - Chiffrier trimestriel. `granit-excel.js` n'est pas modifié. La feuille « MRC - Santé » garde ses colonnes Score et Niveau, désormais vides et sans effet; les identifiants des déterminants passent de `d1`-`d8` à `dss01`-`dss17`, de sorte qu'un ancien chiffrier ne peut pas écraser les nouvelles fiches.
-- Les valeurs de l'EQSJS ont été transcrites à partir des graphiques de la présentation; elles sont à valider à la source.
+- EQSJS. Les 17 valeurs du Granit ont été vérifiées dans le tableau-synthèse du RLS publié par la Direction de santé publique de l'Estrie; la vue indique pour chacune si elle diffère du reste du Québec au seuil de 5 % (quatre le font) et signale les trois proportions peu précises. Les valeurs de Sherbrooke et de Coaticook viennent de la présentation et restent à valider.
+- Référence du cadre. La liste d'origine (Raphael et coll., 2020) comprend la mondialisation; celle de la présentation, retenue ici, comprend plutôt l'orientation sexuelle. La vue le précise et parle d'une liste adaptée.
 
 ## Nouveautés de la version 4.18 (pilier Santé : de la donnée à la décision)
 

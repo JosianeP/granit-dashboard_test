@@ -137,6 +137,8 @@
       '.ap-gr:first-of-type .ap-gr-t{border-top:none;padding-top:0}' +
       '.ap-it{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:14px;padding:7px 0;align-items:center}' +
       '.ap-it-l{font-size:14px;line-height:1.4;color:var(--text2)}' +
+      '.ap-q{display:block;font-size:12.5px;color:var(--muted);margin-top:1px}' +
+      '.ap-q-p{color:var(--sa800);font-weight:700}' +
       '.ap-b{display:grid;grid-template-columns:minmax(0,1fr) 52px;gap:8px;align-items:center;margin:2px 0}' +
       '.ap-b-f{height:11px;background:var(--border2);border-radius:3px;overflow:hidden}' +
       '.ap-b-f i{display:block;height:100%;border-radius:3px}' +
@@ -291,12 +293,14 @@
         '<div class="ap-leg">' + J.territoires.map(function (t, i) { return '<span><i style="background:' + coul[i] + '"></i>' + esc(t) + '</span>'; }).join('') + '</div>' +
         J.groupes.map(function (g) {
           return '<div class="ap-gr"><div class="ap-gr-t">' + esc(g.nom) + '</div>' + g.items.map(function (it) {
-            return '<div class="ap-it"><div class="ap-it-l">' + esc(it.l) + '</div><div>' + it.v.map(function (v, i) {
+            var comp = it.q === '+' ? '<small class="ap-q ap-q-p">Supérieur au reste du Québec</small>' : it.q === '-' ? '<small class="ap-q ap-q-p">Inférieur au reste du Québec</small>' : it.q === 'ns' ? '<small class="ap-q">Comparable au reste du Québec</small>' : '';
+            var cv = it.cv === '**' ? '<small class="ap-q">Valeur du Granit très imprécise, à titre indicatif</small>' : it.cv === '*' ? '<small class="ap-q">Valeur du Granit à interpréter avec prudence</small>' : '';
+            return '<div class="ap-it"><div class="ap-it-l">' + esc(it.l) + comp + cv + '</div><div>' + it.v.map(function (v, i) {
               return '<div class="ap-b' + (i === 0 ? ' g' : '') + '" title="' + esc(J.territoires[i]) + '"><div class="ap-b-f"><i style="width:' + (v / max * 100).toFixed(1) + '%;background:' + coul[i] + '"></i></div><div class="ap-b-v">' + String(v.toFixed(1)).replace('.', ',') + ' %</div></div>';
             }).join('') + '</div></div>';
           }).join('') + '</div>';
         }).join('') +
-        '<div class="ap-src">Source. ' + source(J.src) + ', valeurs reprises de ' + source(J.via) + '.</div></div>';
+        '<div class="ap-src">' + esc(J.verif || '') + ' Comparaison au reste du Québec au seuil de 5 %. Sources. ' + source(J.src) + '; ' + source(J.via) + '.</div></div>';
     }
     h += '<div class="card" style="margin-bottom:18px"><div class="ct">Trois situations du Granit</div><div class="ap-ex">' +
       I.exemples.map(function (x) { return '<div><b>' + esc(x.titre) + '</b>' + esc(x.texte) + '</div>'; }).join('') +

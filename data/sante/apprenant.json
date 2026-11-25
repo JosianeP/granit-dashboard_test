@@ -33,7 +33,7 @@
    "l": "Données de la plateforme"
   },
   "table017": {
-   "l": "Shareck et Provost, Les inégalités sociales de santé chez les jeunes, Table réseau 0-17 ans du RLS de Coaticook, 9 novembre 2026"
+   "l": "Shareck et Provost, Les inégalités sociales de santé chez les jeunes, présentation du 9 novembre 2026"
   },
   "eqsjs": {
    "l": "Enquête québécoise sur la santé des jeunes du secondaire (EQSJS) 2022-2023, Institut de la statistique du Québec"
@@ -329,7 +329,7 @@
     "sujet": "Cadre des déterminants de la santé",
     "avant": "Huit déterminants maison, chacun avec un score de 0 à 100 et un indice composite.",
     "apres": "Les 17 déterminants sociaux de la santé reconnus en contexte canadien, sans score. Chaque déterminant indique ce qui est documenté et ce qui ne l'est pas; les inégalités sociales de santé et l'accès aux ressources deviennent les clés de lecture.",
-    "declencheur": "Présentation à la Table réseau 0-17 ans du RLS de Coaticook, 9 novembre 2026."
+    "declencheur": "Présentation de Shareck et Provost sur les inégalités sociales de santé chez les jeunes, 9 novembre 2026."
    },
    {
     "date": "2026-11-24",
@@ -538,7 +538,7 @@
     "fournisseur": "Institut de la statistique du Québec, EQSJS 2022-2023, diffusée par la Direction de santé publique de l'Estrie",
     "mode": "Saisie",
     "frequence": "À chaque édition de l'enquête",
-    "conditions": "Publication publique; valeurs du Granit vérifiées à la source, celles de Sherbrooke et de Coaticook à valider",
+    "conditions": "Publication publique; valeurs vérifiées à la source",
     "vues": "Inégalités sociales de santé"
    },
    {
@@ -643,14 +643,11 @@
    }
   ],
   "jeunes": {
-   "titre": "La santé des jeunes du secondaire, par territoire",
-   "note": "Proportion d'élèves du secondaire, en pourcentage. Pour le Granit, chaque valeur est comparée au reste du Québec : quatre indicateurs sur dix-sept s'en écartent de façon statistiquement significative, et les treize autres lui sont comparables, même lorsque l'écart avec Sherbrooke ou Coaticook paraît grand à l'œil. Ces comparaisons portent sur des territoires, pas sur des groupes sociaux.",
+   "titre": "La santé des jeunes du secondaire du Granit",
+   "note": "Proportion d'élèves du secondaire du RLS du Granit, en pourcentage. Chaque valeur est comparée au reste du Québec : quatre indicateurs sur dix-sept s'en écartent de façon statistiquement significative, et les treize autres lui sont comparables. Ces chiffres décrivent l'ensemble des élèves du territoire; ils ne montrent pas d'écarts entre groupes sociaux.",
    "src": "eqsjsGranit",
-   "via": "table017",
    "territoires": [
-    "Granit (RLS)",
-    "Sherbrooke",
-    "Coaticook"
+    "Granit (RLS)"
    ],
    "groupes": [
     {
@@ -663,27 +660,21 @@
       {
        "l": "Risque élevé de décrochage scolaire",
        "v": [
-        40.1,
-        19.9,
-        16.8
+        40.1
        ],
        "q": "+"
       },
       {
        "l": "Travail durant l'année scolaire",
        "v": [
-        70.2,
-        52.8,
-        68.7
+        70.2
        ],
        "q": "+"
       },
       {
        "l": "Travail de 16 heures ou plus par semaine",
        "v": [
-        17.9,
-        19.5,
-        21.8
+        17.9
        ],
        "q": "ns",
        "cv": "*"
@@ -691,9 +682,7 @@
       {
        "l": "Blessure dans le cadre du travail",
        "v": [
-        21.9,
-        33.3,
-        28.3
+        21.9
        ],
        "q": "ns"
       }
@@ -708,27 +697,21 @@
       {
        "l": "Soutien social élevé dans la famille",
        "v": [
-        72.7,
-        75.2,
-        70.0
+        72.7
        ],
        "q": "ns"
       },
       {
        "l": "Soutien social élevé des amis",
        "v": [
-        60.8,
-        62.0,
-        61.4
+        60.8
        ],
        "q": "ns"
       },
       {
        "l": "Soutien social élevé à l'école",
        "v": [
-        25.6,
-        29.3,
-        24.5
+        25.6
        ],
        "q": "ns",
        "cv": "*"
@@ -736,18 +719,14 @@
       {
        "l": "Sentiment d'appartenance élevé à l'école",
        "v": [
-        37.3,
-        50.4,
-        38.3
+        37.3
        ],
        "q": "ns"
       },
       {
        "l": "Supervision parentale élevée",
        "v": [
-        40.5,
-        38.9,
-        37.1
+        40.5
        ],
        "q": "ns"
       }
@@ -760,36 +739,28 @@
       {
        "l": "Actifs durant les loisirs et le transport",
        "v": [
-        21.5,
-        32.4,
-        32.2
+        21.5
        ],
        "q": "ns"
       },
       {
        "l": "Cigarette électronique, 30 derniers jours",
        "v": [
-        27.2,
-        15.5,
-        26.5
+        27.2
        ],
        "q": "+"
       },
       {
        "l": "Alcool, 30 derniers jours",
        "v": [
-        39.5,
-        27.9,
-        47.2
+        39.5
        ],
        "q": "+"
       },
       {
        "l": "Malbouffe deux fois ou plus le midi, dernière semaine d'école",
        "v": [
-        14.1,
-        12.5,
-        15.6
+        14.1
        ],
        "q": "ns",
        "cv": "**"
@@ -797,9 +768,7 @@
       {
        "l": "Quatre heures d'écran ou plus par jour de semaine",
        "v": [
-        22.3,
-        23.9,
-        21.0
+        22.3
        ],
        "q": "ns"
       }
@@ -812,34 +781,28 @@
       {
        "l": "Détresse psychologique élevée",
        "v": [
-        38.8,
-        40.7,
-        37.7
+        38.8
        ],
        "q": "ns"
       },
       {
        "l": "Faible estime de soi",
        "v": [
-        39.5,
-        34.6,
-        38.4
+        39.5
        ],
        "q": "ns"
       },
       {
        "l": "Trouble anxieux",
        "v": [
-        22.4,
-        20.6,
-        19.8
+        22.4
        ],
        "q": "ns"
       }
      ]
     }
    ],
-   "verif": "Valeurs du Granit vérifiées dans le tableau-synthèse du RLS du Granit publié par la Direction de santé publique de l'Estrie. Les valeurs de Sherbrooke et de Coaticook sont reprises de la présentation et restent à valider à la source. Trois proportions du Granit sont peu précises en raison des petits effectifs et sont signalées."
+   "verif": "Valeurs vérifiées dans le tableau-synthèse du RLS du Granit publié par la Direction de santé publique de l'Estrie. Trois proportions sont peu précises en raison des petits effectifs et sont signalées."
   },
   "manque": "La plateforme ne montre pas encore de gradient social à l'intérieur du Granit, c'est-à-dire des écarts de santé selon le revenu, la scolarité ou le genre. C'est la prochaine donnée à aller chercher, avec la prudence qu'imposent les petits effectifs."
  }

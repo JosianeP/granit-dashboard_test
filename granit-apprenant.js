@@ -290,7 +290,7 @@
       var max = 0; J.groupes.forEach(function (g) { g.items.forEach(function (i) { i.v.forEach(function (v) { if (v > max) max = v; }); }); });
       max = Math.ceil(max / 10) * 10;
       h += '<div class="card" style="margin-bottom:18px"><div class="ct">' + esc(J.titre) + ' ' + prov('reel') + '</div><div class="rv-p">' + esc(J.note) + '</div>' +
-        '<div class="ap-leg">' + J.territoires.map(function (t, i) { return '<span><i style="background:' + coul[i] + '"></i>' + esc(t) + '</span>'; }).join('') + '</div>' +
+        (J.territoires.length > 1 ? '<div class="ap-leg">' + J.territoires.map(function (t, i) { return '<span><i style="background:' + coul[i] + '"></i>' + esc(t) + '</span>'; }).join('') + '</div>' : '') +
         J.groupes.map(function (g) {
           return '<div class="ap-gr"><div class="ap-gr-t">' + esc(g.nom) + '</div>' + g.items.map(function (it) {
             var comp = it.q === '+' ? '<small class="ap-q ap-q-p">Supérieur au reste du Québec</small>' : it.q === '-' ? '<small class="ap-q ap-q-p">Inférieur au reste du Québec</small>' : it.q === 'ns' ? '<small class="ap-q">Comparable au reste du Québec</small>' : '';
@@ -300,7 +300,7 @@
             }).join('') + '</div></div>';
           }).join('') + '</div>';
         }).join('') +
-        '<div class="ap-src">' + esc(J.verif || '') + ' Comparaison au reste du Québec au seuil de 5 %. Sources. ' + source(J.src) + '; ' + source(J.via) + '.</div></div>';
+        '<div class="ap-src">' + esc(J.verif || '') + ' Comparaison au reste du Québec au seuil de 5 %. Source. ' + source(J.src) + (J.via ? '; ' + source(J.via) : '') + '.</div></div>';
     }
     h += '<div class="card" style="margin-bottom:18px"><div class="ct">Trois situations du Granit</div><div class="ap-ex">' +
       I.exemples.map(function (x) { return '<div><b>' + esc(x.titre) + '</b>' + esc(x.texte) + '</div>'; }).join('') +

@@ -4980,95 +4980,168 @@
     }
   },
   "sante": {
-    "intro": "Ce pilier ne mesure pas le système de soins : il lit la santé des populations à travers ses déterminants sociaux, alimentés par les données des piliers Développement économique et Aménagement. L'approche est celle de la Santé dans toutes les politiques (SdTP) : à l'échelle d'une MRC, les décisions économiques et territoriales SONT des décisions de santé. Les données de référence proviennent de la Direction de santé publique de l'Estrie : Faits saillants - RLS du Granit (mise à jour avril 2025) et Tableau de bord – Santé publique Estrie (14 thématiques). Le RLS du Granit compte 21 886 habitants (4,3 % de l'Estrie) et une population sensiblement plus âgée : âge médian de 52 ans, contre 46 ans en Estrie.",
-    "compositeNote": "Indice territorial composite = moyenne simple des scores des 8 déterminants. Indicateurs désormais ancrés sur les données de la DSP de l'Estrie (Faits saillants RLS du Granit, avril 2025) et sur le <a href=\"https://www.santeestrie.qc.ca/medias-publications/sante-publique/tableau-de-bord-sante-publique-estrie\" target=\"_blank\" rel=\"noopener\" style=\"color:#0e7490;font-weight:600\">Tableau de bord – Santé publique Estrie</a> (Population, Environnement social et physique, Habitudes de vie, Maladies chroniques, Santé mentale, Santé au travail, etc.), complétés par l'ISQ et le Recensement 2021. Les scores 0-100 demeurent un construit analytique; le RLS du Granit est quasi coextensif à la MRC mais les périmètres diffèrent légèrement.",
+    "intro": "Ce pilier ne mesure pas le système de soins. Il lit la santé de la population à travers les 17 déterminants sociaux de la santé reconnus en contexte canadien, et à travers les inégalités sociales de santé qui en découlent. À l'échelle d'une MRC, les décisions économiques et territoriales sont aussi des décisions de santé. Les chiffres de référence viennent de la Direction de santé publique de l'Estrie (Faits saillants - RLS du Granit, avril 2025). Le RLS du Granit compte 21 886 habitants et une population plus âgée que celle de l'Estrie : âge médian de 52 ans, contre 46 ans.",
+    "compositeNote": "Le portrait ne comporte plus de score ni d'indice composite. Chaque déterminant indique ce qui est documenté et ce qui reste à documenter.",
     "determinants": [
       {
-        "id": "d1",
-        "name": "Revenu & statut socioéconomique",
-        "icon": "d1",
-        "score": 62,
+        "id": "dss01",
+        "no": 1,
+        "name": "Revenu et distribution du revenu",
         "source": "Développement économique",
-        "level": "Vigilance",
         "indicator": "Revenu d'emploi médian 50 800 $ (ISQ 2024, -14 % vs Québec). DSP Estrie - Faits saillants RLS du Granit, avril 2025 : revenu médian après impôt 35 600 $ (hommes) et 29 600 $ (femmes), sous l'Estrie (37 600 $ / 31 800 $); 54 % de la population occupe un emploi (58,1 % en Estrie); les 4 communautés du RLS (Rivière-Chaudière, Lac-Mégantic, Parc de Frontenac, Monts Mégantic et Gosford) sont en forte défavorisation matérielle.",
         "link": "Un revenu sous la moyenne et la défavorisation matérielle fragilisent l'accès au logement et à l'alimentation, et se traduisent par une prévalence de maladies chroniques plus élevée (37,5 % des adultes c. 32,9 % en Estrie).",
         "real": true
       },
       {
-        "id": "d2",
-        "name": "Emploi & conditions de travail",
-        "icon": "d2",
-        "score": 74,
+        "id": "dss02",
+        "no": 2,
+        "name": "Éducation",
         "source": "Développement économique",
-        "level": "Favorable",
+        "indicator": "Deux adultes de 25-64 ans sur cinq (≈40 %) sont faiblement scolarisés (diplôme d'études secondaires ou moins), contre environ le tiers en Estrie (DSP Estrie - Faits saillants RLS du Granit, avril 2025). CFP Le Granit (alternance travail-études), entente Cégep de Sherbrooke, érablière-école.",
+        "link": "Le déficit de scolarisation pèse en amont sur l'emploi, le revenu et la santé futurs.",
+        "real": true
+      },
+      {
+        "id": "dss03",
+        "no": 3,
+        "name": "Emploi et conditions de travail",
+        "source": "Développement économique",
         "indicator": "Taux d'emploi 77,6 %, 7 845 travailleurs (ISQ 2024). Manufacturier = 37 % des emplois (SDEG) c. 19 % au QC. DSP Estrie - Faits saillants RLS du Granit, avril 2025 : 37,1 % des travailleurs exposés à un niveau élevé de contraintes physiques (25,8 % en Estrie) et 7,8 % de surdité attribuable au travail (4,5 % au QC).",
         "link": "La vitalité de la grappe bois-forêt et du pôle granit soutient l'emploi, mais la concentration manufacturière crée une vulnérabilité aux chocs sectoriels.",
         "real": true
       },
       {
-        "id": "d3",
-        "name": "Logement & conditions matérielles",
-        "icon": "d3",
-        "score": 54,
-        "source": "Aménagement du territoire",
-        "level": "A surveiller",
-        "indicator": "Valeur foncière moyenne des unifamiliales 293 135 $ (ISQ 2026). Permis 54,8 M$ (2024), conversion villégiature → résidence principale. DSP Estrie - Faits saillants RLS du Granit, avril 2025 : 144 logements sociaux (HLM) en 2021, soit 6 % du parc (léger recul vs 7 % en 2016).",
-        "link": "La rareté de logements abordables affecte l'attraction de main-d'œuvre, dont les infirmières et le personnel de soins.",
+        "id": "dss04",
+        "no": 4,
+        "name": "Assistance emploi et sécurité d'emploi",
+        "source": "",
+        "indicator": "",
+        "link": "",
+        "real": false,
+        "aDocumenter": "Aucun indicateur sur le chômage, l'aide de dernier recours ou la précarité d'emploi ne figure encore sur la plateforme."
+      },
+      {
+        "id": "dss05",
+        "no": 5,
+        "name": "Développement de la petite enfance",
+        "source": "Milieu de vie",
+        "indicator": "34,9 % des enfants de maternelle 5 ans sont vulnérables dans au moins un domaine de leur développement, contre 28,7 % au Québec (valeur reprise du portrait antérieur; source à préciser). 654 places reconnues en services de garde éducatifs, dont 45 en pouponnière (ministère de la Famille, fichiers du 3 novembre 2026).",
+        "link": "Les premières années orientent la santé, la scolarité et le revenu de toute une vie; l'accès à un service de garde en fait partie.",
         "real": true
       },
       {
-        "id": "d4",
-        "name": "Éducation & compétences",
-        "icon": "d4",
-        "score": 60,
-        "source": "Développement économique",
-        "level": "Favorable",
-        "indicator": "Deux adultes de 25-64 ans sur cinq (≈40 %) sont faiblement scolarisés (diplôme d'études secondaires ou moins), contre environ le tiers en Estrie (DSP Estrie - Faits saillants RLS du Granit, avril 2025). CFP Le Granit (alternance travail-études), entente Cégep de Sherbrooke, érablière-école.",
-        "link": "Le déficit de scolarisation, conjugué à la vulnérabilité au développement chez les tout-petits (34,9 % des enfants de maternelle 5 ans, c. 28,7 % au QC), pèse en amont sur la santé et le revenu futurs.",
-        "real": true
-      },
-      {
-        "id": "d5",
-        "name": "Environnement physique & milieux de vie",
-        "icon": "d5",
-        "score": 86,
-        "source": "Aménagement du territoire",
-        "level": "Atout fort",
-        "indicator": "249 696 ha de couvert forestier, 1re Réserve internationale de ciel étoilé des Amériques, Cittaslow, qualité de l'air. DSP Estrie - Faits saillants RLS du Granit, avril 2025 : 58,6 % des adultes n'atteignent pas les recommandations d'activité physique - un peu mieux que l'Estrie (64,9 %), un atout d'accès à la nature.",
-        "link": "Accès à la nature, air pur et espaces verts = atout majeur pour la santé physique et mentale.",
-        "real": true
-      },
-      {
-        "id": "d6",
-        "name": "Cohésion sociale & capital communautaire",
-        "icon": "d6",
-        "score": 81,
-        "source": "Gouvernance territoriale",
-        "level": "Atout fort",
-        "indicator": "Densité coopérative (Desjardins, coop agricole, EDG communautaire), économie sociale (Coup de Pouce, SAD Granit), sentinelles aînés, CDC du Granit, MADA. DSP Estrie - Faits saillants RLS du Granit, avril 2025 : familles monoparentales 12 % (parmi les plus faibles de l'Estrie); participation sociale des aînés en hausse (44,5 % → 54,7 % entre 2018 et 2022).",
-        "link": "La gouvernance énergétique communautaire (EDG, 1,75 M$ redevances) et les instances de concertation renforcent le soutien social.",
-        "real": true
-      },
-      {
-        "id": "d7",
-        "name": "Sécurité & systèmes alimentaires",
-        "icon": "d7",
-        "score": 64,
+        "id": "dss06",
+        "no": 6,
+        "name": "(In)sécurité alimentaire",
         "source": "Économie + Aménagement",
-        "level": "Favorable",
         "indicator": "145 078 ha de zone agricole, Fromagerie La Chaudière, Meunerie Milanaise (farine bio), marchés de proximité, PDZA et L'ARTERRE. Mais DSP Estrie - Faits saillants RLS du Granit, avril 2025 : indice élevé de risque d'insécurité alimentaire (Monts Mégantic-Gosford, Rivière-Chaudière, Lac-Mégantic); seulement 1 adulte sur 5 consomme 5 portions de fruits et légumes (27,3 % en Estrie, en baisse).",
         "link": "Systèmes alimentaires locaux robustes = sécurité alimentaire, sauf enjeux d'accès en milieu rural éloigné.",
         "real": true
       },
       {
-        "id": "d8",
-        "name": "Accès & proximité des services",
-        "icon": "d8",
-        "score": 49,
+        "id": "dss07",
+        "no": 7,
+        "name": "Logement",
+        "source": "Aménagement du territoire",
+        "indicator": "Valeur foncière moyenne des unifamiliales 293 135 $ (ISQ 2026). Permis 54,8 M$ (2024), conversion villégiature → résidence principale. DSP Estrie - Faits saillants RLS du Granit, avril 2025 : 144 logements sociaux (HLM) en 2021, soit 6 % du parc (léger recul vs 7 % en 2016).",
+        "link": "La rareté de logements abordables affecte l'attraction de main-d'œuvre, dont les infirmières et le personnel de soins.",
+        "real": true
+      },
+      {
+        "id": "dss08",
+        "no": 8,
+        "name": "Exclusion sociale",
+        "source": "Gouvernance territoriale",
+        "indicator": "Ce déterminant se lit ici par son envers, la cohésion et la participation sociales. Densité coopérative (Desjardins, coop agricole, EDG communautaire), économie sociale (Coup de Pouce, SAD Granit), sentinelles aînés, CDC du Granit, MADA. DSP Estrie - Faits saillants RLS du Granit, avril 2025 : familles monoparentales 12 % (parmi les plus faibles de l'Estrie); participation sociale des aînés en hausse (44,5 % → 54,7 % entre 2018 et 2022).",
+        "link": "La gouvernance énergétique communautaire (EDG, 1,75 M$ redevances) et les instances de concertation renforcent le soutien social.",
+        "real": true
+      },
+      {
+        "id": "dss09",
+        "no": 9,
+        "name": "Filet de sécurité sociale",
+        "source": "",
+        "indicator": "",
+        "link": "",
+        "real": false,
+        "aDocumenter": "Aucun indicateur chiffré (prestations, couverture des programmes, recours à l'aide alimentaire) ne figure encore sur la plateforme. Les organismes communautaires du territoire en sont un maillon; voir les constats du milieu."
+      },
+      {
+        "id": "dss10",
+        "no": 10,
+        "name": "Services de santé",
         "source": "Aménagement + Gouvernance",
-        "level": "Priorité",
         "indicator": "DSP Estrie - Faits saillants RLS du Granit, avril 2025 : 27 % de la population a 65 ans ou plus (5 991 personnes), proportion projetée à 36 % (8 021) en 2031; âge médian 52 ans (46 en Estrie). Dispersion sur 2 640 km² et 19 municipalités. (ISQ - périmètre MRC : 31,3 % de 65 ans et plus en 2025.)",
         "link": "La dispersion territoriale et la pénurie de personnel soignant limitent la proximité des services - enjeu central de gouvernance.",
+        "real": true
+      },
+      {
+        "id": "dss11",
+        "no": 11,
+        "name": "Origines autochtones",
+        "source": "",
+        "indicator": "",
+        "link": "",
+        "real": false,
+        "aDocumenter": "Aucune donnée locale sur la plateforme."
+      },
+      {
+        "id": "dss12",
+        "no": 12,
+        "name": "Genre",
+        "source": "",
+        "indicator": "",
+        "link": "",
+        "real": false,
+        "aDocumenter": "Seule donnée ventilée selon le sexe sur la plateforme : le revenu médian après impôt, de 35 600 $ chez les hommes et de 29 600 $ chez les femmes (voir Revenu). Aucun autre indicateur n'est ventilé."
+      },
+      {
+        "id": "dss13",
+        "no": 13,
+        "name": "Orientation sexuelle",
+        "source": "",
+        "indicator": "",
+        "link": "",
+        "real": false,
+        "aDocumenter": "Aucune donnée locale sur la plateforme."
+      },
+      {
+        "id": "dss14",
+        "no": 14,
+        "name": "Statut d'immigrant",
+        "source": "",
+        "indicator": "",
+        "link": "",
+        "real": false,
+        "aDocumenter": "Aucun indicateur chiffré sur la plateforme. Les organismes rapportent des barrières de langue et de repères culturels; voir les constats du milieu."
+      },
+      {
+        "id": "dss15",
+        "no": 15,
+        "name": "Race (racisme)",
+        "source": "",
+        "indicator": "",
+        "link": "",
+        "real": false,
+        "aDocumenter": "Aucune donnée locale sur la plateforme."
+      },
+      {
+        "id": "dss16",
+        "no": 16,
+        "name": "Handicap",
+        "source": "",
+        "indicator": "",
+        "link": "",
+        "real": false,
+        "aDocumenter": "Aucun indicateur chiffré sur la plateforme. Les organismes signalent des lacunes d'accessibilité universelle; voir les constats du milieu."
+      },
+      {
+        "id": "dss17",
+        "no": 17,
+        "name": "Géographie",
+        "source": "Aménagement du territoire",
+        "indicator": "19 municipalités réparties sur 2 640 km². 249 696 ha de couvert forestier, 1re Réserve internationale de ciel étoilé des Amériques, Cittaslow, qualité de l'air. DSP Estrie - Faits saillants RLS du Granit, avril 2025 : 58,6 % des adultes n'atteignent pas les recommandations d'activité physique - un peu mieux que l'Estrie (64,9 %), un atout d'accès à la nature.",
+        "link": "En milieu rural, la distance amplifie l'effet des autres déterminants. L'accès à la nature demeure un atout pour la santé physique et mentale.",
         "real": true
       }
     ],
@@ -5077,10 +5150,11 @@
         "name": "Démarche MADA & Politique de la famille et des aînés",
         "emoji": "",
         "scope": "MRC + municipalités",
-        "desc": "Municipalité amie des aînés : adapte l'aménagement, le transport et les services au vieillissement. Levier direct sur les déterminants accès et cohésion sociale.",
+        "desc": "Municipalité amie des aînés : adapte l'aménagement, le transport et les services au vieillissement. Levier direct sur l'exclusion sociale et sur l'accès aux ressources du territoire.",
         "determinants": [
-          "d8",
-          "d6"
+          "dss08",
+          "dss17",
+          "dss09"
         ]
       },
       {
@@ -5089,9 +5163,8 @@
         "scope": "16 municipalités",
         "desc": "Ressource communautaire réinvestie localement (projets, services de proximité). Lien direct entre développement énergétique et capacité d'agir sur les déterminants.",
         "determinants": [
-          "d6",
-          "d8",
-          "d1"
+          "dss08",
+          "dss01"
         ]
       },
       {
@@ -5100,7 +5173,7 @@
         "scope": "MRC",
         "desc": "Réduction des GES et adaptation. La santé environnementale (chaleur, qualité de l'air, milieux humides) est un cobénéfice direct de l'action climatique territoriale.",
         "determinants": [
-          "d5"
+          "dss17"
         ]
       },
       {
@@ -5109,8 +5182,8 @@
         "scope": "MRC",
         "desc": "Plan de développement de la zone agricole + jumelage relève/propriétaires. Soutient les systèmes alimentaires locaux et l'occupation du territoire.",
         "determinants": [
-          "d7",
-          "d2"
+          "dss06",
+          "dss03"
         ]
       },
       {
@@ -5119,8 +5192,9 @@
         "scope": "Territoire",
         "desc": "Aide à domicile du Granit (70+ préposés) et Coup de Pouce soutiennent l'autonomie des aînés et l'accès aux services en milieu rural.",
         "determinants": [
-          "d8",
-          "d6"
+          "dss09",
+          "dss10",
+          "dss08"
         ]
       },
       {
@@ -5129,8 +5203,7 @@
         "scope": "Municipalités",
         "desc": "Encadrement de l'hébergement touristique pour protéger le parc de logements de longue durée - agit sur le déterminant logement et l'attraction de main-d'œuvre soignante.",
         "determinants": [
-          "d3",
-          "d8"
+          "dss07"
         ]
       },
       {
@@ -5139,8 +5212,8 @@
         "scope": "Territoire",
         "desc": "Tables intersectorielles réunissant municipal, communautaire et industriel - l'infrastructure de gouvernance qui rend la SdTP opérationnelle.",
         "determinants": [
-          "d6",
-          "d2"
+          "dss08",
+          "dss03"
         ]
       },
       {
@@ -5149,9 +5222,9 @@
         "scope": "MRC",
         "desc": "La vitalité économique (emplois, revenus, rétention) est un déterminant amont : agir sur l'économie, c'est agir sur la santé des populations.",
         "determinants": [
-          "d1",
-          "d2",
-          "d4"
+          "dss01",
+          "dss03",
+          "dss02"
         ]
       }
     ],
@@ -5160,7 +5233,7 @@
         "from": "Grappe bois-forêt (~1 300 emplois)",
         "pillar": "Développement économique",
         "to": "Revenu & emploi",
-        "det": "d2",
+        "det": "dss03",
         "strength": "Fort",
         "desc": "Le principal moteur d'emplois stabilise les revenus des ménages - premier déterminant de la santé."
       },
@@ -5168,7 +5241,7 @@
         "from": "Redevances éoliennes EDG (1,75 M$)",
         "pillar": "Économie / Énergie",
         "to": "Capital communautaire & services",
-        "det": "d6",
+        "det": "dss08",
         "strength": "Fort",
         "desc": "Une ressource financière communautaire qui finance la capacité d'agir sur les autres déterminants."
       },
@@ -5176,7 +5249,7 @@
         "from": "Permis de bâtir & conversion chalet",
         "pillar": "Aménagement du territoire",
         "to": "Logement",
-        "det": "d3",
+        "det": "dss07",
         "strength": "Fort",
         "desc": "La dynamique du logement conditionne l'attraction de main-d'œuvre, dont le personnel de soins, et la stabilité résidentielle."
       },
@@ -5184,7 +5257,7 @@
         "from": "Zone agricole 145 078 ha & PDZA",
         "pillar": "Aménagement / Économie",
         "to": "Sécurité alimentaire",
-        "det": "d7",
+        "det": "dss06",
         "strength": "Moyen",
         "desc": "Le maintien de la zone agricole soutient les systèmes alimentaires locaux et l'accès à des aliments de qualité."
       },
@@ -5192,7 +5265,7 @@
         "from": "Couvert forestier & ciel étoilé",
         "pillar": "Aménagement du territoire",
         "to": "Environnement physique",
-        "det": "d5",
+        "det": "dss17",
         "strength": "Fort",
         "desc": "Les milieux naturels protégés sont un atout de santé physique et mentale rare et différenciateur."
       },
@@ -5200,7 +5273,7 @@
         "from": "CFP Le Granit & alternance",
         "pillar": "Économie / Éducation",
         "to": "Compétences & rétention",
-        "det": "d4",
+        "det": "dss02",
         "strength": "Moyen",
         "desc": "La formation locale retient les jeunes et alimente l'emploi qualifié, déterminant amont du revenu."
       },
@@ -5208,7 +5281,7 @@
         "from": "Ruralité & distances (19 municipalités)",
         "pillar": "Aménagement du territoire",
         "to": "Accès aux services",
-        "det": "d8",
+        "det": "dss17",
         "strength": "Fort",
         "desc": "La dispersion territoriale est le principal frein de proximité - cible prioritaire de la gouvernance intersectorielle."
       },
@@ -5216,11 +5289,18 @@
         "from": "Aide à domicile du Granit (SAD - 70+ préposés)",
         "pillar": "Économie / Gouvernance",
         "to": "Cohésion & autonomie",
-        "det": "d6",
+        "det": "dss09",
         "strength": "Moyen",
         "desc": "L'aide à domicile communautaire soutient l'autonomie des aînés dans toutes les 19 municipalités."
       }
-    ]
+    ],
+    "cadre": {
+      "nom": "Déterminants sociaux de la santé en contexte canadien",
+      "reference": "Raphael (2020), liste reprise de Shareck et Provost, Table réseau 0-17 ans du RLS de Coaticook, 9 novembre 2026",
+      "definition": "Les déterminants sociaux de la santé sont les circonstances dans lesquelles les personnes naissent, grandissent, vivent, travaillent et vieillissent, ainsi que les systèmes mis en place pour faire face à la maladie (Organisation mondiale de la santé). Ces circonstances découlent de choix politiques et de la répartition du pouvoir, de l'argent et des ressources.",
+      "prudence": "Petits effectifs, grande prudence. En milieu rural, un chiffre par municipalité ou par sous-groupe devient vite non diffusable ou trompeur. Plusieurs déterminants restent donc sans donnée locale, et c'est indiqué.",
+      "limite": "Cette liste ne comporte pas de déterminant propre à l'environnement physique. Les éléments du milieu naturel et bâti sont rattachés ici à la géographie."
+    }
   },
   "portraitLGP": {
     "source": "LGP - Table des MRC de l'Estrie, « Portrait économique sectoriel et pistes de collaboration inter-MRC » (avril 2026). Données : Statistique Canada (36-10-0711-01, 36-10-0489-01, 33-10-0551-01, 16-10-0117-01), Registraire des entreprises du Québec (Civision), base Scott's, validations des MRC. PIB 2022 (dollars courants), ratios de ventes 2024.",

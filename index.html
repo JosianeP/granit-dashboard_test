@@ -850,6 +850,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
 .sn.active{color:var(--pillar-color);border-bottom-color:var(--pillar-color)}
 .sn:focus-visible,.ni:focus-visible{outline:2px solid var(--g400);outline-offset:-2px}
 @media print{.subnav{display:none!important}}
+.det-no{width:26px;height:26px;border-radius:50%;background:var(--sa50);border:1px solid var(--sa100);color:var(--sa800);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
 </style>
 </head>
 <body>
@@ -865,7 +866,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
     <div class="pb-brand-text">
       <div class="org">Estrie</div>
       <div class="name">Tableau de bord territorial</div>
-      <div class="ver" id="verLabel">v4.18</div>
+      <div class="ver" id="verLabel">v4.19</div>
     </div>
   </div>
   <nav class="pillar-tabs">
@@ -1296,12 +1297,10 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
 
       <!-- SANTE -->
       <div class="view" id="view-sa-portrait">
-        <div class="section-header"><div class="sh-left"><h2>Portrait des déterminants sociaux de la santé</h2><p>8 déterminants - les indicateurs cités sont des données sourcées; les scores de 0 à 100 sont des estimations analytiques, à valider avec la Direction de santé publique de l'Estrie</p></div><span class="pillar-badge pb-sa">Santé</span></div>
+        <div class="section-header"><div class="sh-left"><h2>Portrait des déterminants sociaux de la santé</h2><p>Les 17 déterminants reconnus en contexte canadien - ce qui est documenté pour le Granit, et ce qui ne l'est pas encore</p></div><span class="pillar-badge pb-sa">Santé</span></div>
         <div class="sdoh-intro" id="sdohIntro"></div>
-        <div class="two-col" style="align-items:start">
-          <div class="card"><div class="ct">Radar des déterminants (score de 0 à 100) <span class="prov prov-est">Estimation</span></div><div style="position:relative;height:285px"><canvas id="sdohRadar"></canvas></div></div>
-          <div class="card"><div class="ct">Indice composite territorial <span class="prov prov-est">Estimation</span></div><div id="sdohComposite"></div></div>
-        </div>
+        <div id="sdohCadre"></div>
+        <div class="ss-row" id="sdohCouv"></div>
         <div class="sdoh-grid" id="sdohGrid"></div>
       </div>
 
@@ -1681,7 +1680,7 @@ function renderAll(){
     var majTxt=majDate(D.meta.updatedDate);
     document.getElementById('sbQ').textContent=majTxt||D.meta.quarter||'-';
     document.getElementById('sbBy').textContent=D.meta.quarter?'Chiffrier de la MRC : '+D.meta.quarter:(D.meta.updatedBy||'');
-    document.getElementById('verLabel').textContent='v4.18';
+    document.getElementById('verLabel').textContent='v4.19';
     var ovq=document.getElementById('ovQuarter'); if(ovq)ovq.textContent='Portrait économique du territoire - MRC du Granit'+(majTxt?', mis à jour le '+majTxt:'');
   }
   allMLPairs=getMLSuggestions();
@@ -2923,9 +2922,8 @@ function buildSection(id,opt){
   else if(id==='sa-portrait'){
     var sa=D.sante;
     inner+=rNarr(sa.intro);
-    if(opt.incCharts)inner+=rChart('sdohRadar','Indice par déterminant (0–100)');
-    inner+=rTable(['Déterminant','Score','Niveau','Source'],sa.determinants.map(function(d){return [d.name,d.score+'/100',d.level,d.source];}),['l','','l','l']);
-    inner+=rSrc('Scores : construit analytique ancré sur la DSP de l\u2019Estrie (Faits saillants RLS du Granit, avril 2025) et le Tableau de bord - Santé publique Estrie.');
+    inner+=rTable(['Déterminant social de la santé','État des savoirs'],sa.determinants.map(function(d){return [(d.no?d.no+'. ':'')+d.name,d.indicator?'Chiffres disponibles':'À documenter'];}),['l','l']);
+    inner+=rSrc('Cadre : déterminants sociaux de la santé en contexte canadien. Chiffres : DSP de l\u2019Estrie (Faits saillants RLS du Granit, avril 2025) et sources citées dans chaque fiche.');
   }
   else if(id==='sa-vuln'){
     var vs=D.municipalities.map(function(m){return {m:m,v:computeVulnerability(m)};}).sort(function(a,b){return b.v-a.v;});
@@ -3404,58 +3402,42 @@ function renderSdohIntro(){
     '<p>'+D.sante.intro+'</p>';
 }
 
+/* Portrait : 17 déterminants sociaux de la santé (cadre canadien), sans score. Chaque fiche dit ce qui est documenté. */
 function renderSdohPortrait(){
   if(!D.sante)return;
-  var dets=D.sante.determinants;
-  var comp=Math.round(dets.reduce(function(a,b){return a+b.score;},0)/dets.length);
-  document.getElementById('sdohComposite').innerHTML=
-    '<div style="text-align:center;padding:18px 8px">'+
-    '<div style="font-size:56px;font-weight:700;color:'+sdohCol(comp)+';font-family:\'Fraunces\',serif;line-height:1">'+comp+'</div>'+
-    '<div style="font-size:14px;color:var(--muted);margin-bottom:16px">/ 100 - moyenne simple des 8 scores</div>'+
-    '</div>'+
-    dets.map(function(d){
-      return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">'+
-        '<span style="font-size:16px">'+d.icon+'</span>'+
-        '<div style="flex:1"><div style="font-size:13px;font-weight:600;margin-bottom:2px">'+d.name+'</div>'+
-          '<div style="height:4px;background:var(--border);border-radius:3px;overflow:hidden">'+
-            '<div style="width:'+d.score+'%;height:4px;background:'+sdohCol(d.score)+';border-radius:3px"></div></div></div>'+
-        '<div style="font-size:14px;font-weight:700;min-width:26px;text-align:right;color:'+sdohCol(d.score)+'">'+d.score+'</div></div>';
-    }).join('')+
-    '<div style="font-size:12px;color:var(--muted);margin-top:12px;line-height:1.6;background:var(--bg);padding:9px 11px;border-radius:7px">'+D.sante.compositeNote+'</div>';
-  document.getElementById('sdohGrid').innerHTML=dets.map(function(d){
-    return '<div class="det-card" style="--det-color:'+sdohCol(d.score)+'">'+
-      '<div class="det-icon">'+d.icon+'</div>'+
+  var dets=D.sante.determinants||[], c=D.sante.cadre||{};
+  var cad=document.getElementById('sdohCadre');
+  if(cad)cad.innerHTML=c.nom?
+    '<div class="card" style="margin-bottom:16px"><div class="ct">Cadre de lecture - '+c.nom+'</div>'+
+    '<div class="rv-p" style="margin-bottom:8px">'+(c.definition||'')+'</div>'+
+    '<div class="rv-p" style="margin-bottom:8px">'+(c.prudence||'')+'</div>'+
+    '<div class="rv-src" style="margin-top:0">'+(c.limite||'')+' Référence : '+(c.reference||'')+'.</div></div>':'';
+  var avec=dets.filter(function(d){return d.indicator;}).length;
+  var couv=document.getElementById('sdohCouv');
+  if(couv)couv.innerHTML=ss(dets.length,'Déterminants sociaux de la santé')+
+    ss(avec+' sur '+dets.length,'Avec des chiffres sur la plateforme')+
+    ss('<span id="sdohTerrainN">-</span>','Avec des constats du milieu')+
+    ss((dets.length-avec)+' sur '+dets.length,'Sans chiffre local, à documenter');
+  document.getElementById('sdohGrid').innerHTML=dets.map(function(d,i){
+    var a=!!d.indicator;
+    return '<div class="det-card" style="--det-color:'+(a?'var(--sa700)':'var(--border)')+'">'+
+      '<div class="det-no">'+(d.no||i+1)+'</div>'+
       '<div class="det-name">'+d.name+'</div>'+
-      '<div class="det-score-bar"><div class="det-score-fill" style="width:'+d.score+'%;background:'+sdohCol(d.score)+'"></div></div>'+
-      '<div style="display:flex;align-items:center;justify-content:space-between">'+
-        '<div class="det-score-val" style="color:'+sdohCol(d.score)+'">'+d.score+'</div>'+
-        '<span class="det-level '+sdohLvl(d.level)+'">'+d.level+'</span>'+
-      '</div>'+
-      '<span class="det-source '+srcClass(d.source)+'">'+d.source+'</span>'+
-      '<div class="det-indicator">'+d.indicator+'</div>'+
-      '<div class="det-link">'+d.link+'</div></div>';
+      (a?'<span class="prov prov-reel" style="margin-left:0">Réel</span>':'<span class="prov prov-todo" style="margin-left:0">À compléter</span>')+
+      (d.source?'<span class="det-source '+srcClass(d.source)+'" style="margin-left:6px">'+d.source+'</span>':'')+
+      '<div class="det-indicator">'+(a?d.indicator:(d.aDocumenter||'Aucune donnée locale sur la plateforme.'))+'</div>'+
+      (d.link?'<div class="det-link">'+d.link+'</div>':'')+'</div>';
   }).join('');
 }
-
-function renderSdohRadar(){
-  kc('sdohRadar');var rcel=document.getElementById('sdohRadar');if(!rcel||!D.sante)return;var ctx=rcel.getContext('2d');
-  var dets=D.sante.determinants;
-  charts.sdohRadar=new Chart(ctx,{type:'radar',
-    data:{labels:dets.map(function(d){return d.icon+' '+d.name.split('&')[0].trim().substring(0,18);}),
-      datasets:[{label:'Score territorial',data:dets.map(function(d){return d.score;}),
-        borderColor:'#0e7490',backgroundColor:'rgba(14,116,144,.15)',pointBackgroundColor:'#0e7490',pointRadius:4,borderWidth:2}]},
-    options:{responsive:true,maintainAspectRatio:false,
-      scales:{r:{min:0,max:100,ticks:{stepSize:20,font:{size:11}},grid:{color:'rgba(0,0,0,.07)'},pointLabels:{font:{size:12}}}},
-      plugins:{legend:{display:false}}}});
-}
+function renderSdohRadar(){}
 
 function renderGovView(){
   if(!D.sante)return;
   var dn={};
-  D.sante.determinants.forEach(function(d){dn[d.id]=d.icon+' '+d.name;});
+  D.sante.determinants.forEach(function(d){dn[d.id]=(d.no?d.no+'. ':'')+d.name;});
   document.getElementById('govGrid').innerHTML=(D.sante.leviers||[]).map(function(lv){
     return '<div class="lev-card"><div class="lev-head">'+
-      '<div class="lev-emoji">'+lv.emoji+'</div>'+
+      '<div class="lev-emoji">'+(lv.emoji||'')+'</div>'+
       '<div><div class="lev-nm">'+lv.name+'</div><div class="lev-scope">📍 '+lv.scope+'</div></div></div>'+
       '<div class="lev-desc">'+lv.desc+'</div>'+
       '<div class="lev-dets">'+lv.determinants.map(function(did){return'<span class="lev-det-pill">'+(dn[did]||did)+'</span>';}).join('')+'</div></div>';
@@ -3699,7 +3681,7 @@ init();
 <script src="./granit-req.js?v=4.16"></script>
 <script src="./granit-croise.js?v=4.16"></script>
 <script src="./granit-carte.js?v=4.16"></script>
-<script src="./granit-mada.js?v=4.18"></script>
-<script src="./granit-apprenant.js?v=4.18"></script>
+<script src="./granit-mada.js?v=4.19"></script>
+<script src="./granit-apprenant.js?v=4.19"></script>
 </body>
 </html>

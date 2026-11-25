@@ -31,6 +31,12 @@
   },
   "plateforme": {
    "l": "Données de la plateforme"
+  },
+  "table017": {
+   "l": "Shareck et Provost, Les inégalités sociales de santé chez les jeunes, Table réseau 0-17 ans du RLS de Coaticook, 9 novembre 2026"
+  },
+  "eqsjs": {
+   "l": "Enquête québécoise sur la santé des jeunes du secondaire (EQSJS) 2022-2023, Institut de la statistique du Québec"
   }
  },
  "etapes": [
@@ -64,7 +70,7 @@
   {
    "id": "transport",
    "nom": "Transport collectif et adapté",
-   "det": "d8",
+   "det": "dss17",
    "resume": "L'enjeu le plus souvent nommé par les organismes. Plusieurs décisions récentes portent sur le financement et l'optimisation du service.",
    "savoirs": [
     {
@@ -109,12 +115,49 @@
     }
    ],
    "suivi": [],
-   "ajustement": []
+   "ajustement": [],
+   "equite": {
+    "objectif": "Favoriser la mobilité des jeunes et leur accès aux activités de la région.",
+    "note": "Exemple appliqué aux jeunes, proposé comme piste de réflexion. Il ne s'agit pas d'une décision.",
+    "src": "table017",
+    "blocs": [
+     {
+      "q": "Qui en profite, et qui non?",
+      "r": [
+       "Les jeunes des municipalités périphériques, sans permis, dont les parents travaillent de soir, sont les premiers visés.",
+       "Le risque à surveiller : que la mesure serve surtout aux jeunes déjà mobiles."
+      ]
+     },
+     {
+      "q": "Quelles barrières lever?",
+      "r": [
+       "Des horaires de soir et de fin de semaine.",
+       "Le coût, l'inscription et une information qui rejoint les jeunes directement.",
+       "L'acceptabilité : un service pensé pour d'autres usagers n'est pas spontanément celui des adolescents."
+      ]
+     },
+     {
+      "q": "Comment le concevoir et le mettre en œuvre?",
+      "r": [
+       "Avec les jeunes : horaires, points d'arrêt, nom du service.",
+       "Avec la MRC et le transport collectif, les écoles, les maisons des jeunes et les municipalités."
+      ]
+     },
+     {
+      "q": "Comment saurons-nous que ça marche?",
+      "r": [
+       "L'achalandage selon la municipalité d'origine et l'âge, pas seulement le total.",
+       "La participation aux activités avant et après, selon le lieu de résidence.",
+       "Un indicateur d'équité explicite : l'écart entre la ville centre et les villages a-t-il diminué?"
+      ]
+     }
+    ]
+   }
   },
   {
    "id": "soins",
    "nom": "Accès aux soins et personnel du réseau local de services",
-   "det": "d8",
+   "det": "dss10",
    "resume": "Le conseil des maires a soutenu le recrutement infirmier au RLS du Granit et a prévu un rapport de suivi aux six mois.",
    "savoirs": [
     {
@@ -165,7 +208,7 @@
   {
    "id": "logement",
    "nom": "Logement abordable et social",
-   "det": "d3",
+   "det": "dss07",
    "resume": "Les chiffres et le terrain convergent sur la rareté du logement abordable. Une décision de soutien à la recherche de logement est tracée.",
    "savoirs": [
     {
@@ -196,7 +239,7 @@
   {
    "id": "mada",
    "nom": "Vieillir et vivre en famille dans le Granit (démarche MADA)",
-   "det": "d6",
+   "det": "dss08",
    "resume": "Une boucle en cours : les savoirs se constituent, la politique et les plans d'action restent à venir.",
    "savoirs": [
     {
@@ -234,7 +277,7 @@
   {
    "id": "garde",
    "nom": "Places en service de garde",
-   "det": "d8",
+   "det": "dss05",
    "resume": "Le portrait de l'offre est établi. Le nombre d'enfants en attente n'est connu que de vive voix.",
    "savoirs": [
     {
@@ -258,7 +301,7 @@
   {
    "id": "information",
    "nom": "Faire connaître les services offerts",
-   "det": "d8",
+   "det": "dss09",
    "resume": "Un enjeu nommé par sept organismes sur dix, pour lequel aucune décision n'est encore tracée.",
    "savoirs": [
     {
@@ -279,7 +322,14 @@
   "entrees": [
    {
     "date": "2026-11-24",
-    "sujet": "Cohésion sociale",
+    "sujet": "Cadre des déterminants de la santé",
+    "avant": "Huit déterminants maison, chacun avec un score de 0 à 100 et un indice composite.",
+    "apres": "Les 17 déterminants sociaux de la santé reconnus en contexte canadien, sans score. Chaque déterminant indique ce qui est documenté et ce qui ne l'est pas; les inégalités sociales de santé et l'accès aux ressources deviennent les clés de lecture.",
+    "declencheur": "Présentation à la Table réseau 0-17 ans du RLS de Coaticook, 9 novembre 2026."
+   },
+   {
+    "date": "2026-11-24",
+    "sujet": "Cohésion sociale (aujourd'hui lue sous Exclusion sociale)",
     "avant": "Lue comme un atout fort, à partir de la densité coopérative et de la participation sociale des aînés.",
     "apres": "Toujours un atout, mais 11 des 21 constats du milieu qui s'y rattachent sont des enjeux : isolement, groupes qui se sentent peu considérés, organismes sans local permanent.",
     "declencheur": "Collecte MADA auprès de dix organismes."
@@ -305,6 +355,7 @@
   "Réseau de la santé",
   "Organismes communautaires",
   "Citoyens et usagers",
+  "Jeunes",
   "Entreprises et milieux",
   "Gouvernement",
   "Personnel de la MRC"
@@ -339,7 +390,8 @@
      "Réseau de la santé",
      "Organismes communautaires",
      "Citoyens et usagers",
-     "Personnel de la MRC"
+     "Personnel de la MRC",
+     "Jeunes"
     ]
    },
    {
@@ -425,7 +477,8 @@
    "La plateforme et ses données sont hébergées dans un dépôt public. Aucune donnée personnelle ni aucun propos attribué à une personne n'y sont versés.",
    "Chaque valeur porte une pastille de provenance : Réel, Registraire, Estimation, Terrain, Calcul ou À compléter.",
    "Les municipalités saisissent leurs données dans un chiffrier commun; chacune modifie sa propre feuille avec son mot de passe.",
-   "Les constats d'entrevue sont agrégés avant d'être publiés."
+   "Les constats d'entrevue sont agrégés avant d'être publiés.",
+   "Petits effectifs, grande prudence : un chiffre par municipalité ou par sous-groupe n'est publié que s'il est diffusable et ne risque pas de tromper."
   ],
   "jeux": [
    {
@@ -477,6 +530,14 @@
     "vues": "Portrait des déterminants"
    },
    {
+    "nom": "Santé des jeunes du secondaire",
+    "fournisseur": "Institut de la statistique du Québec, EQSJS 2022-2023",
+    "mode": "Saisie",
+    "frequence": "À chaque édition de l'enquête",
+    "conditions": "Publication publique; valeurs transcrites d'une présentation, à valider à la source",
+    "vues": "Inégalités sociales de santé"
+   },
+   {
     "nom": "Données des municipalités",
     "fournisseur": "Les 19 municipalités",
     "mode": "Chiffrier trimestriel",
@@ -509,5 +570,252 @@
     "vues": "De la donnée à la décision"
    }
   ]
+ },
+ "equiteGenerique": [
+  "Qui en profite, et qui non?",
+  "Quelles barrières lever?",
+  "Comment le concevoir et le mettre en œuvre?",
+  "Comment saurons-nous que ça marche?"
+ ],
+ "principes": {
+  "titre": "Quatre principes pour agir sur les inégalités sociales de santé",
+  "src": "table017",
+  "liste": [
+   {
+    "no": 1,
+    "nom": "Tenir compte de l'équité tôt",
+    "texte": "L'équité se pense dès la réflexion, sous trois angles : procédural (qui participe aux décisions), distributif (comment les ressources et les services se répartissent) et de reconnaissance (le respect des différents groupes).",
+    "ou": "Regard d'équité de chaque enjeu, plus bas"
+   },
+   {
+    "no": 2,
+    "nom": "Soutenir une participation authentique",
+    "texte": "Lever les obstacles à la participation : horaires et moyens de communication inadaptés, impression que sa voix ne compte pas, absence de retour sur ce qui a été fait des avis reçus.",
+    "ou": "Tableau des instances; voix des citoyens dans Constats du milieu"
+   },
+   {
+    "no": 3,
+    "nom": "Miser sur la collaboration intersectorielle",
+    "texte": "Des acteurs hors du réseau de la santé agissent sur les déterminants : transport, logement, services de garde, écoles, commerce de proximité.",
+    "ou": "Instances et leviers"
+   },
+   {
+    "no": 4,
+    "nom": "Investir dans l'évaluation et l'amélioration continue",
+    "texte": "Sans données, on agit sur des impressions. Le quantitatif montre le gradient et l'évolution; le qualitatif explique pourquoi un service disponible n'est pas utilisé.",
+    "ou": "Étapes Suivi des effets et Ajustement; Données et gouvernance"
+   }
+  ]
+ },
+ "iss": {
+  "definition": "Les inégalités sociales de santé sont des écarts de santé associés à des avantages ou à des désavantages sociaux, par exemple le revenu, la scolarité, le genre ou la géographie, et jugés injustes et évitables (Organisation mondiale de la santé).",
+  "reperes": [
+   "Le gradient compte autant que l'écart entre les extrêmes : la santé s'améliore à chaque échelon de l'échelle sociale.",
+   "Ces inégalités fluctuent dans le temps. On peut donc agir pour les réduire."
+  ],
+  "mecanismes": [
+   {
+    "nom": "Une distribution inégale des ressources",
+    "texte": "Les ressources favorables ou défavorables à la santé ne sont pas réparties également sur le territoire."
+   },
+   {
+    "nom": "Une appropriation différente de l'espace",
+    "texte": "À ressources égales, les groupes sociaux n'y accèdent pas, ne les utilisent pas et ne les vivent pas de la même façon."
+   }
+  ],
+  "rural": "En milieu rural, les mêmes mécanismes jouent, amplifiés par la distance : l'accès se mesure en minutes d'auto, pas en minutes de marche.",
+  "exemples": [
+   {
+    "titre": "Pas de permis, pas de transport, pas d'activité",
+    "texte": "Avant 16 ou 17 ans, l'accès d'un jeune dépend presque entièrement d'un adulte disponible et d'un véhicule. Une ressource présente dans la ville centre reste hors de portée pour le jeune d'une municipalité périphérique."
+   },
+   {
+    "titre": "Travailler à 14 ans, ressource favorable ou défavorable?",
+    "texte": "Le même emploi n'a pas le même effet selon le milieu familial : autonomie et adultes significatifs pour les uns, fatigue et décrochage larvé pour les autres. La question est de savoir qui y va par choix et qui y va par nécessité."
+   },
+   {
+    "titre": "Quand l'école du village ferme",
+    "texte": "L'école primaire est souvent le seul lieu public non commercial d'un village. Sa fermeture allonge les trajets et affaiblit l'appartenance. Un acteur hors santé et hors éducation, comme une MRC, peut agir sur ce déterminant en coordonnant et en soutenant."
+   }
+  ],
+  "jeunes": {
+   "titre": "La santé des jeunes du secondaire, par territoire",
+   "note": "Proportion d'élèves du secondaire, en pourcentage. Ces écarts comparent des territoires, pas des groupes sociaux. Leur signification statistique n'est pas indiquée ici, et les valeurs ont été transcrites à partir de graphiques : à valider à la source avant toute citation.",
+   "src": "eqsjs",
+   "via": "table017",
+   "territoires": [
+    "Granit",
+    "Sherbrooke",
+    "Coaticook"
+   ],
+   "groupes": [
+    {
+     "nom": "École et travail",
+     "det": [
+      "dss02",
+      "dss03"
+     ],
+     "items": [
+      {
+       "l": "Risque élevé de décrochage scolaire",
+       "v": [
+        40.1,
+        19.9,
+        16.8
+       ]
+      },
+      {
+       "l": "Travail durant l'année scolaire",
+       "v": [
+        70.2,
+        52.8,
+        68.7
+       ]
+      },
+      {
+       "l": "Travail de 16 heures ou plus par semaine",
+       "v": [
+        17.9,
+        19.5,
+        21.8
+       ]
+      },
+      {
+       "l": "Blessure dans le cadre du travail",
+       "v": [
+        21.9,
+        33.3,
+        28.3
+       ]
+      }
+     ]
+    },
+    {
+     "nom": "Environnement social",
+     "det": [
+      "dss08"
+     ],
+     "items": [
+      {
+       "l": "Soutien social élevé dans la famille",
+       "v": [
+        72.7,
+        75.2,
+        70.0
+       ]
+      },
+      {
+       "l": "Soutien social élevé des amis",
+       "v": [
+        60.8,
+        62.0,
+        61.4
+       ]
+      },
+      {
+       "l": "Soutien social élevé à l'école",
+       "v": [
+        25.6,
+        29.3,
+        24.5
+       ]
+      },
+      {
+       "l": "Sentiment d'appartenance élevé à l'école",
+       "v": [
+        37.3,
+        50.4,
+        38.3
+       ]
+      },
+      {
+       "l": "Supervision parentale élevée",
+       "v": [
+        40.5,
+        38.9,
+        37.1
+       ]
+      }
+     ]
+    },
+    {
+     "nom": "Habitudes de vie",
+     "det": [],
+     "items": [
+      {
+       "l": "Actifs durant les loisirs et le transport",
+       "v": [
+        21.5,
+        32.4,
+        32.2
+       ]
+      },
+      {
+       "l": "Cigarette électronique, 30 derniers jours",
+       "v": [
+        27.2,
+        15.5,
+        26.5
+       ]
+      },
+      {
+       "l": "Alcool, 30 derniers jours",
+       "v": [
+        39.5,
+        27.9,
+        47.2
+       ]
+      },
+      {
+       "l": "Malbouffe deux fois ou plus le midi, dernière semaine d'école",
+       "v": [
+        14.1,
+        12.5,
+        15.6
+       ]
+      },
+      {
+       "l": "Quatre heures d'écran ou plus par jour de semaine",
+       "v": [
+        22.3,
+        23.9,
+        21.0
+       ]
+      }
+     ]
+    },
+    {
+     "nom": "Santé mentale",
+     "det": [],
+     "items": [
+      {
+       "l": "Détresse psychologique élevée",
+       "v": [
+        38.8,
+        40.7,
+        37.7
+       ]
+      },
+      {
+       "l": "Faible estime de soi",
+       "v": [
+        39.5,
+        34.6,
+        38.4
+       ]
+      },
+      {
+       "l": "Trouble anxieux",
+       "v": [
+        22.4,
+        20.6,
+        19.8
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "manque": "La plateforme ne montre pas encore de gradient social à l'intérieur du Granit, c'est-à-dire des écarts de santé selon le revenu, la scolarité ou le genre. C'est la prochaine donnée à aller chercher, avec la prudence qu'imposent les petits effectifs."
  }
 }

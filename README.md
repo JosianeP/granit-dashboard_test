@@ -1,4 +1,4 @@
-# Tableau de bord territorial - MRC du Granit (v4.18)
+# Tableau de bord territorial - MRC du Granit (v4.19)
 
 Outil interne de développement territorial à trois piliers (économie, aménagement, santé). Hébergé sur GitHub Pages.
 
@@ -25,6 +25,19 @@ Outil interne de développement territorial à trois piliers (économie, aménag
 | `data/appariement.json` | Liens entre les fiches locales et le Registraire (par NEQ) |
 
 Ces fichiers doivent se trouver dans le même dossier du dépôt.
+
+## Nouveautés de la version 4.19 (pilier Santé : déterminants sociaux et inégalités sociales de santé)
+
+Le cadre maison de huit déterminants avec scores est remplacé par les 17 déterminants sociaux de la santé reconnus en contexte canadien (liste de Raphael, 2020, telle que présentée par Shareck et Provost à la Table réseau 0-17 ans du RLS de Coaticook, 9 novembre 2026). Les notions de cette présentation structurent maintenant tout le pilier.
+
+- Portrait des déterminants. Dix-sept fiches numérotées, sans score, sans radar et sans indice composite. Chaque fiche dit ce qui est documenté (chiffres, constats du milieu) et ce qui reste à documenter. Huit déterminants n'ont aucun chiffre local; c'est affiché, avec le rappel « petits effectifs, grande prudence ».
+- Nouvelle vue « Inégalités sociales de santé » : définition, gradient, les deux mécanismes (distribution des ressources, appropriation de l'espace), les cinq dimensions de l'accès appliquées aux constats du milieu, les données de l'EQSJS 2022-2023 pour le Granit, Sherbrooke et Coaticook, et trois situations du Granit.
+- Constats du milieu. Les 61 constats sont rattachés aux nouveaux déterminants; 38 portent en plus une dimension de l'accès (disponibilité, accessibilité spatiale, accessibilité économique, accommodement, acceptabilité), avec un filtre.
+- De la donnée à la décision. Les quatre principes d'action figurent en tête; chaque enjeu comporte un regard d'équité (rempli pour le transport, à faire pour les autres). Une colonne Jeunes s'ajoute au tableau des instances.
+- Leviers, liens entre piliers et enjeux du registre pointent vers les nouveaux déterminants.
+- Limite du cadre. La liste ne comporte pas de déterminant propre à l'environnement physique; le milieu naturel et bâti est rattaché à la géographie.
+- Chiffrier trimestriel. `granit-excel.js` n'est pas modifié. La feuille « MRC - Santé » garde ses colonnes Score et Niveau, désormais vides et sans effet; les identifiants des déterminants passent de `d1`-`d8` à `dss01`-`dss17`, de sorte qu'un ancien chiffrier ne peut pas écraser les nouvelles fiches.
+- Les valeurs de l'EQSJS ont été transcrites à partir des graphiques de la présentation; elles sont à valider à la source.
 
 ## Nouveautés de la version 4.18 (pilier Santé : de la donnée à la décision)
 

@@ -22,8 +22,8 @@
       "L'Équipe de proximité"
     ],
     "aCompleter": "La fiche de La Constellation du Granit est vide; la rencontre reste à tenir ou à consigner.",
-    "lectureSante": "Chaque déterminant est lu à trois voix : les chiffres des sources officielles, les constats des organismes et la parole des citoyens, qui reste à recueillir. Les trois se lisent côte à côte et ne se combinent pas : aucun constat ne modifie un score. Le classement d'un constat sous un déterminant est un choix d'analyse, à valider avec la Direction de santé publique.",
-    "sansConstat": "L'emploi et l'éducation ne figurent pas parmi les neuf axes de la collecte MADA; aucun constat ne s'y rattache."
+    "lectureSante": "Chaque déterminant social de la santé est lu à trois voix : les chiffres des sources officielles, les constats des organismes et la parole des citoyens, qui reste à recueillir. Les trois se lisent côte à côte. Le rattachement d'un constat à un déterminant est un choix d'analyse, à valider avec la Direction de santé publique.",
+    "sansConstat": "La collecte MADA ne portait pas sur ces déterminants; l'absence de constat ne dit rien de leur importance."
   },
   "types": {
     "enjeu": "Enjeu",
@@ -41,12 +41,14 @@
         {
           "t": "enjeu",
           "n": 4,
-          "texte": "Les loyers sont trop élevés et les logements abordables manquent."
+          "texte": "Les loyers sont trop élevés et les logements abordables manquent.",
+          "acces": "eco"
         },
         {
           "t": "enjeu",
           "n": 3,
-          "texte": "L'accès au logement social est freiné par la liste d'attente, l'exigence d'un an de résidence sur le territoire et des critères d'admissibilité jugés trop rigides."
+          "texte": "L'accès au logement social est freiné par la liste d'attente, l'exigence d'un an de résidence sur le territoire et des critères d'admissibilité jugés trop rigides.",
+          "acces": "accom"
         },
         {
           "t": "enjeu",
@@ -56,12 +58,14 @@
         {
           "t": "enjeu",
           "n": 3,
-          "texte": "Faute de logement, des personnes sont relogées dans une autre municipalité ou hors du territoire, ce qui entraîne isolement et déracinement."
+          "texte": "Faute de logement, des personnes sont relogées dans une autre municipalité ou hors du territoire, ce qui entraîne isolement et déracinement.",
+          "acces": "dispo"
         },
         {
           "t": "enjeu",
           "n": 2,
-          "texte": "Les logements adaptés aux aînés manquent, en particulier au rez-de-chaussée."
+          "texte": "Les logements adaptés aux aînés manquent, en particulier au rez-de-chaussée.",
+          "acces": "dispo"
         },
         {
           "t": "enjeu",
@@ -74,7 +78,7 @@
           "texte": "Un organisme ne relève aucun problème majeur de logement dans sa clientèle."
         }
       ],
-      "det": "d3"
+      "det": "dss07"
     },
     {
       "id": "transport",
@@ -85,42 +89,51 @@
         {
           "t": "enjeu",
           "n": 7,
-          "texte": "Le transport collectif est jugé peu flexible et mal adapté aux besoins réels (horaires, fréquence, familles avec jeunes enfants)."
+          "texte": "Le transport collectif est jugé peu flexible et mal adapté aux besoins réels (horaires, fréquence, familles avec jeunes enfants).",
+          "acces": "accom"
         },
         {
           "t": "enjeu",
           "n": 4,
-          "texte": "La desserte est absente ou réduite en périphérie; certains secteurs ne sont desservis que deux jours par semaine."
+          "texte": "La desserte est absente ou réduite en périphérie; certains secteurs ne sont desservis que deux jours par semaine.",
+          "acces": "spatial"
         },
         {
           "t": "enjeu",
           "n": 4,
-          "texte": "Le coût des déplacements pèse sur les ménages, que ce soit l'essence, le transport collectif ou le transport médical."
+          "texte": "Le coût des déplacements pèse sur les ménages, que ce soit l'essence, le transport collectif ou le transport médical.",
+          "acces": "eco"
         },
         {
           "t": "enjeu",
           "n": 3,
-          "texte": "La limite de deux sacs par personne complique les courses."
+          "texte": "La limite de deux sacs par personne complique les courses.",
+          "acces": "accom"
         },
         {
           "t": "enjeu",
           "n": 2,
-          "texte": "Sans véhicule, ou avec un seul véhicule pour le ménage, des personnes restent isolées."
+          "texte": "Sans véhicule, ou avec un seul véhicule pour le ménage, des personnes restent isolées.",
+          "acces": "spatial"
         },
         {
           "t": "enjeu",
           "n": 2,
-          "texte": "Des usagères disent ressentir de l'insécurité dans le transport."
+          "texte": "Des usagères disent ressentir de l'insécurité dans le transport.",
+          "det": "dss12",
+          "acces": "accept"
         },
         {
           "t": "enjeu",
           "n": 1,
-          "texte": "Le préavis de 24 heures pour réserver freine les déplacements non planifiés."
+          "texte": "Le préavis de 24 heures pour réserver freine les déplacements non planifiés.",
+          "acces": "accom"
         },
         {
           "t": "enjeu",
           "n": 1,
-          "texte": "Le transport médical repose sur des bénévoles souvent âgés, qui manipulent fauteuils roulants et charges lourdes."
+          "texte": "Le transport médical repose sur des bénévoles souvent âgés, qui manipulent fauteuils roulants et charges lourdes.",
+          "acces": "dispo"
         },
         {
           "t": "piste",
@@ -128,7 +141,7 @@
           "texte": "Organiser un covoiturage entre membres pour se rendre aux activités."
         }
       ],
-      "det": "d8"
+      "det": "dss17"
     },
     {
       "id": "participation",
@@ -159,7 +172,8 @@
         {
           "t": "enjeu",
           "n": 1,
-          "texte": "Les jeunes veulent siéger aux comités, mais leur engagement est peu valorisé."
+          "texte": "Les jeunes veulent siéger aux comités, mais leur engagement est peu valorisé.",
+          "acces": "accept"
         },
         {
           "t": "piste",
@@ -172,7 +186,7 @@
           "texte": "Mobiliser les jeunes retraités et créer un réseau d'appels entre aînés."
         }
       ],
-      "det": "d6"
+      "det": "dss08"
     },
     {
       "id": "inclusion",
@@ -183,33 +197,41 @@
         {
           "t": "enjeu",
           "n": 3,
-          "texte": "Des groupes se sentent peu considérés dans la vie collective : les jeunes, les aînés et les familles à faible revenu."
+          "texte": "Des groupes se sentent peu considérés dans la vie collective : les jeunes, les aînés et les familles à faible revenu.",
+          "acces": "accept"
         },
         {
           "t": "enjeu",
           "n": 3,
-          "texte": "La langue et les repères culturels freinent la participation des personnes immigrantes."
+          "texte": "La langue et les repères culturels freinent la participation des personnes immigrantes.",
+          "det": "dss14",
+          "acces": "accept"
         },
         {
           "t": "enjeu",
           "n": 2,
           "texte": "La pauvreté et les écarts de revenu tiennent des personnes à l'écart des activités et de la vie collective.",
-          "det": "d1"
+          "det": "dss01",
+          "acces": "eco"
         },
         {
           "t": "enjeu",
           "n": 1,
-          "texte": "Des situations d'âgisme sont encore observées, notamment dans le réseau de la santé."
+          "texte": "Des situations d'âgisme sont encore observées, notamment dans le réseau de la santé.",
+          "acces": "accept"
         },
         {
           "t": "enjeu",
           "n": 1,
-          "texte": "L'accès aux lieux de vie communautaires varie selon l'endroit où l'on habite."
+          "texte": "L'accès aux lieux de vie communautaires varie selon l'endroit où l'on habite.",
+          "det": "dss17",
+          "acces": "spatial"
         },
         {
           "t": "atout",
           "n": 3,
-          "texte": "Plusieurs organismes pratiquent un accueil inconditionnel, sans égard à l'âge, à l'origine ou au revenu."
+          "texte": "Plusieurs organismes pratiquent un accueil inconditionnel, sans égard à l'âge, à l'origine ou au revenu.",
+          "acces": "accept"
         },
         {
           "t": "atout",
@@ -217,7 +239,7 @@
           "texte": "Une culture d'entraide existe, souvent informelle : troc, mini-friperies, circuits d'entraide."
         }
       ],
-      "det": "d6"
+      "det": "dss08"
     },
     {
       "id": "loisirs",
@@ -229,35 +251,41 @@
           "t": "enjeu",
           "n": 3,
           "texte": "Le coût des loisirs et des installations sportives est un frein; la gratuité fait la différence.",
-          "det": "d1"
+          "det": "dss01",
+          "acces": "eco"
         },
         {
           "t": "enjeu",
           "n": 1,
-          "texte": "L'offre de loisirs est jugée insuffisante pour les adolescents."
+          "texte": "L'offre de loisirs est jugée insuffisante pour les adolescents.",
+          "acces": "dispo"
         },
         {
           "t": "enjeu",
           "n": 1,
-          "texte": "L'été, les parcs sont moins accessibles aux familles lorsque les camps de jour les occupent."
+          "texte": "L'été, les parcs sont moins accessibles aux familles lorsque les camps de jour les occupent.",
+          "acces": "accom"
         },
         {
           "t": "atout",
           "n": 2,
-          "texte": "Des partenariats donnent un accès gratuit ou à tarif réduit à des spectacles, des festivals et des installations sportives."
+          "texte": "Des partenariats donnent un accès gratuit ou à tarif réduit à des spectacles, des festivals et des installations sportives.",
+          "acces": "eco"
         },
         {
           "t": "piste",
           "n": 2,
-          "texte": "Offrir davantage d'activités sportives et hivernales."
+          "texte": "Offrir davantage d'activités sportives et hivernales.",
+          "acces": "dispo"
         },
         {
           "t": "piste",
           "n": 1,
-          "texte": "Créer une carte jeunesse donnant accès aux activités culturelles et aux festivals."
+          "texte": "Créer une carte jeunesse donnant accès aux activités culturelles et aux festivals.",
+          "acces": "eco"
         }
       ],
-      "det": "d5"
+      "det": "dss08"
     },
     {
       "id": "communication",
@@ -273,7 +301,8 @@
         {
           "t": "enjeu",
           "n": 3,
-          "texte": "Plusieurs personnes ont besoin d'un accompagnement humain pour s'informer; les outils numériques ne suffisent pas, et les proches aidants servent souvent d'intermédiaires."
+          "texte": "Plusieurs personnes ont besoin d'un accompagnement humain pour s'informer; les outils numériques ne suffisent pas, et les proches aidants servent souvent d'intermédiaires.",
+          "acces": "accom"
         },
         {
           "t": "piste",
@@ -288,11 +317,10 @@
         {
           "t": "atout",
           "n": 2,
-          "texte": "La communication avec les municipalités est jugée bonne par des organismes.",
-          "det": "d6"
+          "texte": "La communication avec les municipalités est jugée bonne par des organismes."
         }
       ],
-      "det": "d8"
+      "det": "dss09"
     },
     {
       "id": "sante",
@@ -303,39 +331,46 @@
         {
           "t": "enjeu",
           "n": 3,
-          "texte": "Les services spécialisés ne sont pas offerts dans la MRC; il faut se rendre à Sherbrooke."
+          "texte": "Les services spécialisés ne sont pas offerts dans la MRC; il faut se rendre à Sherbrooke.",
+          "acces": "dispo"
         },
         {
           "t": "enjeu",
           "n": 2,
-          "texte": "Les rendez-vous médicaux sont annoncés à trop court préavis pour organiser le transport et la garde des enfants."
+          "texte": "Les rendez-vous médicaux sont annoncés à trop court préavis pour organiser le transport et la garde des enfants.",
+          "acces": "accom"
         },
         {
           "t": "enjeu",
           "n": 2,
           "texte": "La fragilité économique des familles s'accentue, jusque chez des ménages de la classe moyenne.",
-          "det": "d1"
+          "det": "dss01"
         },
         {
           "t": "enjeu",
           "n": 2,
           "texte": "La sécurité alimentaire repose sur une aide de dernier recours et sur des repas dont le coût reste un frein.",
-          "det": "d7"
+          "det": "dss06",
+          "acces": "eco"
         },
         {
           "t": "enjeu",
           "n": 1,
-          "texte": "Les ressources en santé mentale sont jugées nettement insuffisantes pour le territoire."
+          "texte": "Les ressources en santé mentale sont jugées nettement insuffisantes pour le territoire.",
+          "acces": "dispo"
         },
         {
           "t": "enjeu",
           "n": 1,
-          "texte": "Le manque d'interprètes complique l'accès aux soins des personnes allophones."
+          "texte": "Le manque d'interprètes complique l'accès aux soins des personnes allophones.",
+          "det": "dss14",
+          "acces": "accom"
         },
         {
           "t": "enjeu",
           "n": 1,
-          "texte": "L'offre s'adresse surtout aux aînés en perte d'autonomie; les aînés autonomes ont peu de services."
+          "texte": "L'offre s'adresse surtout aux aînés en perte d'autonomie; les aînés autonomes ont peu de services.",
+          "acces": "dispo"
         },
         {
           "t": "atout",
@@ -348,7 +383,7 @@
           "texte": "Les programmes Vie active et PIED sont très appréciés pour la prévention et le maintien de l'autonomie."
         }
       ],
-      "det": "d8"
+      "det": "dss10"
     },
     {
       "id": "securite",
@@ -369,12 +404,15 @@
         {
           "t": "enjeu",
           "n": 2,
-          "texte": "Les appels automatisés de vérification sont jugés impersonnels; un contact humain est souhaité."
+          "texte": "Les appels automatisés de vérification sont jugés impersonnels; un contact humain est souhaité.",
+          "det": "dss09",
+          "acces": "accept"
         },
         {
           "t": "divergence",
           "n": 1,
-          "texte": "Un organisme considère au contraire ces appels quotidiens comme essentiels au maintien à domicile des personnes seules."
+          "texte": "Un organisme considère au contraire ces appels quotidiens comme essentiels au maintien à domicile des personnes seules.",
+          "det": "dss09"
         },
         {
           "t": "enjeu",
@@ -382,7 +420,7 @@
           "texte": "Des situations de détresse et d'errance sont régulièrement repérées sur le terrain."
         }
       ],
-      "det": "d6"
+      "det": "dss08"
     },
     {
       "id": "espaces",
@@ -394,28 +432,34 @@
           "t": "enjeu",
           "n": 3,
           "texte": "Des organismes n'ont pas de local permanent ou accessible.",
-          "det": "d6"
+          "det": "dss09",
+          "acces": "dispo"
         },
         {
           "t": "enjeu",
           "n": 3,
-          "texte": "L'accessibilité universelle fait défaut par endroits : trottoirs abîmés, locaux à l'étage sans ascenseur."
+          "texte": "L'accessibilité universelle fait défaut par endroits : trottoirs abîmés, locaux à l'étage sans ascenseur.",
+          "det": "dss16",
+          "acces": "accom"
         },
         {
           "t": "enjeu",
           "n": 2,
-          "texte": "L'accès aux bâtiments et aux installations est restreint en dehors des heures de bureau ou faute de plages horaires."
+          "texte": "L'accès aux bâtiments et aux installations est restreint en dehors des heures de bureau ou faute de plages horaires.",
+          "acces": "accom"
         },
         {
           "t": "enjeu",
           "n": 1,
-          "texte": "Plusieurs parcs n'ont ni toilettes ni abri contre le soleil."
+          "texte": "Plusieurs parcs n'ont ni toilettes ni abri contre le soleil.",
+          "acces": "accom"
         },
         {
           "t": "atout",
           "n": 3,
           "texte": "Des salles municipales et des locaux partagés sont offerts gratuitement ou à faible coût aux organismes.",
-          "det": "d6"
+          "det": "dss09",
+          "acces": "eco"
         },
         {
           "t": "piste",
@@ -423,7 +467,7 @@
           "texte": "Aménager les parcs et les sentiers pour un usage partagé par les tout-petits, les familles et les aînés."
         }
       ],
-      "det": "d5"
+      "det": "dss17"
     }
   ],
   "chiffres": {
@@ -458,6 +502,37 @@
         "valeur": "1 an",
         "libelle": "de résidence sur le territoire exigé pour accéder à un HLM",
         "axe": "habitation"
+      }
+    ]
+  },
+  "acces": {
+    "titre": "Disponible ne veut pas dire accessible",
+    "note": "Une ressource peut exister sans être utilisée. Cinq dimensions de l'accès aident à comprendre pourquoi (Penchansky, 1981; Clary, 2017, cités par Shareck et Provost, 2026). Les constats qui portent sur l'accès à une ressource sont classés selon la dimension en jeu; ce classement est un choix d'analyse.",
+    "dimensions": [
+      {
+        "id": "dispo",
+        "nom": "Disponibilité",
+        "desc": "La ressource existe-t-elle sur le territoire?"
+      },
+      {
+        "id": "spatial",
+        "nom": "Accessibilité spatiale",
+        "desc": "Est-elle à une distance franchissable depuis là où l'on habite?"
+      },
+      {
+        "id": "eco",
+        "nom": "Accessibilité économique",
+        "desc": "Son coût est-il à la portée de la personne?"
+      },
+      {
+        "id": "accom",
+        "nom": "Accommodement",
+        "desc": "Ses horaires et ses règles conviennent-ils aux besoins?"
+      },
+      {
+        "id": "accept",
+        "nom": "Acceptabilité",
+        "desc": "La personne s'y sent-elle à sa place?"
       }
     ]
   },

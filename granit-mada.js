@@ -6,7 +6,7 @@
 (function () {
   'use strict';
   var URL_DATA = './data/mada/constats.json';
-  var S = { d: null, err: null, axe: 'tous', type: 'tous', det: 'tous' };
+  var S = { d: null, err: null, axe: 'tous', type: 'tous', det: 'tous', acces: 'tous' };
   var attente = null;
   var ORDRE = { enjeu: 0, divergence: 1, atout: 2, piste: 3 };
 
@@ -160,6 +160,10 @@
     for (var i = 0; i < tot; i++) h += '<i' + (i < n ? ' class="on"' : '') + '></i>';
     return '<div class="md-pts" aria-hidden="true">' + h + '</div>';
   }
+  function dimAcces(c) {
+    var dims = (S.d && S.d.acces && S.d.acces.dimensions) || [], k = dims.filter(function (x) { return x.id === c.acces; })[0];
+    return k ? '<span class="md-ax">Accès - ' + esc(k.nom) + '</span>' : '';
+  }
   function trier(cs) {
     return cs.slice().sort(function (a, b) { return (ORDRE[a.t] - ORDRE[b.t]) || (b.n - a.n); });
   }
@@ -198,13 +202,17 @@
     h += '<div class="md-filtres" role="group" aria-label="Filtrer par type de constat"><span class="md-fl">Type</span>' +
       '<button class="ft' + (S.type === 'tous' ? ' active' : '') + '" onclick="GranitMADA.filtre(\'type\',\'tous\')">Tous</button>' +
       Object.keys(types).map(function (k) { return '<button class="ft' + (S.type === k ? ' active' : '') + '" onclick="GranitMADA.filtre(\'type\',\'' + k + '\')">' + esc(types[k]) + '</button>'; }).join('') + '</div>';
+    var dims = (d.acces && d.acces.dimensions) || [];
+    if (dims.length) h += '<div class="md-filtres" role="group" aria-label="Filtrer par dimension de l\'accès"><span class="md-fl">Accès</span>' +
+      '<button class="ft' + (S.acces === 'tous' ? ' active' : '') + '" onclick="GranitMADA.filtre(\'acces\',\'tous\')">Tous</button>' +
+      dims.map(function (k) { return '<button class="ft' + (S.acces === k.id ? ' active' : '') + '" title="' + esc(k.desc) + '" onclick="GranitMADA.filtre(\'acces\',\'' + k.id + '\')">' + esc(k.nom) + '</button>'; }).join('') + '</div>';
 
     var cartes = axes.filter(function (a) { return S.axe === 'tous' || S.axe === a.id; }).map(function (a) {
-      var cs = trier(a.constats || []).filter(function (c) { return S.type === 'tous' || S.type === c.t; });
+      var cs = trier(a.constats || []).filter(function (c) { return (S.type === 'tous' || S.type === c.t) && (S.acces === 'tous' || S.acces === c.acces); });
       var corps = cs.length ? cs.map(function (c) {
         return '<div class="md-c"><div><div class="md-n">' + sur(c.n, tot) + '</div>' + points(c.n, tot) + '</div>' +
-          '<div><span class="md-t md-t-' + esc(c.t) + '">' + esc(types[c.t] || c.t) + '</span>' + esc(c.texte) + '</div></div>';
-      }).join('') : '<div class="md-vide">Aucun constat de ce type pour cet axe.</div>';
+          '<div><span class="md-t md-t-' + esc(c.t) + '">' + esc(types[c.t] || c.t) + '</span>' + esc(c.texte) + dimAcces(c) + '</div></div>';
+      }).join('') : '<div class="md-vide">Aucun constat ne correspond à ces filtres pour cet axe.</div>';
       return '<div class="card md-axe"><div class="ct">' + a.no + '. ' + esc(a.nom) + '</div>' +
         '<div class="md-axe-s">Axe abordé par ' + sur(a.organismes, tot) + ' organismes</div>' + corps + '</div>';
     }).join('');
@@ -233,7 +241,7 @@
     (S.d.axes || []).forEach(function (a) {
       (a.constats || []).forEach(function (c) {
         var k = c.det || a.det; if (!k) return;
-        (m[k] = m[k] || []).push({ t: c.t, n: c.n, texte: c.texte, axe: a });
+        (m[k] = m[k] || []).push({ t: c.t, n: c.n, texte: c.texte, acces: c.acces, axe: a });
       });
     });
     return m;
@@ -264,27 +272,28 @@
     var voix = (ap && ap.voixCitoyenne) || 'Aucune parole citoyenne n\'est encore intégrée.';
     var h = '<div class="md-lect">' + terrain().replace('class="prov', 'style="margin-left:0;margin-right:8px" class="prov') + esc(m.lectureSante || m.lecture || '') + '</div>';
 
-    h += '<div class="ss-row">' + dets.map(function (x) {
-      var cs = map[x.id], e = cs.filter(function (c) { return c.t === 'enjeu'; }).length;
-      return ss(e + ' sur ' + cs.length, 'Enjeux parmi les constats - ' + esc(x.name));
-    }).join('') + '</div>';
+    var tous = [], tousDets = determinants();
+    dets.forEach(function (x) { tous = tous.concat(map[x.id]); });
+    h += '<div class="ss-row">' + ss(dets.length + ' sur ' + tousDets.length, 'Déterminants avec des constats du milieu') +
+      ss(tous.length, 'Constats rattachés') +
+      ss(tous.filter(function (c) { return c.t === 'enjeu'; }).length, 'Dont des enjeux') +
+      ss(tous.filter(function (c) { return c.acces; }).length, 'Qui portent sur l\'accès à une ressource') + '</div>';
 
     h += '<div class="md-filtres" role="group" aria-label="Filtrer par déterminant"><span class="md-fl" style="min-width:86px">Déterminant</span>' +
       '<button class="ft' + (S.det === 'tous' ? ' active' : '') + '" onclick="GranitMADA.filtre(\'det\',\'tous\')">Tous</button>' +
-      dets.map(function (x) { return '<button class="ft' + (S.det === x.id ? ' active' : '') + '" onclick="GranitMADA.filtre(\'det\',\'' + x.id + '\')">' + esc(x.name) + '</button>'; }).join('') + '</div>';
+      dets.map(function (x) { return '<button class="ft' + (S.det === x.id ? ' active' : '') + '" onclick="GranitMADA.filtre(\'det\',\'' + x.id + '\')">' + (x.no ? x.no + '. ' : '') + esc(x.name) + '</button>'; }).join('') + '</div>';
 
     var cartes = dets.filter(function (x) { return S.det === 'tous' || S.det === x.id; }).map(function (x) {
       var cs = trier(map[x.id]);
-      return '<div class="card md-axe"><div class="md-det-h"><div class="ct">' + esc(x.name) + '</div>' +
-        '<span class="md-det-sc">Score ' + esc(x.score) + ' sur 100 - ' + esc(x.level) + '</span></div>' +
-        '<div class="md-voix">Ce que disent les chiffres <span class="prov prov-reel">Réel</span></div>' +
-        '<div class="md-voix-t">' + x.indicator + '</div>' +
+      return '<div class="card md-axe"><div class="md-det-h"><div class="ct">' + (x.no ? x.no + '. ' : '') + esc(x.name) + '</div></div>' +
+        '<div class="md-voix">Ce que disent les chiffres ' + (x.indicator ? '<span class="prov prov-reel">Réel</span>' : '<span class="prov prov-todo">À compléter</span>') + '</div>' +
+        '<div class="md-voix-t">' + (x.indicator || esc(x.aDocumenter || 'Aucune donnée locale sur la plateforme.')) + '</div>' +
         '<div class="md-voix">Ce qu\'observent les organismes ' + terrain() + '</div>' +
         '<div class="md-axe-s" style="margin-bottom:4px">' + cs.length + ' constat' + (cs.length > 1 ? 's' : '') + ' rattaché' + (cs.length > 1 ? 's' : '') + ' à ce déterminant</div>' +
         cs.map(function (c) {
           return '<div class="md-c"><div><div class="md-n">' + sur(c.n, tot) + '</div>' + points(c.n, tot) + '</div>' +
             '<div><span class="md-t md-t-' + esc(c.t) + '">' + esc(types[c.t] || c.t) + '</span>' + esc(c.texte) +
-            '<span class="md-ax">Axe MADA ' + c.axe.no + ' - ' + esc(c.axe.nom) + '</span></div></div>';
+            '<span class="md-ax">Axe MADA ' + c.axe.no + ' - ' + esc(c.axe.nom) + '</span>' + dimAcces(c) + '</div></div>';
         }).join('') +
         '<div class="md-voix">Ce que disent les citoyens <span class="prov prov-todo">À compléter</span></div>' +
         '<div class="md-voix-t">' + esc(voix) + '</div></div>';
@@ -301,6 +310,8 @@
     var grid = document.getElementById('sdohGrid'); if (!S.d || !grid) return;
     var map = parDet(), dets = determinants(), tot = (S.d.meta || {}).organismesRencontres || 10;
     var cards = grid.querySelectorAll('.det-card');
+    var nT = document.getElementById('sdohTerrainN');
+    if (nT) nT.textContent = dets.filter(function (x) { return map[x.id]; }).length + ' sur ' + dets.length;
     dets.forEach(function (x, i) {
       var card = cards[i], cs = map[x.id]; if (!card || !cs || card.querySelector('.md-det-t')) return;
       var enj = cs.filter(function (c) { return c.t === 'enjeu'; }).sort(function (a, b) { return b.n - a.n; });
@@ -337,6 +348,9 @@
     charger: charger,
     aller: aller,
     allerSante: allerSante,
+    allerAcces: function (dim) { S.acces = dim || 'tous'; S.axe = 'tous'; S.type = 'tous'; aller(); },
+    compteAcces: function () { var m = {}; ((S.d && S.d.axes) || []).forEach(function (a) { (a.constats || []).forEach(function (c) { if (c.acces) m[c.acces] = (m[c.acces] || 0) + 1; }); }); return m; },
+    donnees: function () { return S.d; },
     filtre: function (quoi, v) { S[quoi] = v; if (quoi === 'det') rendreSante(); else rendre(); }
   };
 

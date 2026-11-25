@@ -1,0 +1,10 @@
+
+# Ne jamais verser de chiffrier, de secret ni de fichier local au dépôt public.
+*.xlsx
+*.xls
+.env
+.env.*
+*.pem
+*.key
+node_modules/
+.DS_Store

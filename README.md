@@ -1,4 +1,4 @@
-# Tableau de bord territorial - MRC du Granit (v4.19)
+# Tableau de bord territorial - MRC du Granit (v4.20)
 
 Outil interne de développement territorial à trois piliers (économie, aménagement, santé). Hébergé sur GitHub Pages.
 
@@ -20,11 +20,25 @@ Outil interne de développement territorial à trois piliers (économie, aménag
 | `data/mada/constats.json` | Constats de la collecte MADA auprès des organismes, agrégés par axe. Tenu à la main |
 | `granit-apprenant.js` | Pilier Santé : registre « De la donnée à la décision », instances, journal des lectures révisées, « Données et gouvernance », navigation regroupée |
 | `data/sante/apprenant.json` | Enjeux suivis, décisions tracées, instances, journal et inventaire des jeux de données. Tenu à la main |
+| `granit-securite.js` | Assainissement des données avant affichage, validation des imports, empreinte du mot de passe. Chargé en premier |
 | `granit-croise.js` | Croisements entre les vues : le registre, les services de garde et le recensement s'affichent partout où il y a une fiche ou un bloc cliquable |
 | `data/req/`, `data/garde/`, `data/logement/` | Extractions automatiques produites par GitHub Actions. Ne pas modifier à la main |
 | `data/appariement.json` | Liens entre les fiches locales et le Registraire (par NEQ) |
 
 Ces fichiers doivent se trouver dans le même dossier du dépôt.
+
+## Nouveautés de la version 4.20 (sécurité)
+
+Aucun mot de passe n'est ajouté pour consulter la plateforme. Le durcissement porte sur ce qui se passe derrière l'écran.
+
+- Mot de passe du mode « Modifier les données ». Il figurait en clair dans `data.json`, dans la page et dans ce README. Il est remplacé par une empreinte PBKDF2-SHA-256 salée (310 000 itérations). Le mot de passe en vigueur continue de fonctionner, mais il a été public : il faut le changer. Trois essais ratés imposent une attente croissante.
+- Assainissement des données. Tout ce qui est affiché passe par `granit-securite.js` : `data.json`, les fichiers de `data/`, un JSON importé, le stockage local, le chiffrier. Seules des balises de mise en forme sont conservées; scripts, gestionnaires d'événements et liens `javascript:` sont retirés. Un fichier piégé ne peut plus exécuter de code dans le navigateur de la personne qui publie, ni lire son jeton GitHub.
+- Import JSON. Le fichier doit avoir la structure d'un `data.json` et ne pas dépasser 8 Mo.
+- Politique de sécurité du contenu (CSP). Aucun script, cadre ou objet externe; les seuls échanges réseau permis sont le site lui-même, l'API de GitHub pour la publication et Google Fonts pour les polices.
+- Bibliothèques tierces (`chart.umd.min.js`, `exceljs.min.js`, `xlsx-populate.min.js`) verrouillées par une empreinte d'intégrité.
+- Flux GitHub Actions. Actions épinglées par empreinte de commit, droits réduits à l'écriture du contenu pour le seul job qui publie, exécutions mises en file, contrôle des fichiers JSON avant publication. Dependabot propose les mises à jour des actions.
+- Dépôt. `.gitignore` empêche de verser un chiffrier ou un fichier de secrets; `tools/test-modif.js` ne contient plus de mot de passe (variable `GRANIT_XLSX_PW`).
+- `granit-excel.js` et `granit-import.js` ne sont pas modifiés. Le jeton GitHub reste donc conservé dans le stockage local du navigateur; voir `SECURITY.md` pour les réglages recommandés.
 
 ## Nouveautés de la version 4.19 (pilier Santé : déterminants sociaux et inégalités sociales de santé)
 
@@ -172,9 +186,9 @@ Sans cette configuration, l'exportation de `data.json` et son dépôt manuel sur
 3. Settings, Pages, Source `main`, Save.
 4. URL `https://[votre-compte].github.io/granit-dashboard`.
 
-## Mot de passe administrateur par défaut
+## Mot de passe du mode « Modifier les données »
 
-`granit2025`, à changer dans « Modifier les données ». Le mot de passe du chiffrier Excel est distinct et se choisit à la génération du fichier.
+Il n'est plus écrit en clair nulle part : `data.json` n'en garde qu'une empreinte PBKDF2 salée. Il se change dans « Modifier les données » (10 caractères au minimum). Le mot de passe du chiffrier Excel est distinct et se choisit à la génération du fichier. Voir `SECURITY.md`.
 
 ## Outil de génération en ligne de commande (facultatif)
 

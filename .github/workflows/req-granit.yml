@@ -5,20 +5,44 @@ on:
   schedule:
     - cron: "17 10 3,18 * *"   # le 3 et le 18 de chaque mois (le jeu est mis à jour deux fois par mois)
 
-permissions:
-  contents: write
+# Aucun droit par défaut; le job ci-dessous reçoit seulement l'écriture du contenu du dépôt.
+permissions: {}
+
+concurrency:
+  group: donnees-granit
+  cancel-in-progress: false
 
 jobs:
   extraire:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: "3.12"
       - name: Télécharger et filtrer le registre
         run: python tools/req_granit.py --out data/req
+      - name: Vérifier les fichiers produits
+        run: |
+          python - <<'PY'
+          import json, pathlib, sys
+          mauvais = []
+          for d in ['data/req']:
+              for f in pathlib.Path(d).rglob("*.json"):
+                  try:
+                      t = f.read_text(encoding="utf-8")
+                      json.loads(t)
+                      if "<script" in t.lower():
+                          mauvais.append("%s : balise script" % f)
+                  except Exception as e:
+                      mauvais.append("%s : %s" % (f, e))
+          if mauvais:
+              print("\n".join(mauvais)); sys.exit(1)
+          print("Fichiers JSON valides.")
+          PY
       - name: Publier les résultats
         run: |
           git config user.name "github-actions[bot]"

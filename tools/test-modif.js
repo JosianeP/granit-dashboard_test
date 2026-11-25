@@ -1,8 +1,11 @@
 const XP = require('xlsx-populate'); const fs = require('fs'); const path = require('path');
+// Le mot de passe du chiffrier ne s'écrit jamais dans le dépôt : il se passe par la variable d'environnement GRANIT_XLSX_PW.
+const PW = process.env.GRANIT_XLSX_PW;
+if (!PW) { console.error('Définir GRANIT_XLSX_PW avant de lancer ce test.'); process.exit(1); }
 const GE = require(path.join(__dirname, '..', 'granit-excel.js'));
 (async () => {
   const D = JSON.parse(fs.readFileSync('../data.json', 'utf8'));
-  const wb = await XP.fromDataAsync(fs.readFileSync('../MRC_Granit_mise_a_jour.xlsx'), { password: 'Granit2026!' });
+  const wb = await XP.fromDataAsync(fs.readFileSync('../MRC_Granit_mise_a_jour.xlsx'), { password: PW });
   // helpers : trouver la cellule d'un champ ou d'une ligne de tableau
   function findField(sheet, pathStr) { const s = wb.sheet(sheet); const u = s.usedRange().endCell().rowNumber(); for (let r = 1; r <= u; r++) { if (s.cell(r, 1).value() === 'F|' + pathStr) return s.cell(r, 3); } throw new Error('champ ' + pathStr); }
   function tableRows(sheet, id) { const s = wb.sheet(sheet); const u = s.usedRange().endCell().rowNumber(); let inT = false, keys = null, rows = []; for (let r = 1; r <= u; r++) { const m = String(s.cell(r, 1).value() || ''); if (m === 'T|' + id) { inT = true; continue; } if (!inT) continue; if (m === 'K|') { keys = []; for (let c = 2; c < 60; c++) { const v = s.cell(r, c).value(); if (v == null || v === '') break; keys.push(String(v)); } } else if (m.startsWith('R|')) rows.push({ r, key: m.slice(2), keys }); else if (m === 'E|') break; } return rows; }
@@ -25,15 +28,15 @@ const GE = require(path.join(__dirname, '..', 'granit-excel.js'));
   // 8. erreur volontaire : texte dans un nombre (Audet pop) et enum invalide (statut)
   findField('Audet', 'municipalities[code=30055].pop').value('sept cents');
   const au = tableRows('Audet', 'companies@30055'); const auFirst = au.filter(x => x.key !== '')[0]; setRow('Audet', auFirst, { status: 'ferme' });
-  const out = await wb.outputAsync({ password: 'Granit2026!' }); fs.writeFileSync('/tmp/modif.xlsx', out);
+  const out = await wb.outputAsync({ password: PW }); fs.writeFileSync('/tmp/modif.xlsx', out);
   // réimport
-  const wb2 = await XP.fromDataAsync(fs.readFileSync('/tmp/modif.xlsx'), { password: 'Granit2026!' });
+  const wb2 = await XP.fromDataAsync(fs.readFileSync('/tmp/modif.xlsx'), { password: PW });
   const res = GE.applyImport(D, GE.readWorkbook(wb2));
   console.log('ERREURS attendues (2) :', res.errors);
   // corriger les erreurs et réimporter
   findField('Audet', 'municipalities[code=30055].pop').value(707); setRow('Audet', auFirst, { status: 'actif' });
-  const out2 = await wb.outputAsync({ password: 'Granit2026!' }); fs.writeFileSync('/tmp/modif2.xlsx', out2);
-  const wb3 = await XP.fromDataAsync(fs.readFileSync('/tmp/modif2.xlsx'), { password: 'Granit2026!' });
+  const out2 = await wb.outputAsync({ password: PW }); fs.writeFileSync('/tmp/modif2.xlsx', out2);
+  const wb3 = await XP.fromDataAsync(fs.readFileSync('/tmp/modif2.xlsx'), { password: PW });
   const res2 = GE.applyImport(D, GE.readWorkbook(wb3));
   console.log('counts', res2.counts); console.log(res2.changes); console.log('added', res2.added, 'removed', res2.removed, 'retiré attendu:', removedName); console.log('warnings', res2.warnings);
   const N = res2.data;

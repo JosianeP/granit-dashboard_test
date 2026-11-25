@@ -1303,7 +1303,6 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
       <div class="view" id="view-sa-portrait">
         <div class="section-header"><div class="sh-left"><h2>Portrait des déterminants sociaux de la santé</h2><p>17 déterminants - ce qui est documenté pour le Granit et ce qui reste à documenter</p></div><span class="pillar-badge pb-sa">Santé</span></div>
         <div class="sdoh-intro" id="sdohIntro"></div>
-        <div class="ss-row" id="sdohCouv"></div>
         <div class="sdoh-grid" id="sdohGrid"></div>
         <div id="sdohCadre"></div>
       </div>
@@ -3415,12 +3414,6 @@ function renderSdohPortrait(){
   var dets=D.sante.determinants||[], c=D.sante.cadre||{};
   var cad=document.getElementById('sdohCadre');
   if(cad)cad.innerHTML=c.reference?'<div class="rv-src" style="margin-top:0">'+c.reference+'</div>':'';
-  var avec=dets.filter(function(d){return d.indicator;}).length;
-  var couv=document.getElementById('sdohCouv');
-  if(couv)couv.innerHTML=ss(dets.length,'Déterminants sociaux de la santé')+
-    ss(avec+' sur '+dets.length,'Avec des chiffres sur la plateforme')+
-    ss('<span id="sdohTerrainN">-</span>','Avec des constats du milieu')+
-    ss((dets.length-avec)+' sur '+dets.length,'Sans chiffre local, à documenter');
   document.getElementById('sdohGrid').innerHTML=dets.map(function(d,i){
     var a=!!d.indicator;
     return '<div class="det-card" style="--det-color:'+(a?'var(--sa700)':'var(--border)')+'">'+

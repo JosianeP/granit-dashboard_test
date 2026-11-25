@@ -335,7 +335,7 @@
     "date": "2026-11-24",
     "sujet": "Cohésion sociale (aujourd'hui lue sous Exclusion sociale)",
     "avant": "Lue comme un atout fort, à partir de la densité coopérative et de la participation sociale des aînés.",
-    "apres": "Toujours un atout, mais 11 des 21 constats du milieu qui s'y rattachent sont des enjeux : isolement, groupes qui se sentent peu considérés, organismes sans local permanent.",
+    "apres": "Toujours un atout, mais 9 des 19 constats du milieu qui s'y rattachent sont des enjeux : isolement, groupes qui se sentent peu considérés, organismes sans local permanent.",
     "declencheur": "Collecte MADA auprès de dix organismes."
    },
    {
@@ -449,8 +449,8 @@
   "items": [
    {
     "prov": "reel",
-    "texte": "Le réseau local de services du Granit compte 21 886 habitants; la MRC en compte 21 935 selon le décret de population de 2026. Les deux périmètres sont proches sans être identiques.",
-    "src": "DSP de l'Estrie, Faits saillants RLS du Granit, avril 2025; décret de population 2026"
+    "texte": "Le réseau local de services du Granit compte 21 886 habitants; la MRC en compte 21 935 selon le décret de population 1499-2025, en vigueur pour 2026. Les deux périmètres sont proches sans être identiques.",
+    "src": "DSP de l'Estrie, Faits saillants RLS du Granit, avril 2025; décret de population 1499-2025"
    },
    {
     "prov": "reel",
@@ -477,13 +477,6 @@
  "voixCitoyenne": "Aucune parole citoyenne intégrée pour l'instant. Le sondage et les soirées de consultation de la démarche MADA s'ajouteront ici.",
  "donnees": {
   "note": "",
-  "principes": [
-   "Dépôt public : aucune donnée personnelle ni propos attribué à une personne.",
-   "Chaque valeur porte une pastille de provenance.",
-   "Chaque municipalité modifie sa propre feuille du chiffrier commun, avec son mot de passe.",
-   "Les constats d'entrevue sont agrégés avant publication.",
-   "Petits effectifs, grande prudence : un chiffre n'est publié que s'il est diffusable et ne risque pas de tromper."
-  ],
   "jeux": [
    {
     "nom": "Registre des entreprises",
@@ -613,10 +606,6 @@
  },
  "iss": {
   "definition": "Des écarts de santé liés à des avantages ou à des désavantages sociaux (revenu, scolarité, genre, géographie), jugés injustes et évitables (OMS).",
-  "reperes": [
-   "Le gradient compte autant que l'écart entre les extrêmes.",
-   "Ces inégalités fluctuent dans le temps; on peut donc les réduire."
-  ],
   "mecanismes": [
    {
     "nom": "Une distribution inégale des ressources",
@@ -627,7 +616,6 @@
     "texte": "À ressources égales, les groupes sociaux n'y accèdent pas et ne les vivent pas de la même façon."
    }
   ],
-  "rural": "En milieu rural, la distance amplifie ces mécanismes : l'accès se mesure en minutes d'auto.",
   "exemples": [
    {
     "titre": "Pas de permis, pas de transport, pas d'activité",

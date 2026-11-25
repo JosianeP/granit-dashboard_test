@@ -1,5 +1,5 @@
 {
-  "_sources": "Population et superficie : Décret de population 1499-2025 (MAMH, fév. 2026) · Revenus : Recensement de la population 2021 (Statistique Canada, division de recensement Le Granit) · Marché du travail (benchmarks QC) : ISQ, Marché du travail dans les MRC, bilan 2024 · Indice de vitalité économique : ISQ/MAMH, édition 2025 · Affectation et zone agricole : PDZA et schéma d'aménagement, MRC du Granit · Entreprises : SDE du Granit, L'Écho de Frontenac, Affaires Mégantic, registres publics. Les emplois par secteur, les valeurs de permis, les conversions et les scores de déterminants de santé sont des ESTIMATIONS analytiques à valider auprès des sources primaires (ISQ table MRC, services d'urbanisme, CIUSSS de l'Estrie-CHUS, INSPQ). · Portrait industriel (656 établissements, 5 245 emplois, 733 M$ PIB, 2 G$ ventes) : LGP, « Portrait économique sectoriel et pistes de collaboration inter-MRC », Table des MRC de l'Estrie, avril 2026. · Tourisme et commerces : Tourisme Région de Mégantic, Cantons-de-l'Est, Destination Lac-Mégantic, L'Écho de Frontenac, Les Affaires (2021-2026). · Santé : DSP de l'Estrie - Faits saillants RLS du Granit (avril 2025) et Tableau de bord – Santé publique Estrie (santeestrie.qc.ca). Projections de population : ISQ, série 2025 (base Recensement 2021). Portrait municipal : Tableau de bord du développement des municipalités de l'Estrie (rec. 2021). · Portrait démographique municipal (structure par âge, projections) : ISQ - Estimations série 2026 et projections série 2025 (scénario Référence A2025, base Recensement 2021), tableaux par groupe d'âge, MRC/RLS du Granit.. · Plan climat : MRC du Granit, Inventaire collectif des émissions de gaz à effet de serre, version préliminaire v2, année de référence 2024 (préparé par Daria Gouzou et Victor Lours, révisé par Antoine Chenail, 20 février 2026), appuyé sur le Guide méthodologique du MELCCFP 2025, le Rapport d'inventaire national d'ECCC, les données Hydro-Québec par MRC et municipalité, la SAAQ, l'ISQ et les chiffriers de collecte remplis par les 19 municipalités.",
+  "_sources": "Population et superficie : Décret de population 1499-2025 (MAMH, fév. 2026) · Revenus : Recensement de la population 2021 (Statistique Canada, division de recensement Le Granit) · Marché du travail (benchmarks QC) : ISQ, Marché du travail dans les MRC, bilan 2024 · Indice de vitalité économique : ISQ/MAMH, édition 2025 · Affectation et zone agricole : PDZA et schéma d'aménagement, MRC du Granit · Entreprises : SDE du Granit, L'Écho de Frontenac, Affaires Mégantic, registres publics. Les emplois par secteur, les valeurs de permis et les conversions sont des ESTIMATIONS analytiques à valider auprès des sources primaires (ISQ table MRC, services d'urbanisme, CIUSSS de l'Estrie-CHUS, INSPQ). · Portrait industriel (656 établissements, 5 245 emplois, 733 M$ PIB, 2 G$ ventes) : LGP, « Portrait économique sectoriel et pistes de collaboration inter-MRC », Table des MRC de l'Estrie, avril 2026. · Tourisme et commerces : Tourisme Région de Mégantic, Cantons-de-l'Est, Destination Lac-Mégantic, L'Écho de Frontenac, Les Affaires (2021-2026). · Santé : DSP de l'Estrie - Faits saillants RLS du Granit (avril 2025) et Tableau de bord – Santé publique Estrie (santeestrie.qc.ca). Projections de population : ISQ, série 2025 (base Recensement 2021). Portrait municipal : Tableau de bord du développement des municipalités de l'Estrie (rec. 2021). · Portrait démographique municipal (structure par âge, projections) : ISQ - Estimations série 2026 et projections série 2025 (scénario Référence A2025, base Recensement 2021), tableaux par groupe d'âge, MRC/RLS du Granit.. · Plan climat : MRC du Granit, Inventaire collectif des émissions de gaz à effet de serre, version préliminaire v2, année de référence 2024 (préparé par Daria Gouzou et Victor Lours, révisé par Antoine Chenail, 20 février 2026), appuyé sur le Guide méthodologique du MELCCFP 2025, le Rapport d'inventaire national d'ECCC, les données Hydro-Québec par MRC et municipalité, la SAAQ, l'ISQ et les chiffriers de collecte remplis par les 19 municipalités.",
   "meta": {
     "quarter": "T2 2026",
     "updatedBy": "MRC du Granit - Conseil scientifique & Développement économique",
@@ -5011,7 +5011,7 @@
         "no": 3,
         "name": "Emploi et conditions de travail",
         "source": "Développement économique",
-        "indicator": "Taux d'emploi 77,6 %, 7 845 travailleurs (ISQ 2024). Manufacturier = 37 % des emplois (SDEG) c. 19 % au QC. DSP Estrie - Faits saillants RLS du Granit, avril 2025 : 37,1 % des travailleurs exposés à un niveau élevé de contraintes physiques (25,8 % en Estrie) et 7,8 % de surdité attribuable au travail (4,5 % au QC).",
+        "indicator": "Taux de travailleurs de 25 à 64 ans 77,6 %, soit 7 845 travailleurs (ISQ 2024, provisoire). La fabrication représente 37 % des emplois selon la SDEG (19 % au Québec) et 27 % de la population active résidente au Recensement de 2021. DSP Estrie - Faits saillants RLS du Granit, avril 2025 : 37,1 % des travailleurs exposés à un niveau élevé de contraintes physiques (25,8 % en Estrie) et 7,8 % de surdité attribuable au travail (4,5 % au QC).",
         "link": "La vitalité de la grappe bois-forêt et du pôle granit soutient l'emploi, mais la concentration manufacturière crée une vulnérabilité aux chocs sectoriels.",
         "real": true
       },
@@ -5019,11 +5019,10 @@
         "id": "dss04",
         "no": 4,
         "name": "Assistance emploi et sécurité d'emploi",
-        "source": "",
-        "indicator": "",
+        "source": "Développement économique",
+        "indicator": "Taux de chômage 6,2 % au Recensement de 2021, soit 655 chômeurs sur 10 510 personnes actives (Statistique Canada, division Le Granit). L'assistance emploi et la précarité d'emploi restent à documenter.",
         "link": "",
-        "real": false,
-        "aDocumenter": "Aucun indicateur sur le chômage ou la précarité d'emploi."
+        "real": true
       },
       {
         "id": "dss05",

@@ -274,8 +274,7 @@
     var I = d.iss, J = I.jeunes, coul = ['var(--pillar-color)', '#8a9aa3', '#c3ccd1'];
     var h = '<div class="ap-cadre">' + esc(I.definition) + '</div>';
     h += '<div class="card" style="margin-bottom:18px"><div class="ct">Comment ces inégalités se fabriquent</div><div class="ap-2" style="margin-bottom:10px">' +
-      I.mecanismes.map(function (m) { return '<div class="ap-mec"><b>' + esc(m.nom) + '</b><span>' + esc(m.texte) + '</span></div>'; }).join('') + '</div>' +
-      '<ul class="ap-li">' + I.reperes.map(function (r) { return '<li>' + esc(r) + '</li>'; }).join('') + '<li>' + esc(I.rural) + '</li></ul></div>';
+      I.mecanismes.map(function (m) { return '<div class="ap-mec"><b>' + esc(m.nom) + '</b><span>' + esc(m.texte) + '</span></div>'; }).join('') + '</div></div>';
 
     var M = window.GranitMADA, C = M && M.donnees && M.donnees();
     if (C && C.acces) {
@@ -336,14 +335,7 @@
   function rendreDonnees() {
     var d = S.d, el = document.getElementById('apDonnees'); if (!d || !el) return;
     var G = d.donnees, jeux = G.jeux || [];
-    var auto = jeux.filter(function (x) { return /^Automatique/.test(x.mode); }).length;
-    var sans = jeux.filter(function (x) { return !x.conditions; }).length;
-    var ss = window.ss;
     el.innerHTML = (G.note ? '<div class="ap-cadre">' + esc(G.note) + '</div>' : '') +
-      '<div class="ss-row">' + ss(jeux.length, 'Jeux de données') + ss(auto, 'Mis à jour automatiquement') +
-      ss(jeux.length - auto, 'Saisis ou versés à la main') + ss(sans, 'Conditions de partage à documenter') + '</div>' +
-      '<div class="card" style="margin-bottom:18px"><div class="ct">Principes en vigueur</div><ul class="ap-li">' +
-      (G.principes || []).map(function (p) { return '<li>' + esc(p) + '</li>'; }).join('') + '</ul></div>' +
       '<div class="card"><div class="ct">Jeux de données de la plateforme</div><div class="ap-wrap"><table class="ap-tab"><thead><tr>' +
       '<th>Jeu de données</th><th>Fournisseur</th><th>Arrivée sur la plateforme</th><th>Conditions de réutilisation ou de partage</th></tr></thead><tbody>' +
       jeux.map(function (x) {

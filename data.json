@@ -4806,7 +4806,6 @@
     }
   },
   "amenagement": {
-    "intro": "Portrait de l'occupation et de la transformation du territoire de la MRC du Granit.",
     "permits": {
       "years": [
         "2019",
@@ -4917,7 +4916,6 @@
       "affectationSource": "Répartition schématique estimée pour fins de visualisation - à valider avec le SAD de la MRC."
     },
     "conversion": {
-      "intro": "Dynamique de conversion des usages.",
       "years": [
         "2020",
         "2021",
@@ -4985,7 +4983,6 @@
     }
   },
   "sante": {
-    "intro": "La santé de la population se joue surtout hors du système de soins. Ce pilier la lit à travers 17 déterminants sociaux de la santé. Le RLS du Granit compte 21 886 habitants; l'âge médian y est de 52 ans, contre 46 en Estrie (DSP de l'Estrie, avril 2025).",
     "compositeNote": "Le portrait ne comporte plus de score ni d'indice composite. Chaque déterminant distingue les éléments documentés de ceux qui restent à documenter.",
     "determinants": [
       {
@@ -5834,7 +5831,6 @@
   },
   "mainOeuvre": {
     "annee": "2024",
-    "intro": "Estimation du bassin de main-d'œuvre du territoire : population en âge de travailler, scolarité et relève. Les effectifs par groupe d'âge proviennent des estimations de l'ISQ (série 2025, base Recensement 2021) pour le RLS du Granit en 2024 (population de 22 681); les indicateurs de marché du travail, de l'ISQ (MRC du Granit) et de la Direction de santé publique de l'Estrie.",
     "indicateurs": [
       {
         "label": "Population de 15-64 ans",
@@ -10529,7 +10525,6 @@
         "desc": "Plus de 150 % du revenu médian ajusté"
       }
     ],
-    "intro": "Bornes de revenu après impôt du ménage en 2020, selon la taille du ménage. Elles découlent de la Mesure de faible revenu après impôt de Statistique Canada, fixée à 26 503 $ pour une personne seule et multipliée par la racine carrée de la taille du ménage. L'année 2020 est retenue parce qu'elle correspond au revenu médian des ménages du Granit tiré du Recensement de 2021.",
     "source": "Statistique Canada, Dictionnaire du Recensement de la population de 2021, Mesure de faible revenu après impôt (MFR-ApI), seuil de 26 503 $ pour un ménage d'une personne en 2020. Chaire de recherche en fiscalité et en finances publiques de l'Université de Sherbrooke pour la classe moyenne, définie entre 75 % et 150 % du revenu médian ajusté.",
     "note": "Les tranches « modeste » et « élevé » sont les intervalles résiduels de part et d'autre de la classe moyenne; elles ne sont pas des catégories officielles. D'autres travaux étendent la classe moyenne jusqu'à 200 % du revenu médian. Montants arrondis à la centaine de dollars. Le taux de faible revenu des familles affiché au bandeau provient de l'ISQ (données fiscales de 2023) et repose sur ses propres seuils, non sur les bornes de 2020 présentées ici."
   }

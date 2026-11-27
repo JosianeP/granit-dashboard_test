@@ -19,7 +19,7 @@ const { lireExtras } = require('./build-excel.js');
   set('Frontenac', libre('Frontenac', 'companies@30025'), { name: 'Nouvelle Scierie Test', sector: D.sectors[0].name, jobs: 12, status: 'nouveau', desc: 'Entreprise ajoutée pour test.' });
   findField('Piopolis', 'climat.parMuni[muni=Piopolis].transp').value(1000);
   // textes d'analyse
-  findField("Textes d'analyse", 'sante.intro').value('Nouvelle introduction du pilier Santé.');
+  findField("Textes d'analyse", 'sante.compositeNote').value('Nouvelle introduction du pilier Santé.');
   // collaborations : ajout avec cellules à plusieurs éléments
   set('MRC - Collaborations', libre('MRC - Collaborations', 'collabs'), { name: 'Collaboration test', type: 'possible', inference_score: 55, companies: 'Entreprise A\nEntreprise B', municipalities: 'Lambton | Piopolis', desc: 'Test.' });
   // pilier Santé : retrait d'un levier (nom effacé), lien vers un déterminant inconnu
@@ -50,7 +50,7 @@ const { lireExtras } = require('./build-excel.js');
   assert.strictEqual(res.errors.length, 0); assert.strictEqual(res.stale, false);
   assert.strictEqual(N.municipalities.find(m => m.code === '30025').pop, 1900);
   assert.ok(N.companies.some(c => c.name === 'Nouvelle Scierie Test'));
-  assert.strictEqual(N.sante.intro, 'Nouvelle introduction du pilier Santé.');
+  assert.strictEqual(N.sante.compositeNote, 'Nouvelle introduction du pilier Santé.');
   const c = N.collaborations[N.collaborations.length - 1]; assert.deepStrictEqual([c.name, c.companies, c.municipalities], ['Collaboration test', ['Entreprise A', 'Entreprise B'], ['Lambton', 'Piopolis']]); assert.ok(/^col\d+$/.test(c.id) && N.collaborations.filter(x => x.id === c.id).length === 1);
   assert.ok(!N.sante.leviers.some(l => l.name === levNom) && N.sante.leviers.length === D.sante.leviers.length - 1);
   assert.ok(res.warnings.some(w => /dss99/.test(w)));

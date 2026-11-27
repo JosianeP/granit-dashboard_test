@@ -29,6 +29,10 @@ Outil interne de développement territorial à trois piliers (économie, aménag
 
 Ces fichiers doivent se trouver dans le même dossier du dépôt.
 
+## Nouveautés de la version 4.25
+
+- Toutes les introductions de section sont retirées : champs `intro` supprimés de `data.json` (aménagement, conversions, santé, main-d'œuvre, repères de revenu, en plus de tourisme, logements et climat), de l'affichage et de la feuille « Textes d'analyse ».
+
 ## Nouveautés de la version 4.23
 
 - Bandeaux des vues Tourisme, Logements et Plan climat réduits à leur titre. Le texte d'introduction est retiré de la boîte, des données (`tourisme.intro`, `logements.intro`, `climat.intro`) et de la feuille « Textes d'analyse » (v4.24); la source s'affiche en petit sous le bandeau.

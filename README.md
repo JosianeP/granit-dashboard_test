@@ -12,6 +12,7 @@ Outil interne de développement territorial à trois piliers (économie, aménag
 | `granit-excel.js` | Spécification des champs du chiffrier Excel, lecture et application (partagé avec l'outil de génération) |
 | `granit-import.js` | Interface de mise à jour (chiffrier à jour, glisser-déposer, résumé des changements, publication en un commit) |
 | `granit-rapport.js` | Rapport imprimable bâti à partir des vues affichées |
+| `granit-reperes.js` | Chiffres de synthèse sans boîtes : phrases et listes de repères |
 | `xlsx-populate.min.js` | Déchiffrement et lecture du chiffrier dans le navigateur |
 | `exceljs.min.js` | Régénération du gabarit Excel depuis la plateforme |
 
@@ -27,6 +28,12 @@ Outil interne de développement territorial à trois piliers (économie, aménag
 | `data/appariement.json` | Liens entre les fiches locales et le Registraire (par NEQ) |
 
 Ces fichiers doivent se trouver dans le même dossier du dépôt.
+
+## Nouveautés de la version 4.22 (chiffres de synthèse sans boîtes)
+
+- `granit-reperes.js` remplace partout les rangées de tuiles (une boîte par chiffre) par une liste de repères à points de conduite, sans cadre ni fond. La règle s'applique aux cinq familles de tuiles; une rangée ajoutée plus tard prend cette forme d'elle-même.
+- Phrase de synthèse en tête des vues Municipalités et Aperçu général : le résultat est dit en langage courant, les chiffres dans le texte, et un chiffre dit dans la phrase n'est pas répété dans la liste. La vue Municipalités ajoute un carré par municipalité, selon le milieu (urbain, rural, rural éloigné). D'autres phrases s'ajoutent dans `PHRASES`, par identifiant de rangée.
+- Les phrases lisent les valeurs déjà affichées; le module ne contient aucune donnée.
 
 ## Nouveautés de la version 4.21
 

@@ -870,7 +870,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
     <div class="pb-brand-text">
       <div class="org">Estrie</div>
       <div class="name">Tableau de bord territorial</div>
-      <div class="ver" id="verLabel">v4.21</div>
+      <div class="ver" id="verLabel">v4.22</div>
     </div>
   </div>
   <nav class="pillar-tabs">
@@ -1106,7 +1106,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
       </div>
 
       <div class="view" id="view-eco-muni">
-        <div class="section-header"><div class="sh-left"><h2>Municipalités</h2><p>19 municipalités - 2&nbsp;736 km² - 21&nbsp;935 habitants</p></div><span class="pillar-badge pb-eco">Économie</span></div>
+        <div class="section-header"><div class="sh-left"><h2>Municipalités</h2><p>Portrait de chaque municipalité et du territoire dans son ensemble</p></div><span class="pillar-badge pb-eco">Économie</span></div>
         <div class="ss-row" id="muniStats"></div>
         <div id="gcMuni"></div>
         <div class="ftabs" id="mTabs">
@@ -1687,7 +1687,7 @@ function renderAll(){
     var majTxt=majDate(D.meta.updatedDate);
     document.getElementById('sbQ').textContent=majTxt||D.meta.quarter||'-';
     document.getElementById('sbBy').textContent=D.meta.quarter?'Chiffrier de la MRC : '+D.meta.quarter:(D.meta.updatedBy||'');
-    document.getElementById('verLabel').textContent='v4.21';
+    document.getElementById('verLabel').textContent='v4.22';
     var ovq=document.getElementById('ovQuarter'); if(ovq)ovq.textContent='Portrait économique du territoire - MRC du Granit'+(majTxt?', mis à jour le '+majTxt:'');
   }
   allMLPairs=getMLSuggestions();
@@ -3697,5 +3697,6 @@ init();
 <script src="./granit-mada.js?v=4.21"></script>
 <script src="./granit-apprenant.js?v=4.21"></script>
 <script src="./granit-rapport.js?v=4.21"></script>
+<script src="./granit-reperes.js?v=4.22"></script>
 </body>
 </html>

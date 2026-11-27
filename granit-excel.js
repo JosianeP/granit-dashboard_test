@@ -378,13 +378,12 @@
       txts('Portrait industriel (LGP)', [['portraitLGP.perimetre', 'Périmètre'], ['portraitLGP.note', 'Note'], ['portraitLGP.distinctifsNote', 'Industries distinctives - note']]),
       txts('Main-d\'œuvre', [['mainOeuvre.intro', 'Introduction'], ['mainOeuvre.dashboardLink', 'Lien vers le tableau de bord externe', 'adresse web complète']]),
       txts('Démographie', [['demographie.source', 'Source'], ['demographie.note', 'Note']]),
-      txts('Tourisme', [['tourisme.intro', 'Introduction']]),
-      txts('Logements et services de garde', [['logements.intro', 'Introduction'], ['logements.note', 'Note'], ['logements.sourcesPistes', 'Sources et pistes'], ['logements.statut', 'Statut des données'],
+      txts('Logements et services de garde', [['logements.note', 'Note'], ['logements.sourcesPistes', 'Sources et pistes'], ['logements.statut', 'Statut des données'],
         ['logements.legende.real', 'Légende - donnée réelle'], ['logements.legende.est', 'Légende - estimation'], ['logements.legende.todo', 'Légende - à compléter'],
         ['logements.attente.constat', 'Enfants en attente - constat'], ['logements.attente.ratioNote', 'Enfants en attente - note sur le ratio'], ['logements.attente.source', 'Enfants en attente - source']]),
       txts('Repères de revenu', [['reperesRevenu.concept', 'Concept'], ['reperesRevenu.intro', 'Introduction'], ['reperesRevenu.source', 'Source'], ['reperesRevenu.note', 'Note']]),
       txts('Pilier Santé', [['sante.intro', 'Introduction'], ['sante.compositeNote', 'Note de lecture'], ['sante.cadre.nom', 'Cadre de référence - nom'], ['sante.cadre.reference', 'Cadre de référence - référence']]),
-      txts('Plan climat', [['climat.titre', 'Titre'], ['climat.intro', 'Introduction'], ['climat.portee.note', 'Portée de l\'aménagement - note'], ['climat.pont', 'Lien avec la santé et l\'aménagement']])
+      txts('Plan climat', [['climat.titre', 'Titre'], ['climat.portee.note', 'Portée de l\'aménagement - note'], ['climat.pont', 'Lien avec la santé et l\'aménagement']])
     ].filter(function (b) { return b; });
     if (TX.length) sheets.push({ name: 'Textes d\'analyse', kind: 'texte', valueWidth: 100, intro: 'Textes rédigés qui s\'affichent dans les sections de la plateforme. Les indicateurs chiffrés se trouvent dans les feuilles « MRC - … ».', blocks: TX });
 

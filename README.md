@@ -31,7 +31,7 @@ Ces fichiers doivent se trouver dans le même dossier du dépôt.
 
 ## Nouveautés de la version 4.23
 
-- Bandeaux des vues Tourisme, Logements et Plan climat réduits à leur titre. Le texte d'introduction n'est plus affiché dans la boîte (il reste dans les données et dans la feuille « Textes d'analyse »); la source s'affiche en petit sous le bandeau.
+- Bandeaux des vues Tourisme, Logements et Plan climat réduits à leur titre. Le texte d'introduction est retiré de la boîte, des données (`tourisme.intro`, `logements.intro`, `climat.intro`) et de la feuille « Textes d'analyse » (v4.24); la source s'affiche en petit sous le bandeau.
 
 ## Nouveautés de la version 4.22 (chiffres de synthèse sans boîtes)
 

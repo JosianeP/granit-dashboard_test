@@ -345,7 +345,9 @@
       }).join('') + '</tbody></table></div></div>';
   }
 
-  window.GranitApprenant = { charger: charger, donnees: function () { return S.d; } };
+  window.GranitApprenant = { charger: charger, donnees: function () { return S.d; },
+    /* Remplace le contenu à l'écran après une mise à jour par chiffrier, avant publication. */
+    remplacer: function (d) { S.d = d; attente = Promise.resolve(d); [rendreBoucle, rendreIss, rendreInstances, rendreDonnees].forEach(function (f) { try { f(); } catch (e) {} }); } };
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', monter); else monter();
 })();

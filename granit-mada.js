@@ -352,6 +352,8 @@
     allerAcces: function (dim) { S.acces = dim || 'tous'; S.axe = 'tous'; S.type = 'tous'; aller(); },
     compteAcces: function () { var m = {}; ((S.d && S.d.axes) || []).forEach(function (a) { (a.constats || []).forEach(function (c) { if (c.acces) m[c.acces] = (m[c.acces] || 0) + 1; }); }); return m; },
     donnees: function () { return S.d; },
+    /* Remplace les constats à l'écran après une mise à jour par chiffrier, avant publication. */
+    remplacer: function (d) { S.d = d; S.err = null; attente = Promise.resolve(d); [rendre, rendreSante].forEach(function (f) { try { f(); } catch (e) {} }); },
     filtre: function (quoi, v) { S[quoi] = v; if (quoi === 'det') rendreSante(); else rendre(); }
   };
 

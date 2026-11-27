@@ -10,7 +10,8 @@ Outil interne de développement territorial à trois piliers (économie, aménag
 | `data.json` | Toutes les données affichées. C'est le fichier que la mise à jour trimestrielle remplace |
 | `chart.umd.min.js` | Bibliothèque de graphiques (Chart.js) |
 | `granit-excel.js` | Spécification des champs du chiffrier Excel, lecture et application (partagé avec l'outil de génération) |
-| `granit-import.js` | Interface d'importation (glisser-déposer, mot de passe, résumé des changements, publication) |
+| `granit-import.js` | Interface de mise à jour (chiffrier à jour, glisser-déposer, résumé des changements, publication en un commit) |
+| `granit-rapport.js` | Rapport imprimable bâti à partir des vues affichées |
 | `xlsx-populate.min.js` | Déchiffrement et lecture du chiffrier dans le navigateur |
 | `exceljs.min.js` | Régénération du gabarit Excel depuis la plateforme |
 
@@ -26,6 +27,15 @@ Outil interne de développement territorial à trois piliers (économie, aménag
 | `data/appariement.json` | Liens entre les fiches locales et le Registraire (par NEQ) |
 
 Ces fichiers doivent se trouver dans le même dossier du dépôt.
+
+## Nouveautés de la version 4.21
+
+- Chiffrier complet. Le chiffrier de mise à jour couvre maintenant toutes les sections : textes d'analyse, collaborations, leviers et liens du pilier Santé, repères de revenu, compléments logements et climat, constats MADA et territoire apprenant (32 feuilles, environ 920 champs et 200 tableaux).
+- Plus de mot de passe sur le chiffrier, dont le contenu est public une fois publié. Un ancien chiffrier chiffré s'importe encore.
+- Publication en un clic. « Appliquer et publier » crée un seul commit pour tous les fichiers touchés. L'autorisation d'un poste se fait dans la fenêtre de publication, avec vérification du jeton.
+- Garde-fous. Détection d'un chiffrier plus ancien que les données publiées; avertissement si un déterminant ou une source cité n'existe pas; un `data.json` glissé dans la page passe par le même contrôle que « Importer JSON »; tout contenu du chiffrier est assaini.
+- Rapport imprimable automatique (`granit-rapport.js`). La liste des sections est lue dans la page et chaque section est une copie de la vue affichée, graphiques compris. Le rapport passe de 14 à 25 sections et suit toute vue ajoutée ou donnée modifiée, sans entretien. L'ancien gabarit par section (`buildSection` dans `index.html`) n'est plus appelé.
+- Tests. `tools/test-roundtrip.js` (un chiffrier intact ne change aucun fichier) et `tools/test-modif.js` (ajouts, retraits, erreurs, chiffrier périmé).
 
 ## Nouveautés de la version 4.20 (sécurité)
 
@@ -147,37 +157,36 @@ Ce qui reste à saisir à la main : le logement social par municipalité (aucune
 - Publication de `data.json` sur GitHub depuis la plateforme (facultatif, par jeton d'accès).
 - Le bandeau de l'aperçu (superficie, part des 65 ans et plus, taux de faible revenu, nombre de municipalités) se lit désormais dans les données au lieu d'être fixé dans la page.
 
-## Mise à jour trimestrielle (procédure du secrétariat)
+## Mise à jour des données (procédure, sans programmation)
 
-1. Ouvrir `MRC_Granit_mise_a_jour.xlsx` avec son mot de passe.
-2. Remplir les cellules jaunes. Chaque municipalité a sa feuille; les feuilles « MRC - … » portent les données territoriales. La feuille « Lisez-moi » explique les règles.
-3. Enregistrer (le fichier reste chiffré avec le même mot de passe).
-4. Ouvrir le tableau de bord en ligne et glisser le fichier n'importe où dans la page (ou cliquer « Importer Excel »).
-5. Entrer le mot de passe du chiffrier. La plateforme vérifie chaque cellule et affiche le résumé (champs modifiés, ajouts, retraits, erreurs). Tant qu'une erreur subsiste, rien n'est appliqué.
-6. Cliquer « Appliquer à la plateforme », puis « Publier maintenant » (si la publication GitHub est configurée) ou « Télécharger data.json » et coller son contenu dans `data.json` sur GitHub.
-7. Le site en ligne se met à jour en une à deux minutes.
+1. Ouvrir le tableau de bord en ligne et cliquer « Mise à jour Excel », puis « Télécharger le chiffrier à jour ». Le fichier contient toutes les sections telles que publiées à ce moment. Il n'a pas de mot de passe.
+2. Remplir les cellules jaunes dans Excel et enregistrer. La feuille « Lisez-moi » explique les règles.
+3. Glisser le fichier n'importe où dans la page. La plateforme vérifie chaque cellule et affiche le résumé (champs modifiés, ajouts, retraits, erreurs). Tant qu'une erreur subsiste, rien n'est appliqué.
+4. Cliquer « Appliquer et publier ». Un seul commit met à jour `data.json` et, s'ils ont changé, `data/mada/constats.json` et `data/sante/apprenant.json`. Le site se met à jour en une à deux minutes.
 
-Le chiffrier se conserve d'un trimestre à l'autre. Pour repartir des données publiées (par exemple après une modification faite avec « Modifier les données »), utiliser « Régénérer le gabarit Excel à partir des données actuelles » dans la fenêtre d'importation; un mot de passe est demandé pour chiffrer le nouveau fichier.
+Toujours repartir d'un chiffrier fraîchement téléchargé. Chaque chiffrier porte une empreinte des données au moment de sa génération : si les données publiées ont changé depuis, la plateforme l'annonce avant d'appliquer quoi que ce soit, pour éviter d'écraser des valeurs plus récentes.
 
 ## Ce que contient le chiffrier
 
-Feuilles territoriales. `MRC - Général` (période, indicateurs validés, KPI, emplois par secteur, historique annuel), `MRC - Aménagement` (permis, affectation, conversions), `MRC - Santé` (scores des déterminants), `MRC - Économie (LGP)`, `MRC - Main-d'œuvre`, `MRC - Tourisme` (membres hors MRC), `MRC - Logements` (agrégats), `MRC - Climat` (paramètres de l'inventaire).
+- Feuilles « MRC - … » : Général (période, indicateurs validés, KPI, secteurs, historique, repères de revenu), Aménagement, Santé (déterminants, leviers, liens entre piliers), Économie (LGP), Main-d'œuvre, Tourisme, Logements (agrégats, enfants en attente, chronologie), Climat (inventaire, constats, limites, sources), Collaborations.
+- Feuille « Textes d'analyse » : introductions, notes, sources et constats rédigés de chaque section.
+- Feuille « Milieu - Constats MADA » : tout le contenu de `data/mada/constats.json`.
+- Feuilles « Santé - Apprenant » et « Santé - Enjeux » : tout le contenu de `data/sante/apprenant.json` (sources, journal des décisions, instances, gouvernance des données, équité, portrait des jeunes, traces par enjeu et par étape).
+- Une feuille par municipalité (19) : identité, démographie, logements et services de garde, plan climat, conversion résidence et villégiature, entreprises, membres touristiques.
 
-Feuilles municipales (19). Identité, démographie (structure par âge, totaux, évolution, projections), logements et services de garde, plan climat, conversion résidence et villégiature (six municipalités), entreprises et employeurs, membres de Tourisme Région de Mégantic.
+Règles. Seules les cellules jaunes sont modifiables. Dans un tableau, une ligne libre sert à ajouter un élément et effacer le nom (ou le texte principal) d'une ligne retire l'élément. Une cellule à plusieurs éléments en porte un par ligne (Alt+Entrée). La colonne A masquée porte les marqueurs techniques; elle ne doit pas être supprimée.
 
-Règles du chiffrier. Seules les cellules jaunes sont modifiables (les feuilles sont protégées). Dans un tableau, une ligne libre sert à ajouter un élément et effacer le nom d'une ligne retire l'élément. Les listes déroulantes imposent les valeurs permises. La colonne A masquée porte les marqueurs techniques qui relient chaque cellule à un champ de `data.json`; elle ne doit pas être supprimée.
+Champs recalculés à l'importation. Densité, portrait démographique de la MRC, totaux touristiques et fiches « tourisme », parc total de logements, totaux du plan climat. Un domaine dont les données d'entrée n'ont pas changé garde ses valeurs d'origine à la décimale près.
 
-Champs recalculés automatiquement à l'importation. Densité de chaque municipalité; portrait démographique de la MRC (somme des municipalités); comptes touristiques par municipalité, par section et par catégorie, hébergement, et fiches « tourisme » de la liste d'entreprises; parc total de logements; totaux du plan climat par secteur, par habitant et parts municipales; indice composite de santé (déjà calculé par la plateforme à partir des scores).
+Ce que le chiffrier ne modifie pas. Les extractions automatiques de `data/` (Registraire, services de garde, recensement, carte), qui priment à l'affichage, et la structure des pages.
 
-Ce que le chiffrier ne modifie pas. Les textes d'analyse (introductions, constats, maillages, leviers, limites) restent dans la plateforme.
+## Autoriser un poste à publier (une seule fois par poste)
 
-## Publication automatique sur GitHub (configuration unique)
+1. Sur GitHub, créer un jeton d'accès « fine-grained » limité au dépôt du tableau de bord, permission Contents en lecture et écriture, expiration d'au plus 90 jours.
+2. Sur le poste, déposer un chiffrier, cliquer « Appliquer », coller le jeton dans « Publier sur le site », puis « Vérifier et autoriser ce poste ». La plateforme valide le jeton auprès de GitHub.
+3. Le jeton reste dans le navigateur de ce poste (stockage local). Il n'est jamais écrit dans les données. « Retirer l'autorisation de ce poste » l'efface.
 
-1. Sur GitHub, créer un jeton d'accès personnel « fine-grained » limité au dépôt du tableau de bord, avec la permission Contents en lecture et écriture.
-2. Dans la plateforme, « Modifier les données » (mot de passe administrateur), section « Publication automatique sur GitHub », saisir le propriétaire, le dépôt, la branche (`main`), le chemin (`data.json`) et le jeton, puis enregistrer.
-3. Le jeton reste dans le navigateur où il a été saisi (stockage local). Il n'est jamais écrit dans `data.json` ni exporté. Chaque poste qui publie doit être configuré.
-
-Sans cette configuration, l'exportation de `data.json` et son dépôt manuel sur GitHub restent possibles.
+Sans jeton, la fenêtre de publication offre de télécharger les fichiers modifiés pour les téléverser à la main dans GitHub.
 
 ## Déploiement initial (une seule fois)
 
@@ -197,8 +206,9 @@ Le dossier `tools/` permet de produire le chiffrier sans passer par le navigateu
 ```
 cd tools
 npm install
-node build-excel.js ../data.json ../MRC_Granit_mise_a_jour.xlsx "MotDePasse"
-node test-roundtrip.js ../data.json ../MRC_Granit_mise_a_jour.xlsx "MotDePasse"
+node build-excel.js ../data.json /tmp/chiffrier.xlsx
+node test-roundtrip.js ../data.json /tmp/chiffrier.xlsx
+node test-modif.js
 ```
 
 Le second script vérifie qu'un chiffrier non modifié ne produit aucun changement à l'importation.

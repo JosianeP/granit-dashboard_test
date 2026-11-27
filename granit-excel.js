@@ -1,11 +1,14 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   granit-excel.js — Mise à jour trimestrielle du tableau de bord par chiffrier Excel
-   MRC du Granit — v4.7
+   granit-excel.js - Mise à jour trimestrielle du tableau de bord par chiffrier Excel
+   MRC du Granit - v4.21
 
    Module partagé entre la plateforme (navigateur) et l'outil de génération (Node).
    Une seule spécification (SPEC) décrit tous les champs modifiables :
      - buildWorkbook(ExcelJS, D, options)  → génère le chiffrier (une feuille par municipalité
-                                             + feuilles MRC), avec protection des cellules.
+                                             + feuilles MRC, textes, constats MADA, territoire
+                                             apprenant), avec protection des cellules.
+                                             options.extras = { _mada, _apprenant } ajoute les
+                                             fichiers de data/ au même chiffrier.
      - readWorkbook(wb)                     → lit un chiffrier (xlsx-populate) et renvoie les blocs.
      - applyImport(D, parsed)               → calcule les changements, les applique à une copie
                                              de D, recalcule les champs dérivés, signale les erreurs.
@@ -26,7 +29,14 @@
 })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
 
-  var VERSION = '4.7';
+  var VERSION = '4.21';
+  /* Fichiers de data/ modifiables par le même chiffrier. Ils sont greffés sous ces clés le temps du
+     traitement, puis détachés : ils ne sont jamais écrits dans data.json. */
+  var EXTRAS = [{ key: '_mada', path: 'data/mada/constats.json', label: 'Constats MADA', indent: 2, eol: '\n' }, { key: '_apprenant', path: 'data/sante/apprenant.json', label: 'Territoire apprenant', indent: 1, eol: '\n' }];
+  /* Texte d'un fichier tel qu'il est tenu dans le dépôt (même indentation), pour des commits lisibles. */
+  function serialize(key, obj) { var e = EXTRAS.filter(function (x) { return x.key === key; })[0]; return e ? JSON.stringify(obj, null, e.indent) + e.eol : JSON.stringify(obj, null, 2); }
+  var PROV = ['reel', 'terrain', 'todo'];
+  function compose(D, extras) { var o = {}; Object.keys(D).forEach(function (k) { o[k] = D[k]; }); EXTRAS.forEach(function (e) { if (extras && extras[e.key]) o[e.key] = extras[e.key]; }); return o; }
   var BOOL_ENUM = ['Oui', 'Non'];
   var MUNI_TYPES = ['Ville', 'Municipalité', 'Canton', 'Paroisse'];
   var MUNI_CATS = ['urbain', 'rural', 'rural_eloigne'];
@@ -115,26 +125,26 @@
       name: 'MRC - Général', kind: 'mrc', intro: 'Informations de période, indicateurs validés, indicateurs clés (KPI), emplois par secteur et historique annuel.',
       blocks: [
         { type: 'fields', title: 'Période de mise à jour', items: [
-          fld('meta.quarter', 'Trimestre affiché', 'text', { note: 'ex. T4 2026 — apparaît dans la barre latérale et l\'étiquette de version' }),
+          fld('meta.quarter', 'Trimestre affiché', 'text', { note: 'ex. T4 2026 - apparaît dans la barre latérale et l\'étiquette de version' }),
           fld('meta.updatedBy', 'Mis à jour par', 'text'),
-          fld('meta.updatedDate', 'Date de mise à jour', 'text', { note: 'AAAA-MM-JJ — remplie automatiquement à l\'importation si laissée vide' })
+          fld('meta.updatedDate', 'Date de mise à jour', 'text', { note: 'AAAA-MM-JJ - remplie automatiquement à l\'importation si laissée vide' })
         ] },
         { type: 'fields', title: 'Indicateurs validés (sources officielles)', items: [
-          fld('meta.validatedIndicators.population_decret_2026', 'Population — décret MAMH', 'int', { note: 'habitants' }),
-          fld('meta.validatedIndicators.population_isq_2025', 'Population — estimation ISQ', 'int', { note: 'habitants' }),
+          fld('meta.validatedIndicators.population_decret_2026', 'Population - décret MAMH', 'int', { note: 'habitants' }),
+          fld('meta.validatedIndicators.population_isq_2025', 'Population - estimation ISQ', 'int', { note: 'habitants' }),
           fld('meta.validatedIndicators.part_0_19_pct', 'Part des 0-19 ans', 'num', { decimals: 1, note: '%' }),
           fld('meta.validatedIndicators.part_20_64_pct', 'Part des 20-64 ans', 'num', { decimals: 1, note: '%' }),
-          fld('meta.validatedIndicators.part_65plus_pct', 'Part des 65 ans et plus', 'num', { decimals: 1, note: '% — affiché dans le bandeau de l\'aperçu' }),
+          fld('meta.validatedIndicators.part_65plus_pct', 'Part des 65 ans et plus', 'num', { decimals: 1, note: '% - affiché dans le bandeau de l\'aperçu' }),
           fld('meta.validatedIndicators.travailleurs_25_64_2024', 'Travailleurs de 25-64 ans', 'int'),
           fld('meta.validatedIndicators.taux_travailleurs_2024_pct', 'Taux de travailleurs 25-64 ans', 'num', { decimals: 1, note: '%' }),
           fld('meta.validatedIndicators.revenu_emploi_median_25_64_2024', 'Revenu d\'emploi médian 25-64 ans', 'int', { note: '$' }),
-          fld('meta.validatedIndicators.revenu_emploi_median_qc_2024', 'Revenu d\'emploi médian — Québec', 'int', { note: '$' }),
+          fld('meta.validatedIndicators.revenu_emploi_median_qc_2024', 'Revenu d\'emploi médian - Québec', 'int', { note: '$' }),
           fld('meta.validatedIndicators.revenu_disponible_par_habitant_2023', 'Revenu disponible par habitant', 'int', { note: '$' }),
           fld('meta.validatedIndicators.revenu_median_menages_apres_impot_2020', 'Revenu médian des ménages après impôt', 'int', { note: '$' }),
           fld('meta.validatedIndicators.revenu_total_median_18plus_2020', 'Revenu total médian 18 ans et plus', 'int', { note: '$' }),
-          fld('meta.validatedIndicators.taux_faible_revenu_familles_2023_pct', 'Taux de faible revenu des familles', 'num', { decimals: 1, note: '% — affiché dans le bandeau de l\'aperçu' }),
-          fld('meta.validatedIndicators.valeur_fonciere_moy_unifamiliale_2026', 'Valeur foncière moyenne — unifamiliale', 'int', { note: '$' }),
-          fld('meta.validatedIndicators.permis_batir_2024_kdollars', 'Permis de bâtir — valeur totale', 'int', { note: 'milliers de $' }),
+          fld('meta.validatedIndicators.taux_faible_revenu_familles_2023_pct', 'Taux de faible revenu des familles', 'num', { decimals: 1, note: '% - affiché dans le bandeau de l\'aperçu' }),
+          fld('meta.validatedIndicators.valeur_fonciere_moy_unifamiliale_2026', 'Valeur foncière moyenne - unifamiliale', 'int', { note: '$' }),
+          fld('meta.validatedIndicators.permis_batir_2024_kdollars', 'Permis de bâtir - valeur totale', 'int', { note: 'milliers de $' }),
           fld('meta.validatedIndicators.superficie_terrestre_km2_2026', 'Superficie terrestre', 'num', { decimals: 1, note: 'km²' }),
           fld('meta.validatedIndicators.source', 'Source des indicateurs validés', 'text')
         ] },
@@ -149,8 +159,8 @@
           note: 'Les emplois par secteur sont des estimations. Le nom du secteur est utilisé pour relier les entreprises; renommer un secteur renomme automatiquement le secteur des entreprises liées.' },
         { type: 'table', id: 'trends', title: 'Historique annuel (tendances économiques)', custom: 'trends',
           columns: [col('year', 'Année', 'text', { width: 10, required: true }), col('totalJobs', 'Emplois totaux', 'int', { width: 14 }), col('newBiz', 'Nouvelles entreprises', 'int', { width: 18 }),
-            col('permitsMk', 'Permis de bâtir (M$)', 'num', { decimals: 1, width: 18 })].concat(Object.keys((D.trends && D.trends.bySector) || {}).map(function (k) { return col('sec:' + k, 'Emplois — ' + k, 'int', { width: 18 }); })),
-          allowAdd: true, spare: 3, note: 'Une ligne par année. Pour ajouter une année, utilisez une ligne libre. Les colonnes « Emplois — … » alimentent le graphique multi-secteurs.' }
+            col('permitsMk', 'Permis de bâtir (M$)', 'num', { decimals: 1, width: 18 })].concat(Object.keys((D.trends && D.trends.bySector) || {}).map(function (k) { return col('sec:' + k, 'Emplois - ' + k, 'int', { width: 18 }); })),
+          allowAdd: true, spare: 3, note: 'Une ligne par année. Pour ajouter une année, utilisez une ligne libre. Les colonnes « Emplois - … » alimentent le graphique multi-secteurs.' }
       ]
     });
 
@@ -159,25 +169,25 @@
     sheets.push({
       name: 'MRC - Aménagement', kind: 'mrc', intro: 'Permis de bâtir, affectation du territoire et conversions résidence / villégiature.',
       blocks: [
-        { type: 'table', id: 'amPermits', title: 'Permis de bâtir — valeur annuelle', custom: 'amPermits',
+        { type: 'table', id: 'amPermits', title: 'Permis de bâtir - valeur annuelle', custom: 'amPermits',
           columns: [col('year', 'Année', 'text', { width: 10, required: true }), col('totalMk', 'Valeur totale (M$)', 'num', { decimals: 1, width: 18 })], allowAdd: true, spare: 3 },
-        { type: 'fields', title: 'Permis de bâtir — source', items: [fld('amenagement.permits.source', 'Source affichée', 'text')] },
-        { type: 'table', id: 'amByType', title: 'Permis de bâtir — répartition par type (dernière année)', path: 'amenagement.permits.byType', keyOf: function (r, i) { return 'p' + i; },
+        { type: 'fields', title: 'Permis de bâtir - source', items: [fld('amenagement.permits.source', 'Source affichée', 'text')] },
+        { type: 'table', id: 'amByType', title: 'Permis de bâtir - répartition par type (dernière année)', path: 'amenagement.permits.byType', keyOf: function (r, i) { return 'p' + i; },
           columns: [col('type', 'Type', 'text', { width: 30, required: true }), col('mk', 'Valeur (M$)', 'num', { decimals: 1, width: 12 }), col('pct', 'Part (%)', 'int', { width: 10 }), col('est', 'Estimation ?', 'bool', { width: 12 })],
           allowAdd: true, spare: 2, newItem: function () { return { type: '', mk: 0, pct: 0, est: true }; } },
         { type: 'fields', title: 'Affectation du territoire', items: [
           fld('amenagement.landUse.totalKm2', 'Superficie totale', 'int', { note: 'km²' }), fld('amenagement.landUse.totalHa', 'Superficie totale', 'int', { note: 'ha' }),
           fld('amenagement.landUse.estriePct', 'Part de l\'Estrie', 'num', { decimals: 1, note: '%' }), fld('amenagement.landUse.affectationSource', 'Source de la répartition', 'text')] },
-        { type: 'table', id: 'amConfirmed', title: 'Affectation — données confirmées', path: 'amenagement.landUse.confirmed', keyOf: function (r, i) { return 'c' + i; },
+        { type: 'table', id: 'amConfirmed', title: 'Affectation - données confirmées', path: 'amenagement.landUse.confirmed', keyOf: function (r, i) { return 'c' + i; },
           columns: [col('label', 'Donnée', 'text', { width: 30, required: true }), col('ha', 'Hectares', 'int', { width: 12 }), col('note', 'Note / source', 'text', { width: 60 }), col('real', 'Donnée réelle ?', 'bool', { width: 14 })],
           allowAdd: true, spare: 2, newItem: function () { return { label: '', ha: 0, note: '', real: true }; } },
-        { type: 'table', id: 'amAffect', title: 'Affectation — répartition schématique', path: 'amenagement.landUse.affectation', keyOf: function (r, i) { return 'a' + i; },
+        { type: 'table', id: 'amAffect', title: 'Affectation - répartition schématique', path: 'amenagement.landUse.affectation', keyOf: function (r, i) { return 'a' + i; },
           columns: [col('label', 'Affectation', 'text', { width: 30, required: true }), col('ha', 'Hectares', 'int', { width: 12 }), col('pct', 'Part (%)', 'num', { decimals: 1, width: 10 })],
           allowAdd: false, note: 'Les couleurs du graphique sont conservées automatiquement.' },
         { type: 'table', id: 'amConv', title: 'Conversions résidence ↔ villégiature (nombre par année)', custom: 'amConv',
           columns: [col('year', 'Année', 'text', { width: 10, required: true }), col('chaletToResidence', 'Chalet → résidence', 'int', { width: 18 }), col('residenceToChalet', 'Résidence → chalet', 'int', { width: 18 })], allowAdd: true, spare: 3 },
-        { type: 'fields', title: 'Conversions — source', items: [fld('amenagement.conversion.source', 'Source affichée', 'text')] },
-        { type: 'table', id: 'amConvMuni', title: 'Conversions — lecture par municipalité', path: 'amenagement.conversion.byMuni', keyOf: function (r) { return r.name; },
+        { type: 'fields', title: 'Conversions - source', items: [fld('amenagement.conversion.source', 'Source affichée', 'text')] },
+        { type: 'table', id: 'amConvMuni', title: 'Conversions - lecture par municipalité', path: 'amenagement.conversion.byMuni', keyOf: function (r) { return r.name; },
           columns: [col('name', 'Municipalité', 'enum', { enum: muniNames, width: 26, required: true }), col('villegiature', 'Villégiature', 'enum', { enum: ['Élevée', 'Moyenne', 'Faible'], width: 12 }),
             col('net', 'Tendance nette', 'text', { width: 24 }), col('note', 'Note', 'text', { width: 50 })],
           allowAdd: true, spare: 3, newItem: function () { return { name: '', villegiature: 'Moyenne', net: 'Stable', note: '' }; } }
@@ -186,7 +196,7 @@
 
     /* ── MRC - Santé ── */
     sheets.push({
-      name: 'MRC - Santé', kind: 'mrc', intro: 'Déterminants de la santé des populations (scores et indicateurs).',
+      name: 'MRC - Santé', kind: 'mrc', intro: 'Déterminants de la santé des populations, leviers d\'action et liens entre les piliers.',
       blocks: [
         { type: 'table', id: 'sante', title: 'Déterminants de la santé', path: 'sante.determinants', keyOf: function (d) { return d.id; },
           columns: [col('name', 'Déterminant', 'text', { width: 30, required: true }), col('score', 'Score /100', 'int', { width: 10, min: 0, max: 100 }),
@@ -213,8 +223,8 @@
           columns: [col('nom', 'Industrie', 'text', { width: 44, required: true })].concat(lgpNum), allowAdd: true, spare: 2, newItem: function () { return { nom: '', empN: 0, empP: 0, etN: 0, etP: 0, pibN: 0, pibP: 0, venN: 0, venP: 0 }; } },
         { type: 'table', id: 'lgpPiliers', title: 'Piliers (codes SCIAN)', path: 'portraitLGP.piliers', keyOf: function (r) { return r.scian; },
           columns: [col('scian', 'SCIAN', 'text', { width: 8, required: true }), col('nom', 'Industrie', 'text', { width: 44, required: true })].concat(lgpNum), allowAdd: true, spare: 2, newItem: function () { return { scian: '', nom: '', empN: 0, empP: 0, etN: 0, etP: 0, pibN: 0, pibP: 0, venN: 0, venP: 0 }; } },
-        { type: 'table', id: 'lgpDistEstrie', title: 'Industries distinctives — indice vs Estrie', path: 'portraitLGP.distinctifsEstrie', keyOf: function (r) { return r.nom; }, columns: [col('nom', 'Industrie', 'text', { width: 44, required: true }), col('indice', 'Indice', 'num', { decimals: 1, width: 10 })], allowAdd: true, spare: 2, newItem: function () { return { nom: '', indice: 0 }; } },
-        { type: 'table', id: 'lgpDistQc', title: 'Industries distinctives — indice vs Québec', path: 'portraitLGP.distinctifsQuebec', keyOf: function (r) { return r.nom; }, columns: [col('nom', 'Industrie', 'text', { width: 44, required: true }), col('indice', 'Indice', 'num', { decimals: 1, width: 10 })], allowAdd: true, spare: 2, newItem: function () { return { nom: '', indice: 0 }; } },
+        { type: 'table', id: 'lgpDistEstrie', title: 'Industries distinctives - indice vs Estrie', path: 'portraitLGP.distinctifsEstrie', keyOf: function (r) { return r.nom; }, columns: [col('nom', 'Industrie', 'text', { width: 44, required: true }), col('indice', 'Indice', 'num', { decimals: 1, width: 10 })], allowAdd: true, spare: 2, newItem: function () { return { nom: '', indice: 0 }; } },
+        { type: 'table', id: 'lgpDistQc', title: 'Industries distinctives - indice vs Québec', path: 'portraitLGP.distinctifsQuebec', keyOf: function (r) { return r.nom; }, columns: [col('nom', 'Industrie', 'text', { width: 44, required: true }), col('indice', 'Indice', 'num', { decimals: 1, width: 10 })], allowAdd: true, spare: 2, newItem: function () { return { nom: '', indice: 0 }; } },
         { type: 'table', id: 'lgpEmployeurs', title: 'Grands employeurs', path: 'portraitLGP.grandsEmployeurs', keyOf: function (r) { return r.nom; },
           columns: [col('nom', 'Employeur', 'text', { width: 34, required: true }), col('cat', 'Catégorie d\'emplois', 'text', { width: 14 }), col('industrie', 'Industrie', 'text', { width: 36 }), col('scian', 'Secteur SCIAN', 'text', { width: 36 })], allowAdd: true, spare: 3, newItem: function () { return { nom: '', cat: '', industrie: '', scian: '' }; } }
       ]
@@ -225,7 +235,7 @@
       name: 'MRC - Main-d\'œuvre', kind: 'mrc', intro: 'Bassin de main-d\'œuvre, scolarité et relève.',
       blocks: [
         { type: 'fields', title: 'Généralités', items: [fld('mainOeuvre.annee', 'Année de référence', 'text'), fld('mainOeuvre.source', 'Source affichée', 'text'), fld('mainOeuvre.constat', 'Constat (texte affiché)', 'text'),
-          fld('mainOeuvre.education.note', 'Scolarité — note', 'text'), fld('mainOeuvre.etudiants.note', 'Relève — note', 'text')] },
+          fld('mainOeuvre.education.note', 'Scolarité - note', 'text'), fld('mainOeuvre.etudiants.note', 'Relève - note', 'text')] },
         { type: 'table', id: 'moInd', title: 'Indicateurs de main-d\'œuvre', path: 'mainOeuvre.indicateurs', keyOf: function (r, i) { return 'i' + i; },
           columns: [col('label', 'Indicateur', 'text', { width: 32, required: true }), col('value', 'Valeur affichée', 'text', { width: 14 }), col('unit', 'Unité / source', 'text', { width: 44 }), col('real', 'Donnée réelle ?', 'bool', { width: 12 })],
           allowAdd: true, spare: 2, newItem: function () { return { label: '', value: '', unit: '', real: true }; } },
@@ -256,11 +266,11 @@
       name: 'MRC - Logements', kind: 'mrc', intro: 'Agrégats territoriaux du volet logements et services de garde. Le parc total de logements est la somme des municipalités.',
       blocks: [
         { type: 'fields', title: 'Agrégats', items: [fld('logements.annee', 'Année de référence', 'text'), fld('logements.agregats.menagesLocataires', 'Ménages locataires', 'int'),
-          fld('logements.agregats.logementsSociaux', 'Logements sociaux et communautaires', 'int'), fld('logements.agregats.tauxInoccupation', 'Taux d\'inoccupation', 'num', { decimals: 1, note: '% — laisser vide si non publié' }),
-          fld('logements.agregats.garderiesInstallations', 'Installations (CPE + garderies)', 'int'), fld('logements.agregats.placesGardeTotal', 'Places en service de garde — total', 'int'),
+          fld('logements.agregats.logementsSociaux', 'Logements sociaux et communautaires', 'int'), fld('logements.agregats.tauxInoccupation', 'Taux d\'inoccupation', 'num', { decimals: 1, note: '% - laisser vide si non publié' }),
+          fld('logements.agregats.garderiesInstallations', 'Installations (CPE + garderies)', 'int'), fld('logements.agregats.placesGardeTotal', 'Places en service de garde - total', 'int'),
           fld('logements.agregats.placesMilieuFamilial', 'Places en milieu familial', 'int'),
-          fld('logements.agregats.enfantsEnAttente', 'Enfants en attente d\'une place — territoire du Granit', 'int', { note: 'laisser vide si non obtenu du bureau coordonnateur ou du ministère' }),
-          fld('logements.agregats.enfantsEnAttenteDate', 'Enfants en attente — date et source', 'text'), fld('logements.source', 'Source affichée', 'text')] }
+          fld('logements.agregats.enfantsEnAttente', 'Enfants en attente d\'une place - territoire du Granit', 'int', { note: 'laisser vide si non obtenu du bureau coordonnateur ou du ministère' }),
+          fld('logements.agregats.enfantsEnAttenteDate', 'Enfants en attente - date et source', 'text'), fld('logements.source', 'Source affichée', 'text')] }
       ]
     });
 
@@ -269,28 +279,215 @@
     sheets.push({
       name: 'MRC - Climat', kind: 'mrc', intro: 'Inventaire des émissions de GES. Les émissions par municipalité se saisissent dans chaque feuille municipale; les totaux par secteur, par habitant et les parts sont recalculés automatiquement.',
       blocks: [
-        { type: 'fields', title: 'Inventaire — paramètres', items: [fld('climat.annee', 'Année de référence', 'text'), fld('climat.statut', 'Statut des données', 'text'), fld('climat.source', 'Source affichée', 'text'),
+        { type: 'fields', title: 'Inventaire - paramètres', items: [fld('climat.annee', 'Année de référence', 'text'), fld('climat.statut', 'Statut des données', 'text'), fld('climat.source', 'Source affichée', 'text'),
           fld('climat.agregats.biogeniques', 'Émissions biogéniques', 'num', { decimals: 1, note: 'tCO₂éq' }), fld('climat.agregats.incertitudePct', 'Incertitude', 'num', { decimals: 2, note: '%' }), fld('climat.agregats.incertitudeAbs', 'Incertitude absolue', 'num', { decimals: 1, note: 'tCO₂éq' }),
           fld('climat.agregats.grandsEmetteurs', 'Grands émetteurs', 'int'), fld('climat.agregats.gazNaturelGJ', 'Gaz naturel', 'num', { decimals: 1, note: 'GJ' }), fld('climat.agregats.litresLiquides', 'Combustibles liquides', 'int', { note: 'litres' }),
           fld('climat.agregats.litresParHab', 'Litres par habitant', 'int'), fld('climat.agregats.elecGWh', 'Électricité', 'num', { decimals: 1, note: 'GWh' }), fld('climat.agregats.vehiculesImmat', 'Véhicules immatriculés', 'int'),
-          fld('climat.agregats.vehiculesParHab', 'Véhicules par habitant', 'num', { decimals: 2 }), fld('climat.agregats.mazoutT', 'Mazout — émissions', 'num', { decimals: 1, note: 'tCO₂éq' }), fld('climat.agregats.mazoutL', 'Mazout — volume', 'int', { note: 'litres' })] },
+          fld('climat.agregats.vehiculesParHab', 'Véhicules par habitant', 'num', { decimals: 2 }), fld('climat.agregats.mazoutT', 'Mazout - émissions', 'num', { decimals: 1, note: 'tCO₂éq' }), fld('climat.agregats.mazoutL', 'Mazout - volume', 'int', { note: 'litres' })] },
         { type: 'fields', title: 'Transport', items: [fld('climat.transport.litres', 'Carburants routiers', 'int', { note: 'litres' }), fld('climat.transport.vehiculesTotal', 'Véhicules', 'int'), fld('climat.transport.note', 'Note affichée', 'text')] },
-        { type: 'table', id: 'clTrTypes', title: 'Transport — par type de véhicule', path: 'climat.transport.types', keyOf: function (r) { return r.l; },
+        { type: 'table', id: 'clTrTypes', title: 'Transport - par type de véhicule', path: 'climat.transport.types', keyOf: function (r) { return r.l; },
           columns: [col('l', 'Type', 'text', { width: 30, required: true }), col('t', 'tCO₂éq', 'num', { decimals: 1, width: 12 }), col('pct', 'Part (%)', 'num', { decimals: 1, width: 10 }), col('litres', 'Litres', 'int', { width: 12 }), col('nb', 'Nombre', 'int', { width: 10 })], allowAdd: false },
-        { type: 'table', id: 'clTrHors', title: 'Transport — hors route', path: 'climat.transport.horsRoute', keyOf: function (r) { return r.l; }, columns: [col('l', 'Type', 'text', { width: 30, required: true }), col('nb', 'Nombre', 'int', { width: 10 })], allowAdd: true, spare: 2, newItem: function () { return { l: '', nb: 0 }; } },
-        { type: 'fields', title: 'Bâtiments', items: [fld('climat.batiments.total', 'Bâtiments — total', 'num', { decimals: 2, note: 'tCO₂éq' }), fld('climat.batiments.partMrc', 'Bâtiments — part de la MRC', 'num', { decimals: 1, note: '%' }), fld('climat.batiments.elecT', 'Électricité — émissions', 'num', { decimals: 1, note: 'tCO₂éq' }), fld('climat.batiments.gazNaturel', 'Gaz naturel — mention', 'text'), fld('climat.batiments.cible', 'Cible (texte affiché)', 'text')] },
-        { type: 'table', id: 'clBatSrc', title: 'Bâtiments — par source d\'énergie', path: 'climat.batiments.sources', keyOf: function (r) { return r.l; },
+        { type: 'table', id: 'clTrHors', title: 'Transport - hors route', path: 'climat.transport.horsRoute', keyOf: function (r) { return r.l; }, columns: [col('l', 'Type', 'text', { width: 30, required: true }), col('nb', 'Nombre', 'int', { width: 10 })], allowAdd: true, spare: 2, newItem: function () { return { l: '', nb: 0 }; } },
+        { type: 'fields', title: 'Bâtiments', items: [fld('climat.batiments.total', 'Bâtiments - total', 'num', { decimals: 2, note: 'tCO₂éq' }), fld('climat.batiments.partMrc', 'Bâtiments - part de la MRC', 'num', { decimals: 1, note: '%' }), fld('climat.batiments.elecT', 'Électricité - émissions', 'num', { decimals: 1, note: 'tCO₂éq' }), fld('climat.batiments.gazNaturel', 'Gaz naturel - mention', 'text'), fld('climat.batiments.cible', 'Cible (texte affiché)', 'text')] },
+        { type: 'table', id: 'clBatSrc', title: 'Bâtiments - par source d\'énergie', path: 'climat.batiments.sources', keyOf: function (r) { return r.l; },
           columns: [col('l', 'Source', 'text', { width: 26, required: true }), col('t', 'tCO₂éq', 'num', { decimals: 1, width: 12 }), col('qte', 'Quantité', 'num', { decimals: 1, width: 14 }), col('u', 'Unité', 'text', { width: 10 })], allowAdd: false },
-        { type: 'table', id: 'clBatSect', title: 'Bâtiments — par secteur', path: 'climat.batiments.parSecteur', keyOf: function (r) { return r.l; },
+        { type: 'table', id: 'clBatSect', title: 'Bâtiments - par secteur', path: 'climat.batiments.parSecteur', keyOf: function (r) { return r.l; },
           columns: [col('l', 'Secteur', 'text', { width: 26, required: true }), col('t', 'tCO₂éq', 'num', { decimals: 1, width: 12 }), col('surf', 'Surface (m²)', 'num', { decimals: 1, width: 14 }), col('elec', 'Électricité (MWh)', 'num', { decimals: 1, width: 14 })], allowAdd: false },
         { type: 'fields', title: 'Agriculture', items: [fld('climat.agriculture.azoteKg', 'Azote épandu', 'num', { decimals: 1, note: 'kg' }), fld('climat.agriculture.note', 'Note affichée', 'text')] },
-        { type: 'table', id: 'clAgSrc', title: 'Agriculture — par source', path: 'climat.agriculture.sources', keyOf: function (r) { return r.l; }, columns: [col('l', 'Source', 'text', { width: 34, required: true }), col('t', 'tCO₂éq', 'num', { decimals: 1, width: 12 }), col('pct', 'Part (%)', 'num', { decimals: 1, width: 10 })], allowAdd: false },
-        { type: 'table', id: 'clAgCult', title: 'Agriculture — cultures (hectares)', path: 'climat.agriculture.cultures', keyOf: function (r) { return r.l; }, columns: [col('l', 'Culture', 'text', { width: 34, required: true }), col('ha', 'Hectares', 'num', { decimals: 1, width: 12 })], allowAdd: false },
+        { type: 'table', id: 'clAgSrc', title: 'Agriculture - par source', path: 'climat.agriculture.sources', keyOf: function (r) { return r.l; }, columns: [col('l', 'Source', 'text', { width: 34, required: true }), col('t', 'tCO₂éq', 'num', { decimals: 1, width: 12 }), col('pct', 'Part (%)', 'num', { decimals: 1, width: 10 })], allowAdd: false },
+        { type: 'table', id: 'clAgCult', title: 'Agriculture - cultures (hectares)', path: 'climat.agriculture.cultures', keyOf: function (r) { return r.l; }, columns: [col('l', 'Culture', 'text', { width: 34, required: true }), col('ha', 'Hectares', 'num', { decimals: 1, width: 12 })], allowAdd: false },
         { type: 'fields', title: 'Matières résiduelles', items: [fld('climat.matieres.site', 'Site d\'enfouissement', 'text'), fld('climat.matieres.captage', 'Captage du biogaz', 'num', { decimals: 1, note: '%' }), fld('climat.matieres.oxydation', 'Oxydation', 'num', { decimals: 1, note: '%' }), fld('climat.matieres.destruction', 'Destruction', 'num', { decimals: 1, note: '%' }),
           fld('climat.matieres.tonnage2023.res', 'Tonnage résidentiel', 'int', { note: 't' }), fld('climat.matieres.tonnage2023.ici', 'Tonnage ICI', 'int', { note: 't' }), fld('climat.matieres.tonnage2023.crd', 'Tonnage CRD', 'int', { note: 't' }), fld('climat.matieres.tonnage2023.tot', 'Tonnage total', 'int', { note: 't' }), fld('climat.matieres.note', 'Note affichée', 'text')] },
-        { type: 'table', id: 'clMatProv', title: 'Matières résiduelles — par provenance', path: 'climat.matieres.parProvenance', keyOf: function (r) { return r.l; }, columns: [col('l', 'Provenance', 'text', { width: 30, required: true }), col('t', 'tCO₂éq', 'num', { decimals: 1, width: 12 })], allowAdd: false }
+        { type: 'table', id: 'clMatProv', title: 'Matières résiduelles - par provenance', path: 'climat.matieres.parProvenance', keyOf: function (r) { return r.l; }, columns: [col('l', 'Provenance', 'text', { width: 30, required: true }), col('t', 'tCO₂éq', 'num', { decimals: 1, width: 12 })], allowAdd: false }
       ]
     });
+
+    /* ═══════════ v4.21 : sections ajoutées ═══════════
+       Textes d'analyse, collaborations, leviers et liens du pilier Santé, repères de revenu, compléments
+       logements et climat, puis les deux fichiers de data/ (constats MADA, territoire apprenant). Un bloc
+       n'est créé que si la donnée existe : un data.json plus ancien produit simplement moins de feuilles. */
+    var colSeq = 0;
+    function ix(p) { return function (r, i) { return p + i; }; }
+    function sheetByName(n) { return sheets.filter(function (s) { return s.name === n; })[0]; }
+    function isArr(p) { return Array.isArray(getPath(D, p)); }
+    function txts(title, defs, note) {
+      var items = defs.filter(function (d) { var v = getPath(D, d[0]); return typeof v === 'string' || typeof v === 'number' || (d[3] && v == null && getPath(D, d[0].replace(/\.[^.]+$/, '')) != null); })
+        .map(function (d) { return fld(d[0], d[1], d[3] || 'text', d[2] ? { note: d[2] } : null); });
+      return items.length ? { type: 'fields', title: title, items: items, note: note } : null;
+    }
+    function tbl(def) { if (def.custom === 'dict') return getPath(D, def.path) && typeof getPath(D, def.path) === 'object' ? def : null; return isArr(def.path) ? def : null; }
+    function strs(id, title, path, label, opts) {
+      var d = { type: 'table', id: id, title: title, path: path, scalar: true, keyOf: ix('v'), columns: [col('v', label, 'text', { width: (opts && opts.width) || 100, required: true })], allowAdd: !(opts && opts.fixed), spare: 2, newItem: function () { return { v: '' }; } };
+      if (opts && opts.note) d.note = opts.note; return tbl(d);
+    }
+    function pushAll(sheet, blocks) { blocks.forEach(function (b) { if (b) sheet.blocks.push(b); }); }
+    var LIST_NOTE = 'Cellules à plusieurs éléments : un élément par ligne dans la cellule (Alt+Entrée).';
+    var detIds = ((D.sante && D.sante.determinants) || []).map(function (d) { return d.id; });
+    var DET_NOTE = detIds.length ? ' Identifiants des déterminants : ' + detIds[0] + ' à ' + detIds[detIds.length - 1] + ' (voir le tableau « Déterminants de la santé »).' : '';
+
+    /* ── compléments des feuilles existantes ── */
+    pushAll(sheetByName('MRC - Général'), [
+      txts('Repères de revenu - paramètres', [['reperesRevenu.annee', 'Année de référence'], ['reperesRevenu.seuilMfrUnePersonne', 'Seuil de la Mesure de faible revenu - une personne', '$', 'int']]),
+      tbl({ type: 'table', id: 'rrClasses', title: 'Repères de revenu - classes', path: 'reperesRevenu.classes', keyOf: function (r) { return r.id; },
+        columns: [col('label', 'Classe', 'text', { width: 22, required: true }), col('min', 'Borne inférieure (% du revenu médian)', 'int', { width: 18 }), col('max', 'Borne supérieure (% du revenu médian)', 'int', { width: 18 }), col('desc', 'Description (texte affiché)', 'text', { width: 70 })],
+        allowAdd: false, note: 'Une borne vide signifie « sans limite ». Les montants en dollars par taille de ménage sont calculés par la plateforme.' })
+    ]);
+    pushAll(sheetByName('MRC - Santé'), [
+      tbl({ type: 'table', id: 'saLeviers', title: 'Leviers d\'action', path: 'sante.leviers', keyOf: ix('l'),
+        columns: [col('name', 'Levier', 'text', { width: 40, required: true }), col('scope', 'Portée', 'text', { width: 22 }), col('desc', 'Description (texte affiché)', 'text', { width: 70 }), col('determinants', 'Déterminants liés', 'list', { width: 16 })],
+        allowAdd: true, spare: 3, newItem: function () { return { name: '', emoji: '', scope: '', desc: '', determinants: [] }; }, note: LIST_NOTE + DET_NOTE }),
+      tbl({ type: 'table', id: 'saLinks', title: 'Liens entre les piliers et la santé', path: 'sante.links', keyOf: ix('k'),
+        columns: [col('from', 'Élément de départ', 'text', { width: 36, required: true }), col('pillar', 'Pilier d\'origine', 'text', { width: 28 }), col('to', 'Effet sur', 'text', { width: 30 }), col('det', 'Déterminant', 'text', { width: 12 }),
+          col('strength', 'Force du lien', 'enum', { enum: ['Fort', 'Moyen', 'Faible'], width: 12 }), col('desc', 'Description (texte affiché)', 'text', { width: 70 })],
+        allowAdd: true, spare: 3, newItem: function () { return { from: '', pillar: '', to: '', det: '', strength: 'Moyen', desc: '' }; }, note: 'Une ligne par lien.' + DET_NOTE })
+    ]);
+    pushAll(sheetByName('MRC - Logements'), [
+      tbl({ type: 'table', id: 'lgRegions', title: 'Enfants en attente d\'une place - données publiées', path: 'logements.attente.regions', keyOf: ix('r'),
+        columns: [col('label', 'Territoire', 'text', { width: 30, required: true }), col('valeur', 'Enfants en attente', 'int', { width: 16 }), col('date', 'Date de la donnée', 'text', { width: 18 }), col('real', 'Donnée réelle ?', 'bool', { width: 14 })],
+        allowAdd: true, spare: 2, newItem: function () { return { label: '', valeur: null, date: '', real: true }; } }),
+      tbl({ type: 'table', id: 'lgSignaux', title: 'Services de garde - chronologie des signaux', path: 'logements.attente.signaux', keyOf: ix('s'),
+        columns: [col('texte', 'Signal (texte affiché)', 'text', { width: 80, required: true }), col('periode', 'Période', 'text', { width: 16 }), col('source', 'Source', 'text', { width: 40 })],
+        allowAdd: true, spare: 3, newItem: function () { return { periode: '', texte: '', source: '' }; } })
+    ]);
+    pushAll(sheetByName('MRC - Climat'), [
+      tbl({ type: 'table', id: 'clPortee', title: 'Portée de l\'aménagement - classes de leviers', path: 'climat.portee.classes', keyOf: function (r) { return r.cle; },
+        columns: [col('label', 'Classe', 'text', { width: 34, required: true }), col('t', 'tCO₂éq', 'num', { decimals: 1, width: 12 }), col('pct', 'Part (%)', 'num', { decimals: 1, width: 10 }), col('leviers', 'Leviers (texte affiché)', 'text', { width: 90 })], allowAdd: false }),
+      tbl({ type: 'table', id: 'clConstats', title: 'Constats du plan climat', path: 'climat.constats', keyOf: ix('c'),
+        columns: [col('titre', 'Titre', 'text', { width: 44, required: true }), col('niveau', 'Étiquette', 'text', { width: 20 }), col('texte', 'Texte affiché', 'text', { width: 90 })],
+        allowAdd: true, spare: 2, newItem: function () { return { niveau: '', titre: '', texte: '' }; } }),
+      tbl({ type: 'table', id: 'clLimites', title: 'Limites de l\'inventaire', path: 'climat.limites', keyOf: ix('m'),
+        columns: [col('titre', 'Titre', 'text', { width: 44, required: true }), col('niveau', 'Étiquette', 'text', { width: 20 }), col('texte', 'Texte affiché', 'text', { width: 90 })],
+        allowAdd: true, spare: 2, newItem: function () { return { niveau: '', titre: '', texte: '' }; } }),
+      strs('clSources', 'Sources clés de l\'inventaire', 'climat.sourcesCles', 'Source')
+    ]);
+
+    /* ── MRC - Collaborations ── */
+    if (isArr('collaborations')) sheets.push({
+      name: 'MRC - Collaborations', kind: 'mrc', intro: 'Collaborations et maillages entre entreprises et municipalités.',
+      blocks: [{ type: 'table', id: 'collabs', title: 'Collaborations', path: 'collaborations', keyOf: function (c) { return c.id; },
+        columns: [col('name', 'Collaboration', 'text', { width: 44, required: true }), col('type', 'Type', 'enum', { enum: ['confirmee', 'possible', 'innovante'], width: 12 }), col('inference_score', 'Score (0 à 100)', 'int', { width: 10, min: 0, max: 100 }),
+          col('companies', 'Entreprises', 'list', { width: 34 }), col('municipalities', 'Municipalités', 'list', { width: 28 }), col('desc', 'Description (texte affiché)', 'text', { width: 60 }), col('impact', 'Retombées', 'text', { width: 40 }), col('status', 'État d\'avancement', 'text', { width: 34 })],
+        allowAdd: true, spare: 3, note: LIST_NOTE + ' Type : confirmee, possible ou innovante.',
+        newItem: function (D2) { var mx = 0; (D2.collaborations || []).forEach(function (c) { var m = /^col(\d+)$/.exec(c.id || ''); if (m) mx = Math.max(mx, +m[1]); }); colSeq++; return { id: 'col' + (mx + colSeq), name: '', type: 'possible', emoji: '', inference_score: 0, companies: [], municipalities: [], desc: '', impact: '', status: '' }; } }]
+    });
+
+    /* ── Textes d'analyse ── */
+    var TX = [
+      txts('Général', [['meta.note', 'Note de version', 'affichée dans « À propos »'], ['meta.validation', 'Mention de validation'], ['_sources', 'Sources générales de la plateforme']]),
+      txts('Aménagement', [['amenagement.intro', 'Introduction']]),
+      txts('Portrait industriel (LGP)', [['portraitLGP.perimetre', 'Périmètre'], ['portraitLGP.note', 'Note'], ['portraitLGP.distinctifsNote', 'Industries distinctives - note']]),
+      txts('Main-d\'œuvre', [['mainOeuvre.intro', 'Introduction'], ['mainOeuvre.dashboardLink', 'Lien vers le tableau de bord externe', 'adresse web complète']]),
+      txts('Démographie', [['demographie.source', 'Source'], ['demographie.note', 'Note']]),
+      txts('Tourisme', [['tourisme.intro', 'Introduction']]),
+      txts('Logements et services de garde', [['logements.intro', 'Introduction'], ['logements.note', 'Note'], ['logements.sourcesPistes', 'Sources et pistes'], ['logements.statut', 'Statut des données'],
+        ['logements.legende.real', 'Légende - donnée réelle'], ['logements.legende.est', 'Légende - estimation'], ['logements.legende.todo', 'Légende - à compléter'],
+        ['logements.attente.constat', 'Enfants en attente - constat'], ['logements.attente.ratioNote', 'Enfants en attente - note sur le ratio'], ['logements.attente.source', 'Enfants en attente - source']]),
+      txts('Repères de revenu', [['reperesRevenu.concept', 'Concept'], ['reperesRevenu.intro', 'Introduction'], ['reperesRevenu.source', 'Source'], ['reperesRevenu.note', 'Note']]),
+      txts('Pilier Santé', [['sante.intro', 'Introduction'], ['sante.compositeNote', 'Note de lecture'], ['sante.cadre.nom', 'Cadre de référence - nom'], ['sante.cadre.reference', 'Cadre de référence - référence']]),
+      txts('Plan climat', [['climat.titre', 'Titre'], ['climat.intro', 'Introduction'], ['climat.portee.note', 'Portée de l\'aménagement - note'], ['climat.pont', 'Lien avec la santé et l\'aménagement']])
+    ].filter(function (b) { return b; });
+    if (TX.length) sheets.push({ name: 'Textes d\'analyse', kind: 'texte', valueWidth: 100, intro: 'Textes rédigés qui s\'affichent dans les sections de la plateforme. Les indicateurs chiffrés se trouvent dans les feuilles « MRC - … ».', blocks: TX });
+
+    /* ── Constats MADA (data/mada/constats.json) ── */
+    if (D._mada) {
+      var MA = D._mada, mb = [];
+      var typeKeys = Object.keys(MA.types || {}), dimIds = ((MA.acces && MA.acces.dimensions) || []).map(function (x) { return x.id; }), axeIds = (MA.axes || []).map(function (a) { return a.id; });
+      mb.push(txts('Démarche', [['_mada.meta.titre', 'Titre'], ['_mada.meta.demarche', 'Démarche'], ['_mada.meta.source', 'Source'], ['_mada.meta.periode', 'Période de collecte'],
+        ['_mada.meta.organismesRencontres', 'Organismes rencontrés', null, 'int'], ['_mada.meta.organismesPrevus', 'Organismes prévus', null, 'int'],
+        ['_mada.meta.integration', 'Date d\'intégration', 'AAAA-MM-JJ - mise à jour automatiquement si un constat change'], ['_mada.meta.lecture', 'Clé de lecture'], ['_mada.meta.aCompleter', 'Ce qui reste à compléter'],
+        ['_mada.meta.lectureSante', 'Clé de lecture - pilier Santé'], ['_mada.meta.sansConstat', 'Mention affichée en l\'absence de constat']]));
+      mb.push(strs('madaOrg', 'Organismes rencontrés', '_mada.meta.organismes', 'Organisme', { width: 60 }));
+      mb.push(txts('Libellés des types de constats', typeKeys.map(function (k) { return ['_mada.types.' + k, 'Type « ' + k + ' »']; })));
+      mb.push(tbl({ type: 'table', id: 'madaAxes', title: 'Axes de la consultation', path: '_mada.axes', keyOf: function (a) { return a.id; },
+        columns: [col('nom', 'Axe', 'text', { width: 34, required: true }), col('organismes', 'Organismes qui l\'ont abordé', 'int', { width: 16 }), col('det', 'Déterminant de la santé lié', 'text', { width: 16 })], allowAdd: false, note: 'Les constats de chaque axe se saisissent dans les tableaux qui suivent.' + DET_NOTE }));
+      (MA.axes || []).forEach(function (a) {
+        mb.push(tbl({ type: 'table', id: 'madaC@' + a.id, title: 'Constats - ' + a.nom, path: '_mada.axes[id=' + a.id + '].constats', keyOf: ix('c'),
+          columns: [col('texte', 'Constat (texte affiché)', 'text', { width: 90, required: true }), col('t', 'Type', 'enum', { enum: typeKeys, width: 12 }), col('n', 'Organismes', 'int', { width: 11 }), col('acces', 'Dimension de l\'accès', 'enum', { enum: dimIds, width: 14 })],
+          allowAdd: true, spare: 3, newItem: function () { return { t: typeKeys[0] || 'enjeu', n: 1, texte: '' }; } }));
+      });
+      mb.push(txts('Chiffres donnés par les organismes', [['_mada.chiffres.note', 'Note']]));
+      mb.push(tbl({ type: 'table', id: 'madaChiffres', title: 'Chiffres donnés par les organismes - liste', path: '_mada.chiffres.items', keyOf: ix('x'),
+        columns: [col('libelle', 'Ce que le chiffre mesure', 'text', { width: 80, required: true }), col('valeur', 'Valeur affichée', 'text', { width: 18 }), col('axe', 'Axe', 'enum', { enum: axeIds, width: 16 })],
+        allowAdd: true, spare: 3, newItem: function () { return { valeur: '', libelle: '', axe: axeIds[0] || '' }; } }));
+      mb.push(txts('Dimensions de l\'accès', [['_mada.acces.titre', 'Titre'], ['_mada.acces.note', 'Note']]));
+      mb.push(tbl({ type: 'table', id: 'madaDims', title: 'Dimensions de l\'accès - définitions', path: '_mada.acces.dimensions', keyOf: function (x) { return x.id; },
+        columns: [col('nom', 'Dimension', 'text', { width: 30, required: true }), col('desc', 'Définition', 'text', { width: 90 })], allowAdd: false }));
+      Object.keys(MA.notesVues || {}).forEach(function (k) {
+        mb.push(txts('Note terrain - ' + k, [['_mada.notesVues.' + k + '.titre', 'Titre']]));
+        mb.push(strs('madaNote@' + k, 'Note terrain - ' + k + ' - points', '_mada.notesVues.' + k + '.points', 'Point (texte affiché)'));
+      });
+      sheets.push({ name: 'Milieu - Constats MADA', kind: 'extra', root: '_mada', valueWidth: 90, intro: 'Constats de la consultation MADA auprès des organismes (vues « Constats du milieu », Logements et pilier Santé).', blocks: mb.filter(function (b) { return b; }) });
+    }
+
+    /* ── Territoire apprenant (data/sante/apprenant.json) ── */
+    if (D._apprenant) {
+      var AP = D._apprenant, ab = [], eb = [];
+      var srcIds = Object.keys(AP.sources || {});
+      var SRC_NOTE = srcIds.length ? ' Sources permises : ' + srcIds.join(', ') + ' (tableau « Sources » de la feuille « Santé - Apprenant »).' : '';
+      ab.push(txts('Cadre général', [['_apprenant.meta.maj', 'Date de mise à jour', 'AAAA-MM-JJ - mise à jour automatiquement si un contenu change'], ['_apprenant.meta.cadre', 'Cadre'], ['_apprenant.meta.limite', 'Limite'], ['_apprenant.voixCitoyenne', 'Voix citoyenne'],
+        ['_apprenant.journal.note', 'Journal - note'], ['_apprenant.instances.note', 'Instances - note'], ['_apprenant.instances.src', 'Instances - source'], ['_apprenant.ancrage.titre', 'Ancrage - titre'], ['_apprenant.ancrage.note', 'Ancrage - note'],
+        ['_apprenant.donnees.note', 'Gouvernance des données - note'], ['_apprenant.principes.titre', 'Principes - titre'], ['_apprenant.principes.src', 'Principes - source']]));
+      ab.push(tbl({ type: 'table', id: 'apSources', title: 'Sources', path: '_apprenant.sources', custom: 'dict', prefix: 'src',
+        columns: [col('_k', 'Identifiant', 'text', { width: 44, locked: true }), col('l', 'Libellé affiché', 'text', { width: 90, required: true }), col('u', 'Adresse web (facultatif)', 'text', { width: 40 })],
+        allowAdd: true, spare: 4, note: 'L\'identifiant sert à citer la source dans les autres tableaux (colonne « Source »). Pour une nouvelle source, choisissez un identifiant court sans espace ni accent; laissé vide, il est attribué automatiquement.' }));
+      ab.push(tbl({ type: 'table', id: 'apJournal', title: 'Journal des décisions', path: '_apprenant.journal.entrees', keyOf: ix('j'),
+        columns: [col('sujet', 'Sujet', 'text', { width: 44, required: true }), col('date', 'Date', 'text', { width: 90 }), col('avant', 'Avant', 'text', { width: 40 }), col('apres', 'Après', 'text', { width: 60 }), col('declencheur', 'Déclencheur', 'text', { width: 50 })],
+        allowAdd: true, spare: 5, newItem: function () { return { date: '', sujet: '', avant: '', apres: '', declencheur: '' }; }, note: 'Une ligne par décision. Date au format AAAA-MM-JJ.' }));
+      ab.push(tbl({ type: 'table', id: 'apEtapes', title: 'Étapes de la boucle', path: '_apprenant.etapes', keyOf: function (x) { return x.id; },
+        columns: [col('nom', 'Étape', 'text', { width: 44, required: true }), col('desc', 'Description', 'text', { width: 90 })], allowAdd: false }));
+      ab.push(strs('apStatuts', 'Statuts des participants', '_apprenant.statuts', 'Statut', { width: 44 }));
+      ab.push(tbl({ type: 'table', id: 'apInstances', title: 'Instances', path: '_apprenant.instances.liste', keyOf: ix('i'),
+        columns: [col('nom', 'Instance', 'text', { width: 44, required: true }), col('mandat', 'Mandat', 'text', { width: 90 }), col('statuts', 'Statuts représentés', 'list', { width: 40 })],
+        allowAdd: true, spare: 3, newItem: function () { return { nom: '', mandat: '', statuts: [] }; }, note: LIST_NOTE + ' Les statuts doivent reprendre ceux du tableau « Statuts des participants ».' }));
+      ab.push(tbl({ type: 'table', id: 'apAncrage', title: 'Ancrage territorial', path: '_apprenant.ancrage.items', keyOf: ix('a'),
+        columns: [col('texte', 'Texte affiché', 'text', { width: 44, required: true }), col('src', 'Source (texte)', 'text', { width: 90 }), col('prov', 'Provenance', 'enum', { enum: PROV, width: 14 })],
+        allowAdd: true, spare: 2, newItem: function () { return { prov: 'reel', texte: '', src: '' }; }, note: 'Provenance : reel (donnée publiée), terrain (constat du milieu) ou todo (à documenter).' }));
+      ab.push(tbl({ type: 'table', id: 'apJeux', title: 'Gouvernance des données - jeux de données', path: '_apprenant.donnees.jeux', keyOf: ix('g'),
+        columns: [col('nom', 'Jeu de données', 'text', { width: 44, required: true }), col('fournisseur', 'Fournisseur', 'text', { width: 90 }), col('mode', 'Arrivée sur la plateforme', 'text', { width: 28 }), col('frequence', 'Fréquence', 'text', { width: 28 }),
+          col('conditions', 'Conditions de réutilisation', 'text', { width: 34 }), col('vues', 'Vues concernées', 'text', { width: 34 })],
+        allowAdd: true, spare: 3, newItem: function () { return { nom: '', fournisseur: '', mode: '', frequence: '', conditions: '', vues: '' }; } }));
+      ab.push(tbl({ type: 'table', id: 'apPrincipes', title: 'Principes d\'équité', path: '_apprenant.principes.liste', keyOf: ix('p'),
+        columns: [col('nom', 'Principe', 'text', { width: 44, required: true }), col('texte', 'Texte affiché', 'text', { width: 90 }), col('ou', 'Où il s\'applique', 'text', { width: 40 }), col('no', 'Numéro', 'int', { width: 10 })],
+        allowAdd: true, spare: 2, newItem: function () { return { no: null, nom: '', texte: '', ou: '' }; } }));
+      ab.push(strs('apEquiteGen', 'Questions d\'équité génériques', '_apprenant.equiteGenerique', 'Question', { fixed: true }));
+      ab.push(txts('Inégalités sociales de santé', [['_apprenant.iss.definition', 'Définition'], ['_apprenant.iss.manque', 'Ce qui manque'], ['_apprenant.iss.jeunes.titre', 'Portrait des jeunes - titre'], ['_apprenant.iss.jeunes.note', 'Portrait des jeunes - note'],
+        ['_apprenant.iss.jeunes.src', 'Portrait des jeunes - source'], ['_apprenant.iss.jeunes.verif', 'Portrait des jeunes - vérification']]));
+      ab.push(tbl({ type: 'table', id: 'apMecan', title: 'Inégalités sociales de santé - mécanismes', path: '_apprenant.iss.mecanismes', keyOf: ix('m'),
+        columns: [col('nom', 'Mécanisme', 'text', { width: 44, required: true }), col('texte', 'Texte affiché', 'text', { width: 90 })], allowAdd: true, spare: 2, newItem: function () { return { nom: '', texte: '' }; } }));
+      ab.push(tbl({ type: 'table', id: 'apExemples', title: 'Inégalités sociales de santé - exemples', path: '_apprenant.iss.exemples', keyOf: ix('e'),
+        columns: [col('titre', 'Titre', 'text', { width: 44, required: true }), col('texte', 'Texte affiché', 'text', { width: 90 })], allowAdd: true, spare: 2, newItem: function () { return { titre: '', texte: '' }; } }));
+      var groupes = (AP.iss && AP.iss.jeunes && AP.iss.jeunes.groupes) || [];
+      if (groupes.length) ab.push(tbl({ type: 'table', id: 'apGroupes', title: 'Portrait des jeunes - groupes d\'indicateurs', path: '_apprenant.iss.jeunes.groupes', keyOf: ix('g'),
+        columns: [col('nom', 'Groupe', 'text', { width: 44, required: true }), col('det', 'Déterminants liés', 'list', { width: 90 })], allowAdd: false, note: LIST_NOTE + DET_NOTE }));
+      groupes.forEach(function (g, gi) {
+        ab.push(tbl({ type: 'table', id: 'apGrp@' + gi, title: 'Portrait des jeunes - ' + g.nom, path: '_apprenant.iss.jeunes.groupes[' + gi + '].items', keyOf: ix('n'),
+          columns: [col('l', 'Indicateur', 'text', { width: 44, required: true }),
+            col('v0', 'Valeur (%)', 'num', { decimals: 1, width: 90, get: function (it) { return (it.v || [])[0]; }, set: function (it, v) { if (!Array.isArray(it.v)) it.v = []; it.v[0] = v; } }),
+            col('q', 'Écart avec le reste du Québec', 'text', { width: 28 }), col('cv', 'Précision', 'text', { width: 12 })],
+          allowAdd: true, spare: 2, newItem: function () { return { l: '', v: [null], q: 'ns' }; }, note: 'Écart : + (plus élevé), - (plus faible) ou ns (non significatif). Précision : * ou ** si l\'estimation est imprécise, sinon vide.' }));
+      });
+      sheets.push({ name: 'Santé - Apprenant', kind: 'extra', root: '_apprenant', valueWidth: 90, intro: 'Territoire apprenant : sources, journal des décisions, instances, gouvernance des données, équité et portrait des jeunes.', blocks: ab.filter(function (b) { return b; }) });
+
+      var etapes = (AP.etapes || []).filter(function (e) { return e && e.id; });
+      eb.push(tbl({ type: 'table', id: 'apEnjeux', title: 'Enjeux suivis', path: '_apprenant.enjeux', keyOf: function (e) { return e.id; },
+        columns: [col('nom', 'Enjeu', 'text', { width: 44, required: true }), col('resume', 'Résumé (texte affiché)', 'text', { width: 90 }), col('det', 'Déterminant lié', 'text', { width: 16 })],
+        allowAdd: false, note: 'Chaque enjeu a ensuite un tableau par étape de la boucle (savoirs, délibération, décision, suivi, ajustement). L\'ajout d\'un nouvel enjeu se fait avec la scientifique en chef.' + DET_NOTE }));
+      (AP.enjeux || []).forEach(function (e) {
+        etapes.forEach(function (et) {
+          if (!Array.isArray(e[et.id])) return;
+          eb.push(tbl({ type: 'table', id: 'apE@' + e.id + '@' + et.id, title: e.nom + ' - ' + et.nom, path: '_apprenant.enjeux[id=' + e.id + '].' + et.id, keyOf: ix('t'),
+            columns: [col('texte', 'Trace (texte affiché)', 'text', { width: 44, required: true }), col('date', 'Date', 'text', { width: 90 }), col('src', 'Source', 'text', { width: 16 }), col('prov', 'Provenance', 'enum', { enum: PROV, width: 14 })],
+            allowAdd: true, spare: 2, newItem: function () { return { date: null, texte: '', src: null, prov: 'reel' }; }, note: 'Date : AAAA-MM-JJ, AAAA-MM ou une période en toutes lettres.' + SRC_NOTE }));
+        });
+        if (e.equite && typeof e.equite === 'object') {
+          var ep = '_apprenant.enjeux[id=' + e.id + '].equite';
+          eb.push(txts(e.nom + ' - lecture d\'équité', [[ep + '.objectif', 'Objectif'], [ep + '.note', 'Note'], [ep + '.src', 'Source']]));
+          eb.push(tbl({ type: 'table', id: 'apEq@' + e.id, title: e.nom + ' - lecture d\'équité, questions', path: ep + '.blocs', keyOf: ix('b'),
+            columns: [col('q', 'Question', 'text', { width: 44, required: true }), col('r', 'Réponses', 'list', { width: 90 })], allowAdd: false, note: LIST_NOTE }));
+        }
+      });
+      sheets.push({ name: 'Santé - Enjeux', kind: 'extra', root: '_apprenant', valueWidth: 90, intro: 'De la donnée à la décision : pour chaque enjeu, les traces de chaque étape de la boucle.', blocks: eb.filter(function (b) { return b; }) });
+    }
 
     /* ── Une feuille par municipalité ── */
     var bands = (D.demographie && D.demographie.bands) || [];
@@ -301,35 +498,36 @@
       var mp = 'municipalities[code=' + mu.code + ']';
       var blocks = [];
       blocks.push({ type: 'fields', title: 'Identité', items: [
-        fld(mp + '.pop', 'Population', 'int', { note: 'habitants (décret MAMH) — la densité est recalculée automatiquement' }),
+        fld(mp + '.pop', 'Population', 'int', { note: 'habitants (décret MAMH) - la densité est recalculée automatiquement' }),
         fld(mp + '.surface', 'Superficie terrestre', 'num', { decimals: 1, note: 'km²' }),
         fld(mp + '.type', 'Statut', 'enum', { enum: MUNI_TYPES }), fld(mp + '.cat', 'Catégorie territoriale', 'enum', { enum: MUNI_CATS, note: 'urbain, rural ou rural_eloigne' }),
         fld(mp + '.role', 'Rôle (étiquette affichée)', 'text'), fld(mp + '.note', 'Note (texte affiché)', 'text')] });
-      blocks.push({ type: 'table', id: 'demoPyr@' + mu.code, title: 'Démographie — structure par âge (estimation ISQ)', custom: 'demoPyr', code: mu.code,
+      blocks.push({ type: 'table', id: 'demoPyr@' + mu.code, title: 'Démographie - structure par âge (estimation ISQ)', custom: 'demoPyr', code: mu.code,
         columns: [col('band', 'Groupe d\'âge', 'text', { width: 14, locked: true }), col('n', 'Personnes', 'int', { width: 12 })], allowAdd: false, note: 'Le portrait de la MRC (pyramide, totaux, projections) est la somme des 19 municipalités, recalculée automatiquement.' });
-      blocks.push({ type: 'fields', title: 'Démographie — totaux', items: [fld(mp + '.demo.agg.a017', '0-17 ans', 'int'), fld(mp + '.demo.agg.a1864', '18-64 ans', 'int'), fld(mp + '.demo.agg.a65', '65 ans et plus', 'int'), fld(mp + '.demo.agg.tot', 'Total (estimation ISQ)', 'int'),
+      blocks.push({ type: 'fields', title: 'Démographie - totaux', items: [fld(mp + '.demo.agg.a017', '0-17 ans', 'int'), fld(mp + '.demo.agg.a1864', '18-64 ans', 'int'), fld(mp + '.demo.agg.a65', '65 ans et plus', 'int'), fld(mp + '.demo.agg.tot', 'Total (estimation ISQ)', 'int'),
         fld(mp + '.demo.agemoy.2026', 'Âge moyen 2026', 'num', { decimals: 2 }), fld(mp + '.demo.agemoy.2041', 'Âge moyen projeté 2041', 'num', { decimals: 2 })] });
-      blocks.push({ type: 'table', id: 'demoTrend@' + mu.code, title: 'Démographie — évolution de la population', custom: 'demoTrend', code: mu.code,
+      blocks.push({ type: 'table', id: 'demoTrend@' + mu.code, title: 'Démographie - évolution de la population', custom: 'demoTrend', code: mu.code,
         columns: [col('year', 'Année', 'text', { width: 10, locked: true }), col('pop', 'Population', 'int', { width: 12 })], allowAdd: false });
-      blocks.push({ type: 'table', id: 'demoProj@' + mu.code, title: 'Démographie — projections', custom: 'demoProj', code: mu.code,
+      blocks.push({ type: 'table', id: 'demoProj@' + mu.code, title: 'Démographie - projections', custom: 'demoProj', code: mu.code,
         columns: [col('year', 'Année', 'text', { width: 10, locked: true }), col('tot', 'Total', 'int', { width: 10 }), col('a019', '0-19 ans', 'int', { width: 10 }), col('a2064', '20-64 ans', 'int', { width: 10 }), col('a65', '65 ans et plus', 'int', { width: 12 })], allowAdd: false });
       var lp = 'logements.parMuni[code=' + mu.code + ']';
       blocks.push({ type: 'fields', title: 'Logements et services de garde', items: [
-        fld(lp + '.logements.total', 'Logements — parc total', 'int'), fld(lp + '.logements.locatifs', 'Logements locatifs', 'int'), fld(lp + '.logements.sociaux', 'Logements sociaux', 'int', { note: 'vide = non renseigné' }), fld(lp + '.logements.coop', 'Logements coopératifs', 'int', { note: 'vide = non renseigné' }),
-        fld(lp + '.logements.real', 'Logements — donnée réelle ?', 'bool'), fld(lp + '.logements.est', 'Logements — estimation ?', 'bool'), fld(lp + '.logements.source', 'Logements — source (texte affiché)', 'text'),
-        fld(lp + '.garderies.cpe', 'CPE (installations)', 'int', { note: 'vide = non renseigné' }), fld(lp + '.garderies.garderies', 'Garderies', 'int'), fld(lp + '.garderies.milieuFamilial', 'Places en milieu familial', 'int'), fld(lp + '.garderies.placesTotal', 'Places — total', 'int'),
-        fld(lp + '.garderies.real', 'Garderies — donnée réelle ?', 'bool'), fld(lp + '.garderies.source', 'Garderies — source (texte affiché)', 'text')] });
+        fld(lp + '.logements.total', 'Logements - parc total', 'int'), fld(lp + '.logements.locatifs', 'Logements locatifs', 'int'), fld(lp + '.logements.sociaux', 'Logements sociaux', 'int', { note: 'vide = non renseigné' }), fld(lp + '.logements.coop', 'Logements coopératifs', 'int', { note: 'vide = non renseigné' }),
+        fld(lp + '.logements.real', 'Logements - donnée réelle ?', 'bool'), fld(lp + '.logements.est', 'Logements - estimation ?', 'bool'), fld(lp + '.logements.source', 'Logements - source (texte affiché)', 'text'),
+        fld(lp + '.garderies.cpe', 'CPE (installations)', 'int', { note: 'vide = non renseigné' }), fld(lp + '.garderies.garderies', 'Garderies', 'int'), fld(lp + '.garderies.milieuFamilial', 'Places en milieu familial', 'int'), fld(lp + '.garderies.placesTotal', 'Places - total', 'int'),
+        fld(lp + '.garderies.real', 'Garderies - donnée réelle ?', 'bool'), fld(lp + '.garderies.source', 'Garderies - source (texte affiché)', 'text')],
+        note: 'Parc de logements, logements locatifs, CPE, garderies et places en installation sont extraits automatiquement de sources officielles (Statistique Canada, ministère de la Famille). À l\'affichage, ces extractions remplacent la valeur saisie ici.' });
       var kp = 'climat.parMuni[muni=' + mu.name + ']';
-      blocks.push({ type: 'fields', title: 'Plan climat — émissions de GES (tCO₂éq) et activités', items: [
+      blocks.push({ type: 'fields', title: 'Plan climat - émissions de GES (tCO₂éq) et activités', items: [
         fld(kp + '.pop', 'Population de référence (inventaire)', 'int'), fld(kp + '.pop36', 'Population projetée 2036', 'int'),
-        fld(kp + '.res', 'Émissions — résidentiel', 'num', { decimals: 1 }), fld(kp + '.ci', 'Émissions — commercial et institutionnel', 'num', { decimals: 1 }), fld(kp + '.ind', 'Émissions — industriel', 'num', { decimals: 1 }),
-        fld(kp + '.agri', 'Émissions — agriculture', 'num', { decimals: 1 }), fld(kp + '.transp', 'Émissions — transport', 'num', { decimals: 1 }), fld(kp + '.mr', 'Émissions — matières résiduelles', 'num', { decimals: 1 }),
+        fld(kp + '.res', 'Émissions - résidentiel', 'num', { decimals: 1 }), fld(kp + '.ci', 'Émissions - commercial et institutionnel', 'num', { decimals: 1 }), fld(kp + '.ind', 'Émissions - industriel', 'num', { decimals: 1 }),
+        fld(kp + '.agri', 'Émissions - agriculture', 'num', { decimals: 1 }), fld(kp + '.transp', 'Émissions - transport', 'num', { decimals: 1 }), fld(kp + '.mr', 'Émissions - matières résiduelles', 'num', { decimals: 1 }),
         fld(kp + '.supRes', 'Surface résidentielle', 'num', { decimals: 1, note: 'm²' }), fld(kp + '.supCi', 'Surface commerciale et institutionnelle', 'num', { decimals: 1, note: 'm²' }), fld(kp + '.supInd', 'Surface industrielle', 'num', { decimals: 1, note: 'm²' }), fld(kp + '.supAgri', 'Surface agricole', 'num', { decimals: 1, note: 'm²' }),
         fld(kp + '.cheptel', 'Cheptel (têtes)', 'int'), fld(kp + '.haCult', 'Hectares cultivés', 'num', { decimals: 1 })],
         note: 'Total, périmètre ATCL, émissions par habitant, part de la MRC et secteur dominant sont recalculés automatiquement.' });
       if (convNames.indexOf(mu.name) >= 0) {
         var cp = 'amenagement.conversion.byMuni[name=' + mu.name + ']';
-        blocks.push({ type: 'fields', title: 'Aménagement — conversion résidence / villégiature', items: [fld(cp + '.villegiature', 'Villégiature', 'enum', { enum: ['Élevée', 'Moyenne', 'Faible'] }), fld(cp + '.net', 'Tendance nette', 'text'), fld(cp + '.note', 'Note', 'text')] });
+        blocks.push({ type: 'fields', title: 'Aménagement - conversion résidence / villégiature', items: [fld(cp + '.villegiature', 'Villégiature', 'enum', { enum: ['Élevée', 'Moyenne', 'Faible'] }), fld(cp + '.net', 'Tendance nette', 'text'), fld(cp + '.note', 'Note', 'text')] });
       }
       blocks.push({ type: 'table', id: 'companies@' + mu.code, title: 'Entreprises et employeurs', custom: 'companies', code: mu.code, muni: mu.name,
         columns: [col('name', 'Entreprise', 'text', { width: 40, required: true }), col('sector', 'Secteur', 'enum', { enum: sectorNames(D), width: 30 }), col('jobs', 'Emplois', 'int', { width: 9, blankAs: 0 }),
@@ -363,7 +561,8 @@
       case 'demoProj': { var m3 = getPath(D, 'municipalities[code=' + blk.code + ']'); var pj = (m3 && m3.demo && m3.demo.proj) || {}; var py = (D.demographie && D.demographie.projYears) || Object.keys(pj); return py.map(function (y) { var o = pj[String(y)] || {}; return { key: String(y), item: { year: String(y), tot: o.tot, a019: o.a019, a2064: o.a2064, a65: o.a65 } }; }); }
       case 'companies': return (D.companies || []).filter(function (c) { return c.muni === blk.muni && c.src !== 'tourisme'; }).map(function (c) { return { key: c.id, item: c }; });
       case 'membres': return ((D.tourisme && D.tourisme.membres) || []).filter(function (m) { return m.muni === blk.muni && !m.horsMRC; }).map(function (m) { return { key: m.nom, item: m }; });
-      default: { var arr = getPath(D, blk.path) || []; return arr.map(function (it, i) { return { key: String(blk.keyOf(it, i)), item: it }; }); }
+      case 'dict': { var o = getPath(D, blk.path) || {}; return Object.keys(o).map(function (k) { var it = { _k: k }; Object.keys(o[k] || {}).forEach(function (x) { it[x] = o[k][x]; }); return { key: k, item: it }; }); }
+      default: { var arr = getPath(D, blk.path) || []; return arr.map(function (it, i) { return { key: String(blk.keyOf(it, i)), item: blk.scalar ? { v: it } : it }; }); }
     }
   }
 
@@ -372,6 +571,7 @@
     if (v === null || v === undefined) return null;
     if (kind === 'bool') return v ? 'Oui' : 'Non';
     if (kind === 'int' || kind === 'num') { var n = Number(v); return isNaN(n) ? null : n; }
+    if (kind === 'list') return Array.isArray(v) ? v.join('\n') : String(v);
     return String(v);
   }
   function fromCell(raw, def, ctx) {
@@ -379,6 +579,7 @@
     var kind = def.kind;
     if (raw && typeof raw === 'object' && raw.richText) raw = raw.richText.map(function (r) { return r.text; }).join('');
     if (raw instanceof Date) raw = raw.toISOString().slice(0, 10);
+    if (kind === 'list') { if (isBlank(raw)) return { ok: true, value: [] }; return { ok: true, value: String(raw).split(/\r?\n|\s\|\s/).map(function (x) { return x.trim(); }).filter(function (x) { return x !== ''; }) }; }
     if (isBlank(raw)) {
       if (def.blankAs !== undefined) return { ok: true, value: def.blankAs };
       if (kind === 'text') return { ok: true, value: '' };
@@ -395,9 +596,13 @@
     if (kind === 'enum') { var sv = normText(raw); if (def.enum && def.enum.indexOf(sv) < 0) return { ok: false, error: 'valeur « ' + sv + ' » non permise (choix : ' + def.enum.join(', ') + ')' }; return { ok: true, value: sv }; }
     return { ok: true, value: typeof raw === 'number' ? String(raw) : normText(raw) };
   }
+  /* Colonne à accès particulier (ex. première valeur d'un tableau) : get / set facultatifs. */
+  function cget(item, c) { return c.get ? c.get(item) : item[c.key]; }
+  function cset(item, c, v) { if (c.set) c.set(item, v); else item[c.key] = v; }
   function same(a, b, kind) {
     if (kind === 'int' || kind === 'num') { if (a == null && b == null) return true; if (a == null || b == null) return false; return Math.abs(Number(a) - Number(b)) < 1e-9; }
     if (kind === 'bool') return !!a === !!b;
+    if (kind === 'list') return (Array.isArray(a) ? a : []).map(normText).join('\n') === (Array.isArray(b) ? b : []).map(normText).join('\n');
     return normText(a) === normText(b);
   }
 
@@ -434,8 +639,9 @@
   function buildWorkbook(ExcelJS, D, options) {
     options = options || {};
     var wb = new ExcelJS.Workbook();
-    wb.creator = 'MRC du Granit — Tableau de bord territorial';
+    wb.creator = 'MRC du Granit - Tableau de bord territorial';
     wb.created = new Date();
+    if (options.extras) D = compose(D, options.extras);
     var spec = buildSpec(D);
     var sheetPw = options.sheetPassword || options.password || '';
     var listsWs = null, listsCol = 0, protections = [];
@@ -451,17 +657,22 @@
     var rm = wb.addWorksheet('Lisez-moi', { properties: { tabColor: { argb: 'FF1A4D2E' } } });
     rm.getColumn(1).width = 110;
     var lines = [
-      ['Tableau de bord territorial — MRC du Granit', ST.title],
-      ['Chiffrier de mise à jour trimestrielle · généré le ' + new Date().toLocaleDateString('fr-CA') + ' · période actuelle : ' + ((D.meta && D.meta.quarter) || '—') + ' · format v' + VERSION, ST.sub],
+      ['Tableau de bord territorial - MRC du Granit', ST.title],
+      ['Chiffrier de mise à jour · généré le ' + new Date().toLocaleDateString('fr-CA') + ' · période actuelle : ' + ((D.meta && D.meta.quarter) || '—') + ' · format v' + VERSION, ST.sub],
       [''],
       ['Comment procéder', ST.block],
-      ['1. Ouvrez ce fichier avec le mot de passe fourni. Ne le renommez pas en changeant son extension.', ST.label],
-      ['2. Chaque municipalité dispose de sa propre feuille (onglets au bas de l\'écran). Les feuilles « MRC - … » contiennent les données territoriales.', ST.label],
-      ['3. Modifiez uniquement les cellules jaunes. Les autres cellules sont verrouillées : elles portent les libellés et la structure dont la plateforme a besoin.', ST.label],
-      ['4. Tableaux : une ligne par élément. Pour ajouter un élément, remplissez une ligne libre (jaune pâle) au bas du tableau. Pour retirer un élément, effacez son nom.', ST.label],
-      ['5. Listes déroulantes : certaines cellules n\'acceptent que des valeurs précises (Oui / Non, statut, secteur…). Respectez-les, sinon l\'importation signalera une erreur.', ST.label],
-      ['6. Enregistrez (Ctrl+S). Le fichier reste chiffré avec le même mot de passe.', ST.label],
-      ['7. Sur la plateforme, cliquez « Importer Excel » ou glissez le fichier n\'importe où dans la page, entrez le mot de passe, vérifiez le résumé des changements, puis appliquez et publiez.', ST.label],
+      ['1. Sur le tableau de bord, cliquez « Mettre à jour les données », puis « Télécharger le chiffrier à jour ». Partez toujours d\'un chiffrier fraîchement téléchargé : il contient les données publiées à ce moment.', ST.label],
+      ['2. Modifiez uniquement les cellules jaunes. Les autres cellules sont verrouillées : elles portent les libellés et la structure dont la plateforme a besoin.', ST.label],
+      ['3. Tableaux : une ligne par élément. Pour ajouter un élément, remplissez une ligne libre (jaune pâle) au bas du tableau. Pour retirer un élément, effacez son nom ou son texte principal.', ST.label],
+      ['4. Listes déroulantes : certaines cellules n\'acceptent que des valeurs précises (Oui / Non, statut, secteur…). Respectez-les, sinon la plateforme signalera une erreur.', ST.label],
+      ['5. Cellules à plusieurs éléments (entreprises d\'une collaboration, déterminants liés, etc.) : un élément par ligne dans la cellule. Alt+Entrée ajoute une ligne.', ST.label],
+      ['6. Enregistrez (Ctrl+S), puis glissez le fichier n\'importe où sur la page du tableau de bord. Vérifiez le résumé des changements, puis cliquez « Appliquer et publier ».', ST.label],
+      [''],
+      ['Où se trouve quoi (onglets au bas de l\'écran)', ST.block],
+      ['• Onglets « MRC - … » (bleu) : données du territoire par thème, collaborations, leviers et liens du pilier Santé, plan climat.', ST.label],
+      ['• Onglet « Textes d\'analyse » (gris) : introductions, notes, sources et constats rédigés qui s\'affichent dans chaque section.', ST.label],
+      ['• Onglets « Milieu - … » et « Santé - … » (violet) : constats de la consultation MADA, territoire apprenant, enjeux et journal des décisions.', ST.label],
+      ['• Un onglet par municipalité (orange) : population, démographie, logements, services de garde, plan climat, entreprises, membres touristiques.', ST.label],
       [''],
       ['Ce qui est recalculé automatiquement par la plateforme', ST.block],
       ['• Densité de population de chaque municipalité (population ÷ superficie).', ST.label],
@@ -469,22 +680,24 @@
       ['• Tourisme : nombre de membres par municipalité, par grande section et par catégorie, hébergement (chambres, emplacements, chalets), et fiches « tourisme » de la liste d\'entreprises.', ST.label],
       ['• Logements : parc total de la MRC = somme des municipalités.', ST.label],
       ['• Plan climat : totaux par secteur, par habitant, périmètre ATCL, parts de chaque municipalité et secteur dominant.', ST.label],
-      ['• Santé : indice composite à partir des scores des déterminants.', ST.label],
       [''],
       ['Ce que ce chiffrier ne modifie pas', ST.block],
-      ['Les textes d\'analyse (introductions, constats, maillages, leviers, limites) restent dans la plateforme et se modifient avec l\'outil « Modifier les données » ou par le conseil scientifique.', ST.label],
+      ['Les données extraites automatiquement de sources officielles (Registraire des entreprises, services de garde, recensement, carte) se mettent à jour seules et priment à l\'affichage. La structure des pages et les graphiques relèvent du code de la plateforme.', ST.label],
       [''],
+      ['Mise en forme des textes : quelques balises simples sont acceptées dans les textes (<b>gras</b>, <i>italique</i>, <br> pour un saut de ligne). Tout autre code est retiré à l\'importation.', ST.note],
       ['Colonne A et lignes grises : marqueurs techniques utilisés par la plateforme pour reconnaître chaque champ. Ne pas supprimer ni déplacer.', ST.note]
     ];
+    rm.getColumn(2).hidden = true; rm.getCell(1, 2).value = 'EMPREINTE|' + fingerprint(D, spec) + '|' + new Date().toISOString();
     lines.forEach(function (l, i) { var c = rm.getCell(i + 1, 1); c.value = l[0]; if (l[1]) applyStyle(c, l[1]); c.alignment = { wrapText: true, vertical: 'top' }; if (l[1] === ST.block) { rm.getRow(i + 1).height = 20; } });
     protections.push(rm.protect(sheetPw, { selectLockedCells: true, selectUnlockedCells: true, spinCount: 2000 }));
 
     spec.forEach(function (sh) {
-      var ws = wb.addWorksheet(sh.name, { properties: { tabColor: { argb: sh.kind === 'muni' ? 'FFD97706' : 'FF1D7A8A' } }, views: [{ state: 'frozen', ySplit: 2 }] });
+      var ws = wb.addWorksheet(sh.name, { properties: { tabColor: { argb: sh.kind === 'muni' ? 'FFD97706' : (sh.kind === 'texte' ? 'FF6B7280' : (sh.kind === 'extra' ? 'FF7C3AED' : 'FF1D7A8A')) } }, views: [{ state: 'frozen', ySplit: 2 }] });
       ws.getColumn(1).width = 2; ws.getColumn(1).hidden = true;
-      ws.getColumn(2).width = 44; ws.getColumn(3).width = 24; ws.getColumn(4).width = 60;
+      var cw = sh.valueWidth || 24;
+      ws.getColumn(2).width = 44; ws.getColumn(3).width = cw; ws.getColumn(4).width = sh.valueWidth ? 40 : 60;
       var r = 1;
-      ws.getCell(r, 2).value = sh.name + (sh.kind === 'muni' ? ' — feuille municipale' : ''); applyStyle(ws.getCell(r, 2), ST.title); r++;
+      ws.getCell(r, 2).value = sh.name + (sh.kind === 'muni' ? ' - feuille municipale' : ''); applyStyle(ws.getCell(r, 2), ST.title); r++;
       ws.getCell(r, 2).value = sh.intro + ' Cellules jaunes = modifiables.'; applyStyle(ws.getCell(r, 2), ST.sub); ws.getCell(r, 2).alignment = { wrapText: false }; r += 2;
       var maxCols = 4;
       sh.blocks.forEach(function (blk) {
@@ -496,11 +709,12 @@
             ws.getCell(r, 1).value = 'F|' + it.path;
             var lc = ws.getCell(r, 2); lc.value = it.label; applyStyle(lc, ST.label); border(lc);
             var vc = ws.getCell(r, 3); var v = getPath(D, it.path); vc.value = toCell(v, it.kind); applyStyle(vc, ST.input); border(vc); vc.protection = { locked: false };
-            vc.numFmt = numFmt(it); if (it.kind === 'text') { vc.alignment = { wrapText: true, vertical: 'top' }; if (v && String(v).length > 60) ws.getColumn(3).width = 24; }
+            vc.numFmt = numFmt(it); if (it.kind === 'text') { vc.alignment = { wrapText: true, vertical: 'top' }; }
             var val = validation(it); if (val && val.listRef) val = { type: 'list', allowBlank: true, formulae: [enumRange(it.enum)], showErrorMessage: true, errorStyle: 'stop', errorTitle: 'Valeur non conforme', error: 'Choisissez une valeur dans la liste déroulante.' };
             if (val) vc.dataValidation = val;
             var nc = ws.getCell(r, 4); nc.value = it.note || ''; applyStyle(nc, ST.note); border(nc);
-            if (it.kind === 'text' && v && String(v).length > 22) { ws.getRow(r).height = Math.min(170, 14 * Math.ceil(String(v).length / 26)); vc.alignment = { wrapText: true, vertical: 'top' }; }
+            if (it.kind === 'text' && v && String(v).length > cw - 2) { ws.getRow(r).height = Math.min(sh.valueWidth ? 330 : 170, 14 * Math.ceil(String(v).length / (cw * 1.08)) + 2); vc.alignment = { wrapText: true, vertical: 'top' }; }
+            if (sh.valueWidth) { lc.alignment = { wrapText: true, vertical: 'top' }; nc.alignment = { wrapText: true, vertical: 'top' }; }
             r++;
           });
           r++;
@@ -517,12 +731,12 @@
             var rowLines = 1;
             ws.getCell(r, 1).value = 'R|' + (key || '');
             cols.forEach(function (c, i) {
-              var cell = ws.getCell(r, 2 + i); var v = item ? item[c.key] : null; cell.value = toCell(v, c.kind);
+              var cell = ws.getCell(r, 2 + i); var v = item ? cget(item, c) : null; cell.value = toCell(v, c.kind);
               border(cell); cell.numFmt = numFmt(c);
               if (c.locked && !spare) { applyStyle(cell, ST.lockedCell); } else { applyStyle(cell, spare ? ST.spare : ST.input); cell.protection = { locked: false }; if (validations[i]) cell.dataValidation = validations[i]; }
-              if (c.kind === 'text' && c.width >= 30) { cell.alignment = { wrapText: true, vertical: 'top' }; if (v) { var ln = Math.ceil(String(v).length / (c.width - 4)); if (ln > 1) rowLines = Math.max(rowLines, ln); } }
+              if ((c.kind === 'text' && c.width >= 30) || c.kind === 'list') { cell.alignment = { wrapText: true, vertical: 'top' }; if (v) { var ln = 0; String(toCell(v, c.kind)).split('\n').forEach(function (part) { ln += Math.max(1, Math.ceil(part.length / Math.max(8, (c.width || 20) - 4))); }); if (ln > 1) rowLines = Math.max(rowLines, ln); } }
             });
-            if (rowLines > 1) ws.getRow(r).height = Math.min(120, 14 * rowLines);
+            if (rowLines > 1) ws.getRow(r).height = Math.min(260, 14 * rowLines + 2);
             r++;
           }
           rows.forEach(function (rw) { writeRow(rw.key, rw.item, false); });
@@ -543,9 +757,11 @@
   function cellVal(sheet, r, c) { try { var v = sheet.cell(r, c).value(); if (v && typeof v === 'object' && typeof v.text === 'function') return v.text(); return v === undefined ? null : v; } catch (e) { return null; } }
   function readWorkbook(wb) {
     // renvoie { sheets: {name: {fields: {path: {value, ref}}, tables: {blockId: {keys:[], rows:[{key, cells:{k: {value, ref}}, rowNum}]}}}}, sheetNames: [] }
-    var out = { sheets: {}, sheetNames: [] };
+    var out = { sheets: {}, sheetNames: [], stamp: null };
     wb.sheets().forEach(function (sh) {
-      var name = sh.name(); if (name === 'Lisez-moi' || name === '_listes') return;
+      var name = sh.name();
+      if (name === 'Lisez-moi') { var st = cellVal(sh, 1, 2); if (st && String(st).indexOf('EMPREINTE|') === 0) { var sp = String(st).split('|'); out.stamp = { hash: sp[1], date: sp[2] || '' }; } return; }
+      if (name === '_listes') return;
       out.sheetNames.push(name);
       var S = { fields: {}, tables: {} }; out.sheets[name] = S;
       var used = sh.usedRange(); if (!used) return;
@@ -576,8 +792,12 @@
   function applyImport(D0, parsed, options) {
     options = options || {};
     var D = clone(D0);
+    var X0 = {}; EXTRAS.forEach(function (e) { if (options.extras && options.extras[e.key]) { D[e.key] = clone(options.extras[e.key]); X0[e.key] = JSON.stringify(D[e.key]); } });
     var spec = buildSpec(D);
     var changes = [], errors = [], warnings = [], added = [], removed = [];
+    var stale = false;
+    if (parsed.stamp && parsed.stamp.hash && fingerprint(D, spec) !== parsed.stamp.hash) { stale = true; warnings.push('Ce chiffrier a été produit avant la dernière modification des données publiées' + (parsed.stamp.date ? ' (chiffrier du ' + parsed.stamp.date.slice(0, 10) + ')' : '') + '. Les changements listés plus bas incluent donc peut-être des valeurs plus récentes de la plateforme qui seraient écrasées. Dans le doute, téléchargez un chiffrier à jour et reportez-y vos modifications.'); }
+    EXTRAS.forEach(function (e) { if (!D[e.key] && (parsed.sheetNames || []).some(function (n) { return spec.every(function (sh) { return sh.name !== n; }) && (e.key === '_mada' ? /^Milieu - /.test(n) : /^Santé - /.test(n)); })) warnings.push('Le fichier ' + e.path + ' n\'a pas pu être chargé : les feuilles « ' + e.label + ' » du chiffrier sont ignorées.'); });
     var seenCompanies = {}, companySheets = 0, seenMembers = {}, memberSheets = 0, horsSeen = false;
     var newCompanies = [], newMembers = [];
     function chg(sheet, label, path, oldV, newV) { changes.push({ sheet: sheet, label: label, path: path, old: oldV, new: newV }); }
@@ -588,14 +808,14 @@
         if (blk.type === 'fields') {
           blk.items.forEach(function (it) {
             var f = S.fields[it.path]; if (!f) { warnings.push(sh.name + ' : champ « ' + it.label + ' » introuvable (ligne supprimée ?).'); return; }
-            var res = fromCell(f.value, it); if (!res.ok) { errors.push(f.ref + ' — ' + it.label + ' : ' + res.error); return; }
+            var res = fromCell(f.value, it); if (!res.ok) { errors.push(f.ref + ' - ' + it.label + ' : ' + res.error); return; }
             var oldV = getPath(D, it.path);
             if (!same(oldV, res.value, it.kind)) { setPath(D, it.path, res.value); chg(sh.name, it.label, it.path, oldV, res.value); }
           });
         } else if (blk.type === 'table') {
           var T = S.tables[blk.id]; if (!T) { warnings.push(sh.name + ' : tableau « ' + blk.title + ' » introuvable.'); return; }
           var cols = blk.columns; var byKey = {}; cols.forEach(function (c) { byKey[c.key] = c; });
-          var keyCol = cols.filter(function (c) { return c.required; })[0] || cols[0];
+          var keyCol = keyColOf(cols);
           // lecture des lignes
           var parsedRows = [];
           T.rows.forEach(function (row) {
@@ -603,7 +823,7 @@
             cols.forEach(function (c) {
               var cell = row.cells[c.key]; if (!cell) { item[c.key] = undefined; return; }
               if (!isBlank(cell.value)) blank = false;
-              var res = fromCell(cell.value, c); if (!res.ok) { errors.push(cell.ref + ' — ' + blk.title + ' / ' + c.label + ' : ' + res.error); bad = true; return; }
+              var res = fromCell(cell.value, c); if (!res.ok) { errors.push(cell.ref + ' - ' + blk.title + ' / ' + c.label + ' : ' + res.error); bad = true; return; }
               item[c.key] = res.value;
             });
             var keyBlank = isBlank(item[keyCol.key]);
@@ -622,7 +842,8 @@
       function updateItem(existing, item, keyLabel) {
         cols.forEach(function (c) {
           if (c.locked) return; if (item[c.key] === undefined) return;
-          if (!same(existing[c.key], item[c.key], c.kind)) { var ov = existing[c.key]; existing[c.key] = item[c.key]; chg(sh.name, keyLabel + ' · ' + c.label, blk.id + '.' + c.key, ov, item[c.key]); }
+          var ov = cget(existing, c);
+          if (!same(ov, item[c.key], c.kind)) { cset(existing, c, item[c.key]); chg(sh.name, keyLabel + ' · ' + c.label, blk.id + '.' + c.key, ov, item[c.key]); }
         });
       }
       switch (blk.custom) {
@@ -630,7 +851,7 @@
           var live = parsedRows.filter(function (p) { return !p.deleted; });
           var years = live.map(function (p) { return String(p.item.year); });
           var cur = tableRows(D, blk).map(function (x) { return x.key; });
-          var dup = years.filter(function (y, i) { return years.indexOf(y) !== i; }); if (dup.length) { errors.push(sh.name + ' — ' + label + ' : année en double (' + dup.join(', ') + ')'); return; }
+          var dup = years.filter(function (y, i) { return years.indexOf(y) !== i; }); if (dup.length) { errors.push(sh.name + ' - ' + label + ' : année en double (' + dup.join(', ') + ')'); return; }
           if (blk.custom === 'trends') {
             var t = D.trends; var old = clone(t);
             t.years = years; t.totalJobs = live.map(function (p) { return p.item.totalJobs == null ? 0 : p.item.totalJobs; }); t.newBiz = live.map(function (p) { return p.item.newBiz == null ? 0 : p.item.newBiz; }); t.permitsMk = live.map(function (p) { return p.item.permitsMk == null ? 0 : p.item.permitsMk; });
@@ -701,29 +922,46 @@
           });
           return;
         }
+        case 'dict': {
+          var dico = getPath(D, blk.path); if (!dico) { warnings.push(sh.name + ' : liste « ' + blk.path + ' » absente des données.'); return; }
+          var vus = {};
+          parsedRows.forEach(function (p) {
+            if (p.deleted) { vus[p.key] = true; if (dico[p.key]) { removed.push({ sheet: sh.name, type: label, name: String(p.key) }); delete dico[p.key]; } return; }
+            if (p.key && dico[p.key]) { vus[p.key] = true; updateItem(dico[p.key], p.item, p.key); return; }
+            var nk = normText(p.item._k).replace(/[^A-Za-z0-9_\-]/g, '');
+            if (!nk) { var n = 1; while (dico[blk.prefix + n]) n++; nk = blk.prefix + n; }
+            if (dico[nk]) { errors.push(p.ref + ' - ' + label + ' : l\'identifiant « ' + nk + ' » existe déjà.'); return; }
+            var nv = {}; cols.forEach(function (c) { if (c.key !== '_k' && !isBlank(p.item[c.key])) nv[c.key] = p.item[c.key]; });
+            dico[nk] = nv; vus[nk] = true; added.push({ sheet: sh.name, type: label, name: nk + ' · ' + String(p.item[keyColOf(cols).key]) });
+          });
+          Object.keys(dico).forEach(function (k) { if (!vus[k]) { removed.push({ sheet: sh.name, type: label, name: k }); delete dico[k]; } });
+          return;
+        }
         default: {
           var arr = getPath(D, blk.path); if (!arr) { warnings.push(sh.name + ' : liste « ' + blk.path + ' » absente des données.'); return; }
           var existing = tableRows(D, blk); var exByKey = {}; existing.forEach(function (x) { exByKey[x.key] = x.item; });
           var result = [], seen = {};
+          var nameOf = function (it, k) { var v = it ? cget(it, keyColOf(cols)) : null; v = isBlank(v) ? String(k) : String(v); return v.length > 80 ? v.slice(0, 77) + '…' : v; };
           parsedRows.forEach(function (p) {
-            if (p.deleted) { seen[p.key] = true; if (exByKey[p.key]) removed.push({ sheet: sh.name, type: label, name: String(p.key) }); return; }
-            if (p.key && exByKey[p.key]) { var ex = exByKey[p.key]; seen[p.key] = true; updateItem(ex, p.item, String(p.item[cols[0].key])); result.push(ex); }
+            if (p.deleted) { seen[p.key] = true; if (exByKey[p.key]) removed.push({ sheet: sh.name, type: label, name: nameOf(exByKey[p.key], p.key) }); return; }
+            if (p.key && exByKey[p.key]) { var ex = exByKey[p.key]; seen[p.key] = true; updateItem(ex, p.item, String(p.item[keyColOf(cols).key])); result.push(ex); }
             else {
-              if (!blk.allowAdd || !blk.newItem) { warnings.push(p.ref + ' : ajout non permis dans « ' + label + ' », ligne ignorée.'); return; }
-              var ni = blk.newItem(D, parsedRows); cols.forEach(function (c) { if (item_defined(p.item[c.key])) ni[c.key] = p.item[c.key]; });
-              result.push(ni); added.push({ sheet: sh.name, type: label, name: String(p.item[cols[0].key]) });
+              if (!blk.allowAdd) { warnings.push(p.ref + ' : ajout non permis dans « ' + label + ' », ligne ignorée.'); return; }
+              var ni = blk.newItem ? blk.newItem(D, parsedRows) : {}; cols.forEach(function (c) { if (item_defined(p.item[c.key])) cset(ni, c, p.item[c.key]); });
+              result.push(ni); added.push({ sheet: sh.name, type: label, name: String(p.item[keyColOf(cols).key]) });
             }
           });
-          existing.forEach(function (x) { if (!seen[x.key]) { if (blk.allowAdd) removed.push({ sheet: sh.name, type: label, name: x.key }); else result.push(x.item); } });
+          existing.forEach(function (x) { if (!seen[x.key]) { if (blk.allowAdd) removed.push({ sheet: sh.name, type: label, name: nameOf(x.item, x.key) }); else result.push(x.item); } });
           if (!blk.allowAdd) { // conserver l'ordre d'origine
             result = existing.map(function (x) { return x.item; });
           }
           // réécriture dans D
-          arr.length = 0; result.forEach(function (it) { arr.push(it); });
+          arr.length = 0; result.forEach(function (it) { arr.push(blk.scalar ? it.v : it); });
         }
       }
     }
     function item_defined(v) { return v !== undefined; }
+    function keyColOf(cols) { return cols.filter(function (c) { return c.required; })[0] || cols[0]; }
 
     // Entreprises : suppressions et ajouts
     if (companySheets > 0) {
@@ -755,10 +993,91 @@
     // renommage de secteur → entreprises liées
     (D0.sectors || []).forEach(function (s0) { var s1 = (D.sectors || []).filter(function (s) { return s.id === s0.id; })[0]; if (s1 && s1.name !== s0.name) { (D.companies || []).forEach(function (c) { if (c.sector === s0.name) c.sector = s1.name; }); } });
 
-    if (!errors.length) recomputeDerived(D, D0);
+    checkRefs(D, warnings);
     var touched = changes.length || added.length || removed.length;
-    if (D.meta && touched && same(D.meta.updatedDate, D0.meta.updatedDate, 'text')) D.meta.updatedDate = new Date().toISOString().slice(0, 10);
-    return { data: D, changes: changes, errors: errors, warnings: warnings, added: added, removed: removed, counts: { changes: changes.length, added: added.length, removed: removed.length, errors: errors.length, warnings: warnings.length } };
+    if (!errors.length) { recomputeDerived(D, D0); restoreUntouched(D, D0); }
+    /* Sans changement, les données d'origine sont rendues telles quelles : un chiffrier intact laisse les fichiers identiques. */
+    if (!touched) { D = clone(D0); Object.keys(X0).forEach(function (k) { D[k] = JSON.parse(X0[k]); }); }
+    var now = new Date(), today = now.getFullYear() + '-' + pad(now.getMonth() + 1, 2) + '-' + pad(now.getDate(), 2);   // date locale, et non UTC
+    if (D.meta && touched && same(D.meta.updatedDate, D0.meta.updatedDate, 'text')) D.meta.updatedDate = today;
+    /* Détache les fichiers de data/ : ils ne doivent jamais se retrouver dans data.json. */
+    var extras = {}, extrasChanged = {};
+    EXTRAS.forEach(function (e) {
+      if (D[e.key] === undefined) return;
+      var x = D[e.key]; delete D[e.key];
+      extrasChanged[e.key] = JSON.stringify(x) !== X0[e.key];
+      if (extrasChanged[e.key] && x.meta) { var o = options.extras[e.key].meta || {}; if (e.key === '_apprenant' && x.meta.maj === o.maj) x.meta.maj = today; if (e.key === '_mada' && x.meta.integration === o.integration) x.meta.integration = today; }
+      extras[e.key] = x;
+    });
+    return { data: D, extras: extras, extrasChanged: extrasChanged, stale: stale, changes: changes, errors: errors, warnings: warnings, added: added, removed: removed, counts: { changes: changes.length, added: added.length, removed: removed.length, errors: errors.length, warnings: warnings.length } };
+  }
+
+  /* Fidélité des données : recomputeDerived recalcule tous les champs dérivés, ce qui peut déplacer une décimale
+     d'arrondi ou l'ordre d'égalités dans un domaine auquel la mise à jour n'a pas touché. Quand les données
+     d'entrée d'un domaine sont identiques à celles d'origine, ses champs dérivés d'origine sont donc remis en place. */
+  function restoreUntouched(D, D0) {
+    function sig(v) { return JSON.stringify(v); }
+    function put(dst, src, keys) { if (!dst || !src) return; keys.forEach(function (k) { if (src[k] === undefined) delete dst[k]; else dst[k] = clone(src[k]); }); }
+    var by0 = {}; (D0.municipalities || []).forEach(function (m) { by0[m.code] = m; });
+    (D.municipalities || []).forEach(function (m) { var o = by0[m.code]; if (o && o.pop === m.pop && o.surface === m.surface) put(m, o, ['density']); });
+    function demoIn(X) { return sig((X.municipalities || []).map(function (m) { return [m.code, m.demo && m.demo.pyr, m.demo && m.demo.agg, m.demo && m.demo.trend, m.demo && m.demo.proj]; })); }
+    if (D.demographie && D0.demographie && D0.demographie.mrc && demoIn(D) === demoIn(D0)) put(D.demographie.mrc, D0.demographie.mrc, ['pyr', 'agg', 'trend', 'proj']);
+    if (D.tourisme && D0.tourisme && D0.tourisme.membres) {
+      var mk = ['nom', 'muni', 'horsMRC', 'categorie', 'grande', 'sous', 'chHotel', 'chGite', 'camping', 'chalets'];
+      var tourIn = function (X) { return sig([X.tourisme.annee, (X.tourisme.membres || []).map(function (m) { return mk.map(function (k) { return m[k] == null ? '' : m[k]; }); }), (X.companies || []).filter(function (c) { return c.src !== 'tourisme'; }).map(function (c) { return normKey(c.name); })]); };
+      if (tourIn(D) === tourIn(D0)) {
+        put(D.tourisme, D0.tourisme, ['parMuni', 'agregats', 'parGrande', 'parCategorie', 'parSection', 'horsMuni']);
+        D.tourisme.membres.forEach(function (m, i) { put(m, D0.tourisme.membres[i], ['section']); });
+        D.companies = (D.companies || []).filter(function (c) { return c.src !== 'tourisme'; }).concat(clone((D0.companies || []).filter(function (c) { return c.src === 'tourisme'; })));
+      }
+    }
+    var lgIn = function (X) { return sig(((X.logements && X.logements.parMuni) || []).map(function (x) { return x.logements && x.logements.total; })); };
+    if (D.logements && D0.logements && lgIn(D) === lgIn(D0)) put(D.logements.agregats, D0.logements.agregats || {}, ['logementsTotal']);
+    if (D.climat && D0.climat && D0.climat.parMuni) {
+      var ck = ['res', 'ci', 'ind', 'agri', 'transp', 'mr', 'pop', 'pop36', 'cheptel', 'haCult'];
+      var clIn = function (X) { return sig((X.climat.parMuni || []).map(function (x) { return [x.muni].concat(ck.map(function (k) { return x[k] || 0; })); })); };
+      if (clIn(D) === clIn(D0)) {
+        var K = D.climat, K0 = D0.climat, pm0 = {}; K0.parMuni.forEach(function (x) { pm0[x.muni] = x; });
+        K.parMuni.forEach(function (x) { put(x, pm0[x.muni], ['res', 'ci', 'ind', 'agri', 'transp', 'mr', 'total', 'atcl', 'perCap', 'varPop', 'dom', 'domPct', 'dechetsT', 'partMrc']); });
+        if (K0.agregats) put(K.agregats, K0.agregats, ['totalGlobal', 'totalAtcl', 'pop2024', 'pop2036', 'varPop2036', 'perCapGlobal', 'perCapAtcl', 'cheptelTotal', 'haCultivees']);
+        var sec0 = {}; (K0.secteurs || []).forEach(function (x) { sec0[x.label] = x; });
+        if (K0.secteurs) { var cur = {}; (K.secteurs || []).forEach(function (x) { cur[x.label] = x; }); K.secteurs = K0.secteurs.map(function (x) { var c = clone(x); if (cur[x.label] && cur[x.label].color) c.color = cur[x.label].color; return c; }); } else delete K.secteurs;
+        put(K.transport, K0.transport, ['total', 'partMrc', 'perCap']); put(K.agriculture, K0.agriculture, ['total', 'partMrc', 'haTotal', 'cheptel']); put(K.matieres, K0.matieres, ['total', 'partMrc']);
+      }
+    }
+  }
+
+  /* Empreinte des valeurs que porte le chiffrier. Elle est inscrite dans le fichier à sa génération; à l'import,
+     un écart avec les données en vigueur signale que la plateforme a changé depuis (chiffrier périmé). */
+  function fingerprint(D, spec) {
+    var h = 0x811c9dc5;
+    function add(str) { for (var i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = (h + ((h << 1) + (h << 4) + (h << 7) + (h << 8) + (h << 24))) >>> 0; } }
+    function val(v, kind) { var c = toCell(v, kind); if (c === null || c === undefined) return ''; if (typeof c === 'number') return String(Math.round(c * 1e6) / 1e6); return normText(c); }
+    (spec || buildSpec(D)).forEach(function (sh) {
+      sh.blocks.forEach(function (blk) {
+        if (blk.type === 'fields') blk.items.forEach(function (it) { add(it.path + '=' + val(getPath(D, it.path), it.kind) + '\u0001'); });
+        else tableRows(D, blk).forEach(function (rw) { add(blk.id + '#' + rw.key + ':'); blk.columns.forEach(function (c) { add(val(cget(rw.item, c), c.kind) + '\u0002'); }); });
+      });
+    });
+    return ('0000000' + h.toString(16)).slice(-8);
+  }
+
+  /* Renvois entre sections : un identifiant inconnu n'empêche pas l'import, mais il est signalé. */
+  function checkRefs(D, warnings) {
+    var dets = {}; ((D.sante && D.sante.determinants) || []).forEach(function (d) { dets[d.id] = 1; });
+    function det(v, ou) { if (!isBlank(v) && !dets[v]) warnings.push(ou + ' : le déterminant « ' + v + ' » n\'existe pas dans la feuille « MRC - Santé ».'); }
+    ((D.sante && D.sante.links) || []).forEach(function (l) { det(l.det, 'Liens du pilier Santé (' + l.from + ')'); });
+    ((D.sante && D.sante.leviers) || []).forEach(function (l) { (l.determinants || []).forEach(function (x) { det(x, 'Leviers (' + l.name + ')'); }); });
+    if (D._mada) (D._mada.axes || []).forEach(function (a) { det(a.det, 'Constats MADA, axe ' + a.nom); });
+    if (D._apprenant) {
+      var A = D._apprenant, src = A.sources || {};
+      function s(v, ou) { if (!isBlank(v) && !src[v]) warnings.push(ou + ' : la source « ' + v + ' » n\'existe pas dans le tableau des sources (feuille « Santé - Apprenant »).'); }
+      (A.enjeux || []).forEach(function (e) {
+        det(e.det, 'Enjeu ' + e.nom);
+        ['savoirs', 'deliberation', 'decision', 'suivi', 'ajustement'].forEach(function (k) { (e[k] || []).forEach(function (x) { s(x.src, 'Enjeu ' + e.nom); }); });
+        if (e.equite) s(e.equite.src, 'Enjeu ' + e.nom + ' (équité)');
+      });
+    }
   }
 
   /* ═════════════ CHAMPS DÉRIVÉS ═════════════ */
@@ -815,7 +1134,7 @@
       M.forEach(function (m) {
         if (m.horsMRC || ecoNames[normKey(m.nom)]) return;
         n++;
-        var desc = m.categorie + ((m.sous && m.sous !== m.categorie) ? ' — ' + m.sous : '') + '. Membre Tourisme Région de Mégantic ' + annee;
+        var desc = m.categorie + ((m.sous && m.sous !== m.categorie) ? ' - ' + m.sous : '') + '. Membre Tourisme Région de Mégantic ' + annee;
         if (m.chHotel) desc += ' · ' + m.chHotel + ' chambres'; if (m.chGite) desc += ' · ' + m.chGite + ' ch. (gîte)'; if (m.camping) desc += ' · ' + m.camping + ' empl. camping'; if (m.chalets) desc += ' · ' + m.chalets + ' chalets';
         tour.push({ id: 't' + pad(n, 3), name: m.nom, muni: m.muni, sector: TOUR_SECTOR[m.grande] || 'Tourisme · Attraits & activités', jobs: 0, status: 'tourisme', src: 'tourisme', desc: desc + '.' });
       });
@@ -852,5 +1171,5 @@
   /* résumé lisible d'un changement */
   function fmtVal(v) { if (v === null || v === undefined || v === '') return '—'; if (typeof v === 'boolean') return v ? 'Oui' : 'Non'; if (typeof v === 'number') return String(v).replace('.', ','); var s = String(v); return s.length > 70 ? s.slice(0, 67) + '…' : s; }
 
-  return { VERSION: VERSION, buildSpec: buildSpec, buildWorkbook: buildWorkbook, readWorkbook: readWorkbook, applyImport: applyImport, recomputeDerived: recomputeDerived, getPath: getPath, setPath: setPath, fmtVal: fmtVal, safeSheetName: safeSheetName };
+  return { VERSION: VERSION, EXTRAS: EXTRAS, compose: compose, serialize: serialize, fingerprint: fingerprint, buildSpec: buildSpec, buildWorkbook: buildWorkbook, readWorkbook: readWorkbook, applyImport: applyImport, recomputeDerived: recomputeDerived, getPath: getPath, setPath: setPath, fmtVal: fmtVal, safeSheetName: safeSheetName };
 });

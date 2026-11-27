@@ -29,6 +29,10 @@ Outil interne de développement territorial à trois piliers (économie, aménag
 
 Ces fichiers doivent se trouver dans le même dossier du dépôt.
 
+## Nouveautés de la version 4.23
+
+- Bandeaux des vues Tourisme, Logements et Plan climat réduits à leur titre. Le texte d'introduction n'est plus affiché dans la boîte (il reste dans les données et dans la feuille « Textes d'analyse »); la source s'affiche en petit sous le bandeau.
+
 ## Nouveautés de la version 4.22 (chiffres de synthèse sans boîtes)
 
 - `granit-reperes.js` remplace partout les rangées de tuiles (une boîte par chiffre) par une liste de repères à points de conduite, sans cadre ni fond. La règle s'applique aux cinq familles de tuiles; une rangée ajoutée plus tard prend cette forme d'elle-même.

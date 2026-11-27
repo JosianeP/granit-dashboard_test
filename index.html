@@ -805,6 +805,13 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
 .pb-brand-text .ver{color:var(--muted)}
 .tr-hero p,.lg-hero p,.cl-hero p,.sdoh-intro p,.ml-intro p{color:rgba(255,255,255,.9)}
 .tr-hero .tr-src,.lg-hero .lg-src,.cl-src{color:rgba(255,255,255,.8)}
+/* v4.23 : les bandeaux ne gardent que leur titre; l'introduction n'est plus affichée et la source passe sous le bandeau */
+.tr-hero p,.lg-hero p,.cl-hero p{display:none}
+.tr-hero,.lg-hero,.cl-hero{padding:16px 22px;margin-bottom:8px}
+.tr-hero h3,.lg-hero h3,.cl-hero h3{margin-bottom:0}
+.cl-hero .cl-hero-tag{margin-bottom:9px}
+.hero-src{font-size:12.5px;line-height:1.55;color:var(--muted);margin:0 2px 20px;max-width:1040px}
+.hero-src:empty{display:none}
 .sc-hint{color:var(--g600)}
 .lg-wip-d{color:#8a5206}
 
@@ -870,7 +877,7 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
     <div class="pb-brand-text">
       <div class="org">Estrie</div>
       <div class="name">Tableau de bord territorial</div>
-      <div class="ver" id="verLabel">v4.22</div>
+      <div class="ver" id="verLabel">v4.23</div>
     </div>
   </div>
   <nav class="pillar-tabs">
@@ -1020,8 +1027,8 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
         <div class="tr-hero">
           <h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4v18"/><path d="M12 8h6a1 1 0 0 1 1 1v12"/><path d="M9 9h.01M9 12h.01M9 15h.01M15 12h.01M15 15h.01"/></svg>Répertoire touristique du Granit</h3>
           <p id="trIntro"></p>
-          <div class="tr-src" id="trSrc"></div>
         </div>
+        <div class="hero-src" id="trSrc"></div>
         <div class="ss-row" id="trStrip"></div>
         <div class="tr-cap-grid" id="trCapGrid"></div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px">
@@ -1054,8 +1061,8 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
         <div class="lg-hero">
           <h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg>Logement et petite enfance dans le Granit</h3>
           <p id="lgIntro"></p>
-          <div class="lg-src" id="lgSrc"></div>
         </div>
+        <div class="hero-src" id="lgSrc"></div>
 
         <div class="ss-row" id="lgStrip"></div>
         <div class="tr-cap-grid" id="lgCapGrid"></div>
@@ -1246,8 +1253,8 @@ h2,h3{font-family:'Fraunces',serif;letter-spacing:-.01em}
           <div class="cl-hero-tag" id="clTag">Inventaire 2024 - version préliminaire</div>
           <h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"/><circle cx="12" cy="12" r="4"/></svg><span id="clTitre"></span></h3>
           <p id="clIntro"></p>
-          <div class="cl-src" id="clSrc"></div>
         </div>
+        <div class="hero-src" id="clSrc"></div>
 
         <div class="ss-row" id="clStrip"></div>
 
@@ -1687,7 +1694,7 @@ function renderAll(){
     var majTxt=majDate(D.meta.updatedDate);
     document.getElementById('sbQ').textContent=majTxt||D.meta.quarter||'-';
     document.getElementById('sbBy').textContent=D.meta.quarter?'Chiffrier de la MRC : '+D.meta.quarter:(D.meta.updatedBy||'');
-    document.getElementById('verLabel').textContent='v4.22';
+    document.getElementById('verLabel').textContent='v4.23';
     var ovq=document.getElementById('ovQuarter'); if(ovq)ovq.textContent='Portrait économique du territoire - MRC du Granit'+(majTxt?', mis à jour le '+majTxt:'');
   }
   allMLPairs=getMLSuggestions();

@@ -394,7 +394,7 @@
       var typeKeys = Object.keys(MA.types || {}), dimIds = ((MA.acces && MA.acces.dimensions) || []).map(function (x) { return x.id; }), axeIds = (MA.axes || []).map(function (a) { return a.id; });
       mb.push(txts('Démarche', [['_mada.meta.titre', 'Titre'], ['_mada.meta.demarche', 'Démarche'], ['_mada.meta.source', 'Source'], ['_mada.meta.periode', 'Période de collecte'],
         ['_mada.meta.organismesRencontres', 'Organismes rencontrés', null, 'int'], ['_mada.meta.organismesPrevus', 'Organismes prévus', null, 'int'],
-        ['_mada.meta.integration', 'Date d\'intégration', 'AAAA-MM-JJ - mise à jour automatiquement si un constat change'], ['_mada.meta.lecture', 'Clé de lecture'], ['_mada.meta.aCompleter', 'Ce qui reste à compléter'],
+        ['_mada.meta.integration', 'Date d\'intégration', 'AAAA-MM-JJ - mise à jour automatiquement si un constat change'], ['_mada.meta.lecture', 'Clé de lecture'], ['_mada.meta.aCompleter', 'Éléments à compléter'],
         ['_mada.meta.lectureSante', 'Clé de lecture - pilier Santé'], ['_mada.meta.sansConstat', 'Mention affichée en l\'absence de constat']]));
       mb.push(strs('madaOrg', 'Organismes rencontrés', '_mada.meta.organismes', 'Organisme', { width: 60 }));
       mb.push(txts('Libellés des types de constats', typeKeys.map(function (k) { return ['_mada.types.' + k, 'Type « ' + k + ' »']; })));
@@ -407,7 +407,7 @@
       });
       mb.push(txts('Chiffres donnés par les organismes', [['_mada.chiffres.note', 'Note']]));
       mb.push(tbl({ type: 'table', id: 'madaChiffres', title: 'Chiffres donnés par les organismes - liste', path: '_mada.chiffres.items', keyOf: ix('x'),
-        columns: [col('libelle', 'Ce que le chiffre mesure', 'text', { width: 80, required: true }), col('valeur', 'Valeur affichée', 'text', { width: 18 }), col('axe', 'Axe', 'enum', { enum: axeIds, width: 16 })],
+        columns: [col('libelle', 'Mesure décrite', 'text', { width: 80, required: true }), col('valeur', 'Valeur affichée', 'text', { width: 18 }), col('axe', 'Axe', 'enum', { enum: axeIds, width: 16 })],
         allowAdd: true, spare: 3, newItem: function () { return { valeur: '', libelle: '', axe: axeIds[0] || '' }; } }));
       mb.push(txts('Dimensions de l\'accès', [['_mada.acces.titre', 'Titre'], ['_mada.acces.note', 'Note']]));
       mb.push(tbl({ type: 'table', id: 'madaDims', title: 'Dimensions de l\'accès - définitions', path: '_mada.acces.dimensions', keyOf: function (x) { return x.id; },
@@ -450,7 +450,7 @@
         columns: [col('nom', 'Principe', 'text', { width: 44, required: true }), col('texte', 'Texte affiché', 'text', { width: 90 }), col('ou', 'Où il s\'applique', 'text', { width: 40 }), col('no', 'Numéro', 'int', { width: 10 })],
         allowAdd: true, spare: 2, newItem: function () { return { no: null, nom: '', texte: '', ou: '' }; } }));
       ab.push(strs('apEquiteGen', 'Questions d\'équité génériques', '_apprenant.equiteGenerique', 'Question', { fixed: true }));
-      ab.push(txts('Inégalités sociales de santé', [['_apprenant.iss.definition', 'Définition'], ['_apprenant.iss.manque', 'Ce qui manque'], ['_apprenant.iss.jeunes.titre', 'Portrait des jeunes - titre'], ['_apprenant.iss.jeunes.note', 'Portrait des jeunes - note'],
+      ab.push(txts('Inégalités sociales de santé', [['_apprenant.iss.definition', 'Définition'], ['_apprenant.iss.manque', 'Données manquantes'], ['_apprenant.iss.jeunes.titre', 'Portrait des jeunes - titre'], ['_apprenant.iss.jeunes.note', 'Portrait des jeunes - note'],
         ['_apprenant.iss.jeunes.src', 'Portrait des jeunes - source'], ['_apprenant.iss.jeunes.verif', 'Portrait des jeunes - vérification']]));
       ab.push(tbl({ type: 'table', id: 'apMecan', title: 'Inégalités sociales de santé - mécanismes', path: '_apprenant.iss.mecanismes', keyOf: ix('m'),
         columns: [col('nom', 'Mécanisme', 'text', { width: 44, required: true }), col('texte', 'Texte affiché', 'text', { width: 90 })], allowAdd: true, spare: 2, newItem: function () { return { nom: '', texte: '' }; } }));
@@ -674,14 +674,14 @@
       ['• Onglets « Milieu - … » et « Santé - … » (violet) : constats de la consultation MADA, territoire apprenant, enjeux et journal des décisions.', ST.label],
       ['• Un onglet par municipalité (orange) : population, démographie, logements, services de garde, plan climat, entreprises, membres touristiques.', ST.label],
       [''],
-      ['Ce qui est recalculé automatiquement par la plateforme', ST.block],
+      ['Calculs automatiques de la plateforme', ST.block],
       ['• Densité de population de chaque municipalité (population ÷ superficie).', ST.label],
       ['• Portrait démographique de la MRC : pyramide des âges, totaux, évolution et projections = somme des 19 municipalités.', ST.label],
       ['• Tourisme : nombre de membres par municipalité, par grande section et par catégorie, hébergement (chambres, emplacements, chalets), et fiches « tourisme » de la liste d\'entreprises.', ST.label],
       ['• Logements : parc total de la MRC = somme des municipalités.', ST.label],
       ['• Plan climat : totaux par secteur, par habitant, périmètre ATCL, parts de chaque municipalité et secteur dominant.', ST.label],
       [''],
-      ['Ce que ce chiffrier ne modifie pas', ST.block],
+      ['Hors de portée de ce chiffrier', ST.block],
       ['Les données extraites automatiquement de sources officielles (Registraire des entreprises, services de garde, recensement, carte) se mettent à jour seules et priment à l\'affichage. La structure des pages et les graphiques relèvent du code de la plateforme.', ST.label],
       [''],
       ['Mise en forme des textes : quelques balises simples sont acceptées dans les textes (<b>gras</b>, <i>italique</i>, <br> pour un saut de ligne). Tout autre code est retiré à l\'importation.', ST.note],

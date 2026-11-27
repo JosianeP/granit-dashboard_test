@@ -252,7 +252,7 @@
       h += bloc('Coopératives et organismes d\'habitation sans but lucratif', o.org, { muni: muni, q: 'habitation' }) +
         bloc('Centres d\'hébergement', o.heb, { muni: muni, q: 'centre d\'hebergement' }) +
         bloc('Exploitants de bâtiments résidentiels et de logements', o.loc, { muni: muni, q: 'exploitants de batiments residentiels' });
-      if (o.org.length || o.loc.length || o.heb.length) h += '<p class="gx-note">Ces listes nomment des organismes et des propriétaires, et non un nombre de logements. Les organismes d\'habitation sont repérés par leur nom et leur forme juridique, ce qui reste à valider avec l\'Office d\'habitation.</p>';
+      if (o.org.length || o.loc.length || o.heb.length) h += '<p class="gx-note">Ces listes nomment des organismes et des propriétaires, et non un nombre de logements. Les organismes d\'habitation sont repérés par leur nom et leur forme juridique, un repérage à valider avec l\'Office d\'habitation.</p>';
     }
     return h;
   }
@@ -340,7 +340,7 @@
     var ok = pret(), c = {};
     if (ok) R().lignes().forEach(function (r) { c[r.s13] = (c[r.s13] || 0) + 1; });
     var lignes = window.D.sectors.map(function (x) { return [x.id, x.name, x.jobs]; }).concat([['autres', 'Autres activités', null]]);
-    el.innerHTML = '<div style="overflow-x:auto"><table class="lgd-tb"><thead><tr><th>Secteur</th><th>Ce qui y est classé</th><th class="n">Entreprises</th><th class="n">Emplois estimés</th></tr></thead><tbody>' +
+    el.innerHTML = '<div style="overflow-x:auto"><table class="lgd-tb"><thead><tr><th>Secteur</th><th>Contenu du secteur</th><th class="n">Entreprises</th><th class="n">Emplois estimés</th></tr></thead><tbody>' +
       lignes.map(function (x) {
         return '<tr><td>' + esc(x[1]) + '</td><td>' + DEF_SECT[x[0]] + '</td>' +
           '<td class="n">' + (ok ? '<button class="lgd-lien" onclick="GranitREQ.voir(' + js({ s13: x[0] }) + ')">' + fmt(c[x[0]] || 0) + '</button>' : '-') + '</td>' +

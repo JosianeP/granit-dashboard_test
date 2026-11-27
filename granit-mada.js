@@ -81,7 +81,7 @@
     view.className = 'view'; view.id = 'view-eco-mada';
     view.innerHTML =
       '<div class="section-header"><div class="sh-left"><h2>Constats du milieu</h2>' +
-      '<p>Ce que les organismes du territoire observent, par axe de la démarche MADA</p></div>' +
+      '<p>Observations des organismes du territoire, par axe de la démarche MADA</p></div>' +
       '<span class="pillar-badge pb-eco">Économie</span></div>' +
       '<div id="mdBody"><div class="card" style="color:var(--muted);font-size:14.5px">Chargement des constats...</div></div>';
     var apres = document.getElementById('view-eco-housing');
@@ -287,16 +287,16 @@
     var cartes = dets.filter(function (x) { return S.det === 'tous' || S.det === x.id; }).map(function (x) {
       var cs = trier(map[x.id]);
       return '<div class="card md-axe"><div class="md-det-h"><div class="ct">' + (x.no ? x.no + '. ' : '') + esc(x.name) + '</div></div>' +
-        '<div class="md-voix">Ce que disent les chiffres ' + (x.indicator ? '<span class="prov prov-reel">Réel</span>' : '<span class="prov prov-todo">À compléter</span>') + '</div>' +
+        '<div class="md-voix">Selon les chiffres ' + (x.indicator ? '<span class="prov prov-reel">Réel</span>' : '<span class="prov prov-todo">À compléter</span>') + '</div>' +
         '<div class="md-voix-t">' + (x.indicator || esc(x.aDocumenter || 'Aucune donnée locale.')) + '</div>' +
-        '<div class="md-voix">Ce qu\'observent les organismes ' + terrain() + '</div>' +
+        '<div class="md-voix">Selon les organismes ' + terrain() + '</div>' +
         '<div class="md-axe-s" style="margin-bottom:4px">' + cs.length + ' constat' + (cs.length > 1 ? 's' : '') + ' rattaché' + (cs.length > 1 ? 's' : '') + ' à ce déterminant</div>' +
         cs.map(function (c) {
           return '<div class="md-c"><div><div class="md-n">' + surOrg(c.n, tot) + '</div>' + points(c.n, tot) + '</div>' +
             '<div><span class="md-t md-t-' + esc(c.t) + '">' + esc(types[c.t] || c.t) + '</span>' + esc(c.texte) +
             '<span class="md-ax">Axe MADA ' + c.axe.no + ' - ' + esc(c.axe.nom) + '</span>' + dimAcces(c) + '</div></div>';
         }).join('') +
-        '<div class="md-voix">Ce que disent les citoyens <span class="prov prov-todo">À compléter</span></div>' +
+        '<div class="md-voix">Selon les citoyens <span class="prov prov-todo">À compléter</span></div>' +
         '<div class="md-voix-t">' + esc(voix) + '</div></div>';
     }).join('');
     h += '<div class="md-axes"' + (S.det !== 'tous' ? ' style="grid-template-columns:1fr"' : '') + '>' + cartes + '</div>';
@@ -317,7 +317,7 @@
       var card = cards[i], cs = map[x.id]; if (!card || !cs || card.querySelector('.md-det-t')) return;
       var enj = cs.filter(function (c) { return c.t === 'enjeu'; }).sort(function (a, b) { return b.n - a.n; });
       var box = document.createElement('div'); box.className = 'md-det-t';
-      box.innerHTML = '<b>Ce que dit le milieu ' + terrain() + '</b>' +
+      box.innerHTML = '<b>Selon le milieu ' + terrain() + '</b>' +
         (enj.length ? esc(enj[0].texte) + ' (' + surOrg(enj[0].n, tot) + ')' : esc(trier(cs)[0].texte)) +
         '<br><button class="md-note-l" onclick="GranitMADA.allerSante(\'' + x.id + '\')">' + (cs.length > 1 ? 'Voir les ' + cs.length + ' constats liés' : 'Voir le constat lié') + '</button>';
       card.appendChild(box);

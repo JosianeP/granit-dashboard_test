@@ -159,9 +159,9 @@
     document.head.appendChild(css);
 
     vue('view-sa-iss', 'view-sa-portrait', 'Inégalités sociales de santé',
-      'Des écarts de santé injustes et évitables, et ce que l\'on en sait dans le Granit', 'apIss');
+      'Des écarts de santé injustes et évitables, et l\'état des connaissances dans le Granit', 'apIss');
     vue('view-sa-boucle', 'view-sa-governance', 'De la donnée à la décision',
-      'Ce qui est su, discuté, décidé, suivi et ajusté, enjeu par enjeu', 'apBoucle');
+      'Savoirs, délibérations, décisions, suivis et ajustements, enjeu par enjeu', 'apBoucle');
     vue('view-sa-donnees', 'view-sa-vuln', 'Données et gouvernance',
       'Provenance, mise à jour et conditions de réutilisation', 'apDonnees');
 
@@ -247,12 +247,12 @@
 
     var j = d.journal;
     if (j && j.entrees && j.entrees.length) {
-      h += '<div class="card" style="margin-top:20px"><div class="ct">Ce que nous avons appris - journal des lectures révisées</div>' +
+      h += '<div class="card" style="margin-top:20px"><div class="ct">Apprentissages - journal des lectures révisées</div>' +
         '<div class="rv-p">' + esc(j.note) + '</div>' +
         j.entrees.map(function (e) {
           return '<div class="ap-jr"><div class="ap-tr-d">' + esc(date(e.date)) + '</div><div><div class="ap-jr-s">' + esc(e.sujet) + '</div><dl>' +
             '<dt>Lecture d\'avant</dt><dd>' + esc(e.avant) + '</dd><dt>Lecture actuelle</dt><dd>' + esc(e.apres) + '</dd>' +
-            '<dt>Ce qui l\'a fait changer</dt><dd>' + esc(e.declencheur) + '</dd></dl></div></div>';
+            '<dt>Déclencheur</dt><dd>' + esc(e.declencheur) + '</dd></dl></div></div>';
         }).join('') + '</div>';
     }
     el.innerHTML = h;
@@ -304,7 +304,7 @@
     h += '<div class="card" style="margin-bottom:18px"><div class="ct">Trois situations du Granit</div><div class="ap-ex">' +
       I.exemples.map(function (x) { return '<div><b>' + esc(x.titre) + '</b>' + esc(x.texte) + '</div>'; }).join('') +
       '</div><div class="ap-src">Source. ' + source('table017') + '.</div></div>';
-    h += '<div class="card"><div class="ct">Ce que la plateforme ne montre pas encore ' + prov('todo') + '</div><div class="rv-p" style="margin:0">' + esc(I.manque) + '</div></div>';
+    h += '<div class="card"><div class="ct">Angles encore absents de la plateforme ' + prov('todo') + '</div><div class="rv-p" style="margin:0">' + esc(I.manque) + '</div></div>';
     el.innerHTML = h;
   }
 

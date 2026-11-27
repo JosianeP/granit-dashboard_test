@@ -339,7 +339,7 @@
     if (s.length < 2 || !m) {
       return '<div style="font-size:14.5px;color:var(--text2);line-height:1.6">Première extraction le ' + esc(dateFr(S.extraction)) + '. ' +
         'À partir de la prochaine, cette section affichera les nouvelles immatriculations, les radiations et la courbe du nombre d\'entreprises actives, municipalité par municipalité.</div>' +
-        '<div style="font-size:13px;color:var(--muted);margin-top:10px;line-height:1.5">Le Registraire ne conserve pas ses versions antérieures. Chaque extraction est donc archivée dans le dépôt, ce qui constitue au fil du temps une série propre au territoire.</div>';
+        '<div style="font-size:13px;color:var(--muted);margin-top:10px;line-height:1.5">Le Registraire ne conserve pas ses versions antérieures. Chaque extraction est donc archivée dans le dépôt et forme au fil du temps une série propre au territoire.</div>';
     }
     function li(a) { return a.length ? a.slice(0, 60).map(function (x) { return '<li>' + esc(x.nom || 'Nom non diffusé') + ' <span style="color:var(--muted)">(' + esc(x.muni) + ')</span></li>'; }).join('') : '<li style="list-style:none;margin-left:-16px;color:var(--muted)">Aucune</li>'; }
     return '<div style="position:relative;height:120px;margin-bottom:12px"><canvas id="rqHist"></canvas></div>' +

@@ -4986,7 +4986,7 @@
   },
   "sante": {
     "intro": "La santé de la population se joue surtout hors du système de soins. Ce pilier la lit à travers 17 déterminants sociaux de la santé. Le RLS du Granit compte 21 886 habitants; l'âge médian y est de 52 ans, contre 46 en Estrie (DSP de l'Estrie, avril 2025).",
-    "compositeNote": "Le portrait ne comporte plus de score ni d'indice composite. Chaque déterminant indique ce qui est documenté et ce qui reste à documenter.",
+    "compositeNote": "Le portrait ne comporte plus de score ni d'indice composite. Chaque déterminant distingue les éléments documentés de ceux qui restent à documenter.",
     "determinants": [
       {
         "id": "dss01",
@@ -9560,7 +9560,7 @@
     "statut": "Réel",
     "annee": "2024",
     "titre": "Le plan climat dans l'aménagement du territoire",
-    "intro": "L'inventaire collectif des émissions de gaz à effet de serre de la MRC du Granit couvre l'année civile 2024 et les 19 municipalités du territoire. Il établit un point de départ chiffré pour l'exercice de planification climatique, et il pose du même coup une question d'aménagement. Les sources d'émission ne se répartissent pas également entre ce que le schéma d'aménagement peut réglementer et ce qui lui échappe. Cette section lit l'inventaire sous cet angle, celui du levier réglementaire disponible plutôt que celui du seul volume émis.",
+    "intro": "L'inventaire collectif des émissions de gaz à effet de serre de la MRC du Granit couvre l'année civile 2024 et les 19 municipalités du territoire. Il établit un point de départ chiffré pour l'exercice de planification climatique, et il pose du même coup une question d'aménagement. Les sources d'émission ne se répartissent pas également entre le champ réglementaire du schéma d'aménagement et les émissions qui lui échappent. Cette section lit l'inventaire sous cet angle, celui du levier réglementaire disponible plutôt que celui du seul volume émis.",
     "source": "MRC du Granit, Inventaire collectif des émissions de gaz à effet de serre, version préliminaire v2, année de référence du 1er janvier au 31 décembre 2024. Préparé par Daria Gouzou, analyste, et Victor Lours, conseiller. Révisé par Antoine Chenail, directeur. Document daté du 20 février 2026. Méthode conforme au Guide méthodologique du MELCCFP (2025), potentiels de réchauffement global du 5e rapport du GIEC (CH4 = 28, N2O = 265).",
     "sourcesCles": [
       "MELCCFP, 2025. Guide méthodologique pour la réalisation d'un inventaire des émissions de GES d'un organisme municipal",
@@ -9927,7 +9927,7 @@
       "haTotal": 77222.2,
       "azoteKg": 2020396.5,
       "cheptel": 105353,
-      "note": "Trois cinquièmes des émissions agricoles proviennent de processus biologiques, la digestion des ruminants, la gestion du fumier et les échanges azotés du sol. Aucun règlement d'urbanisme ne les atteint. La zone agricole est par ailleurs protégée par la Loi sur la protection du territoire et des activités agricoles, ce qui place l'essentiel de ce bloc hors du champ décisionnel de la MRC en matière de zonage."
+      "note": "Trois cinquièmes des émissions agricoles proviennent de processus biologiques, la digestion des ruminants, la gestion du fumier et les échanges azotés du sol. Aucun règlement d'urbanisme ne les atteint. La zone agricole est par ailleurs protégée par la Loi sur la protection du territoire et des activités agricoles; l'essentiel de ce bloc se trouve ainsi hors du champ décisionnel de la MRC en matière de zonage."
     },
     "matieres": {
       "total": 5659.9,
@@ -10449,7 +10449,7 @@
       {
         "niveau": "Précision",
         "titre": "Une incertitude de plus ou moins 30 % par secteur",
-        "texte": "L'inventaire applique une incertitude de plus ou moins 30 % à chacun des six secteurs, ce qui donne une incertitude globale de plus ou moins 19,96 %, soit 50 479 tCO₂éq. L'exercice fixe un ordre de grandeur et une hiérarchie entre les sources. Il ne permet pas de suivre une variation annuelle de quelques points de pourcentage ni de départager deux municipalités dont les totaux sont proches."
+        "texte": "L'inventaire applique une incertitude de plus ou moins 30 % à chacun des six secteurs, pour une incertitude globale de plus ou moins 19,96 %, soit 50 479 tCO₂éq. L'exercice fixe un ordre de grandeur et une hiérarchie entre les sources. Il ne permet pas de suivre une variation annuelle de quelques points de pourcentage ni de départager deux municipalités dont les totaux sont proches."
       },
       {
         "niveau": "Statut",
@@ -10466,7 +10466,7 @@
       {
         "niveau": "Constat structurant",
         "titre": "Le territoire n'a aucun grand émetteur",
-        "texte": "L'analyse d'assujettissement au règlement sur la déclaration obligatoire des émissions ne recense aucun grand émetteur industriel sur les 19 municipalités. Les industries répertoriées relèvent surtout de la transformation du bois, du meuble, du textile et de l'agroalimentaire, sans émissions de procédé significatives. Les émissions du Granit sont diffuses, portées par des dizaines de milliers de gestes individuels. Il n'existe donc pas de cible unique dont la réglementation transformerait le bilan, ce qui déplace l'action vers l'accompagnement, la mutualisation et l'aménagement."
+        "texte": "L'analyse d'assujettissement au règlement sur la déclaration obligatoire des émissions ne recense aucun grand émetteur industriel sur les 19 municipalités. Les industries répertoriées relèvent surtout de la transformation du bois, du meuble, du textile et de l'agroalimentaire, sans émissions de procédé significatives. Les émissions du Granit sont diffuses, portées par des dizaines de milliers de gestes individuels. Il n'existe donc pas de cible unique dont la réglementation transformerait le bilan; l'action se déplace donc vers l'accompagnement, la mutualisation et l'aménagement."
       },
       {
         "niveau": "Cible prioritaire",

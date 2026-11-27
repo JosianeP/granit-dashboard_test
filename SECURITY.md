@@ -1,6 +1,6 @@
 # Sécurité du tableau de bord
 
-## Ce que la plateforme est
+## Nature de la plateforme
 
 Un site statique public, hébergé par GitHub Pages. Tout son contenu est lisible par tous : `data.json`, les fichiers de `data/` et le code. Rien de confidentiel ne doit donc y être versé, et aucune donnée personnelle.
 
@@ -8,7 +8,7 @@ Un site statique public, hébergé par GitHub Pages. Tout son contenu est lisibl
 
 - Consulter : tout le monde, sans mot de passe.
 - Modifier à l'écran : le mode « Modifier les données » demande un mot de passe. Ce contrôle s'exerce dans le navigateur; les changements restent locaux tant qu'ils ne sont pas publiés. Il protège contre l'erreur, pas contre une personne déterminée.
-- Publier : seule la personne qui détient un jeton GitHub ayant le droit d'écrire dans le dépôt peut modifier ce que tout le monde voit. C'est la vraie barrière.
+- Publier : seule la personne qui détient un jeton GitHub ayant le droit d'écrire dans le dépôt peut modifier le contenu que tout le monde voit. C'est la vraie barrière.
 
 ## Réglages à faire dans GitHub (non modifiables par le code)
 

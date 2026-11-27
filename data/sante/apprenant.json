@@ -62,7 +62,7 @@
   {
    "id": "suivi",
    "nom": "Suivi des effets",
-   "desc": "Ce qui a changé, mesuré ou observé"
+   "desc": "Changements mesurés ou observés"
   },
   {
    "id": "ajustement",
@@ -322,13 +322,13 @@
   }
  ],
  "journal": {
-  "note": "Les lectures qui ont changé, et ce qui les a fait changer.",
+  "note": "Les lectures qui ont changé et leurs déclencheurs.",
   "entrees": [
    {
     "date": "2026-11-24",
     "sujet": "Cadre des déterminants de la santé",
     "avant": "Huit déterminants maison, chacun avec un score de 0 à 100 et un indice composite.",
-    "apres": "Les 17 déterminants sociaux de la santé reconnus en contexte canadien, sans score. Chaque déterminant indique ce qui est documenté et ce qui ne l'est pas; les inégalités sociales de santé et l'accès aux ressources deviennent les clés de lecture.",
+    "apres": "Les 17 déterminants sociaux de la santé reconnus en contexte canadien, sans score. Chaque déterminant distingue les éléments documentés des éléments non documentés; les inégalités sociales de santé et l'accès aux ressources deviennent les clés de lecture.",
     "declencheur": "Présentation de Shareck et Provost sur les inégalités sociales de santé chez les jeunes, 9 novembre 2026."
    },
    {

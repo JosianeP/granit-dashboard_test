@@ -8,7 +8,7 @@
     "organismesRencontres": 10,
     "organismesPrevus": 11,
     "integration": "2026-11-24",
-    "lecture": "Observations d'intervenants recueillies en entrevue : elles disent ce que le terrain voit et combien d'organismes le disent, sans le mesurer. Aucune répartition par municipalité.",
+    "lecture": "Observations d'intervenants recueillies en entrevue : elles rapportent les observations du terrain et le nombre d'organismes qui les partagent, sans mesure. Aucune répartition par municipalité.",
     "organismes": [
       "Maison de la famille du Granit",
       "Point jeunesse du Granit",
@@ -58,7 +58,7 @@
         {
           "t": "enjeu",
           "n": 3,
-          "texte": "Faute de logement, des personnes sont relogées dans une autre municipalité ou hors du territoire, ce qui entraîne isolement et déracinement.",
+          "texte": "Faute de logement, des personnes sont relogées dans une autre municipalité ou hors du territoire, avec pour effet l'isolement et le déracinement.",
           "acces": "dispo"
         },
         {
@@ -538,7 +538,7 @@
   },
   "notesVues": {
     "logementSocial": {
-      "titre": "Ce que disent les organismes sur le logement social et abordable",
+      "titre": "Le logement social et abordable selon les organismes",
       "points": [
         "Trois organismes sur dix rapportent des freins à l'accès au logement social : une liste d'attente, une exigence d'un an de résidence sur le territoire et des critères d'admissibilité jugés trop rigides.",
         "Quatre nomment des loyers trop élevés et le manque de logements abordables.",
@@ -546,7 +546,7 @@
       ]
     },
     "attenteGarde": {
-      "titre": "Ce que dit le milieu sur l'attente d'une place",
+      "titre": "L'attente d'une place selon le milieu",
       "points": [
         "Environ 150 enfants seraient en attente d'une place dans le Granit, surtout en pouponnière, selon le bureau coordonnateur rencontré le 13 novembre 2025.",
         "Ce chiffre a été donné de vive voix. Il reste à confirmer par écrit avant d'être saisi comme donnée de la MRC du Granit dans le chiffrier."

@@ -134,14 +134,14 @@ Le pilier Santé décrivait des savoirs sans montrer ce qu'on en fait. Il suit m
 
 ## Mises à jour automatiques
 
-| Flux GitHub Actions | Fréquence | Ce qu'il met à jour |
+| Flux GitHub Actions | Fréquence | Données mises à jour |
 |---|---|---|
 | Registre des entreprises - Granit | le 3 et le 18 de chaque mois | `data/req/` |
 | Milieu de vie - Granit | le 6 janvier, avril, juillet et octobre | `data/garde/` et `data/logement/` |
 
 Les deux flux se lancent aussi à la main, dans l'onglet Actions du dépôt. À l'affichage, ces extractions priment sur les valeurs saisies dans le chiffrier pour les mêmes champs (installations de garde, places, parc de logements, ménages locataires). Chaque dossier contient un `diagnostic.txt` qui décrit ce qui a été lu et retenu.
 
-Ce qui reste à saisir à la main : le logement social par municipalité (aucune source ouverte, à obtenir de l'Office d'habitation), le taux d'inoccupation et le nombre d'enfants en attente d'une place pour le Granit (le ministère ne publie que par région).
+Saisie manuelle restante : le logement social par municipalité (aucune source ouverte, à obtenir de l'Office d'habitation), le taux d'inoccupation et le nombre d'enfants en attente d'une place pour le Granit (le ministère ne publie que par région).
 
 ## Nouveautés de la version 4.8
 
@@ -166,7 +166,7 @@ Ce qui reste à saisir à la main : le logement social par municipalité (aucune
 
 Toujours repartir d'un chiffrier fraîchement téléchargé. Chaque chiffrier porte une empreinte des données au moment de sa génération : si les données publiées ont changé depuis, la plateforme l'annonce avant d'appliquer quoi que ce soit, pour éviter d'écraser des valeurs plus récentes.
 
-## Ce que contient le chiffrier
+## Contenu du chiffrier
 
 - Feuilles « MRC - … » : Général (période, indicateurs validés, KPI, secteurs, historique, repères de revenu), Aménagement, Santé (déterminants, leviers, liens entre piliers), Économie (LGP), Main-d'œuvre, Tourisme, Logements (agrégats, enfants en attente, chronologie), Climat (inventaire, constats, limites, sources), Collaborations.
 - Feuille « Textes d'analyse » : introductions, notes, sources et constats rédigés de chaque section.
@@ -178,7 +178,7 @@ Règles. Seules les cellules jaunes sont modifiables. Dans un tableau, une ligne
 
 Champs recalculés à l'importation. Densité, portrait démographique de la MRC, totaux touristiques et fiches « tourisme », parc total de logements, totaux du plan climat. Un domaine dont les données d'entrée n'ont pas changé garde ses valeurs d'origine à la décimale près.
 
-Ce que le chiffrier ne modifie pas. Les extractions automatiques de `data/` (Registraire, services de garde, recensement, carte), qui priment à l'affichage, et la structure des pages.
+Hors de portée du chiffrier. Les extractions automatiques de `data/` (Registraire, services de garde, recensement, carte), qui priment à l'affichage, et la structure des pages.
 
 ## Autoriser un poste à publier (une seule fois par poste)
 
